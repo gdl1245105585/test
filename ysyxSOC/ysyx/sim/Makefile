@@ -30,20 +30,23 @@ SOC_VSRC_LIB_HOME += $(ROOT_PATH)/ram/
 SOC_VXXFILES      += $(shell find $(SOC_VSRC_HOME) -name "*.v")
 SOC_VXXFILES      += $(shell find $(SOC_VSRC_LIB_HOME) -name "*.v")
 
-SOC_VSRC_INCLPATH += -I$(SOC_VSRC_HOME)
-SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/uart16550/rtl
-SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/spi/rtl
-SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/sdram/rtl
-SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/sdram/tb
-SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include
-SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include
-SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include
-SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include
+
 SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/ip/tcdm_interface/include
 SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/ip/snitch_ssr/include
 SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/ip/snitch/include
 SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/ip/reqrsp_interface/include
 SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/ip/mem_interface/include
+SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include
+SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include
+SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include
+SOC_VSRC_INCLPATH += -I/nfs/home/guodl/test/snitch/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include
+SOC_VSRC_INCLPATH += -I$(SOC_VSRC_HOME)/pkg
+SOC_VSRC_INCLPATH += -I$(SOC_VSRC_HOME)
+SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/uart16550/rtl
+SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/spi/rtl
+SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/sdram/rtl
+SOC_VSRC_INCLPATH += -I$(ROOT_PATH)/perip/sdram/tb
+
 
 
 
