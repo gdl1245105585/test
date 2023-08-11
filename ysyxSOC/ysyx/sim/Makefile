@@ -69,7 +69,7 @@ SOC_FLAGS    += +define+TARGET_RTL
 SOC_FLAGS    += +define+TARGET_SYNTHESIS
 SOC_FLAGS    += +define+TARGET_VERILATOR
 CCACHE := $(if $(shell which ccache),ccache,)
-ifneq ($(CCACHE),)s
+ifneq ($(CCACHE),)
 export OBJCACHE = ccache
 endif
 
