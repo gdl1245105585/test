@@ -1,0 +1,588 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 9 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+ 
+ 
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 44 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 74 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+
+`line 76 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 96 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 109 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+module cdc_reset_ctrlr
+  import cdc_reset_ctrlr_pkg::*;
+ #(
+   
+   
+   
+  parameter int unsigned SYNC_STAGES = 2,
+   
+   
+  parameter logic        CLEAR_ON_ASYNC_RESET = 1'b1
+)(
+   
+  input logic  a_clk_i,
+  input logic  a_rst_ni,
+  input logic  a_clear_i,
+  output logic a_clear_o,
+  input logic a_clear_ack_i,
+  output logic a_isolate_o,
+  input logic  a_isolate_ack_i,
+   
+  input logic  b_clk_i,
+  input logic  b_rst_ni,
+  input logic  b_clear_i,
+  output logic b_clear_o,
+  input logic  b_clear_ack_i,
+  output logic b_isolate_o,
+  input logic  b_isolate_ack_i
+);
+
+`line 138 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  (* dont_touch = "true" *)
+  logic        async_a2b_req, async_b2a_ack;
+  (* dont_touch = "true" *)
+  clear_seq_phase_e async_a2b_next_phase;
+  (* dont_touch = "true" *)
+  logic        async_b2a_req, async_a2b_ack;
+  (* dont_touch = "true" *)
+  clear_seq_phase_e async_b2a_next_phase;
+
+`line 147 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  cdc_reset_ctrlr_half #(
+    .SYNC_STAGES          ( SYNC_STAGES          ),
+    .CLEAR_ON_ASYNC_RESET ( CLEAR_ON_ASYNC_RESET )
+  ) i_cdc_reset_ctrlr_half_a (
+    .clk_i              ( a_clk_i              ),
+    .rst_ni             ( a_rst_ni             ),
+    .clear_i            ( a_clear_i            ),
+    .clear_o            ( a_clear_o            ),
+    .clear_ack_i        ( a_clear_ack_i        ),
+    .isolate_o          ( a_isolate_o          ),
+    .isolate_ack_i      ( a_isolate_ack_i      ),
+    (* async *) .async_next_phase_o ( async_a2b_next_phase ),
+    (* async *) .async_req_o        ( async_a2b_req        ),
+    (* async *) .async_ack_i        ( async_b2a_ack        ),
+    (* async *) .async_next_phase_i ( async_b2a_next_phase ),
+    (* async *) .async_req_i        ( async_b2a_req        ),
+    (* async *) .async_ack_o        ( async_a2b_ack        )
+  );
+
+`line 166 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+    cdc_reset_ctrlr_half #(
+    .SYNC_STAGES          ( SYNC_STAGES          ),
+    .CLEAR_ON_ASYNC_RESET ( CLEAR_ON_ASYNC_RESET )
+  ) i_cdc_reset_ctrlr_half_b (
+    .clk_i              ( b_clk_i              ),
+    .rst_ni             ( b_rst_ni             ),
+    .clear_i            ( b_clear_i            ),
+    .clear_o            ( b_clear_o            ),
+    .clear_ack_i        ( b_clear_ack_i        ),
+    .isolate_o          ( b_isolate_o          ),
+    .isolate_ack_i      ( b_isolate_ack_i      ),
+    (* async *) .async_next_phase_o ( async_b2a_next_phase ),
+    (* async *) .async_req_o        ( async_b2a_req        ),
+    (* async *) .async_ack_i        ( async_a2b_ack        ),
+    (* async *) .async_next_phase_i ( async_a2b_next_phase ),
+    (* async *) .async_req_i        ( async_a2b_req        ),
+    (* async *) .async_ack_o        ( async_b2a_ack        )
+  );
+endmodule
+
+
+`line 187 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+module cdc_reset_ctrlr_half
+  import cdc_reset_ctrlr_pkg::*;
+#(
+   
+   
+   
+  parameter int unsigned SYNC_STAGES = 2,
+   
+   
+  parameter logic        CLEAR_ON_ASYNC_RESET = 1'b1
+)(
+   
+  input logic                clk_i,
+  input logic                rst_ni,
+  input logic                clear_i,
+  output logic               isolate_o,
+  input logic                isolate_ack_i,
+  output logic               clear_o,
+  input logic                clear_ack_i,
+   
+  output clear_seq_phase_e   async_next_phase_o,
+  output logic               async_req_o,
+  input logic                async_ack_i,
+  input clear_seq_phase_e    async_next_phase_i,
+  input logic                async_req_i,
+  output logic               async_ack_o
+);
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+
+`line 218 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+   
+   
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+   
+   
+   
+
+`line 229 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+
+`line 242 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+   typedef enum logic[3:0] {
+     IDLE,
+     ISOLATE,
+     WAIT_ISOLATE_PHASE_ACK,
+     WAIT_ISOLATE_ACK,
+     CLEAR,
+     WAIT_CLEAR_PHASE_ACK,
+     WAIT_CLEAR_ACK,
+     POST_CLEAR,
+     FINISHED
+  } initiator_state_e;
+  initiator_state_e initiator_state_d, initiator_state_q;
+
+`line 257 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+  clear_seq_phase_e          initiator_clear_seq_phase;
+  logic                      initiator_phase_transition_req;
+  logic                      initiator_phase_transition_ack;
+  logic                      initiator_isolate_out;
+  logic                      initiator_clear_out;
+
+`line 265 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  always_comb begin
+    initiator_state_d              = initiator_state_q;
+    initiator_phase_transition_req = 1'b0;
+    initiator_isolate_out          = 1'b0;
+    initiator_clear_out            = 1'b0;
+    initiator_clear_seq_phase      = CLEAR_PHASE_IDLE;
+
+`line 272 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+    case (initiator_state_q)
+      IDLE: begin
+        if (clear_i) begin
+          initiator_state_d = ISOLATE;
+        end
+      end
+
+`line 279 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      ISOLATE: begin
+        initiator_phase_transition_req = 1'b1;
+        initiator_clear_seq_phase      = CLEAR_PHASE_ISOLATE;
+        initiator_isolate_out          = 1'b1;
+        initiator_clear_out            = 1'b0;
+        if (initiator_phase_transition_ack && isolate_ack_i) begin
+          initiator_state_d = CLEAR;
+        end else if (initiator_phase_transition_ack) begin
+          initiator_state_d = WAIT_ISOLATE_ACK;
+        end else if (isolate_ack_i) begin
+          initiator_state_d = WAIT_ISOLATE_PHASE_ACK;
+        end
+      end
+
+`line 293 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      WAIT_ISOLATE_ACK: begin
+        initiator_isolate_out     = 1'b1;
+        initiator_clear_out       = 1'b0;
+        initiator_clear_seq_phase = CLEAR_PHASE_ISOLATE;
+        if (isolate_ack_i) begin
+          initiator_state_d = CLEAR;
+        end
+      end
+
+`line 302 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      WAIT_ISOLATE_PHASE_ACK: begin
+        initiator_phase_transition_req = 1'b1;
+        initiator_clear_seq_phase      = CLEAR_PHASE_ISOLATE;
+        initiator_isolate_out          = 1'b1;
+        initiator_clear_out            = 1'b0;
+        if (initiator_phase_transition_ack) begin
+          initiator_state_d = CLEAR;
+        end
+      end
+
+`line 312 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      CLEAR: begin
+        initiator_isolate_out          = 1'b1;
+        initiator_clear_out            = 1'b1;
+        initiator_phase_transition_req = 1'b1;
+        initiator_clear_seq_phase      = CLEAR_PHASE_CLEAR;
+        if (initiator_phase_transition_ack && clear_ack_i) begin
+          initiator_state_d = POST_CLEAR;
+        end else if (initiator_phase_transition_ack) begin
+          initiator_state_d = WAIT_CLEAR_ACK;
+        end else if (clear_ack_i) begin
+          initiator_state_d = WAIT_CLEAR_PHASE_ACK;
+        end
+      end
+
+`line 326 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      WAIT_CLEAR_ACK: begin
+        initiator_isolate_out     = 1'b1;
+        initiator_clear_out       = 1'b1;
+        initiator_clear_seq_phase = CLEAR_PHASE_CLEAR;
+        if (clear_ack_i) begin
+          initiator_state_d = POST_CLEAR;
+        end
+      end
+
+`line 335 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      WAIT_CLEAR_PHASE_ACK: begin
+        initiator_phase_transition_req = 1'b1;
+        initiator_clear_seq_phase      = CLEAR_PHASE_CLEAR;
+        initiator_isolate_out          = 1'b1;
+        initiator_clear_out            = 1'b1;
+        if (initiator_phase_transition_ack) begin
+          initiator_state_d = POST_CLEAR;
+        end
+      end
+
+`line 345 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      POST_CLEAR: begin
+        initiator_isolate_out          = 1'b1;
+        initiator_clear_out            = 1'b0;
+        initiator_phase_transition_req = 1'b1;
+        initiator_clear_seq_phase      = CLEAR_PHASE_POST_CLEAR;
+        if (initiator_phase_transition_ack) begin
+          initiator_state_d = FINISHED;
+        end
+      end
+
+`line 355 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      FINISHED: begin
+        initiator_isolate_out          = 1'b1;
+        initiator_clear_out            = 1'b0;
+        initiator_phase_transition_req = 1'b1;
+        initiator_clear_seq_phase      = CLEAR_PHASE_IDLE;
+        if (initiator_phase_transition_ack) begin
+          initiator_state_d = IDLE;
+        end
+      end
+
+`line 365 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+      default: begin
+        initiator_state_d = ISOLATE;
+      end
+    endcase
+  end
+
+`line 371 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  always_ff @(posedge clk_i, negedge rst_ni) begin
+    if (!rst_ni) begin
+      if (CLEAR_ON_ASYNC_RESET) begin
+        initiator_state_q <= ISOLATE;  
+                                         
+      end else begin
+        initiator_state_q <= IDLE;
+      end
+    end else begin
+      initiator_state_q <= initiator_state_d;
+    end
+  end
+
+`line 384 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+   
+   
+
+`line 389 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  cdc_4phase_src #(
+    .T(clear_seq_phase_e),
+    .SYNC_STAGES(2),
+    .DECOUPLED(0),  
+                    
+                    
+    .SEND_RESET_MSG(CLEAR_ON_ASYNC_RESET),  
+                                            
+    .RESET_MSG(CLEAR_PHASE_ISOLATE)
+  ) i_state_transition_cdc_src(
+    .clk_i,
+    .rst_ni,
+    .data_i(initiator_clear_seq_phase),
+    .valid_i(initiator_phase_transition_req),
+    .ready_o(initiator_phase_transition_ack),
+    .async_req_o,
+    .async_ack_i,
+    .async_data_o(async_next_phase_o)
+  );
+
+
+`line 410 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+   
+
+`line 414 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  clear_seq_phase_e receiver_phase_q;
+  clear_seq_phase_e receiver_next_phase;
+  logic receiver_phase_req, receiver_phase_ack;
+
+`line 418 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  logic receiver_isolate_out;
+  logic receiver_clear_out;
+
+`line 421 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  cdc_4phase_dst #(
+    .T(clear_seq_phase_e),
+    .SYNC_STAGES(2),
+    .DECOUPLED(0)  
+                   
+                   
+  ) i_state_transition_cdc_dst(
+    .clk_i,
+    .rst_ni,
+    .data_o(receiver_next_phase),
+    .valid_o(receiver_phase_req),
+    .ready_i(receiver_phase_ack),
+    .async_req_i,
+    .async_ack_o,
+    .async_data_i(async_next_phase_i)
+  );
+
+`line 438 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  always_ff @(posedge clk_i, negedge rst_ni) begin
+    if (!rst_ni) begin
+      receiver_phase_q <= CLEAR_PHASE_IDLE;
+    end else if (receiver_phase_req && receiver_phase_ack) begin
+      receiver_phase_q <= receiver_next_phase;
+    end
+  end
+
+`line 446 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+  always_comb begin
+    receiver_isolate_out = 1'b0;
+    receiver_clear_out   = 1'b0;
+    receiver_phase_ack   = 1'b0;
+
+`line 451 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+     
+    if (receiver_phase_req) begin
+      case (receiver_next_phase)
+        CLEAR_PHASE_IDLE: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b0;
+          receiver_phase_ack   = 1'b1;
+        end
+
+`line 460 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        CLEAR_PHASE_ISOLATE: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b1;
+           
+          receiver_phase_ack = isolate_ack_i;
+        end
+
+`line 467 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        CLEAR_PHASE_CLEAR: begin
+          receiver_clear_out   = 1'b1;
+          receiver_isolate_out = 1'b1;
+           
+          receiver_phase_ack   = clear_ack_i;
+        end
+
+`line 474 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        CLEAR_PHASE_POST_CLEAR: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b1;
+          receiver_phase_ack   = 1'b1;
+        end
+
+`line 480 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        default: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b0;
+          receiver_phase_ack   = 1'b0;
+        end
+      endcase
+
+`line 487 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+    end else begin
+       
+       
+      case (receiver_phase_q)
+        CLEAR_PHASE_IDLE: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b0;
+        end
+
+`line 496 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        CLEAR_PHASE_ISOLATE: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b1;
+        end
+
+`line 501 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        CLEAR_PHASE_CLEAR: begin
+          receiver_clear_out   = 1'b1;
+          receiver_isolate_out = 1'b1;
+        end
+
+`line 506 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        CLEAR_PHASE_POST_CLEAR: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b1;
+        end
+
+`line 511 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+        default: begin
+          receiver_clear_out   = 1'b0;
+          receiver_isolate_out = 1'b0;
+          receiver_phase_ack   = 1'b0;
+        end
+      endcase
+    end
+  end
+
+`line 520 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+
+`line 522 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+   
+   
+   
+   
+  assign clear_o = initiator_clear_out || receiver_clear_out;
+  assign isolate_o = initiator_isolate_out || receiver_isolate_out;
+
+`line 529 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 0
+endmodule : cdc_reset_ctrlr_half
+
+`line 531 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr.sv" 2

@@ -1,0 +1,57 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 0
+package snitch_icache_pkg;
+
+`line 9 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 0
+    typedef struct packed {
+      logic l0_miss;
+      logic l0_hit;
+      logic l0_prefetch;
+      logic l0_double_hit;
+      logic l0_stall;
+    } icache_events_t;
+
+`line 17 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 0
+    typedef struct packed {
+         
+        int NR_FETCH_PORTS;
+        int LINE_WIDTH;
+        int LINE_COUNT;
+        int SET_COUNT;
+        int PENDING_COUNT;
+        int L0_LINE_COUNT;
+        int FETCH_AW;
+        int FETCH_DW;
+        int FILL_AW;
+        int FILL_DW;
+        bit EARLY_LATCH;
+        bit BUFFER_LOOKUP;
+        bit GUARANTEE_ORDERING;
+
+`line 33 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 0
+         
+        int FETCH_ALIGN;
+        int FILL_ALIGN;
+        int LINE_ALIGN;
+        int COUNT_ALIGN;
+        int SET_ALIGN;
+        int TAG_WIDTH;
+        int L0_TAG_WIDTH;
+        int L0_EARLY_TAG_WIDTH;
+        int ID_WIDTH_REQ;
+        int ID_WIDTH_RESP;
+        int PENDING_IW;  
+    } config_t;
+
+`line 47 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 0
+endpackage
+
+`line 49 "/repo/hw/ip/snitch_icache/src/snitch_icache_pkg.sv" 2

@@ -1,0 +1,135 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+ 
+interface TCDM_BUS #(
+   
+  parameter int  ADDR_WIDTH = -1,
+   
+  parameter int  DATA_WIDTH = -1,
+   
+  parameter type user_t  = logic
+);
+
+`line 17 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  import reqrsp_pkg::*;
+
+`line 19 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  localparam int unsigned StrbWidth = DATA_WIDTH / 8;
+
+`line 21 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  typedef logic [ADDR_WIDTH-1:0] addr_t;
+  typedef logic [DATA_WIDTH-1:0] data_t;
+  typedef logic [StrbWidth-1:0] strb_t;
+   
+  addr_t   q_addr;
+   
+  logic    q_write;
+  amo_op_e q_amo;
+  data_t   q_data;
+   
+  strb_t   q_strb;
+  user_t   q_user;
+  logic    q_valid;
+  logic    q_ready;
+
+`line 36 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+   
+  data_t   p_data;
+  logic    p_valid;
+
+`line 40 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  modport in  (
+    input  q_addr, q_write, q_amo, q_user, q_data, q_strb, q_valid,
+    output q_ready, p_data, p_valid
+  );
+  modport out (
+    output q_addr, q_write, q_amo, q_user, q_data, q_strb, q_valid,
+    input  q_ready, p_data, p_valid
+  );
+  modport monitor (
+    input q_addr, q_write, q_amo, q_user, q_data, q_strb, q_valid,
+          q_ready, p_data, p_valid
+  );
+
+`line 53 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+endinterface
+
+`line 55 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+ 
+interface TCDM_BUS_DV #(
+   
+  parameter int  ADDR_WIDTH = -1,
+   
+  parameter int  DATA_WIDTH = -1,
+   
+  parameter type user_t  = logic
+) (
+  input logic clk_i
+);
+
+`line 67 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  import reqrsp_pkg::*;
+
+`line 69 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  localparam int unsigned StrbWidth = DATA_WIDTH / 8;
+
+`line 71 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  typedef logic [ADDR_WIDTH-1:0] addr_t;
+  typedef logic [DATA_WIDTH-1:0] data_t;
+  typedef logic [StrbWidth-1:0] strb_t;
+   
+  addr_t   q_addr;
+   
+  logic    q_write;
+  amo_op_e q_amo;
+  data_t   q_data;
+   
+  strb_t   q_strb;
+  user_t   q_user;
+  logic    q_valid;
+  logic    q_ready;
+
+`line 86 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+   
+  data_t   p_data;
+  logic    p_valid;
+
+`line 90 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+  modport in  (
+    input  q_addr, q_write, q_amo, q_user, q_data, q_strb, q_valid,
+    output q_ready, p_data, p_valid
+  );
+  modport out (
+    output q_addr, q_write, q_amo, q_user, q_data, q_strb, q_valid,
+    input  q_ready, p_data, p_valid
+  );
+  modport monitor (
+    input q_addr, q_write, q_amo, q_user, q_data, q_strb, q_valid,
+          q_ready, p_data, p_valid
+  );
+
+`line 103 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+   
+   
+          
+          
+          
+            
+            
+          
+          
+  
+   
+
+`line 115 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 0
+endinterface
+
+`line 117 "/repo/hw/ip/tcdm_interface/src/tcdm_interface.sv" 2

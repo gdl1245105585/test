@@ -1,0 +1,217 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 43 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+module clock_divider
+#(
+    parameter DIV_INIT     = 0,
+    parameter BYPASS_INIT  = 1
+)
+(
+    input  logic       clk_i,
+    input  logic       rstn_i,
+    input  logic       test_mode_i,
+    input  logic       clk_gate_async_i,
+    input  logic [7:0] clk_div_data_i,
+    input  logic       clk_div_valid_i,
+    output logic       clk_div_ack_o,
+    output logic       clk_o
+);
+
+`line 59 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+   enum                logic [1:0] {IDLE, STOP, WAIT, RELEASE} state, state_next;
+
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+   logic               s_clk_out;
+   logic               s_clock_enable;
+   logic               s_clock_enable_gate;
+   logic               s_clk_div_valid;
+
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+   logic [7:0]         reg_clk_div;
+   logic               s_clk_div_valid_sync;
+
+`line 69 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+   logic               s_rstn_sync;
+
+`line 71 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+   logic [1:0]         reg_ext_gate_sync;
+
+`line 73 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+    assign s_clock_enable_gate =  s_clock_enable & reg_ext_gate_sync;
+
+`line 75 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+ 
+    rstgen i_rst_gen
+    (
+         
+        .clk_i(clk_i),
+        .rst_ni(rstn_i),             
+
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+         
+        .test_mode_i(test_mode_i),
+
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+         
+        .rst_no(s_rstn_sync),
+        .init_no()                  
+    );
+  
+     
+
+
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+     
+    pulp_sync_wedge i_edge_prop
+    (
+        .clk_i(clk_i),
+        .rstn_i(s_rstn_sync),
+        .en_i(1'b1),
+        .serial_i(clk_div_valid_i),
+        .serial_o(clk_div_ack_o),
+        .r_edge_o(s_clk_div_valid_sync),
+        .f_edge_o()
+    );
+
+`line 106 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+    clock_divider_counter
+    #(
+        .BYPASS_INIT(BYPASS_INIT),
+        .DIV_INIT(DIV_INIT)
+    )
+    i_clkdiv_cnt
+    (
+        .clk(clk_i),
+        .rstn(s_rstn_sync),
+        .test_mode(test_mode_i),
+        .clk_div(reg_clk_div),
+        .clk_div_valid(s_clk_div_valid),
+        .clk_out(s_clk_out)
+    );
+
+`line 121 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+    pulp_clock_gating i_clk_gate
+    (
+        .clk_i(s_clk_out),
+        .en_i(s_clock_enable_gate),
+        .test_en_i(test_mode_i),
+        .clk_o(clk_o)
+    );
+
+`line 129 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+    always_comb
+    begin
+        case(state)
+        IDLE:
+        begin
+            s_clock_enable   = 1'b1;
+            s_clk_div_valid  = 1'b0;
+            if (s_clk_div_valid_sync)
+                state_next = STOP;
+            else
+                state_next = IDLE;
+        end
+
+`line 142 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+        STOP:
+        begin
+            s_clock_enable   = 1'b0;
+            s_clk_div_valid  = 1'b1;
+            state_next = WAIT;
+        end
+
+`line 149 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+        WAIT:
+        begin
+            s_clock_enable   = 1'b0;
+            s_clk_div_valid  = 1'b0;
+            state_next = RELEASE;
+        end
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+        RELEASE:
+        begin
+            s_clock_enable   = 1'b0;
+            s_clk_div_valid  = 1'b0;
+            state_next = IDLE;
+        end
+        endcase
+    end
+
+`line 165 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+    always_ff @(posedge clk_i or negedge s_rstn_sync)
+    begin
+        if (!s_rstn_sync)
+            state <= IDLE;
+        else
+            state <= state_next;
+    end
+
+`line 173 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+     
+    always_ff @(posedge clk_i or negedge s_rstn_sync)
+    begin
+        if (!s_rstn_sync)
+            reg_clk_div <= '0;
+        else if (s_clk_div_valid_sync)
+                  reg_clk_div <= clk_div_data_i;
+    end
+
+`line 182 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+     
+    always_ff @(posedge clk_i or negedge s_rstn_sync)
+    begin
+        if (!s_rstn_sync)
+            reg_ext_gate_sync <= 2'b00;
+        else
+            reg_ext_gate_sync <= {clk_gate_async_i, reg_ext_gate_sync[1]};
+    end
+
+`line 191 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 0
+endmodule
+
+`line 193 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/clock_divider.sv" 2

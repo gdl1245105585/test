@@ -1,0 +1,45 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_demux.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_demux.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_demux.sv" 0
+module reg_demux #(
+  parameter int unsigned NoPorts = 32'd0,
+  parameter type req_t = logic,
+  parameter type rsp_t = logic,
+   
+  parameter int unsigned SelectWidth    = (NoPorts > 32'd1) ? $clog2(NoPorts) : 32'd1,
+  parameter type         select_t       = logic [SelectWidth-1:0]
+) (
+  input  logic               clk_i,
+  input  logic               rst_ni,
+  input  select_t            in_select_i,
+  input  req_t               in_req_i,
+  output rsp_t               in_rsp_o,
+  output req_t [NoPorts-1:0] out_req_o,
+  input  rsp_t [NoPorts-1:0] out_rsp_i
+);
+
+`line 30 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_demux.sv" 0
+  always_comb begin
+    out_req_o = '0;
+    in_rsp_o = '0;
+    out_req_o[in_select_i] = in_req_i;
+    in_rsp_o = out_rsp_i[in_select_i];
+  end
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_demux.sv" 0
+endmodule
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_demux.sv" 2

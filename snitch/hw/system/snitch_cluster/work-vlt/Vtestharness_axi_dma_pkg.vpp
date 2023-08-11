@@ -1,0 +1,295 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 0
+ 
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 118 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 239 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 246 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 2
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 0
+
+
+`line 9 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 0
+ 
+ 
+package axi_dma_pkg;
+
+`line 13 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 0
+  typedef struct packed {
+      logic [63:0] aw_stall_cnt, ar_stall_cnt, r_stall_cnt, w_stall_cnt,
+                   buf_w_stall_cnt, buf_r_stall_cnt;
+      logic [63:0] aw_valid_cnt, aw_ready_cnt, aw_done_cnt, aw_bw;
+      logic [63:0] ar_valid_cnt, ar_ready_cnt, ar_done_cnt, ar_bw;
+      logic [63:0]  r_valid_cnt,  r_ready_cnt,  r_done_cnt,  r_bw;
+      logic [63:0]  w_valid_cnt,  w_ready_cnt,  w_done_cnt,  w_bw;
+      logic [63:0]  b_valid_cnt,  b_ready_cnt,  b_done_cnt;
+      logic [63:0] next_id,       completed_id;
+      logic [63:0] dma_busy_cnt;
+  } dma_perf_t;
+
+`line 25 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 0
+endpackage
+
+`line 27 "/repo/hw/ip/snitch_dma/src/axi_dma_pkg.sv" 2

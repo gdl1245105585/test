@@ -1,0 +1,330 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+ 
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+ 
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+ 
+module reg_to_mem #(
+  parameter int unsigned AW = 0,
+  parameter int unsigned DW = 0,
+  parameter type req_t = logic,
+  parameter type rsp_t = logic
+) (
+  input  logic               clk_i,
+  input  logic               rst_ni,
+  input  req_t               reg_req_i,
+  output rsp_t               reg_rsp_o,
+   
+  output logic               req_o,
+  input  logic               gnt_i,
+  output logic               we_o,
+  output logic [AW-1:0]      addr_o,
+  output logic [DW-1:0]      wdata_o,
+  output logic [DW/8-1:0]    wstrb_o,
+  input  logic [DW-1:0]      rdata_i,
+  input  logic               rvalid_i,
+  input  logic               rerror_i
+);
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+  logic wait_read_d, wait_read_q;
+  
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                           
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+    if (! rst_ni) begin                                                             
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+      wait_read_q <= (1'b0);                                                        
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+    end else begin                                                                   
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+      wait_read_q <= (wait_read_d);                                                                  
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+    end                                                                              
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+  end
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+  always_comb begin
+    wait_read_d = wait_read_q;
+    if (req_o && gnt_i && !we_o) wait_read_d = 1'b1;
+    if (wait_read_q && reg_rsp_o.ready) wait_read_d = 1'b0;
+  end
+
+`line 48 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+  assign req_o = ~wait_read_q & reg_req_i.valid;
+  assign we_o = reg_req_i.write;
+  assign addr_o = reg_req_i.addr[AW-1:0];
+  assign wstrb_o = reg_req_i.wstrb;
+  assign wdata_o = reg_req_i.wdata;
+
+`line 54 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+  assign reg_rsp_o.rdata = rdata_i;
+  assign reg_rsp_o.error = rerror_i;
+  assign reg_rsp_o.ready = (reg_req_i.valid & gnt_i & we_o) | (wait_read_q & rvalid_i);
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 0
+endmodule
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_mem.sv" 2

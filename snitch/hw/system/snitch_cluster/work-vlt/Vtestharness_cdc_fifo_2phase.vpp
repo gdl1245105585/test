@@ -1,0 +1,179 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module cdc_fifo_2phase #(
+   
+  parameter type T = logic,
+   
+  parameter int LOG_DEPTH = 3
+)(
+  input  logic src_rst_ni,
+  input  logic src_clk_i,
+  input  T     src_data_i,
+  input  logic src_valid_i,
+  output logic src_ready_o,
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  input  logic dst_rst_ni,
+  input  logic dst_clk_i,
+  output T     dst_data_o,
+  output logic dst_valid_o,
+  input  logic dst_ready_i
+);
+
+`line 64 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+   
+   
+  initial begin
+    assert(LOG_DEPTH > 0);
+  end
+   
+
+`line 71 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  localparam int PtrWidth = LOG_DEPTH+1;
+  typedef logic [PtrWidth-1:0] pointer_t;
+  typedef logic [LOG_DEPTH-1:0] index_t;
+
+`line 75 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  localparam pointer_t PtrFull  = (1 << LOG_DEPTH);
+  localparam pointer_t PtrEmpty = '0;
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+   
+   
+  
+   
+   
+  index_t fifo_widx, fifo_ridx;
+  logic fifo_write;
+  T fifo_wdata, fifo_rdata;
+  T fifo_data_q [2**LOG_DEPTH];
+
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  assign fifo_rdata = fifo_data_q[fifo_ridx];
+
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  for (genvar i = 0; i < 2**LOG_DEPTH; i++) begin : g_word
+    always_ff @(posedge src_clk_i, negedge src_rst_ni) begin
+      if (!src_rst_ni)
+        fifo_data_q[i] <= '0;
+      else if (fifo_write && fifo_widx == i)
+        fifo_data_q[i] <= fifo_wdata;
+    end
+  end
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+   
+  pointer_t src_wptr_q, dst_wptr, src_rptr, dst_rptr_q;
+
+`line 102 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  always_ff @(posedge src_clk_i, negedge src_rst_ni) begin
+    if (!src_rst_ni)
+      src_wptr_q <= 0;
+    else if (src_valid_i && src_ready_o)
+      src_wptr_q <= src_wptr_q + 1;
+  end
+
+`line 109 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  always_ff @(posedge dst_clk_i, negedge dst_rst_ni) begin
+    if (!dst_rst_ni)
+      dst_rptr_q <= 0;
+    else if (dst_valid_o && dst_ready_i)
+      dst_rptr_q <= dst_rptr_q + 1;
+  end
+
+`line 116 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+   
+   
+   
+   
+  assign src_ready_o = ((src_wptr_q ^ src_rptr) != PtrFull);
+  assign dst_valid_o = ((dst_rptr_q ^ dst_wptr) != PtrEmpty);
+
+`line 123 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+   
+  cdc_2phase #( .T(pointer_t) ) i_cdc_wptr (
+    .src_rst_ni  ( src_rst_ni ),
+    .src_clk_i   ( src_clk_i  ),
+    .src_data_i  ( src_wptr_q ),
+    .src_valid_i ( 1'b1       ),
+    .src_ready_o (            ),
+    .dst_rst_ni  ( dst_rst_ni ),
+    .dst_clk_i   ( dst_clk_i  ),
+    .dst_data_o  ( dst_wptr   ),
+    .dst_valid_o (            ),
+    .dst_ready_i ( 1'b1       )
+  );
+
+`line 137 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+  cdc_2phase #( .T(pointer_t) ) i_cdc_rptr (
+    .src_rst_ni  ( dst_rst_ni ),
+    .src_clk_i   ( dst_clk_i  ),
+    .src_data_i  ( dst_rptr_q ),
+    .src_valid_i ( 1'b1       ),
+    .src_ready_o (            ),
+    .dst_rst_ni  ( src_rst_ni ),
+    .dst_clk_i   ( src_clk_i  ),
+    .dst_data_o  ( src_rptr   ),
+    .dst_valid_o (            ),
+    .dst_ready_i ( 1'b1       )
+  );
+
+`line 150 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+   
+  assign fifo_widx  = src_wptr_q;
+  assign fifo_wdata = src_data_i;
+  assign fifo_write = src_valid_i && src_ready_o;
+  assign fifo_ridx  = dst_rptr_q;
+  assign dst_data_o = fifo_rdata;
+
+`line 157 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 0
+endmodule
+
+`line 159 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_2phase.sv" 2

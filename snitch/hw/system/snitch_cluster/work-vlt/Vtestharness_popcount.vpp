@@ -1,0 +1,74 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+module popcount #(
+    parameter int unsigned INPUT_WIDTH = 256,
+    localparam int unsigned PopcountWidth = $clog2(INPUT_WIDTH)+1
+) (
+    input logic [INPUT_WIDTH-1:0]     data_i,
+    output logic [PopcountWidth-1:0] popcount_o
+);
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+   localparam int unsigned PaddedWidth = 1 << $clog2(INPUT_WIDTH);
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+   logic [PaddedWidth-1:0]           padded_input;
+   logic [PopcountWidth-2:0]         left_child_result, right_child_result;
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+    
+   always_comb begin
+     padded_input = '0;
+     padded_input[INPUT_WIDTH-1:0] = data_i;
+   end
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+    
+   if (INPUT_WIDTH == 1) begin : gen_single_node
+     assign left_child_result  = 1'b0;
+     assign right_child_result = padded_input[0];
+   end else if (INPUT_WIDTH == 2) begin : gen_leaf_node
+     assign left_child_result  = padded_input[1];
+     assign right_child_result = padded_input[0];
+   end else begin : gen_non_leaf_node
+     popcount #(.INPUT_WIDTH(PaddedWidth / 2))
+         left_child(
+                    .data_i(padded_input[PaddedWidth-1:PaddedWidth/2]),
+                    .popcount_o(left_child_result));
+
+`line 51 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+     popcount #(.INPUT_WIDTH(PaddedWidth / 2))
+         right_child(
+                     .data_i(padded_input[PaddedWidth/2-1:0]),
+                     .popcount_o(right_child_result));
+   end
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+    
+   assign popcount_o = left_child_result + right_child_result;
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 0
+endmodule : popcount
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/popcount.sv" 2

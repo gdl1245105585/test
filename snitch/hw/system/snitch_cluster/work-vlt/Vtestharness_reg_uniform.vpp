@@ -1,0 +1,107 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+ 
+module reg_uniform #(
+   
+  parameter int ADDR_WIDTH = -1,
+   
+  parameter int DATA_WIDTH = -1,
+   
+  parameter int NUM_REG = -1,
+   
+  parameter int REG_WIDTH = -1,
+   
+  parameter logic [NUM_REG-1:0] REG_WRITABLE = '1
+)(
+  input  logic                              clk_i      ,
+  input  logic                              rst_ni     ,
+  input  logic [NUM_REG-1:0][REG_WIDTH-1:0] init_val_i ,  
+  input  logic [NUM_REG-1:0][REG_WIDTH-1:0] rd_val_i   ,  
+  output logic [NUM_REG-1:0][REG_WIDTH-1:0] wr_val_o   ,  
+  output logic [NUM_REG-1:0]                wr_evt_o   ,
+  REG_BUS.in   reg_i
+);
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+   
+  logic [NUM_REG-1:0][REG_WIDTH-1:0] reg_q;
+  logic [NUM_REG-1:0][REG_WIDTH/8-1:0] reg_wr;
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+  for (genvar i = 0; i < NUM_REG; i++) begin : gen_regs
+     
+     
+    if (REG_WRITABLE[i]) begin : gen_writable
+       
+      for (genvar j = 0; j < REG_WIDTH/8; j++) begin : gen_ff
+        always_ff @(posedge clk_i, negedge rst_ni) begin
+          if (!rst_ni)
+            reg_q[i][j*8+7 -: 8] <= init_val_i[i][j*8+7 -: 8];
+          else if (reg_wr[i][j])
+            reg_q[i][j*8+7 -: 8] <= reg_i.wdata[(i*REG_WIDTH+j*8+7)%DATA_WIDTH -: 8];
+        end
+      end
+    end else begin : gen_readonly
+      assign reg_q[i] = init_val_i[i];
+    end
+  end
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+   
+  always_comb begin
+    wr_val_o = reg_q;
+    for (int i = 0; i < NUM_REG; i++)
+      wr_evt_o[i] = |reg_wr[i];
+  end
+
+`line 64 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+   
+  localparam int AddrShift = $clog2(DATA_WIDTH/8);
+  logic [ADDR_WIDTH-AddrShift-1:0] bus_word_addr;
+  assign bus_word_addr = reg_i.addr >> AddrShift;
+
+`line 69 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+   
+  localparam int NumBusWords = (NUM_REG * REG_WIDTH + DATA_WIDTH - 1) / DATA_WIDTH;
+  logic [NumBusWords-1:0][DATA_WIDTH-1:0] reg_busmapped;
+  logic [NumBusWords-1:0][DATA_WIDTH/8-1:0] reg_wr_busmapped;
+  assign reg_busmapped = rd_val_i;
+  assign reg_wr = reg_wr_busmapped;
+
+`line 76 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+   
+  always_comb begin
+    reg_wr_busmapped = '0;
+    reg_i.ready = 1;
+    reg_i.rdata = '0;
+    reg_i.error = 0;
+    if (reg_i.valid) begin
+      if (bus_word_addr < NumBusWords) begin
+        reg_i.rdata = reg_busmapped[bus_word_addr];
+        if (reg_i.write) begin
+          reg_wr_busmapped[bus_word_addr] = reg_i.wstrb;
+        end
+      end else begin
+        reg_i.error = 1;
+      end
+    end
+  end
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 0
+endmodule
+
+`line 96 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_uniform.sv" 2

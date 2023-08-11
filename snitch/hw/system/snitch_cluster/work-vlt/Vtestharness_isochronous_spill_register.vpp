@@ -1,0 +1,407 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+ 
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module isochronous_spill_register #(
+   
+  parameter type T      = logic,
+   
+  parameter bit  Bypass = 1'b0
+) (
+   
+  input  logic src_clk_i,
+   
+  input  logic src_rst_ni,
+   
+  input  logic src_valid_i,
+   
+  output logic src_ready_o,
+   
+  input  T     src_data_i,
+   
+  input  logic dst_clk_i,
+   
+  input  logic dst_rst_ni,
+   
+  output logic dst_valid_o,
+   
+  input  logic dst_ready_i,
+   
+  output T     dst_data_o
+);
+   
+  if (Bypass) begin : gen_bypass
+    assign dst_valid_o = src_valid_i;
+    assign src_ready_o = dst_ready_i;
+    assign dst_data_o  = src_data_i;
+   
+  end else begin : gen_isochronous_spill_register
+     
+     
+     
+     
+     
+    logic [1:0] rd_pointer_q, wr_pointer_q;
+     
+    
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  always_ff @(posedge (src_clk_i) or negedge (src_rst_ni)) begin                                    
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    if (!src_rst_ni) begin                                                                      
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+      wr_pointer_q <= ('0);                                                                 
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    end else begin                                                                            
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+      wr_pointer_q <= ((src_valid_i && src_ready_o)) ? (wr_pointer_q+1) : (wr_pointer_q);                                                        
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    end                                                                                       
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  end
+     
+    
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  always_ff @(posedge (dst_clk_i) or negedge (dst_rst_ni)) begin                                    
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    if (!dst_rst_ni) begin                                                                      
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+      rd_pointer_q <= ('0);                                                                 
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    end else begin                                                                            
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+      rd_pointer_q <= ((dst_valid_o && dst_ready_i)) ? (rd_pointer_q+1) : (rd_pointer_q);                                                        
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    end                                                                                       
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  end
+
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    T [1:0] mem_d, mem_q;
+    
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  always_ff @(posedge (src_clk_i)) begin   
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    mem_q <= ((src_valid_i && src_ready_o)) ? (mem_d) : (mem_q);   
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+  end
+    always_comb begin
+      mem_d = mem_q;
+      mem_d[wr_pointer_q[0]] = src_data_i;
+    end
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    assign src_ready_o = (rd_pointer_q ^ wr_pointer_q) != 2'b10;
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+    assign dst_valid_o = (rd_pointer_q ^ wr_pointer_q) != '0;
+    assign dst_data_o = mem_q[rd_pointer_q[0]];
+  end
+
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 0
+   
+   
+   
+        
+          
+        
+          
+        
+          
+        
+          
+  
+   
+endmodule
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/isochronous_spill_register.sv" 2

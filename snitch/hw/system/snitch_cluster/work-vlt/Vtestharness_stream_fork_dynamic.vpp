@@ -1,0 +1,107 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+ 
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module stream_fork_dynamic #(
+   
+  parameter int unsigned N_OUP = 32'd0  
+) (
+   
+  input  logic             clk_i,
+   
+  input  logic             rst_ni,
+   
+  input  logic             valid_i,
+   
+  output logic             ready_o,
+   
+  input  logic [N_OUP-1:0] sel_i,
+   
+  input  logic             sel_valid_i,
+   
+  output logic             sel_ready_o,
+   
+  output logic [N_OUP-1:0] valid_o,
+   
+  input  logic [N_OUP-1:0] ready_i
+);
+
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+  logic             int_inp_valid,  int_inp_ready;
+  logic [N_OUP-1:0] int_oup_valid,  int_oup_ready;
+
+`line 49 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+   
+  for (genvar i = 0; i < N_OUP; i++) begin : gen_oups
+    always_comb begin
+      valid_o[i]       = 1'b0;
+      int_oup_ready[i] = 1'b0;
+      if (sel_valid_i) begin
+        if (sel_i[i]) begin
+          valid_o[i]       = int_oup_valid[i];
+          int_oup_ready[i] = ready_i[i];
+        end else begin
+          int_oup_ready[i] = 1'b1;
+        end
+      end
+    end
+  end
+
+`line 65 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+   
+  always_comb begin
+    int_inp_valid = 1'b0;
+    ready_o       = 1'b0;
+    sel_ready_o   = 1'b0;
+    if (sel_valid_i) begin
+      int_inp_valid = valid_i;
+      ready_o       = int_inp_ready;
+      sel_ready_o   = int_inp_ready;
+    end
+  end
+
+`line 77 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+  stream_fork #(
+    .N_OUP  ( N_OUP )
+  ) i_fork (
+    .clk_i,
+    .rst_ni,
+    .valid_i ( int_inp_valid ),
+    .ready_o ( int_inp_ready ),
+    .valid_o ( int_oup_valid ),
+    .ready_i ( int_oup_ready )
+  );
+
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+ 
+ 
+    
+          
+  
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 0
+ 
+endmodule
+
+`line 97 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork_dynamic.sv" 2

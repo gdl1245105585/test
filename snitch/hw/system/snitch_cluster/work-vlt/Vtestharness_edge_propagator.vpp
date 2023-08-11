@@ -1,0 +1,40 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_propagator.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_propagator.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_propagator.sv" 0
+module edge_propagator (
+  input  logic clk_tx_i,
+  input  logic rstn_tx_i,
+  input  logic edge_i,
+  input  logic clk_rx_i,
+  input  logic rstn_rx_i,
+  output logic edge_o
+);
+
+`line 22 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_propagator.sv" 0
+  edge_propagator_ack i_edge_propagator_ack (
+    .clk_tx_i,
+    .rstn_tx_i,
+    .edge_i,
+    .ack_tx_o ( ),
+    .clk_rx_i,
+    .rstn_rx_i,
+    .edge_o
+  );
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_propagator.sv" 0
+endmodule
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_propagator.sv" 2

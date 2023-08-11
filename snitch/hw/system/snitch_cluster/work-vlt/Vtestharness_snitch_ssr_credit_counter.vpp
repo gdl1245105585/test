@@ -1,0 +1,595 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+ 
+`line 8 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 8 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+
+`line 9 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+ 
+`line 9 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 1
+ 
+`line 2 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+
+`line 9 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+  
+   
+     
+     
+       
+       
+    
+  
+
+
+
+
+
+
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+ 
+   
+
+
+
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 105 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 115 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+`line 121 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 131 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 138 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 145 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 165 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 182 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 189 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 196 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+  
+
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 2
+`line 9 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+
+
+`line 11 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+module snitch_ssr_credit_counter #(
+  parameter int unsigned NumCredits      = 0,
+   
+  parameter bit          InitCreditEmpty = 1'b0,
+   
+  parameter int unsigned InitNumCredits  = InitCreditEmpty ? '0 : NumCredits,
+  parameter type         credit_cnt_t    = logic [$clog2(NumCredits):0]
+) (
+  input  logic clk_i,
+  input  logic rst_ni,
+
+`line 22 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  output credit_cnt_t credit_o,
+
+`line 24 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  input  logic credit_give_i,
+  input  logic credit_take_i,
+  input  logic credit_init_i,   
+
+`line 28 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  output logic credit_left_o,
+  output logic credit_crit_o,   
+  output logic credit_full_o
+);
+
+`line 33 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  credit_cnt_t credit_d, credit_q;
+  logic increment, decrement;
+
+`line 36 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  assign decrement = credit_take_i & ~credit_give_i;
+  assign increment = ~credit_take_i & credit_give_i;
+
+`line 39 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  always_comb begin
+    credit_d = credit_q;
+    if      (decrement) credit_d = credit_q - 1;
+    else if (increment) credit_d = credit_q + 1;
+  end
+
+`line 45 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  logic credit_load;
+  assign credit_load = 1'b1;
+  
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                      
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                  
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                                     
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                 
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+    if (!rst_ni) begin                                                   
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+      credit_q <= (InitNumCredits);                                              
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+    end else begin                                                         
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+      credit_q <= (credit_init_i) ? (InitNumCredits) : (credit_load) ? (credit_d) : (credit_q);       
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+    end                                                                    
+`line 47 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  end
+
+`line 49 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  assign credit_o       = credit_q;
+  assign credit_left_o  = (credit_q != '0);
+  assign credit_crit_o  = (credit_q == NumCredits-1);
+  assign credit_full_o  = (credit_q == NumCredits);
+
+`line 54 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  
+`line 54 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                                               
+`line 54 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                            
+`line 54 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                                                      
+`line 54 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                           
+`line 54 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                                                            
+
+`line 55 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+  
+`line 55 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                                               
+`line 55 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                            
+`line 55 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                                                      
+`line 55 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                           
+`line 55 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+                                                                                            
+
+
+`line 57 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 0
+endmodule
+
+`line 59 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_credit_counter.sv" 2

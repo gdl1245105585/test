@@ -1,0 +1,93 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+ 
+module axi_riscv_amos_alu # (
+    parameter int unsigned DATA_WIDTH = 0
+) (
+    input  logic [5:0]              amo_op_i,
+    input  logic [DATA_WIDTH-1:0]   amo_operand_a_i,
+    input  logic [DATA_WIDTH-1:0]   amo_operand_b_i,
+    output logic [DATA_WIDTH-1:0]   amo_result_o
+);
+
+`line 22 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+    logic [DATA_WIDTH:0] adder_sum;
+    logic [DATA_WIDTH:0] adder_operand_a, adder_operand_b;
+
+`line 25 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+    assign adder_sum = adder_operand_a + adder_operand_b;
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+    always_comb begin
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+        adder_operand_a = $signed(amo_operand_a_i);
+        adder_operand_b = $signed(amo_operand_b_i);
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+        amo_result_o = amo_operand_a_i;
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+        if (amo_op_i == axi_pkg::ATOP_ATOMICSWAP) begin
+             
+            amo_result_o = amo_operand_b_i;
+        end else if ((amo_op_i[5:4] == axi_pkg::ATOP_ATOMICLOAD) | (amo_op_i[5:4] == axi_pkg::ATOP_ATOMICSTORE)) begin
+             
+            unique case (amo_op_i[2:0])
+                 
+                axi_pkg::ATOP_ADD: amo_result_o = adder_sum[DATA_WIDTH-1:0];
+                axi_pkg::ATOP_CLR: amo_result_o = amo_operand_a_i & (~amo_operand_b_i);
+                axi_pkg::ATOP_SET: amo_result_o = amo_operand_a_i | amo_operand_b_i;
+                axi_pkg::ATOP_EOR: amo_result_o = amo_operand_a_i ^ amo_operand_b_i;
+                axi_pkg::ATOP_SMAX: begin
+                    adder_operand_b = -$signed(amo_operand_b_i);
+                    amo_result_o = adder_sum[DATA_WIDTH] ? amo_operand_b_i : amo_operand_a_i;
+                end
+                axi_pkg::ATOP_SMIN: begin
+                    adder_operand_b = -$signed(amo_operand_b_i);
+                    amo_result_o = adder_sum[DATA_WIDTH] ? amo_operand_a_i : amo_operand_b_i;
+                end
+                axi_pkg::ATOP_UMAX: begin
+                    adder_operand_a = $unsigned(amo_operand_a_i);
+                    adder_operand_b = -$unsigned(amo_operand_b_i);
+                    amo_result_o = adder_sum[DATA_WIDTH] ? amo_operand_b_i : amo_operand_a_i;
+                end
+                axi_pkg::ATOP_UMIN: begin
+                    adder_operand_a = $unsigned(amo_operand_a_i);
+                    adder_operand_b = -$unsigned(amo_operand_b_i);
+                    amo_result_o = adder_sum[DATA_WIDTH] ? amo_operand_a_i : amo_operand_b_i;
+                end
+                default: amo_result_o = '0;
+            endcase
+        end
+    end
+
+`line 68 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+     
+ 
+ 
+      
+           
+              
+    
+
+`line 76 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+ 
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 0
+endmodule
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos_alu.sv" 2

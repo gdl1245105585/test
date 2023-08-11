@@ -1,0 +1,2217 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 118 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 239 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 246 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 2
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module axi_isolate #(
+   
+  parameter int unsigned NumPending = 32'd16,
+   
+   
+  parameter bit TerminateTransaction = 1'b0,
+   
+  parameter bit AtopSupport = 1'b1,
+   
+  parameter int signed AxiAddrWidth = 32'd0,
+   
+  parameter int signed AxiDataWidth = 32'd0,
+   
+  parameter int signed AxiIdWidth = 32'd0,
+   
+  parameter int signed AxiUserWidth = 32'd0,
+   
+  parameter type         axi_req_t  = logic,
+   
+  parameter type         axi_resp_t = logic
+) (
+   
+  input  logic      clk_i,
+   
+  input  logic      rst_ni,
+   
+  input  axi_req_t  slv_req_i,
+   
+  output axi_resp_t slv_resp_o,
+   
+  output axi_req_t  mst_req_o,
+   
+  input  axi_resp_t mst_resp_i,
+   
+  input  logic      isolate_i,
+   
+  output logic      isolated_o
+);
+
+`line 79 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef logic [AxiIdWidth-1:0]     id_t;
+  typedef logic [AxiAddrWidth-1:0]   addr_t;
+  typedef logic [AxiDataWidth-1:0]   data_t;
+  typedef logic [AxiDataWidth/8-1:0] strb_t;
+  typedef logic [AxiUserWidth-1:0]   user_t;
+
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                       
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t              id;                                       
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    addr_t            addr;                                     
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic             lock;                                     
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::region_t region;                                   
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::atop_t   atop;                                     
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t            user;                                     
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } aw_chan_t;
+  
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                       
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    data_t data;                                                
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    strb_t strb;                                                
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic  last;                                                
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t user;                                                
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } w_chan_t;
+  
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                             
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t            id;                               
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::resp_t resp;                             
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t          user;                             
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } b_chan_t;
+  
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                       
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t              id;                                       
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    addr_t            addr;                                     
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic             lock;                                     
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::region_t region;                                   
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t            user;                                     
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } ar_chan_t;
+  
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                     
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t            id;                                       
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    data_t          data;                                     
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::resp_t resp;                                     
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic           last;                                     
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t          user;                                     
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } r_chan_t;
+
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  axi_req_t [1:0]   demux_req;
+  axi_resp_t [1:0]  demux_rsp;
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  if (TerminateTransaction) begin
+    axi_demux #(
+      .AxiIdWidth     ( AxiIdWidth  ),
+      .AtopSupport    ( AtopSupport ),
+      .aw_chan_t      ( aw_chan_t   ),
+      .w_chan_t       ( w_chan_t    ),
+      .b_chan_t       ( b_chan_t    ),
+      .ar_chan_t      ( ar_chan_t   ),
+      .r_chan_t       ( r_chan_t    ),
+      .axi_req_t      ( axi_req_t   ),
+      .axi_resp_t     ( axi_resp_t  ),
+      .NoMstPorts     ( 2           ),
+      .MaxTrans       ( NumPending  ),
+       
+      .AxiLookBits    ( 1           ),
+      .UniqueIds      ( 1'b0        ),
+      .SpillAw        ( 1'b0        ),
+      .SpillW         ( 1'b0        ),
+      .SpillB         ( 1'b0        ),
+      .SpillAr        ( 1'b0        ),
+      .SpillR         ( 1'b0        )
+    ) i_axi_demux (
+      .clk_i,
+      .rst_ni,
+      .test_i          ( 1'b0       ),
+      .slv_req_i,
+      .slv_aw_select_i ( isolated_o ),
+      .slv_ar_select_i ( isolated_o ),
+      .slv_resp_o,
+      .mst_reqs_o      ( demux_req ),
+      .mst_resps_i     ( demux_rsp )
+    );
+
+`line 127 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_err_slv #(
+      .AxiIdWidth  ( AxiIdWidth           ),
+      .axi_req_t   ( axi_req_t            ),
+      .axi_resp_t  ( axi_resp_t           ),
+      .Resp        ( axi_pkg::RESP_DECERR ),
+      .RespData    ( 'h1501A7ED           ),
+      .ATOPs       ( AtopSupport          ),
+      .MaxTrans    ( 1                    )
+    ) i_axi_err_slv (
+      .clk_i,
+      .rst_ni,
+      .test_i     ( 1'b0         ),
+      .slv_req_i  ( demux_req[1] ),
+      .slv_resp_o ( demux_rsp[1] )
+    );
+  end else begin
+    assign demux_req[0] = slv_req_i;
+    assign slv_resp_o = demux_rsp[0];
+  end
+
+`line 147 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  axi_isolate_inner #(
+    .NumPending ( NumPending  ),
+    .axi_req_t  ( axi_req_t   ),
+    .axi_resp_t ( axi_resp_t  )
+  ) i_axi_isolate (
+    .clk_i,
+    .rst_ni,
+    .slv_req_i  ( demux_req[0] ),
+    .slv_resp_o ( demux_rsp[0] ),
+    .mst_req_o,
+    .mst_resp_i,
+    .isolate_i,
+    .isolated_o
+  );
+endmodule
+
+`line 163 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+module axi_isolate_inner #(
+  parameter int unsigned NumPending = 32'd16,
+  parameter type         axi_req_t  = logic,
+  parameter type         axi_resp_t = logic
+) (
+  input  logic      clk_i,
+  input  logic      rst_ni,
+  input  axi_req_t  slv_req_i,
+  output axi_resp_t slv_resp_o,
+  output axi_req_t  mst_req_o,
+  input  axi_resp_t mst_resp_i,
+  input  logic      isolate_i,
+  output logic      isolated_o
+);
+
+`line 178 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+   
+  localparam int unsigned CounterWidth = $clog2(NumPending + 32'd1) + 32'd1;
+  typedef logic [CounterWidth-1:0] cnt_t;
+
+`line 182 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef enum logic [1:0] {
+    Normal,
+    Hold,
+    Drain,
+    Isolate
+  } isolate_state_e;
+  isolate_state_e state_aw_d, state_aw_q, state_ar_d, state_ar_q;
+  logic           update_aw_state,        update_ar_state;
+
+`line 191 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  cnt_t pending_aw_d,  pending_aw_q;
+  logic update_aw_cnt;
+
+`line 194 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  cnt_t pending_w_d,   pending_w_q;
+  logic update_w_cnt,  connect_w;
+
+`line 197 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  cnt_t pending_ar_d,  pending_ar_q;
+  logic update_ar_cnt;
+
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      pending_aw_q <= ('0);                                                                 
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end else begin                                                                            
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      pending_aw_q <= (update_aw_cnt) ? (pending_aw_d) : (pending_aw_q);                                                        
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end                                                                                       
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  end
+  
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      pending_w_q <= ('0);                                                                 
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end else begin                                                                            
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      pending_w_q <= (update_w_cnt) ? (pending_w_d) : (pending_w_q);                                                        
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end                                                                                       
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  end
+  
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      pending_ar_q <= ('0);                                                                 
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end else begin                                                                            
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      pending_ar_q <= (update_ar_cnt) ? (pending_ar_d) : (pending_ar_q);                                                        
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end                                                                                       
+`line 202 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  end
+  
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      state_aw_q <= (Isolate);                                                                 
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end else begin                                                                            
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      state_aw_q <= (update_aw_state) ? (state_aw_d) : (state_aw_q);                                                        
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end                                                                                       
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  end
+  
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      state_ar_q <= (Isolate);                                                                 
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end else begin                                                                            
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+      state_ar_q <= (update_ar_state) ? (state_ar_d) : (state_ar_q);                                                        
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    end                                                                                       
+`line 204 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  end
+
+`line 206 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+   
+  always_comb begin
+    pending_aw_d  = pending_aw_q;
+    update_aw_cnt = 1'b0;
+    pending_w_d   = pending_w_q;
+    update_w_cnt  = 1'b0;
+    connect_w     = 1'b0;
+    pending_ar_d  = pending_ar_q;
+    update_ar_cnt = 1'b0;
+     
+    if (mst_req_o.aw_valid && (state_aw_q == Normal)) begin
+      pending_aw_d++;
+      update_aw_cnt   = 1'b1;
+      pending_w_d++;
+      update_w_cnt    = 1'b1;
+      connect_w       = 1'b1;
+      if (mst_req_o.aw.atop[axi_pkg::ATOP_R_RESP]) begin
+        pending_ar_d++;  
+        update_ar_cnt = 1'b1;
+      end
+    end
+    if (mst_req_o.w_valid  && mst_resp_i.w_ready && mst_req_o.w.last) begin
+      pending_w_d--;
+      update_w_cnt  = 1'b1;
+    end
+    if (mst_resp_i.b_valid  && mst_req_o.b_ready) begin
+      pending_aw_d--;
+      update_aw_cnt = 1'b1;
+    end
+     
+    if (mst_req_o.ar_valid && (state_ar_q == Normal)) begin
+      pending_ar_d++;
+      update_ar_cnt = 1'b1;
+    end
+    if (mst_resp_i.r_valid  && mst_req_o.r_ready && mst_resp_i.r.last) begin
+      pending_ar_d--;
+      update_ar_cnt = 1'b1;
+    end
+  end
+
+`line 246 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+   
+  always_comb begin
+     
+    state_aw_d      = state_aw_q;
+    update_aw_state = 1'b0;
+    state_ar_d      = state_ar_q;
+    update_ar_state = 1'b0;
+     
+    mst_req_o       = slv_req_i;
+    slv_resp_o      = mst_resp_i;
+
+`line 257 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+     
+     
+     
+    unique case (state_aw_q)
+      Normal:  begin  
+         
+         
+         
+        if (pending_aw_q >= cnt_t'(NumPending) || pending_ar_q >= cnt_t'(2*NumPending)
+            || (pending_w_q >= cnt_t'(NumPending))) begin
+          mst_req_o.aw_valid  = 1'b0;
+          slv_resp_o.aw_ready = 1'b0;
+          if (isolate_i) begin
+            state_aw_d      = Drain;
+            update_aw_state = 1'b1;
+          end
+        end else begin
+           
+          if (slv_req_i.aw_valid && !mst_resp_i.aw_ready) begin
+            state_aw_d      = Hold;
+            update_aw_state = 1'b1;
+          end else begin
+            if (isolate_i) begin
+              state_aw_d      = Drain;
+              update_aw_state = 1'b1;
+            end
+          end
+        end
+      end
+      Hold: begin  
+        mst_req_o.aw_valid = 1'b1;
+         
+        if (mst_resp_i.aw_ready) begin
+          update_aw_state = 1'b1;
+          state_aw_d      = isolate_i ? Drain : Normal;
+        end
+      end
+      Drain: begin  
+        mst_req_o.aw        = '0;
+        mst_req_o.aw_valid  = 1'b0;
+        slv_resp_o.aw_ready = 1'b0;
+        if (pending_aw_q == '0) begin
+          state_aw_d      = Isolate;
+          update_aw_state = 1'b1;
+        end
+      end
+      Isolate: begin  
+        mst_req_o.aw        = '0;
+        mst_req_o.aw_valid  = 1'b0;
+        slv_resp_o.aw_ready = 1'b0;
+        slv_resp_o.b        = '0;
+        slv_resp_o.b_valid  = 1'b0;
+        mst_req_o.b_ready   = 1'b0;
+        if (!isolate_i) begin
+          state_aw_d      = Normal;
+          update_aw_state = 1'b1;
+        end
+      end
+      default:  ;
+    endcase
+
+`line 318 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+     
+    if ((pending_w_q == '0) && !connect_w ) begin
+      mst_req_o.w         = '0;
+      mst_req_o.w_valid   = 1'b0;
+      slv_resp_o.w_ready  = 1'b0;
+    end
+
+`line 325 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+     
+     
+     
+    unique case (state_ar_q)
+      Normal: begin
+         
+        if (pending_ar_q >= NumPending) begin
+          mst_req_o.ar_valid  = 1'b0;
+          slv_resp_o.ar_ready = 1'b0;
+          if (isolate_i) begin
+            state_ar_d      = Drain;
+            update_ar_state = 1'b1;
+          end
+        end else begin
+           
+          if (slv_req_i.ar_valid && !mst_resp_i.ar_ready) begin
+            state_ar_d      = Hold;
+            update_ar_state = 1'b1;
+          end else begin
+            if (isolate_i) begin
+              state_ar_d      = Drain;
+              update_ar_state = 1'b1;
+            end
+          end
+        end
+      end
+      Hold: begin  
+        mst_req_o.ar_valid = 1'b1;
+         
+        if (mst_resp_i.ar_ready) begin
+          update_ar_state = 1'b1;
+          state_ar_d      = isolate_i ? Drain : Normal;
+        end
+      end
+      Drain: begin
+        mst_req_o.ar        = '0;
+        mst_req_o.ar_valid  = 1'b0;
+        slv_resp_o.ar_ready = 1'b0;
+        if (pending_ar_q == '0) begin
+          state_ar_d      = Isolate;
+          update_ar_state = 1'b1;
+        end
+      end
+      Isolate: begin
+        mst_req_o.ar        = '0;
+        mst_req_o.ar_valid  = 1'b0;
+        slv_resp_o.ar_ready = 1'b0;
+        slv_resp_o.r        = '0;
+        slv_resp_o.r_valid  = 1'b0;
+        mst_req_o.r_ready   = 1'b0;
+        if (!isolate_i) begin
+          state_ar_d      = Normal;
+          update_ar_state = 1'b1;
+        end
+      end
+      default:  ;
+    endcase
+  end
+
+`line 384 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+   
+  assign isolated_o = (state_aw_q == Isolate && state_ar_q == Isolate);
+
+`line 387 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+ 
+   
+          
+  
+     
+      
+             
+       
+      
+             
+       
+      
+             
+       
+      
+             
+       
+
+`line 406 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+endmodule
+
+`line 409 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+`line 409 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 136 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 171 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 195 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 247 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 274 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+`line 314 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+ 
+
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 358 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 403 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 427 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 454 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 479 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 506 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 531 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+`line 547 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 600 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 657 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 2
+`line 409 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+
+
+`line 411 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+ 
+ 
+ 
+module axi_isolate_intf #(
+  parameter int unsigned NUM_PENDING    = 32'd16,
+  parameter bit TERMINATE_TRANSACTION   = 1'b0,
+  parameter bit ATOP_SUPPORT            = 1'b1,
+  parameter int unsigned AXI_ID_WIDTH   = 32'd0,
+  parameter int unsigned AXI_ADDR_WIDTH = 32'd0,
+  parameter int unsigned AXI_DATA_WIDTH = 32'd0,
+  parameter int unsigned AXI_USER_WIDTH = 32'd0
+) (
+  input  logic   clk_i,
+  input  logic   rst_ni,
+  AXI_BUS.Slave  slv,
+  AXI_BUS.Master mst,
+  input  logic   isolate_i,
+  output logic   isolated_o
+);
+  typedef logic [AXI_ID_WIDTH-1:0]     id_t;
+  typedef logic [AXI_ADDR_WIDTH-1:0]   addr_t;
+  typedef logic [AXI_DATA_WIDTH-1:0]   data_t;
+  typedef logic [AXI_DATA_WIDTH/8-1:0] strb_t;
+  typedef logic [AXI_USER_WIDTH-1:0]   user_t;
+
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                       
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t              id;                                       
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    addr_t            addr;                                     
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic             lock;                                     
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::region_t region;                                   
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::atop_t   atop;                                     
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t            user;                                     
+`line 436 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } aw_chan_t;
+  
+`line 437 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                       
+`line 437 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    data_t data;                                                
+`line 437 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    strb_t strb;                                                
+`line 437 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic  last;                                                
+`line 437 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t user;                                                
+`line 437 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } w_chan_t;
+  
+`line 438 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                             
+`line 438 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t            id;                               
+`line 438 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::resp_t resp;                             
+`line 438 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t          user;                             
+`line 438 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } b_chan_t;
+
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                       
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t              id;                                       
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    addr_t            addr;                                     
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic             lock;                                     
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::region_t region;                                   
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t            user;                                     
+`line 440 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } ar_chan_t;
+  
+`line 441 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                     
+`line 441 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    id_t            id;                                       
+`line 441 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    data_t          data;                                     
+`line 441 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    axi_pkg::resp_t resp;                                     
+`line 441 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic           last;                                     
+`line 441 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    user_t          user;                                     
+`line 441 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } r_chan_t;
+
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                                         
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    aw_chan_t aw;                                                 
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     aw_valid;                                           
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    w_chan_t  w;                                                  
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     w_valid;                                            
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     b_ready;                                            
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    ar_chan_t ar;                                                 
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     ar_valid;                                           
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     r_ready;                                            
+`line 443 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } axi_req_t;
+  
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  typedef struct packed {                               
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     aw_ready;                                 
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     ar_ready;                                 
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     w_ready;                                  
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     b_valid;                                  
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    b_chan_t  b;                                        
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    logic     r_valid;                                  
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+    r_chan_t  r;                                        
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  } axi_resp_t;
+
+`line 446 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  axi_req_t  slv_req,  mst_req;
+  axi_resp_t slv_resp, mst_resp;
+
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.id     = slv.aw_id;         
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.addr   = slv.aw_addr;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.len    = slv.aw_len;        
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.size   = slv.aw_size;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.burst  = slv.aw_burst;      
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.lock   = slv.aw_lock;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.cache  = slv.aw_cache;      
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.prot   = slv.aw_prot;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.qos    = slv.aw_qos;        
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.region = slv.aw_region;     
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.atop   = slv.aw_atop;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw.user   = slv.aw_user;  
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.aw_valid = slv.aw_valid;                         
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.w.data   = slv.w_data;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.w.strb   = slv.w_strb;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.w.last   = slv.w_last;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.w.user   = slv.w_user;     
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.w_valid = slv.w_valid;                           
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.b_ready = slv.b_ready;                           
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.id     = slv.ar_id;         
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.addr   = slv.ar_addr;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.len    = slv.ar_len;        
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.size   = slv.ar_size;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.burst  = slv.ar_burst;      
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.lock   = slv.ar_lock;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.cache  = slv.ar_cache;      
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.prot   = slv.ar_prot;       
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.qos    = slv.ar_qos;        
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.region = slv.ar_region;     
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar.user   = slv.ar_user;  
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.ar_valid = slv.ar_valid;                         
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv_req.r_ready = slv.r_ready;
+  
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.aw_ready = slv_resp.aw_ready;                         
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.ar_ready = slv_resp.ar_ready;                         
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.w_ready = slv_resp.w_ready;                           
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.b_valid = slv_resp.b_valid;                           
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.b_id     = slv_resp.b.id;         
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.b_resp   = slv_resp.b.resp;       
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.b_user   = slv_resp.b.user;     
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.r_valid = slv_resp.r_valid;                           
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.r_id     = slv_resp.r.id;         
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.r_data   = slv_resp.r.data;       
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.r_resp   = slv_resp.r.resp;       
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.r_last   = slv_resp.r.last;       
+`line 450 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign slv.r_user   = slv_resp.r.user;
+
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_id     = mst_req.aw.id;         
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_addr   = mst_req.aw.addr;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_len    = mst_req.aw.len;        
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_size   = mst_req.aw.size;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_burst  = mst_req.aw.burst;      
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_lock   = mst_req.aw.lock;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_cache  = mst_req.aw.cache;      
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_prot   = mst_req.aw.prot;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_qos    = mst_req.aw.qos;        
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_region = mst_req.aw.region;     
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_atop   = mst_req.aw.atop;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_user   = mst_req.aw.user;  
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.aw_valid = mst_req.aw_valid;                         
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.w_data   = mst_req.w.data;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.w_strb   = mst_req.w.strb;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.w_last   = mst_req.w.last;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.w_user   = mst_req.w.user;     
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.w_valid = mst_req.w_valid;                           
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.b_ready = mst_req.b_ready;                           
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_id     = mst_req.ar.id;         
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_addr   = mst_req.ar.addr;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_len    = mst_req.ar.len;        
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_size   = mst_req.ar.size;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_burst  = mst_req.ar.burst;      
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_lock   = mst_req.ar.lock;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_cache  = mst_req.ar.cache;      
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_prot   = mst_req.ar.prot;       
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_qos    = mst_req.ar.qos;        
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_region = mst_req.ar.region;     
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_user   = mst_req.ar.user;  
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.ar_valid = mst_req.ar_valid;                         
+`line 452 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst.r_ready = mst_req.r_ready;
+  
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.aw_ready = mst.aw_ready;                         
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.ar_ready = mst.ar_ready;                         
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.w_ready = mst.w_ready;                           
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.b_valid = mst.b_valid;                           
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.b.id     = mst.b_id;         
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.b.resp   = mst.b_resp;       
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.b.user   = mst.b_user;     
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.r_valid = mst.r_valid;                           
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.r.id     = mst.r_id;         
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.r.data   = mst.r_data;       
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.r.resp   = mst.r_resp;       
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.r.last   = mst.r_last;       
+`line 453 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  assign mst_resp.r.user   = mst.r_user;
+
+`line 455 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+  axi_isolate #(
+    .NumPending           ( NUM_PENDING           ),
+    .TerminateTransaction ( TERMINATE_TRANSACTION ),
+    .AtopSupport          ( ATOP_SUPPORT          ),
+    .AxiAddrWidth         ( AXI_ADDR_WIDTH        ),
+    .AxiDataWidth         ( AXI_DATA_WIDTH        ),
+    .AxiIdWidth           ( AXI_ID_WIDTH          ),
+    .AxiUserWidth         ( AXI_USER_WIDTH        ),
+    .axi_req_t            ( axi_req_t             ),
+    .axi_resp_t           ( axi_resp_t            )
+  ) i_axi_isolate (
+    .clk_i,
+    .rst_ni,
+    .slv_req_i  ( slv_req  ),
+    .slv_resp_o ( slv_resp ),
+    .mst_req_o  ( mst_req  ),
+    .mst_resp_i ( mst_resp ),
+    .isolate_i,
+    .isolated_o
+  );
+
+`line 476 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 0
+   
+   
+   
+            
+          
+          
+          
+  
+  
+   
+endmodule
+
+
+`line 489 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_isolate.sv" 2

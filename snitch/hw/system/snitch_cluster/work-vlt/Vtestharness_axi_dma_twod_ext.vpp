@@ -1,0 +1,477 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+ 
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+
+
+`line 9 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+ 
+module axi_dma_twod_ext #(
+    parameter int unsigned ADDR_WIDTH      = -1,
+    parameter int unsigned REQ_FIFO_DEPTH  = -1,
+    parameter type burst_req_t = logic,
+    parameter type twod_req_t = logic
+) (
+    input  logic                     clk_i,
+    input  logic                     rst_ni,
+     
+    output burst_req_t               burst_req_o,
+    output logic                     burst_req_valid_o,
+    input  logic                     burst_req_ready_i,
+     
+    input  twod_req_t                twod_req_i,
+    input  logic                     twod_req_valid_i,
+    output logic                     twod_req_ready_o,
+     
+    output logic                     twod_req_last_o
+);
+
+`line 30 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+     
+     
+     
+     
+    twod_req_t twod_req_current;
+     
+    logic req_fifo_full;
+    logic req_fifo_empty;
+    logic req_fifo_push;
+    logic req_fifo_pop;
+
+`line 41 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    fifo_v3 #(
+        .DEPTH       ( REQ_FIFO_DEPTH            ),
+        .dtype       ( twod_req_t                )
+    ) i_twod_req_fifo_v3 (
+        .clk_i       ( clk_i              ),
+        .rst_ni      ( rst_ni             ),
+        .flush_i     ( 1'b0               ),
+        .testmode_i  ( 1'b0               ),
+        .full_o      ( req_fifo_full      ),
+        .empty_o     ( req_fifo_empty     ),
+        .usage_o     ( ),
+        .data_i      ( twod_req_i         ),
+        .push_i      ( req_fifo_push      ),
+        .data_o      ( twod_req_current   ),
+        .pop_i       ( req_fifo_pop       )
+    );
+
+`line 58 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+     
+    assign twod_req_ready_o     = !req_fifo_full;
+    assign req_fifo_push        = twod_req_valid_i & twod_req_ready_o;
+
+`line 62 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+     
+     
+     
+    logic [ADDR_WIDTH-1:0] num_bursts_d,  num_bursts_q;
+    logic [ADDR_WIDTH-1:0] src_address_d, src_address_q;
+    logic [ADDR_WIDTH-1:0] dst_address_d, dst_address_q;
+
+`line 69 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+     
+     
+     
+    always_comb begin : proc_twod_ext
+         
+        req_fifo_pop      = 1'b0;
+        burst_req_o       =  '0;
+        burst_req_valid_o = 1'b0;
+        twod_req_last_o   = 1'b0;
+
+`line 79 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+         
+        num_bursts_d  = num_bursts_q;
+        src_address_d = src_address_q;
+        dst_address_d = dst_address_q;
+
+`line 84 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+         
+         
+         
+         
+        if (!twod_req_current.is_twod || twod_req_current.num_repetitions == 'h1) begin
+             
+            burst_req_o.id           = twod_req_current.id;
+            burst_req_o.src          = twod_req_current.src;
+            burst_req_o.dst          = twod_req_current.dst;
+            burst_req_o.num_bytes    = twod_req_current.num_bytes;
+            burst_req_o.cache_src    = twod_req_current.cache_src;
+            burst_req_o.cache_dst    = twod_req_current.cache_dst;
+            burst_req_o.burst_src    = twod_req_current.burst_src;
+            burst_req_o.burst_dst    = twod_req_current.burst_dst;
+            burst_req_o.decouple_rw  = twod_req_current.decouple_rw;
+            burst_req_o.deburst      = twod_req_current.deburst;
+
+`line 101 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+             
+            req_fifo_pop      = burst_req_ready_i & ~req_fifo_empty;
+            burst_req_valid_o = ~req_fifo_empty;
+            twod_req_last_o   = 1'b1;
+
+`line 106 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+         
+         
+         
+         
+        end else begin
+             
+            burst_req_o.id           = twod_req_current.id;
+            burst_req_o.num_bytes    = twod_req_current.num_bytes;
+            burst_req_o.cache_src    = twod_req_current.cache_src;
+            burst_req_o.cache_dst    = twod_req_current.cache_dst;
+            burst_req_o.burst_src    = twod_req_current.burst_src;
+            burst_req_o.burst_dst    = twod_req_current.burst_dst;
+            burst_req_o.decouple_rw  = twod_req_current.decouple_rw;
+            burst_req_o.deburst      = twod_req_current.deburst;
+
+`line 121 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+             
+            if ((num_bursts_q == '0) & !req_fifo_empty & burst_req_ready_i) begin
+                 
+                 
+                if (twod_req_current.num_repetitions != '0) begin
+                    num_bursts_d  = twod_req_current.num_repetitions - 'h1;
+                    src_address_d = twod_req_current.src;
+                    dst_address_d = twod_req_current.dst;
+                     
+                    burst_req_valid_o = 1'b1;
+
+`line 132 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+                 
+                end else begin
+                     
+                    req_fifo_pop = 1'b1;
+                end
+
+`line 138 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+             
+            end else if ((num_bursts_q != '0) & !req_fifo_empty & burst_req_ready_i) begin
+                 
+                num_bursts_d  = num_bursts_q - 'h1;
+                 
+                src_address_d = src_address_q + twod_req_current.stride_src;
+                dst_address_d = dst_address_q + twod_req_current.stride_dst;
+                 
+                burst_req_valid_o = 1'b1;
+                 
+                if (num_bursts_d == '0) begin
+                    req_fifo_pop    = 1'b1;
+                    twod_req_last_o = 1'b1;
+                end
+            end
+
+`line 154 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+             
+            burst_req_o.src = src_address_d;
+            burst_req_o.dst = dst_address_d;
+        end
+    end
+
+`line 160 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+     
+     
+     
+    
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                           
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    if (! rst_ni) begin                                                             
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+      num_bursts_q <= ('0);                                                        
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    end else begin                                                                   
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+      num_bursts_q <= (num_bursts_d);                                                                  
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    end                                                                              
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+  end
+    
+`line 164 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                           
+`line 164 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    if (! rst_ni) begin                                                             
+`line 164 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+      src_address_q <= ('0);                                                        
+`line 164 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    end else begin                                                                   
+`line 164 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+      src_address_q <= (src_address_d);                                                                  
+`line 164 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    end                                                                              
+`line 164 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+  end
+    
+`line 165 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                           
+`line 165 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    if (! rst_ni) begin                                                             
+`line 165 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+      dst_address_q <= ('0);                                                        
+`line 165 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    end else begin                                                                   
+`line 165 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+      dst_address_q <= (dst_address_d);                                                                  
+`line 165 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+    end                                                                              
+`line 165 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+  end
+
+`line 167 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 0
+endmodule
+
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_twod_ext.sv" 2

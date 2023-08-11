@@ -1,0 +1,505 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+ 
+`line 5 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 5 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+
+`line 6 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+ 
+
+`line 8 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+ 
+module snitch_l0_tlb import snitch_pkg::*; #(
+  parameter int unsigned NrEntries = 1,
+  parameter type         pa_t      = logic,
+  parameter type         l0_pte_t  = logic
+) (
+  input  logic clk_i,
+  input  logic rst_i,
+   
+  input  logic flush_i,
+   
+   
+  input  priv_lvl_t priv_lvl_i,
+   
+  input  logic valid_i,
+   
+  output logic ready_o,
+   
+  input  va_t  va_i,
+   
+  input  logic read_i,
+   
+  input  logic write_i,
+   
+  input  logic execute_i,
+   
+  output logic page_fault_o,
+   
+  output pa_t  pa_o,
+
+`line 38 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+   
+  output logic valid_o,
+  input  logic ready_i,
+   
+  output va_t  va_o,
+   
+  input  l0_pte_t pte_i,
+   
+  input  logic is_4mega_i
+   
+   
+);
+
+`line 51 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  typedef struct packed {
+     
+    va_t va;
+     
+    logic is_4mega;
+  } tag_t;
+  tag_t [NrEntries-1:0] tag_d, tag_q;
+  logic [NrEntries-1:0] is_4mega_exp;  
+  logic is_4mega;
+   
+  logic [NrEntries-1:0] tag_valid_d, tag_valid_q;
+  logic [$clog2(NrEntries+1)-1:0] evict_d, evict_q;
+
+`line 64 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  l0_pte_t [NrEntries-1:0] pte_q, pte_d;
+
+`line 66 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  l0_pte_t pte;
+
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  always_ff @(posedge (clk_i) or posedge (rst_i)) begin 
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    if (rst_i) begin                                    
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      tag_valid_q <= ('0);                            
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end else begin                                       
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      tag_valid_q <= (tag_valid_d);                                      
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end                                                  
+`line 68 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  end
+  
+`line 69 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  always_ff @(posedge (clk_i)) begin 
+`line 69 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    tag_q <= (tag_d);                    
+`line 69 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  end
+  
+`line 70 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  always_ff @(posedge (clk_i)) begin 
+`line 70 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    pte_q <= (pte_d);                    
+`line 70 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  end
+
+`line 72 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  logic [NrEntries-1:0] hit;
+  logic miss_d, miss_q;  
+  logic refill_d, refill_q;  
+
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  always_ff @(posedge (clk_i) or posedge (rst_i)) begin 
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    if (rst_i) begin                                    
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      miss_q <= ('0);                            
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end else begin                                       
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      miss_q <= (miss_d);                                      
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end                                                  
+`line 76 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  end
+  
+`line 77 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  always_ff @(posedge (clk_i) or posedge (rst_i)) begin 
+`line 77 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    if (rst_i) begin                                    
+`line 77 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      refill_q <= ('0);                            
+`line 77 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end else begin                                       
+`line 77 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      refill_q <= (refill_d);                                      
+`line 77 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end                                                  
+`line 77 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  end
+
+`line 79 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+   
+  for (genvar i = 0; i < NrEntries; i++) begin : gen_tag_cmp
+     
+    assign hit[i] = tag_valid_q[i]
+      & (va_i.vpn1 == tag_q[i].va.vpn1 & (tag_q[i].is_4mega | (va_i.vpn0 == tag_q[i].va.vpn0)));
+    assign is_4mega_exp[i] = tag_q[i].is_4mega & hit[i];
+  end
+   
+  assign is_4mega = |is_4mega_exp;
+
+`line 89 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  localparam int unsigned L0PteSize = $bits(l0_pte_t);
+   
+  /*verilator lint_off ALWCOMBORDER*/ 
+  always_comb begin
+    pte = '0;
+    for (int i = 0; i < NrEntries; i++) pte |= (pte_q[i] & {{L0PteSize}{hit[i]}});
+  end
+  /*verilator lint_on ALWCOMBORDER*/ 
+
+`line 98 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  assign ready_o = |hit;
+
+`line 100 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+   
+  logic access_allowed;
+  assign access_allowed =  
+                           (pte.flags.x & execute_i | ~execute_i)
+                           
+                        &  (pte.flags.w & write_i | ~write_i)
+                           
+                        &  (pte.flags.r & ~read_i | read_i)
+                           
+                        &   pte.flags.a
+                           
+                        &  (pte.flags.d & write_i | ~write_i)
+                           
+                        &  (pte.flags.u & priv_lvl_i == PrivLvlU | priv_lvl_i == PrivLvlS)
+                           
+                        & (~pte.flags.u & priv_lvl_i == PrivLvlS | priv_lvl_i == PrivLvlU);
+
+`line 117 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  assign page_fault_o = ~access_allowed;
+
+`line 119 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+   
+  assign pa_o = {pte.pa.ppn1, (pte.pa.ppn0 & {10{~is_4mega}}) | (va_i.vpn0 & {10{is_4mega}})};
+
+`line 122 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  assign miss_d = valid_i & ~(|hit);  
+
+`line 124 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  assign valid_o = miss_q & refill_q;  
+  assign va_o = va_i;
+
+`line 127 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+   
+  always_comb begin
+    refill_d = 1'b1;
+    if (valid_o && ready_i) refill_d = 1'b0;
+  end
+
+`line 133 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+   
+  always_comb begin
+    tag_valid_d = tag_valid_q;
+    tag_d = tag_q;
+    pte_d = pte_q;
+
+`line 139 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+     
+    if (valid_o && ready_i) begin
+      pte_d[evict_q] = pte_i;
+      tag_d[evict_q].va = va_i;
+      tag_d[evict_q].is_4mega = is_4mega_i;
+      tag_valid_d[evict_q] = 1'b1;
+    end
+
+`line 147 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    if (flush_i) tag_valid_d = '0;
+  end
+
+`line 150 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+   
+  if (NrEntries > 1) begin : gen_evict_counter
+    
+`line 152 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  always_ff @(posedge (clk_i) or posedge (rst_i)) begin 
+`line 152 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    if (rst_i) begin                                    
+`line 152 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      evict_q <= ('0);                            
+`line 152 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end else begin                                       
+`line 152 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+      evict_q <= (evict_d);                                      
+`line 152 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+    end                                                  
+`line 152 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+  end
+    always_comb begin
+      evict_d = evict_q;
+      if (valid_o && ready_i) evict_d++;
+      if (evict_d == NrEntries - 1) evict_d = 0;  
+    end
+  end else begin : gen_no_evict_counter
+    assign evict_q = 0;
+    assign evict_d = 0;
+  end
+
+`line 163 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 0
+endmodule
+
+`line 165 "/repo/hw/ip/snitch/src/snitch_l0_tlb.sv" 2

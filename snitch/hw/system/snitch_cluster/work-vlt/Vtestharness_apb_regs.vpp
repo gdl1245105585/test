@@ -1,0 +1,821 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+ 
+
+`line 36 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 50 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+ 
+ 
+ 
+
+
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+ 
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+module apb_regs #(
+  parameter int unsigned        NoApbRegs    = 32'd0,
+  parameter int unsigned        ApbAddrWidth = 32'd0,
+  parameter int unsigned        AddrOffset   = 32'd4,
+  parameter int unsigned        ApbDataWidth = 32'd0,
+  parameter int unsigned        RegDataWidth = 32'd0,
+  parameter bit [NoApbRegs-1:0] ReadOnly     = 32'h0,
+  parameter type                req_t        = logic,
+  parameter type                resp_t       = logic,
+   
+  parameter type apb_addr_t                  = logic[ApbAddrWidth-1:0],
+  parameter type reg_data_t                  = logic[RegDataWidth-1:0]
+) (
+   
+  input  logic                      pclk_i,
+  input  logic                      preset_ni,
+  input  req_t                      req_i,
+  output resp_t                     resp_o,
+   
+  input  apb_addr_t                 base_addr_i,  
+  input  reg_data_t [NoApbRegs-1:0] reg_init_i,
+  output reg_data_t [NoApbRegs-1:0] reg_q_o
+);
+  localparam int unsigned IdxWidth  = (NoApbRegs > 32'd1) ? $clog2(NoApbRegs) : 32'd1;
+  typedef logic [IdxWidth-1:0]     idx_t;
+  typedef logic [ApbAddrWidth-1:0] apb_data_t;
+  typedef struct packed {
+    int unsigned idx;
+    apb_addr_t   start_addr;
+    apb_addr_t   end_addr;
+  } rule_t;
+
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  logic has_reset_d, has_reset_q;
+  
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  always_ff @(posedge (pclk_i) or negedge (preset_ni)) begin                           
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    if (!preset_ni) begin                                                             
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+      has_reset_q <= (1'b0);                                                        
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    end else begin                                                                   
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+      has_reset_q <= (has_reset_q);                                                                  
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    end                                                                              
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  end
+  assign has_reset_d = 1'b1;
+
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+   
+  rule_t     [NoApbRegs-1:0] addr_map;
+  idx_t                      reg_idx;
+  logic                      decode_valid;
+   
+  reg_data_t [NoApbRegs-1:0] reg_d, reg_q;
+  logic      [NoApbRegs-1:0] reg_update;
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+   
+  for (genvar i = 0; i < NoApbRegs; i++) begin: gen_reg_addr_map
+    assign addr_map[i] = rule_t'{
+      idx:        unsigned'(i),
+      start_addr: base_addr_i + apb_addr_t'( i        * AddrOffset),
+      end_addr:   base_addr_i + apb_addr_t'((i+32'd1) * AddrOffset)
+    };
+  end
+
+`line 110 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  always_comb begin
+     
+    reg_d      = has_reset_q ? reg_q : reg_init_i;
+    reg_update = '0;
+    resp_o     = '{
+      pready:  req_i.psel & req_i.penable,
+      prdata:  apb_data_t'(32'h0BAD_B10C),
+      pslverr: apb_pkg::RESP_OKAY
+    };
+    if (req_i.psel) begin
+      if (!decode_valid) begin
+         
+        resp_o.pslverr = apb_pkg::RESP_SLVERR;
+      end else begin
+        if (req_i.pwrite) begin
+          if (!ReadOnly[reg_idx]) begin
+            for (int unsigned i = 0; i < RegDataWidth; i++) begin
+              if (req_i.pstrb[i/8]) begin
+                reg_d[reg_idx][i] = req_i.pwdata[i];
+              end
+            end
+            reg_update[reg_idx] = |req_i.pstrb;
+          end else begin
+             
+            resp_o.pslverr = apb_pkg::RESP_SLVERR;
+          end
+        end else begin
+          if (!ReadOnly[reg_idx]) begin
+            resp_o.prdata = apb_data_t'(reg_q[reg_idx]);
+          end else begin
+             
+            resp_o.prdata = apb_data_t'(reg_init_i[reg_idx]);
+          end
+        end
+      end
+    end
+  end
+
+`line 148 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+   
+  for (genvar i = 0; i < NoApbRegs; i++) begin : gen_rw_regs
+    assign reg_q_o[i] = ReadOnly[i] ? reg_init_i[i] : reg_q[i];
+    
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  always_ff @(posedge (pclk_i) or negedge (preset_ni)) begin                                    
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    if (!preset_ni) begin                                                                      
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+      reg_q[i] <= ('0);                                                                 
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    end else begin                                                                            
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+      reg_q[i] <= (reg_update[i]) ? (reg_d[i]) : (reg_q[i]);                                                        
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    end                                                                                       
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  end
+  end
+
+`line 154 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  addr_decode #(
+    .NoIndices ( NoApbRegs  ),
+    .NoRules   ( NoApbRegs  ),
+    .addr_t    ( apb_addr_t ),
+    .rule_t    ( rule_t     )
+  ) i_addr_decode (
+    .addr_i      ( req_i.paddr  ),
+    .addr_map_i  ( addr_map     ),
+    .idx_o       ( reg_idx      ),
+    .dec_valid_o ( decode_valid ),
+    .dec_error_o (   ),
+    .en_default_idx_i ( '0      ),
+    .default_idx_i    ( '0      )
+  );
+
+`line 169 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+   
+   
+   
+      
+         
+            
+         
+            
+         
+            
+         
+            
+         
+            
+             
+            
+         
+            
+             
+            
+         
+            
+         
+            
+    
+  
+   
+endmodule
+
+`line 198 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+ 
+`line 198 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 20 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 36 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+`line 68 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 76 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 102 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 111 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+`line 117 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 2
+`line 198 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+ 
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 2
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+module apb_regs_intf #(
+  parameter int unsigned          NO_APB_REGS    = 32'd0,  
+  parameter int unsigned          APB_ADDR_WIDTH = 32'd0,  
+  parameter int unsigned          ADDR_OFFSET    = 32'd4,  
+  parameter int unsigned          APB_DATA_WIDTH = 32'd0,  
+  parameter int unsigned          REG_DATA_WIDTH = 32'd0,
+  parameter bit [NO_APB_REGS-1:0] READ_ONLY      = 32'h0,
+   
+  parameter type                  apb_addr_t     = logic[APB_ADDR_WIDTH-1:0],
+  parameter type                  reg_data_t     = logic[REG_DATA_WIDTH-1:0]
+) (
+   
+  input  logic                        pclk_i,
+  input  logic                        preset_ni,
+  APB.Slave                           slv,
+   
+  input  apb_addr_t                   base_addr_i,  
+  input  reg_data_t [NO_APB_REGS-1:0] reg_init_i,   
+  output reg_data_t [NO_APB_REGS-1:0] reg_q_o
+);
+  localparam int unsigned APB_STRB_WIDTH = cf_math_pkg::ceil_div(APB_DATA_WIDTH, 8);
+  typedef logic [APB_DATA_WIDTH-1:0] apb_data_t;
+  typedef logic [APB_STRB_WIDTH-1:0] apb_strb_t;
+
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  typedef struct packed {                                     
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    apb_addr_t          paddr;                                    
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    apb_pkg::prot_t pprot;                                    
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    logic           psel;                                     
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    logic           penable;                                  
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    logic           pwrite;                                   
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    apb_data_t          pwdata;                                   
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    apb_strb_t          pstrb;                                    
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  } apb_req_t;
+  
+`line 226 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  typedef struct packed {                      
+`line 226 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    logic  pready;                             
+`line 226 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    apb_data_t prdata;                             
+`line 226 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    logic  pslverr;                            
+`line 226 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    } apb_resp_t;
+
+`line 228 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  apb_req_t  apb_req;
+  apb_resp_t apb_resp;
+
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  assign apb_req = '{                       
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    paddr:   slv.paddr,                     
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    pprot:   slv.pprot,                     
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    psel:    slv.psel,                      
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    penable: slv.penable,                   
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    pwrite:  slv.pwrite,                    
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    pwdata:  slv.pwdata,                    
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+    pstrb:   slv.pstrb                      
+`line 231 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  };
+  
+`line 232 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  assign slv.pready  = apb_resp.pready;      
+`line 232 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  assign slv.prdata  = apb_resp.prdata;      
+`line 232 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  assign slv.pslverr = apb_resp.pslverr;
+
+`line 234 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+  apb_regs #(
+    .NoApbRegs    ( NO_APB_REGS    ),
+    .ApbAddrWidth ( APB_ADDR_WIDTH ),
+    .AddrOffset   ( ADDR_OFFSET    ),
+    .ApbDataWidth ( APB_DATA_WIDTH ),
+    .RegDataWidth ( REG_DATA_WIDTH ),
+    .ReadOnly     ( READ_ONLY      ),
+    .req_t        ( apb_req_t      ),
+    .resp_t       ( apb_resp_t     )
+  ) i_apb_regs (
+    .pclk_i,
+    .preset_ni,
+    .req_i       ( apb_req  ),
+    .resp_o      ( apb_resp ),
+    .base_addr_i,
+    .reg_init_i,
+    .reg_q_o
+  );
+
+`line 253 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 0
+   
+   
+   
+      
+         
+            
+         
+            
+    
+  
+   
+endmodule
+
+`line 266 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_regs.sv" 2

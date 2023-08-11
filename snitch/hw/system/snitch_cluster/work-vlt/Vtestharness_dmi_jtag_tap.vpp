@@ -1,0 +1,369 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 1
+
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+module dmi_jtag_tap #(
+  parameter int unsigned IrLength = 5,
+   
+  parameter logic [31:0] IdcodeValue = 32'h00000001
+   
+   
+   
+   
+) (
+  input  logic        tck_i,     
+  input  logic        tms_i,     
+  input  logic        trst_ni,   
+  input  logic        td_i,      
+  output logic        td_o,      
+  output logic        tdo_oe_o,  
+  input  logic        testmode_i,
+   
+  output logic        tck_o,
+   
+  output logic        dmi_clear_o,
+  output logic        update_o,
+  output logic        capture_o,
+  output logic        shift_o,
+  output logic        tdi_o,
+  output logic        dtmcs_select_o,
+  input  logic        dtmcs_tdo_i,
+   
+  output logic        dmi_select_o,
+  input  logic        dmi_tdo_i
+);
+
+`line 50 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  typedef enum logic [3:0] {
+    TestLogicReset, RunTestIdle, SelectDrScan,
+    CaptureDr, ShiftDr, Exit1Dr, PauseDr, Exit2Dr,
+    UpdateDr, SelectIrScan, CaptureIr, ShiftIr,
+    Exit1Ir, PauseIr, Exit2Ir, UpdateIr
+  } tap_state_e;
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  tap_state_e tap_state_q, tap_state_d;
+  logic update_dr, shift_dr, capture_dr;
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  typedef enum logic [IrLength-1:0] {
+    BYPASS0   = 'h0,
+    IDCODE    = 'h1,
+    DTMCSR    = 'h10,
+    DMIACCESS = 'h11,
+    BYPASS1   = 'h1f
+  } ir_reg_e;
+
+`line 68 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+   
+   
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+  logic [IrLength-1:0]  jtag_ir_shift_d, jtag_ir_shift_q;
+   
+  ir_reg_e              jtag_ir_d, jtag_ir_q;
+  logic capture_ir, shift_ir, update_ir, test_logic_reset;  
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  always_comb begin : p_jtag
+    jtag_ir_shift_d = jtag_ir_shift_q;
+    jtag_ir_d       = jtag_ir_q;
+
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+     
+    if (shift_ir) begin
+      jtag_ir_shift_d = {td_i, jtag_ir_shift_q[IrLength-1:1]};
+    end
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+     
+    if (capture_ir) begin
+      jtag_ir_shift_d =  IrLength'(4'b0101);
+    end
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+     
+    if (update_ir) begin
+      jtag_ir_d = ir_reg_e'(jtag_ir_shift_q);
+    end
+
+`line 97 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+     
+    if (test_logic_reset) begin
+      jtag_ir_d = IDCODE;
+    end
+  end
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  always_ff @(posedge tck_i, negedge trst_ni) begin : p_jtag_ir_reg
+    if (!trst_ni) begin
+      jtag_ir_shift_q <= '0;
+      jtag_ir_q       <= IDCODE;
+    end else begin
+      jtag_ir_shift_q <= jtag_ir_shift_d;
+      jtag_ir_q       <= jtag_ir_d;
+    end
+  end
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+   
+   
+   
+   
+   
+  logic [31:0] idcode_d, idcode_q;
+  logic        idcode_select;
+  logic        bypass_select;
+
+`line 123 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  logic        bypass_d, bypass_q;   
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  always_comb begin
+    idcode_d = idcode_q;
+    bypass_d = bypass_q;
+
+`line 129 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+    if (capture_dr) begin
+      if (idcode_select) idcode_d = IdcodeValue;
+      if (bypass_select) bypass_d = 1'b0;
+    end
+
+`line 134 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+    if (shift_dr) begin
+      if (idcode_select)  idcode_d = {td_i, 31'(idcode_q >> 1)};
+      if (bypass_select)  bypass_d = td_i;
+    end
+  end
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+   
+   
+  always_comb begin : p_data_reg_sel
+    dmi_select_o   = 1'b0;
+    dtmcs_select_o = 1'b0;
+    idcode_select  = 1'b0;
+    bypass_select  = 1'b0;
+    unique case (jtag_ir_q)
+      BYPASS0:   bypass_select  = 1'b1;
+      IDCODE:    idcode_select  = 1'b1;
+      DTMCSR:    dtmcs_select_o = 1'b1;
+      DMIACCESS: dmi_select_o   = 1'b1;
+      BYPASS1:   bypass_select  = 1'b1;
+      default:   bypass_select  = 1'b1;
+    endcase
+  end
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+   
+   
+  logic tdo_mux;
+
+`line 163 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  always_comb begin : p_out_sel
+     
+    if (shift_ir) begin
+      tdo_mux = jtag_ir_shift_q[0];
+     
+    end else begin
+      unique case (jtag_ir_q)
+        IDCODE:         tdo_mux = idcode_q[0];    
+        DTMCSR:         tdo_mux = dtmcs_tdo_i;    
+        DMIACCESS:      tdo_mux = dmi_tdo_i;      
+        default:        tdo_mux = bypass_q;       
+      endcase
+    end
+  end
+
+`line 178 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+   
+   
+  logic tck_n, tck_ni;
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  tc_clk_inverter i_tck_inv (
+    .clk_i ( tck_i  ),
+    .clk_o ( tck_ni )
+  );
+
+`line 188 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  tc_clk_mux2 i_dft_tck_mux (
+    .clk0_i    ( tck_ni     ),
+    .clk1_i    ( tck_i      ),  
+    .clk_sel_i ( testmode_i ),
+    .clk_o     ( tck_n      )
+  );
+
+`line 195 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+  always_ff @(posedge tck_n, negedge trst_ni) begin : p_tdo_regs
+    if (!trst_ni) begin
+      td_o     <= 1'b0;
+      tdo_oe_o <= 1'b0;
+    end else begin
+      td_o     <= tdo_mux;
+      tdo_oe_o <= (shift_ir | shift_dr);
+    end
+  end
+   
+   
+   
+   
+  always_comb begin : p_tap_fsm
+
+`line 211 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+    test_logic_reset   = 1'b0;
+
+`line 213 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+    capture_dr         = 1'b0;
+    shift_dr           = 1'b0;
+    update_dr          = 1'b0;
+
+`line 217 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+    capture_ir         = 1'b0;
+    shift_ir           = 1'b0;
+     
+    update_ir          = 1'b0;
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+    unique case (tap_state_q)
+      TestLogicReset: begin
+        tap_state_d = (tms_i) ? TestLogicReset : RunTestIdle;
+        test_logic_reset = 1'b1;
+      end
+      RunTestIdle: begin
+        tap_state_d = (tms_i) ? SelectDrScan : RunTestIdle;
+      end
+       
+      SelectDrScan: begin
+        tap_state_d = (tms_i) ? SelectIrScan : CaptureDr;
+      end
+      CaptureDr: begin
+        capture_dr = 1'b1;
+        tap_state_d = (tms_i) ? Exit1Dr : ShiftDr;
+      end
+      ShiftDr: begin
+        shift_dr = 1'b1;
+        tap_state_d = (tms_i) ? Exit1Dr : ShiftDr;
+      end
+      Exit1Dr: begin
+        tap_state_d = (tms_i) ? UpdateDr : PauseDr;
+      end
+      PauseDr: begin
+        tap_state_d = (tms_i) ? Exit2Dr : PauseDr;
+      end
+      Exit2Dr: begin
+        tap_state_d = (tms_i) ? UpdateDr : ShiftDr;
+      end
+      UpdateDr: begin
+        update_dr = 1'b1;
+        tap_state_d = (tms_i) ? SelectDrScan : RunTestIdle;
+      end
+       
+      SelectIrScan: begin
+        tap_state_d = (tms_i) ? TestLogicReset : CaptureIr;
+      end
+       
+       
+       
+       
+      CaptureIr: begin
+        capture_ir = 1'b1;
+        tap_state_d = (tms_i) ? Exit1Ir : ShiftIr;
+      end
+       
+       
+       
+       
+      ShiftIr: begin
+        shift_ir = 1'b1;
+        tap_state_d = (tms_i) ? Exit1Ir : ShiftIr;
+      end
+      Exit1Ir: begin
+        tap_state_d = (tms_i) ? UpdateIr : PauseIr;
+      end
+      PauseIr: begin
+         
+        tap_state_d = (tms_i) ? Exit2Ir : PauseIr;
+      end
+      Exit2Ir: begin
+        tap_state_d = (tms_i) ? UpdateIr : ShiftIr;
+      end
+       
+       
+       
+       
+      UpdateIr: begin
+        update_ir = 1'b1;
+        tap_state_d = (tms_i) ? SelectDrScan : RunTestIdle;
+      end
+      default: ;  
+    endcase
+  end
+
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+  always_ff @(posedge tck_i or negedge trst_ni) begin : p_regs
+    if (!trst_ni) begin
+      tap_state_q <= RunTestIdle;
+      idcode_q    <= IdcodeValue;
+      bypass_q    <= 1'b0;
+    end else begin
+      tap_state_q <= tap_state_d;
+      idcode_q    <= idcode_d;
+      bypass_q    <= bypass_d;
+    end
+  end
+
+`line 309 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+   
+   
+  assign tck_o = tck_i;
+  assign tdi_o = td_i;
+  assign update_o = update_dr;
+  assign shift_o = shift_dr;
+  assign capture_o = capture_dr;
+  assign dmi_clear_o = test_logic_reset;
+
+
+`line 319 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 0
+endmodule : dmi_jtag_tap
+
+`line 321 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/riscv-dbg-bbbc33cfee9a7ddc/src/dmi_jtag_tap.sv" 2

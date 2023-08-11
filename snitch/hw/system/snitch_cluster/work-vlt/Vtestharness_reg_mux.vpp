@@ -1,0 +1,148 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+ 
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 0
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 0
+ 
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/include/register_interface/typedef.svh" 2
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+ 
+module reg_mux #(
+  parameter int unsigned NoPorts = 32'd0,
+  parameter int unsigned AW = 0,
+  parameter int unsigned DW = 0,
+  parameter type req_t = logic,
+  parameter type rsp_t = logic
+) (
+  input  logic               clk_i,
+  input  logic               rst_ni,
+  input  req_t [NoPorts-1:0] in_req_i,
+  output rsp_t [NoPorts-1:0] in_rsp_o,
+  output req_t               out_req_o,
+  input  rsp_t               out_rsp_i
+);
+
+`line 31 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+  logic [NoPorts-1:0] in_valid, in_ready;
+  
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+    typedef struct packed { 
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+        logic [AW-1:0] addr; 
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+        logic  write; 
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+        logic [DW-1:0] wdata; 
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+        logic [DW/8-1:0] wstrb; 
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+        logic  valid; 
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+    } req_payload_t;
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+  req_payload_t [NoPorts-1:0] in_payload;
+  req_payload_t out_payload;
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+  for (genvar i = 0; i < NoPorts; i++) begin : gen_unpack
+     
+    assign in_valid[i] = in_req_i[i].valid;
+    assign in_payload[i].addr = in_req_i[i].addr;
+    assign in_payload[i].write = in_req_i[i].write;
+    assign in_payload[i].wdata = in_req_i[i].wdata;
+    assign in_payload[i].wstrb = in_req_i[i].wstrb;
+    assign in_payload[i].valid = in_req_i[i].valid;
+     
+    assign in_rsp_o[i].ready = in_ready[i];
+    assign in_rsp_o[i].rdata = out_rsp_i.rdata;
+    assign in_rsp_o[i].error = out_rsp_i.error;
+  end
+
+`line 51 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+  stream_arbiter #(
+    .DATA_T (req_payload_t),
+    .N_INP (NoPorts)
+  ) i_stream_arbiter (
+    .clk_i,
+    .rst_ni,
+    .inp_data_i (in_payload),
+    .inp_valid_i (in_valid),
+    .inp_ready_o (in_ready),
+    .oup_data_o (out_payload),
+    .oup_valid_o (out_req_o.valid),
+    .oup_ready_i (out_rsp_i.ready)
+  );
+
+`line 65 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+  assign out_req_o.addr = out_payload.addr;
+  assign out_req_o.write = out_payload.write;
+  assign out_req_o.wdata = out_payload.wdata;
+  assign out_req_o.wstrb = out_payload.wstrb;
+
+`line 70 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 0
+endmodule
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_mux.sv" 2

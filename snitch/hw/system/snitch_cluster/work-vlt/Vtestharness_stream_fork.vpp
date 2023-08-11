@@ -1,0 +1,154 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+ 
+ 
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+ 
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+module stream_fork #(
+    parameter int unsigned N_OUP = 0     
+) (
+    input  logic                clk_i,
+    input  logic                rst_ni,
+    input  logic                valid_i,
+    output logic                ready_o,
+    output logic [N_OUP-1:0]    valid_o,
+    input  logic [N_OUP-1:0]    ready_i
+);
+
+`line 30 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+    typedef enum logic {READY, WAIT} state_t;
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+    logic [N_OUP-1:0]   oup_ready,
+                        all_ones;
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+    state_t inp_state_d, inp_state_q;
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+     
+    always_comb begin
+         
+        inp_state_d = inp_state_q;
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+        unique case (inp_state_q)
+            READY: begin
+                if (valid_i) begin
+                    if (valid_o == all_ones && ready_i == all_ones) begin
+                         
+                        ready_o = 1'b1;
+                    end else begin
+                        ready_o = 1'b0;
+                         
+                        inp_state_d = WAIT;
+                    end
+                end else begin
+                    ready_o = 1'b0;
+                end
+            end
+            WAIT: begin
+                if (valid_i && oup_ready == all_ones) begin
+                    ready_o = 1'b1;
+                    inp_state_d = READY;
+                end else begin
+                    ready_o = 1'b0;
+                end
+            end
+            default: begin
+                inp_state_d = READY;
+                ready_o = 1'b0;
+            end
+        endcase
+    end
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+        if (!rst_ni) begin
+            inp_state_q <= READY;
+        end else begin
+            inp_state_q <= inp_state_d;
+        end
+    end
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+     
+    for (genvar i = 0; i < N_OUP; i++) begin: gen_oup_state
+        state_t oup_state_d, oup_state_q;
+
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+        always_comb begin
+            oup_ready[i]    = 1'b1;
+            valid_o[i]      = 1'b0;
+            oup_state_d     = oup_state_q;
+
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+            unique case (oup_state_q)
+                READY: begin
+                    if (valid_i) begin
+                        valid_o[i] = 1'b1;
+                        if (ready_i[i]) begin    
+                            if (!ready_o) begin      
+                                oup_state_d = WAIT;
+                            end
+                        end else begin           
+                            oup_ready[i] = 1'b0;
+                        end
+                    end
+                end
+                WAIT: begin
+                    if (valid_i && ready_o) begin    
+                        oup_state_d = READY;
+                    end
+                end
+                default: begin
+                    oup_state_d = READY;
+                end
+            endcase
+        end
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+        always_ff @(posedge clk_i, negedge rst_ni) begin
+            if (!rst_ni) begin
+                oup_state_q <= READY;
+            end else begin
+                oup_state_q <= oup_state_d;
+            end
+        end
+    end
+
+`line 122 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+    assign all_ones = '1;    
+                             
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+ 
+ 
+      
+              
+    
+
+`line 131 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+ 
+
+`line 133 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 0
+endmodule
+
+`line 135 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fork.sv" 2

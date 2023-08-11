@@ -1,0 +1,135 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+package snitch_ipu_pkg;
+
+`line 7 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+   
+  typedef enum integer {
+    RV32BNone,
+    RV32BBalanced,
+    RV32BFull
+  } rv32b_e;
+
+`line 14 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+  typedef enum logic [5:0] {
+     
+    ALU_ADD,
+    ALU_SUB,
+
+`line 19 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+    ALU_XOR,
+    ALU_OR,
+    ALU_AND,
+     
+    ALU_XNOR,
+    ALU_ORN,
+    ALU_ANDN,
+
+`line 28 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+    ALU_SRA,
+    ALU_SRL,
+    ALU_SLL,
+     
+    ALU_SRO,
+    ALU_SLO,
+    ALU_ROR,
+    ALU_ROL,
+    ALU_GREV,
+    ALU_GORC,
+    ALU_SHFL,
+    ALU_UNSHFL,
+
+`line 42 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+    ALU_LT,
+    ALU_LTU,
+    ALU_GE,
+    ALU_GEU,
+    ALU_EQ,
+    ALU_NE,
+     
+    ALU_MIN,
+    ALU_MINU,
+    ALU_MAX,
+    ALU_MAXU,
+
+`line 55 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_PACK,
+    ALU_PACKU,
+    ALU_PACKH,
+
+`line 61 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_SEXTB,
+    ALU_SEXTH,
+
+`line 66 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_CLZ,
+    ALU_CTZ,
+    ALU_PCNT,
+
+`line 72 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+    ALU_SLT,
+    ALU_SLTU,
+
+`line 76 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_CMOV,
+    ALU_CMIX,
+    ALU_FSL,
+    ALU_FSR,
+
+`line 83 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_SBSET,
+    ALU_SBCLR,
+    ALU_SBINV,
+    ALU_SBEXT,
+
+`line 90 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_BEXT,
+    ALU_BDEP,
+
+`line 95 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_BFP,
+
+`line 99 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+     
+    ALU_CLMUL,
+    ALU_CLMULR,
+    ALU_CLMULH,
+
+`line 105 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+     
+    ALU_CRC32_B,
+    ALU_CRC32C_B,
+    ALU_CRC32_H,
+    ALU_CRC32C_H,
+    ALU_CRC32_W,
+    ALU_CRC32C_W
+  } alu_op_e;
+
+`line 114 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 0
+endpackage
+
+`line 116 "/repo/hw/ip/snitch_ipu/src/snitch_ipu_pkg.sv" 2

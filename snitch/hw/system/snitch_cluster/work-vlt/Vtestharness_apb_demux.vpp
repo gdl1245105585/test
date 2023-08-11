@@ -1,0 +1,404 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+ 
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+module apb_demux #(
+  parameter int unsigned NoMstPorts  = 32'd2,  
+                                               
+                                               
+  parameter type req_t               = logic,  
+  parameter type resp_t              = logic,  
+   
+  parameter int unsigned SelectWidth = (NoMstPorts > 32'd1)? $clog2(NoMstPorts) : 32'd1,
+  parameter type select_t            = logic [SelectWidth-1:0]
+)(
+  input req_t                   slv_req_i,
+  output resp_t                 slv_resp_o,
+  output req_t [NoMstPorts-1:0] mst_req_o,
+  input resp_t [NoMstPorts-1:0] mst_resp_i,
+  input select_t                select_i
+);
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  if (NoMstPorts == 32'd1)  begin
+    assign mst_req_o[0] = slv_req_i;
+    assign slv_resp_o   = mst_resp_i[0];
+  end else begin
+    for (genvar idx = 0; idx < NoMstPorts; idx++) begin
+      assign mst_req_o[idx].paddr   = slv_req_i.paddr;
+      assign mst_req_o[idx].pprot   = slv_req_i.pprot;
+      assign mst_req_o[idx].psel    = (select_i == idx)? slv_req_i.psel: 1'b0;
+      assign mst_req_o[idx].penable = (select_i == idx)? slv_req_i.penable: 1'b0;
+      assign mst_req_o[idx].pwrite  = slv_req_i.pwrite;
+      assign mst_req_o[idx].pwdata  = slv_req_i.pwdata;
+      assign mst_req_o[idx].pstrb   = slv_req_i.pstrb;
+    end
+
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    always_comb begin
+      if (select_i < NoMstPorts) begin
+        slv_resp_o.pready  = mst_resp_i[select_i].pready;
+        slv_resp_o.prdata  = mst_resp_i[select_i].prdata;
+        slv_resp_o.pslverr = mst_resp_i[select_i].pslverr;
+      end else begin
+        slv_resp_o.pready  = 1'b1;
+        slv_resp_o.prdata  = '0;
+        slv_resp_o.pslverr = 1'b1;
+      end
+    end
+  end
+
+`line 59 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+endmodule
+
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+ 
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 2
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+ 
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 20 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 36 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+`line 68 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 76 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 102 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 111 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+
+
+
+`line 117 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 2
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+
+
+`line 64 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+module apb_demux_intf #(
+  parameter int unsigned APB_ADDR_WIDTH = 0,
+  parameter int unsigned APB_DATA_WIDTH = 0,
+  parameter int unsigned NoMstPorts = 32'd2,
+   
+  parameter int unsigned SelectWidth = (NoMstPorts > 32'd1)? $clog2(NoMstPorts) : 32'd1,
+  parameter type select_t = logic [SelectWidth-1:0]
+)(
+  APB.Slave   slv,
+  APB.Master  mst [NoMstPorts-1:0],
+  input select_t select_i
+);
+
+`line 77 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  typedef logic [APB_ADDR_WIDTH-1:0] addr_t;
+  typedef logic [APB_DATA_WIDTH-1:0] data_t;
+  typedef logic [APB_DATA_WIDTH/8-1:0] strb_t;
+
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  typedef struct packed {                                     
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    addr_t          paddr;                                    
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    apb_pkg::prot_t pprot;                                    
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    logic           psel;                                     
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    logic           penable;                                  
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    logic           pwrite;                                   
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    data_t          pwdata;                                   
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    strb_t          pstrb;                                    
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  } apb_req_t;
+  
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  typedef struct packed {                      
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    logic  pready;                             
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    data_t prdata;                             
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    logic  pslverr;                            
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    } apb_resp_t;
+
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  apb_req_t slv_req;
+  apb_resp_t slv_resp;
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  apb_req_t [NoMstPorts-1:0] mst_req;
+  apb_resp_t [NoMstPorts-1:0] mst_resp;
+
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  for (genvar idx = 0; idx < NoMstPorts; idx++) begin
+    
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst[idx].paddr   = mst_req[idx].paddr;      
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst[idx].pprot   = mst_req[idx].pprot;      
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst[idx].psel    = mst_req[idx].psel;       
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst[idx].penable = mst_req[idx].penable;    
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst[idx].pwrite  = mst_req[idx].pwrite;     
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst[idx].pwdata  = mst_req[idx].pwdata;     
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst[idx].pstrb   = mst_req[idx].pstrb;
+    
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign mst_resp[idx] = '{                        
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    pready:  mst[idx].pready,                      
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    prdata:  mst[idx].prdata,                      
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    pslverr: mst[idx].pslverr                      
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  };
+  end
+  
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign slv_req = '{                       
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    paddr:   slv.paddr,                     
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    pprot:   slv.pprot,                     
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    psel:    slv.psel,                      
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    penable: slv.penable,                   
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    pwrite:  slv.pwrite,                    
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    pwdata:  slv.pwdata,                    
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+    pstrb:   slv.pstrb                      
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  };
+  
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign slv.pready  = slv_resp.pready;      
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign slv.prdata  = slv_resp.prdata;      
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  assign slv.pslverr = slv_resp.pslverr;
+
+`line 97 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 0
+  apb_demux #(
+   .NoMstPorts ( NoMstPorts ),
+   .req_t    ( apb_req_t  ),
+   .resp_t   ( apb_resp_t )
+ ) i_apb_cdc (
+   .slv_req_i  ( slv_req  ),
+   .slv_resp_o ( slv_resp ),
+   .mst_req_o  ( mst_req  ),
+   .mst_resp_i ( mst_resp ),
+   .select_i
+  );
+endmodule
+
+`line 110 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_demux.sv" 2

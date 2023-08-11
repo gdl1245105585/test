@@ -1,0 +1,655 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+ 
+`line 7 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 7 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+
+
+`line 9 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+module snitch_icache_handler #(
+    parameter snitch_icache_pkg::config_t CFG = '0
+)(
+    input  logic clk_i,
+    input  logic rst_ni,
+
+`line 15 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    input  logic [CFG.FETCH_AW-1:0]      in_req_addr_i,
+    input  logic [CFG.ID_WIDTH_REQ-1:0]  in_req_id_i,
+    input  logic [CFG.SET_ALIGN-1:0]     in_req_set_i,
+    input  logic                         in_req_hit_i,
+    input  logic [CFG.LINE_WIDTH-1:0]    in_req_data_i,
+    input  logic                         in_req_error_i,
+    input  logic                         in_req_valid_i,
+    output logic                         in_req_ready_o,
+
+`line 24 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    output logic [CFG.LINE_WIDTH-1:0]    in_rsp_data_o,
+    output logic                         in_rsp_error_o,
+    output logic [CFG.ID_WIDTH_RESP-1:0] in_rsp_id_o,
+    output logic                         in_rsp_valid_o,
+    input  logic                         in_rsp_ready_i,
+
+`line 30 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    output logic [CFG.COUNT_ALIGN-1:0]   write_addr_o,
+    output logic [CFG.SET_ALIGN-1:0]     write_set_o,
+    output logic [CFG.LINE_WIDTH-1:0]    write_data_o,
+    output logic [CFG.TAG_WIDTH-1:0]     write_tag_o,
+    output logic                         write_error_o,
+    output logic                         write_valid_o,
+    input  logic                         write_ready_i,
+
+`line 38 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    output logic [CFG.FETCH_AW-1:0]      out_req_addr_o,
+    output logic [CFG.PENDING_IW-1:0]    out_req_id_o,
+    output logic                         out_req_valid_o,
+    input  logic                         out_req_ready_i,
+
+`line 43 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    input  logic [CFG.LINE_WIDTH-1:0]    out_rsp_data_i,
+    input  logic                         out_rsp_error_i,
+    input  logic [CFG.PENDING_IW-1:0]    out_rsp_id_i,
+    input  logic                         out_rsp_valid_i,
+    output logic                         out_rsp_ready_o
+);
+
+`line 50 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+    initial assert(CFG != '0);
+    
+
+`line 54 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+     
+     
+     
+     
+    typedef struct packed {
+        logic valid;
+        logic [CFG.FETCH_AW-1:0] addr;
+        logic [CFG.ID_WIDTH_RESP-1:0] idmask;  
+    } pending_t;
+    pending_t pending_q [CFG.PENDING_COUNT];
+    logic [CFG.PENDING_COUNT-1:0] pending_clr;
+    logic [CFG.PENDING_COUNT-1:0] pending_set;
+
+`line 68 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    logic [CFG.PENDING_IW-1:0]    push_index;
+    logic                         push_init;    
+    logic [CFG.FETCH_AW-1:0]      push_addr;
+    logic [CFG.ID_WIDTH_RESP-1:0] push_idmask;
+    logic                         push_enable;
+
+`line 74 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    logic [CFG.PENDING_IW-1:0]    pop_index;
+    logic [CFG.FETCH_AW-1:0]      pop_addr;
+    logic [CFG.ID_WIDTH_RESP-1:0] pop_idmask;
+    logic                         pop_enable;
+
+`line 79 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    for (genvar i = 0; i < CFG.PENDING_COUNT; i++) begin : g_pending_row
+        always_ff @(posedge clk_i, negedge rst_ni) begin
+            if (!rst_ni)
+                pending_q[i].valid <= 0;
+            else if (pending_set[i] || pending_clr[i])
+                pending_q[i].valid <= pending_set[i] && ~pending_clr[i];
+        end
+
+`line 87 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        always_ff @(posedge clk_i, negedge rst_ni) begin
+            if (!rst_ni) begin
+                pending_q[i].addr <= '0;
+                pending_q[i].idmask <= '0;
+            end else if (pending_set[i]) begin
+                pending_q[i].addr <= push_addr;
+                pending_q[i].idmask <= push_init ? push_idmask : push_idmask | pending_q[i].idmask;
+            end
+        end
+    end
+
+`line 98 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+     
+     
+    always_comb begin : p_pushpop_bypass
+        pending_set = push_enable ? 'b1 << push_index : '0;
+        pending_clr = pop_enable ? 'b1 << pop_index : '0;
+        pop_addr = pending_q[pop_index].addr;
+        pop_idmask = pending_q[pop_index].idmask;
+        if (push_enable && pop_enable && push_index == pop_index) begin
+            pop_addr = push_addr;
+            pop_idmask |= push_idmask;
+        end
+    end
+
+`line 112 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+    logic [CFG.PENDING_COUNT-1:0] free_entries;
+    logic free;
+    logic [CFG.PENDING_IW-1:0] free_id;
+
+`line 117 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    always_comb begin : p_free_id
+        for (int i = 0; i < CFG.PENDING_COUNT; i++)
+            free_entries[i] = ~pending_q[i].valid;
+        free = |free_entries;
+    end
+
+`line 123 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    lzc #(.WIDTH(CFG.PENDING_COUNT)) i_lzc_free (
+        .in_i    ( free_entries ),
+        .cnt_o   ( free_id      ),
+        .empty_o (              )
+    );
+
+`line 129 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+     
+    logic [CFG.PENDING_COUNT-1:0] pending_matches;
+    logic pending;
+    logic [CFG.PENDING_IW-1:0] pending_id;
+
+`line 135 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    always_comb begin : p_pending_id
+        for (int i = 0; i < CFG.PENDING_COUNT; i++)
+            pending_matches[i] = pending_q[i].valid && pending_q[i].addr == in_req_addr_i;
+        pending = |pending_matches;
+    end
+
+`line 141 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    lzc #(.WIDTH(CFG.PENDING_COUNT)) i_lzc_pending (
+        .in_i    ( pending_matches ),
+        .cnt_o   ( pending_id      ),
+        .empty_o (                 )
+    );
+
+`line 147 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+     
+     
+    logic [CFG.ID_WIDTH_RESP-1:0] miss_in_flight_d, miss_in_flight_q;
+
+`line 152 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    if (CFG.GUARANTEE_ORDERING) begin : g_miss_in_flight_table
+      always_comb begin : p_miss_in_flight
+          miss_in_flight_d = miss_in_flight_q;
+          if (push_enable) begin
+            miss_in_flight_d |= push_idmask;
+          end
+          if (in_rsp_valid_o && in_rsp_ready_i) begin
+            miss_in_flight_d &= ~in_rsp_id_o;
+          end
+      end
+
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+      
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    if (!rst_ni) begin                                                             
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+      miss_in_flight_q <= ('0);                                                        
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    end else begin                                                                   
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+      miss_in_flight_q <= (miss_in_flight_d);                                                                  
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    end                                                                              
+`line 163 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+  end
+    end else begin : g_tie_off_miss_in_flight
+      assign miss_in_flight_d = '0;
+      assign miss_in_flight_q = '0;
+    end
+
+`line 169 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+     
+     
+     
+     
+     
+    logic [CFG.ID_WIDTH_RESP-1:0] hit_id;
+    logic [CFG.LINE_WIDTH-1:0]    hit_data;
+    logic                         hit_error;
+    logic                         hit_valid;
+    logic                         hit_ready;
+
+`line 181 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    always_comb begin : p_miss_handler
+        hit_valid = 0;
+        hit_id    = 'b1 << in_req_id_i;
+        hit_data  = in_req_data_i;
+        hit_error = in_req_error_i;
+
+`line 187 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        push_index  = free_id;
+        push_init   = 0;
+        push_addr   = in_req_addr_i;
+        push_idmask = 'b1 << in_req_id_i;
+        push_enable = 0;
+
+`line 193 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        in_req_ready_o  = 1;
+
+`line 195 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        out_req_addr_o  = in_req_addr_i;
+        out_req_id_o    = free_id;
+        out_req_valid_o = 0;
+
+`line 199 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        if (in_req_valid_i) begin
+             
+            if (miss_in_flight_q[in_req_id_i]) begin
+                in_req_ready_o = 0;
+             
+            end else if (in_req_hit_i) begin
+                hit_valid = 1;
+                in_req_ready_o = hit_ready;
+
+`line 208 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+             
+             
+            end else if (pending) begin
+                push_index  = pending_id;
+                push_enable = 1;
+
+`line 214 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+             
+             
+            end else if (free) begin
+                out_req_addr_o  = in_req_addr_i;
+                out_req_id_o    = free_id;
+                out_req_valid_o = 1;
+                in_req_ready_o  = out_req_ready_i;
+                push_index      = free_id;
+                push_init       = 1;
+                push_enable     = out_req_ready_i;
+
+`line 225 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+             
+             
+            end else begin
+                in_req_ready_o = 0;
+            end
+        end
+    end
+
+`line 233 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+     
+     
+     
+    logic [CFG.SET_ALIGN-1:0] evict_index;
+    logic evict_enable;
+
+`line 240 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    snitch_icache_lfsr #(CFG.SET_ALIGN) i_evict_lfsr (
+        .clk_i    ( clk_i        ),
+        .rst_ni   ( rst_ni       ),
+        .value_o  ( evict_index  ),
+        .enable_i ( evict_enable )
+    );
+
+`line 247 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+     
+     
+     
+     
+     
+    logic write_served_q;
+    logic in_rsp_served_q;
+    logic rsp_valid, rsp_ready;
+
+`line 256 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    typedef struct packed {
+        logic sel;
+        logic lock;
+    } arb_t;
+    arb_t arb_q, arb_d;
+
+`line 262 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+        if (!rst_ni)
+            arb_q <= '0;
+        else
+            arb_q <= arb_d;
+    end
+
+`line 269 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    always_comb begin : p_response_handler
+        pop_index  = out_rsp_id_i;
+        pop_enable = 0;
+
+`line 273 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        write_addr_o  = pop_addr >> CFG.LINE_ALIGN;
+        write_set_o   = evict_index;
+        write_data_o  = out_rsp_data_i;
+        write_tag_o   = pop_addr >> (CFG.LINE_ALIGN + CFG.COUNT_ALIGN);
+        write_error_o = out_rsp_error_i;
+        write_valid_o = 0;
+
+`line 280 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        in_rsp_data_o  = out_rsp_data_i;
+        in_rsp_error_o = out_rsp_error_i;
+        in_rsp_id_o    = pop_idmask;
+        in_rsp_valid_o = 0;
+
+`line 285 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        hit_ready       = 1;
+        out_rsp_ready_o = 1;
+        evict_enable    = 0;
+        rsp_valid       = 0;
+        rsp_ready       = 1;
+
+`line 291 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+        arb_d = arb_q;
+        if (!arb_q.lock) begin
+            if (hit_valid) begin
+                arb_d.sel  = 0;
+                arb_d.lock = 1;
+            end else if (out_rsp_valid_i) begin
+                arb_d.sel  = 1;
+                arb_d.lock = 1;
+            end else begin
+                arb_d.sel  = 0;
+                arb_d.lock = 0;
+            end
+        end
+
+`line 305 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+         
+        if (arb_d.sel == 0) begin
+            if (hit_valid) begin
+                out_rsp_ready_o = 0;
+                in_rsp_data_o   = hit_data;
+                in_rsp_error_o  = 0;
+                in_rsp_id_o     = hit_id;
+                in_rsp_valid_o  = 1;
+                hit_ready = in_rsp_ready_i;
+            end else hit_ready = 1;
+            if (hit_ready) arb_d.lock = 0;
+
+`line 317 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+         
+        end else if (arb_d.sel == 1) begin
+            if (out_rsp_valid_i) begin
+                hit_ready       = 0;
+                rsp_valid       = 1;
+                rsp_ready       = (in_rsp_ready_i || in_rsp_served_q)
+                                && (write_ready_i || write_served_q);
+                write_valid_o   = 1 && ~write_served_q;
+                in_rsp_valid_o  = 1 && ~in_rsp_served_q;
+                pop_enable      = rsp_ready;
+                out_rsp_ready_o = rsp_ready;
+                evict_enable    = rsp_ready;
+            end else rsp_ready = 1;
+            if (rsp_ready) arb_d.lock = 0;
+        end
+    end
+
+`line 334 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+        if (!rst_ni) begin
+            write_served_q <= 0;
+            in_rsp_served_q <= 0;
+        end else begin
+            write_served_q <= rsp_valid & ~rsp_ready & (write_served_q | write_ready_i);
+            in_rsp_served_q <= rsp_valid & ~rsp_ready & (in_rsp_served_q | in_rsp_ready_i);
+        end
+    end
+
+`line 344 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 0
+endmodule
+
+`line 346 "/repo/hw/ip/snitch_icache/src/snitch_icache_handler.sv" 2

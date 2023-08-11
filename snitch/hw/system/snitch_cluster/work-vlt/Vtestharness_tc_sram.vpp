@@ -1,0 +1,263 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 56 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+module tc_sram #(
+  parameter int unsigned NumWords     = 32'd1024,  
+  parameter int unsigned DataWidth    = 32'd128,   
+  parameter int unsigned ByteWidth    = 32'd8,     
+  parameter int unsigned NumPorts     = 32'd2,     
+  parameter int unsigned Latency      = 32'd1,     
+  parameter              SimInit      = "none",    
+  parameter bit          PrintSimCfg  = 1'b0,      
+  parameter              ImplKey      = "none",    
+   
+  parameter int unsigned AddrWidth = (NumWords > 32'd1) ? $clog2(NumWords) : 32'd1,
+  parameter int unsigned BeWidth   = (DataWidth + ByteWidth - 32'd1) / ByteWidth,  
+  parameter type         addr_t    = logic [AddrWidth-1:0],
+  parameter type         data_t    = logic [DataWidth-1:0],
+  parameter type         be_t      = logic [BeWidth-1:0]
+) (
+  input  logic                 clk_i,       
+  input  logic                 rst_ni,      
+   
+  input  logic  [NumPorts-1:0] req_i,       
+  input  logic  [NumPorts-1:0] we_i,        
+  input  addr_t [NumPorts-1:0] addr_i,      
+  input  data_t [NumPorts-1:0] wdata_i,     
+  input  be_t   [NumPorts-1:0] be_i,        
+   
+  output data_t [NumPorts-1:0] rdata_o      
+);
+
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+   
+  data_t sram [NumWords-1:0];
+   
+  addr_t [NumPorts-1:0] r_addr_q;
+
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+   
+  data_t init_val[NumWords-1:0];
+  initial begin : proc_sram_init
+    for (int unsigned i = 0; i < NumWords; i++) begin
+      case (SimInit)
+        "zeros":  init_val[i] = {DataWidth{1'b0}};
+        "ones":   init_val[i] = {DataWidth{1'b1}};
+        "random": init_val[i] = {DataWidth{$urandom()}};
+        default:  init_val[i] = {DataWidth{1'bx}};
+      endcase
+    end
+  end
+
+`line 102 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+   
+   
+   
+   
+
+`line 107 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+   
+  data_t [NumPorts-1:0][Latency-1:0] rdata_q,  rdata_d;
+  if (Latency == 32'd0) begin : gen_no_read_lat
+    for (genvar i = 0; i < NumPorts; i++) begin : gen_port
+      assign rdata_o[i] = (req_i[i] && !we_i[i]) ? sram[addr_i[i]] : sram[r_addr_q[i]];
+    end
+  end else begin : gen_read_lat
+
+`line 115 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+    always_comb begin
+      for (int unsigned i = 0; i < NumPorts; i++) begin
+        rdata_o[i] = rdata_q[i][0];
+        for (int unsigned j = 0; j < (Latency-1); j++) begin
+          rdata_d[i][j] = rdata_q[i][j+1];
+        end
+        rdata_d[i][Latency-1] = (req_i[i] && !we_i[i]) ? sram[addr_i[i]] : sram[r_addr_q[i]];
+      end
+    end
+  end
+
+`line 126 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+   
+   
+  if (SimInit == "none") begin
+     
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+      if (!rst_ni) begin
+        for (int i = 0; i < NumPorts; i++) begin
+          r_addr_q[i] <= {AddrWidth{1'b0}};
+        end
+      end else begin
+         
+        for (int unsigned i = 0; i < NumPorts; i++) begin
+          if (Latency != 0) begin
+            for (int unsigned j = 0; j < Latency; j++) begin
+              rdata_q[i][j] <= rdata_d[i][j];
+            end
+          end
+        end
+         
+        for (int unsigned i = 0; i < NumPorts; i++) begin
+          if (req_i[i]) begin
+            if (we_i[i]) begin
+               
+              for (int unsigned j = 0; j < BeWidth; j++) begin
+                if (be_i[i][j]) begin
+                  sram[addr_i[i]][j*ByteWidth+:ByteWidth] <= wdata_i[i][j*ByteWidth+:ByteWidth];
+                end
+              end
+            end else begin
+               
+              r_addr_q[i] <= addr_i[i];
+            end
+          end  
+        end  
+      end  
+    end
+  end else begin
+     
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+      if (!rst_ni) begin
+        sram <= init_val;
+        for (int i = 0; i < NumPorts; i++) begin
+          r_addr_q[i] <= {AddrWidth{1'b0}};
+           
+          if (Latency != 32'd0) begin
+            for (int unsigned j = 0; j < Latency; j++) begin
+              rdata_q[i][j] <= init_val[{AddrWidth{1'b0}}];
+            end
+          end
+        end
+      end else begin
+         
+        for (int unsigned i = 0; i < NumPorts; i++) begin
+          if (Latency != 0) begin
+            for (int unsigned j = 0; j < Latency; j++) begin
+              rdata_q[i][j] <= rdata_d[i][j];
+            end
+          end
+        end
+         
+        for (int unsigned i = 0; i < NumPorts; i++) begin
+          if (req_i[i]) begin
+            if (we_i[i]) begin
+               
+              for (int unsigned j = 0; j < BeWidth; j++) begin
+                if (be_i[i][j]) begin
+                  sram[addr_i[i]][j*ByteWidth+:ByteWidth] <= wdata_i[i][j*ByteWidth+:ByteWidth];
+                end
+              end
+            end else begin
+               
+              r_addr_q[i] <= addr_i[i];
+            end
+          end  
+        end  
+      end  
+    end
+  end
+
+`line 205 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+ 
+ 
+ 
+ 
+    
+             
+            
+                    
+            
+           
+          
+          
+           
+  
+    
+      
+      
+                                
+                                                                           
+                                                  
+                                                  
+                                                 
+                                                 
+                                                 
+                                                   
+                                                   
+                                                   
+      
+    
+  
+             
+           
+             
+      
+           
+  
+
+
+
+`line 244 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 0
+ 
+endmodule
+
+`line 247 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_sram.sv" 2

@@ -1,0 +1,256 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+import defs_div_sqrt_mvp::*;
+
+`line 41 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+module div_sqrt_mvp_wrapper
+#(
+   parameter   PrePipeline_depth_S             =        0,   
+   parameter   PostPipeline_depth_S            =        2   
+)
+  ( 
+   input logic                            Clk_CI,
+   input logic                            Rst_RBI,
+   input logic                            Div_start_SI,
+   input logic                            Sqrt_start_SI,
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+    
+   input logic [C_OP_FP64-1:0]            Operand_a_DI,
+   input logic [C_OP_FP64-1:0]            Operand_b_DI,
+
+`line 56 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+    
+   input logic [C_RM-1:0]                 RM_SI,     
+   input logic [C_PC-1:0]                 Precision_ctl_SI,  
+   input logic [C_FS-1:0]                 Format_sel_SI,   
+   input logic                            Kill_SI,
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+    
+   output logic [C_OP_FP64-1:0]           Result_DO,
+
+`line 65 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+    
+   output logic [4:0]                     Fflags_SO,
+   output logic                           Ready_SO,
+   output logic                           Done_SO
+ );
+
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+   logic                                 Div_start_S_S,Sqrt_start_S_S;
+   logic [C_OP_FP64-1:0]                 Operand_a_S_D;
+   logic [C_OP_FP64-1:0]                 Operand_b_S_D;
+
+`line 76 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+    
+   logic [C_RM-1:0]                      RM_S_S;     
+   logic [C_PC-1:0]                      Precision_ctl_S_S;  
+   logic [C_FS-1:0]                      Format_sel_S_S;   
+   logic                                 Kill_S_S;
+
+
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+  logic [C_OP_FP64-1:0]                  Result_D;
+  logic                                  Ready_S;
+  logic                                  Done_S;
+  logic [4:0]                            Fflags_S;
+
+
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+  generate
+    if(PrePipeline_depth_S==1)
+      begin
+
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+         div_sqrt_top_mvp  div_top_U0   
+
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+          ( 
+           .Clk_CI                 (Clk_CI),
+           .Rst_RBI                (Rst_RBI),
+           .Div_start_SI           (Div_start_S_S),
+           .Sqrt_start_SI          (Sqrt_start_S_S),
+            
+           .Operand_a_DI          (Operand_a_S_D),
+           .Operand_b_DI          (Operand_b_S_D),
+           .RM_SI                 (RM_S_S),     
+           .Precision_ctl_SI      (Precision_ctl_S_S),
+           .Format_sel_SI         (Format_sel_S_S),
+           .Kill_SI               (Kill_S_S),
+           .Result_DO             (Result_D),
+           .Fflags_SO             (Fflags_S),
+           .Ready_SO              (Ready_S),
+           .Done_SO               (Done_S)
+         );
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+           always_ff @(posedge Clk_CI, negedge Rst_RBI)
+             begin
+                if(~Rst_RBI)
+                  begin
+                    Div_start_S_S<='0;
+                    Sqrt_start_S_S<=1'b0;
+                    Operand_a_S_D<='0;
+                    Operand_b_S_D<='0;
+                    RM_S_S <=1'b0;
+                    Precision_ctl_S_S<='0;
+                    Format_sel_S_S<='0;
+                    Kill_S_S<='0;
+                  end
+                else
+                  begin
+                    Div_start_S_S<=Div_start_SI;
+                    Sqrt_start_S_S<=Sqrt_start_SI;
+                    Operand_a_S_D<=Operand_a_DI;
+                    Operand_b_S_D<=Operand_b_DI;
+                    RM_S_S <=RM_SI;
+                    Precision_ctl_S_S<=Precision_ctl_SI;
+                    Format_sel_S_S<=Format_sel_SI;
+                    Kill_S_S<=Kill_SI;
+                  end
+            end
+     end
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+     else
+      begin
+          div_sqrt_top_mvp  div_top_U0   
+          ( 
+           .Clk_CI                 (Clk_CI),
+           .Rst_RBI                (Rst_RBI),
+           .Div_start_SI           (Div_start_SI),
+           .Sqrt_start_SI          (Sqrt_start_SI),
+            
+           .Operand_a_DI          (Operand_a_DI),
+           .Operand_b_DI          (Operand_b_DI),
+           .RM_SI                 (RM_SI),     
+           .Precision_ctl_SI      (Precision_ctl_SI),
+           .Format_sel_SI         (Format_sel_SI),
+           .Kill_SI               (Kill_SI),
+           .Result_DO             (Result_D),
+           .Fflags_SO             (Fflags_S),
+           .Ready_SO              (Ready_S),
+           .Done_SO               (Done_S)
+         );
+      end
+  endgenerate
+
+`line 163 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+    
+    
+    
+  logic [C_OP_FP64-1:0]         Result_dly_S_D;
+  logic                         Ready_dly_S_S;
+  logic                         Done_dly_S_S;
+  logic [4:0]                   Fflags_dly_S_S;
+   always_ff @(posedge Clk_CI, negedge Rst_RBI)
+     begin
+        if(~Rst_RBI)
+          begin
+            Result_dly_S_D<='0;
+            Ready_dly_S_S<=1'b0;
+            Done_dly_S_S<=1'b0;
+            Fflags_dly_S_S<=1'b0;
+          end
+        else
+          begin
+            Result_dly_S_D<=Result_D;
+            Ready_dly_S_S<=Ready_S;
+            Done_dly_S_S<=Done_S;
+            Fflags_dly_S_S<=Fflags_S;
+          end
+    end
+
+`line 188 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+    
+    
+    
+
+`line 192 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+  logic [C_OP_FP64-1:0]         Result_dly_D_D;
+  logic                         Ready_dly_D_S;
+  logic                         Done_dly_D_S;
+  logic [4:0]                   Fflags_dly_D_S;
+  generate
+    if(PostPipeline_depth_S==2)
+      begin
+        always_ff @(posedge Clk_CI, negedge Rst_RBI)
+          begin
+            if(~Rst_RBI)
+              begin
+                Result_dly_D_D<='0;
+                Ready_dly_D_S<=1'b0;
+                Done_dly_D_S<=1'b0;
+                Fflags_dly_D_S<=1'b0;
+              end
+           else
+             begin
+               Result_dly_D_D<=Result_dly_S_D;
+               Ready_dly_D_S<=Ready_dly_S_S;
+               Done_dly_D_S<=Done_dly_S_S;
+               Fflags_dly_D_S<=Fflags_dly_S_S;
+             end
+          end
+        assign  Result_DO = Result_dly_D_D;
+        assign  Ready_SO  = Ready_dly_D_S;
+        assign  Done_SO  = Done_dly_D_S;
+        assign  Fflags_SO=Fflags_dly_D_S;
+       end
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+     else
+       begin
+         assign  Result_DO = Result_dly_S_D;
+         assign  Ready_SO  = Ready_dly_S_S;
+         assign  Done_SO   = Done_dly_S_S;
+         assign  Fflags_SO  = Fflags_dly_S_S;
+       end
+
+`line 230 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+   endgenerate
+
+`line 232 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 0
+endmodule 
+
+`line 234 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/fpu_div_sqrt_mvp-00387cbab4ffe5a2/hdl/div_sqrt_mvp_wrapper.sv" 2

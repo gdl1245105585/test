@@ -1,0 +1,151 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+module tc_clk_and2 (
+  input  logic clk0_i,
+  input  logic clk1_i,
+  output logic clk_o
+);
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  assign clk_o = clk0_i & clk1_i;
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+`line 21 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+module tc_clk_buffer (
+  input  logic clk_i,
+  output logic clk_o
+);
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  assign clk_o = clk_i;
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+`line 30 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+ 
+module tc_clk_gating #(
+   
+   
+   
+   
+   
+  parameter bit IS_FUNCTIONAL = 1'b1
+)(
+   input  logic clk_i,
+   input  logic en_i,
+   input  logic test_en_i,
+   output logic clk_o
+);
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  logic clk_en;
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  always_latch begin
+    if (clk_i == 1'b0) clk_en <= en_i | test_en_i;
+  end
+
+`line 51 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  assign clk_o = clk_i & clk_en;
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+module tc_clk_inverter (
+  input  logic clk_i,
+  output logic clk_o
+);
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  assign clk_o = ~clk_i;
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+`line 64 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module tc_clk_mux2 (
+  input  logic clk0_i,
+  input  logic clk1_i,
+  input  logic clk_sel_i,
+  output logic clk_o
+);
+
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  assign clk_o = (clk_sel_i) ? clk1_i : clk0_i;
+
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+module tc_clk_xor2 (
+  input  logic clk0_i,
+  input  logic clk1_i,
+  output logic clk_o
+);
+
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  assign clk_o = clk0_i ^ clk1_i;
+
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+module tc_clk_or2 (
+  input logic clk0_i,
+  input logic clk1_i,
+  output logic clk_o
+);
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+  assign clk_o = clk0_i | clk1_i;
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+`line 105 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+ 
+module tc_clk_delay #(
+  parameter int unsigned Delay = 300ps
+) (
+  input  logic in_i,
+  output logic out_o
+);
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+ 
+ 
+      
+
+`line 117 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+ 
+
+`line 119 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 0
+endmodule
+
+
+`line 122 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/rtl/tc_clk.sv" 2

@@ -1,0 +1,94 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+ 
+
+`line 10 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+module idma_tf_id_gen #(
+    parameter int unsigned  IdWidth = -1
+) (
+    input  logic                clk_i,
+    input  logic                rst_ni,
+     
+    input  logic                issue_i,
+     
+    input  logic                retire_i,
+     
+    output logic [IdWidth-1:0]  next_o,
+     
+    output logic [IdWidth-1:0]  completed_o
+);
+
+`line 25 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+     
+     
+     
+    logic [IdWidth-1:0] next_d, next_q, completed_d, completed_q;
+
+`line 30 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+     
+    always_comb begin : proc_next_id
+         
+        next_d = next_q;
+         
+        if (next_q == '1) begin
+            if (issue_i)
+                next_d = 'h2;
+            else
+                next_d = 'h1;
+         
+        end else begin
+            if (issue_i)
+                next_d = 'h1 + next_q;
+        end
+    end
+
+`line 47 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+    always_comb begin : proc_next_completed
+         
+        completed_d = completed_q;
+         
+        if (completed_q == '1) begin
+            if (retire_i)
+                completed_d = 'h2;
+            else
+                completed_d = 'h1;
+         
+        end else begin
+            if (retire_i)
+                completed_d = 'h1 + completed_q;
+        end
+    end
+
+`line 63 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+     
+    assign next_o      = next_q;
+    assign completed_o = completed_q;
+
+`line 67 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+     
+     
+     
+    always_ff @(posedge clk_i or negedge rst_ni) begin : proc_id_gen
+        if(~rst_ni) begin
+            next_q      <= 2;
+            completed_q <= 1;
+        end else begin
+            next_q      <= next_d;
+            completed_q <= completed_d;
+        end
+    end
+
+`line 80 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 0
+endmodule : idma_tf_id_gen
+
+
+`line 83 "/repo/hw/ip/future/src/idma_tf_id_gen.sv" 2

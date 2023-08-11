@@ -1,0 +1,38 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 0
+ 
+
+`line 7 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 0
+module prim_subreg_ext #(
+  parameter int unsigned DW = 32
+) (
+  input          re,
+  input          we,
+  input [DW-1:0] wd,
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 0
+  input [DW-1:0] d,
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 0
+   
+  output logic          qe,
+  output logic          qre,
+  output logic [DW-1:0] q,
+  output logic [DW-1:0] qs
+);
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 0
+  assign qs = d;
+  assign q = wd;
+  assign qe = we;
+  assign qre = re;
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 0
+endmodule
+
+`line 30 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/vendor/lowrisc_opentitan/src/prim_subreg_ext.sv" 2

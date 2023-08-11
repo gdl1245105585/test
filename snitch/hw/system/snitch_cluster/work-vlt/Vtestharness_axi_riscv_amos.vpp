@@ -1,0 +1,1190 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+module axi_riscv_amos #(
+     
+    parameter int unsigned AXI_ADDR_WIDTH       = 0,
+    parameter int unsigned AXI_DATA_WIDTH       = 0,
+    parameter int unsigned AXI_ID_WIDTH         = 0,
+    parameter int unsigned AXI_USER_WIDTH       = 0,
+     
+    parameter int unsigned AXI_MAX_WRITE_TXNS   = 0,
+     
+     
+     
+    parameter int unsigned RISCV_WORD_WIDTH     = 0,
+     
+    localparam int unsigned AXI_STRB_WIDTH      = AXI_DATA_WIDTH / 8
+) (
+    input  logic                        clk_i,
+    input  logic                        rst_ni,
+
+`line 41 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+    input  logic [AXI_ADDR_WIDTH-1:0]   slv_aw_addr_i,
+    input  logic [2:0]                  slv_aw_prot_i,
+    input  logic [3:0]                  slv_aw_region_i,
+    input  logic [5:0]                  slv_aw_atop_i,
+    input  logic [7:0]                  slv_aw_len_i,
+    input  logic [2:0]                  slv_aw_size_i,
+    input  logic [1:0]                  slv_aw_burst_i,
+    input  logic                        slv_aw_lock_i,
+    input  logic [3:0]                  slv_aw_cache_i,
+    input  logic [3:0]                  slv_aw_qos_i,
+    input  logic [AXI_ID_WIDTH-1:0]     slv_aw_id_i,
+    input  logic [AXI_USER_WIDTH-1:0]   slv_aw_user_i,
+    output logic                        slv_aw_ready_o,
+    input  logic                        slv_aw_valid_i,
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    input  logic [AXI_ADDR_WIDTH-1:0]   slv_ar_addr_i,
+    input  logic [2:0]                  slv_ar_prot_i,
+    input  logic [3:0]                  slv_ar_region_i,
+    input  logic [7:0]                  slv_ar_len_i,
+    input  logic [2:0]                  slv_ar_size_i,
+    input  logic [1:0]                  slv_ar_burst_i,
+    input  logic                        slv_ar_lock_i,
+    input  logic [3:0]                  slv_ar_cache_i,
+    input  logic [3:0]                  slv_ar_qos_i,
+    input  logic [AXI_ID_WIDTH-1:0]     slv_ar_id_i,
+    input  logic [AXI_USER_WIDTH-1:0]   slv_ar_user_i,
+    output logic                        slv_ar_ready_o,
+    input  logic                        slv_ar_valid_i,
+
+`line 71 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    input  logic [AXI_DATA_WIDTH-1:0]   slv_w_data_i,
+    input  logic [AXI_STRB_WIDTH-1:0]   slv_w_strb_i,
+    input  logic [AXI_USER_WIDTH-1:0]   slv_w_user_i,
+    input  logic                        slv_w_last_i,
+    output logic                        slv_w_ready_o,
+    input  logic                        slv_w_valid_i,
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    output logic [AXI_DATA_WIDTH-1:0]   slv_r_data_o,
+    output logic [1:0]                  slv_r_resp_o,
+    output logic                        slv_r_last_o,
+    output logic [AXI_ID_WIDTH-1:0]     slv_r_id_o,
+    output logic [AXI_USER_WIDTH-1:0]   slv_r_user_o,
+    input  logic                        slv_r_ready_i,
+    output logic                        slv_r_valid_o,
+
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    output logic [1:0]                  slv_b_resp_o,
+    output logic [AXI_ID_WIDTH-1:0]     slv_b_id_o,
+    output logic [AXI_USER_WIDTH-1:0]   slv_b_user_o,
+    input  logic                        slv_b_ready_i,
+    output logic                        slv_b_valid_o,
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+    output logic [AXI_ADDR_WIDTH-1:0]   mst_aw_addr_o,
+    output logic [2:0]                  mst_aw_prot_o,
+    output logic [3:0]                  mst_aw_region_o,
+    output logic [5:0]                  mst_aw_atop_o,
+    output logic [7:0]                  mst_aw_len_o,
+    output logic [2:0]                  mst_aw_size_o,
+    output logic [1:0]                  mst_aw_burst_o,
+    output logic                        mst_aw_lock_o,
+    output logic [3:0]                  mst_aw_cache_o,
+    output logic [3:0]                  mst_aw_qos_o,
+    output logic [AXI_ID_WIDTH-1:0]     mst_aw_id_o,
+    output logic [AXI_USER_WIDTH-1:0]   mst_aw_user_o,
+    input  logic                        mst_aw_ready_i,
+    output logic                        mst_aw_valid_o,
+
+`line 108 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    output logic [AXI_ADDR_WIDTH-1:0]   mst_ar_addr_o,
+    output logic [2:0]                  mst_ar_prot_o,
+    output logic [3:0]                  mst_ar_region_o,
+    output logic [7:0]                  mst_ar_len_o,
+    output logic [2:0]                  mst_ar_size_o,
+    output logic [1:0]                  mst_ar_burst_o,
+    output logic                        mst_ar_lock_o,
+    output logic [3:0]                  mst_ar_cache_o,
+    output logic [3:0]                  mst_ar_qos_o,
+    output logic [AXI_ID_WIDTH-1:0]     mst_ar_id_o,
+    output logic [AXI_USER_WIDTH-1:0]   mst_ar_user_o,
+    input  logic                        mst_ar_ready_i,
+    output logic                        mst_ar_valid_o,
+
+`line 122 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    output logic [AXI_DATA_WIDTH-1:0]   mst_w_data_o,
+    output logic [AXI_STRB_WIDTH-1:0]   mst_w_strb_o,
+    output logic [AXI_USER_WIDTH-1:0]   mst_w_user_o,
+    output logic                        mst_w_last_o,
+    input  logic                        mst_w_ready_i,
+    output logic                        mst_w_valid_o,
+
+`line 129 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    input  logic [AXI_DATA_WIDTH-1:0]   mst_r_data_i,
+    input  logic [1:0]                  mst_r_resp_i,
+    input  logic                        mst_r_last_i,
+    input  logic [AXI_ID_WIDTH-1:0]     mst_r_id_i,
+    input  logic [AXI_USER_WIDTH-1:0]   mst_r_user_i,
+    output logic                        mst_r_ready_o,
+    input  logic                        mst_r_valid_i,
+
+`line 137 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    input  logic [1:0]                  mst_b_resp_i,
+    input  logic [AXI_ID_WIDTH-1:0]     mst_b_id_i,
+    input  logic [AXI_USER_WIDTH-1:0]   mst_b_user_i,
+    output logic                        mst_b_ready_o,
+    input  logic                        mst_b_valid_i
+);
+
+`line 144 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    localparam int unsigned OUTSTND_BURSTS_WIDTH = $clog2(AXI_MAX_WRITE_TXNS+1);
+    localparam int unsigned AXI_ALU_RATIO        = AXI_DATA_WIDTH/RISCV_WORD_WIDTH;
+
+`line 147 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+    typedef enum logic [1:0] { FEEDTHROUGH_AW, WAIT_RESULT_AW, SEND_AW } aw_state_t;
+    aw_state_t   aw_state_d, aw_state_q;
+
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    typedef enum logic [2:0] { FEEDTHROUGH_W, WAIT_DATA_W, WAIT_RESULT_W, WAIT_CHANNEL_W, SEND_W } w_state_t;
+    w_state_t    w_state_d, w_state_q;
+
+`line 154 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    typedef enum logic [1:0] { FEEDTHROUGH_B, WAIT_COMPLETE_B, WAIT_CHANNEL_B, SEND_B } b_state_t;
+    b_state_t    b_state_d, b_state_q;
+
+`line 157 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    typedef enum logic [1:0] { FEEDTHROUGH_AR, WAIT_CHANNEL_AR, SEND_AR } ar_state_t;
+    ar_state_t   ar_state_d, ar_state_q;
+
+`line 160 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    typedef enum logic [1:0] { FEEDTHROUGH_R, WAIT_DATA_R, WAIT_CHANNEL_R, SEND_R } r_state_t;
+    r_state_t    r_state_d, r_state_q;
+
+`line 163 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    typedef enum logic [1:0] { NONE, INVALID, LOAD, STORE } atop_req_t;
+    atop_req_t   atop_valid_d, atop_valid_q;
+
+`line 166 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+     
+    logic [AXI_ADDR_WIDTH-1:0]          addr_d,         addr_q;
+    logic [AXI_ID_WIDTH-1:0]            id_d,           id_q;
+    logic [AXI_STRB_WIDTH-1:0]          strb_d,         strb_q;
+    logic [2:0]                         size_d,         size_q;
+    logic [5:0]                         atop_d,         atop_q;
+    logic [3:0]                         cache_d,        cache_q;
+    logic [2:0]                         prot_d,         prot_q;
+    logic [3:0]                         qos_d,          qos_q;
+    logic [3:0]                         region_d,       region_q;
+    logic [1:0]                         r_resp_d,       r_resp_q;
+    logic [AXI_USER_WIDTH-1:0]          aw_user_d,      aw_user_q,
+                                        w_user_d,       w_user_q,
+                                        r_user_d,       r_user_q;
+     
+    logic [AXI_DATA_WIDTH-1:0]          w_data_d,       w_data_q;        
+    logic [AXI_DATA_WIDTH-1:0]          r_data_d,       r_data_q;        
+    logic [AXI_DATA_WIDTH-1:0]          result_d,       result_q;        
+    logic                               w_d_valid_d,    w_d_valid_q,     
+                                        r_d_valid_d,    r_d_valid_q;     
+     
+    logic [OUTSTND_BURSTS_WIDTH-1:0]    aw_trans_d,     aw_trans_q;      
+    logic [OUTSTND_BURSTS_WIDTH-1:0]    w_cnt_d,        w_cnt_q;         
+    logic [OUTSTND_BURSTS_WIDTH-1:0]    w_cnt_req_d,    w_cnt_req_q;     
+    logic [OUTSTND_BURSTS_WIDTH-1:0]    w_cnt_inj_d,    w_cnt_inj_q;     
+     
+    logic                               adapter_ready;
+    logic                               transaction_collision;
+    logic                               atop_r_resp_d,  atop_r_resp_q;
+    logic                               force_wf_d,     force_wf_q;
+    logic                               start_wf_d,     start_wf_q;
+    logic                               b_resp_valid;
+    logic                               aw_valid,       aw_ready,       aw_free,
+                                        w_valid,        w_ready,        w_free,
+                                        b_valid,        b_ready,        b_free,
+                                        ar_valid,       ar_ready,       ar_free,
+                                        r_valid,        r_ready,        r_free;
+     
+    logic [RISCV_WORD_WIDTH-1:0]                        alu_operand_a;
+    logic [RISCV_WORD_WIDTH-1:0]                        alu_operand_b;
+    logic [RISCV_WORD_WIDTH-1:0]                        alu_result;
+    logic [AXI_DATA_WIDTH-1:0]                          alu_result_ext;
+    logic [AXI_ALU_RATIO-1:0][RISCV_WORD_WIDTH-1:0]     op_a;
+    logic [AXI_ALU_RATIO-1:0][RISCV_WORD_WIDTH-1:0]     op_b;
+    logic [AXI_ALU_RATIO-1:0][RISCV_WORD_WIDTH-1:0]     op_a_sign_ext;
+    logic [AXI_ALU_RATIO-1:0][RISCV_WORD_WIDTH-1:0]     op_b_sign_ext;
+    logic [AXI_ALU_RATIO-1:0][RISCV_WORD_WIDTH-1:0]     res;
+    logic [AXI_STRB_WIDTH-1:0][7:0]                     strb_ext;
+    logic                                               sign_a;
+    logic                                               sign_b;
+
+`line 218 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 220 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+    assign adapter_ready = (aw_state_q == FEEDTHROUGH_AW) &&
+                           ( w_state_q == FEEDTHROUGH_W ) &&
+                           ( b_state_q == FEEDTHROUGH_B ) &&
+                           (ar_state_q == FEEDTHROUGH_AR) &&
+                           ( r_state_q == FEEDTHROUGH_R );
+
+`line 229 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+    assign aw_free = ~aw_valid | aw_ready;
+    assign  w_free = ~ w_valid |  w_ready;
+    assign  b_free = ~ b_valid |  b_ready;
+    assign ar_free = ~ar_valid | ar_ready;
+    assign  r_free = ~ r_valid |  r_ready;
+
+`line 236 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+        if(~rst_ni) begin
+            aw_valid <= 0;
+            aw_ready <= 0;
+            w_valid  <= 0;
+            w_ready  <= 0;
+            b_valid  <= 0;
+            b_ready  <= 0;
+            ar_valid <= 0;
+            ar_ready <= 0;
+            r_valid  <= 0;
+            r_ready  <= 0;
+        end else begin
+            aw_valid <= mst_aw_valid_o;
+            aw_ready <= mst_aw_ready_i;
+            w_valid  <= mst_w_valid_o;
+            w_ready  <= mst_w_ready_i;
+            b_valid  <= slv_b_valid_o;
+            b_ready  <= slv_b_ready_i;
+            ar_valid <= mst_ar_valid_o;
+            ar_ready <= mst_ar_ready_i;
+            r_valid  <= slv_r_valid_o;
+            r_ready  <= slv_r_ready_i;
+        end
+    end
+
+`line 262 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+     
+     
+    assign transaction_collision = (slv_aw_addr_i < (     addr_q + (8'h01 <<      size_q))) &
+                                   (     addr_q < (slv_aw_addr_i + (8'h01 << slv_aw_size_i)));
+
+`line 268 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    always_comb begin : calc_atop_valid
+        atop_valid_d = atop_valid_q;
+        atop_r_resp_d = atop_r_resp_q;
+        if (adapter_ready) begin
+            atop_valid_d = NONE;
+            atop_r_resp_d = 1'b0;
+            if (slv_aw_valid_i && (slv_aw_atop_i[5:4] != axi_pkg::ATOP_NONE)) begin
+                 
+                atop_valid_d = INVALID;
+                 
+                if ((slv_aw_atop_i      ==  axi_pkg::ATOP_ATOMICSWAP) ||
+                    (slv_aw_atop_i[5:3] == {axi_pkg::ATOP_ATOMICLOAD , axi_pkg::ATOP_LITTLE_END})) begin
+                    atop_valid_d = LOAD;
+                end
+                 
+                if (slv_aw_atop_i[5:3] == {axi_pkg::ATOP_ATOMICSTORE, axi_pkg::ATOP_LITTLE_END}) begin
+                    atop_valid_d = STORE;
+                end
+                 
+                 
+                if (slv_aw_len_i | slv_aw_lock_i) begin
+                    atop_valid_d = INVALID;
+                end
+                 
+                if (slv_aw_size_i > $clog2(RISCV_WORD_WIDTH/8)) begin
+                    atop_valid_d = INVALID;
+                end
+                 
+                if (slv_aw_atop_i[axi_pkg::ATOP_R_RESP]) begin
+                    atop_r_resp_d = 1'b1;
+                end
+            end
+        end
+    end
+
+`line 303 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    always_ff @(posedge clk_i or negedge rst_ni) begin : proc_atop_valid
+        if(~rst_ni) begin
+            atop_valid_q <= NONE;
+            atop_r_resp_q <= 1'b0;
+        end else begin
+            atop_valid_q <= atop_valid_d;
+            atop_r_resp_q <= atop_r_resp_d;
+        end
+    end
+
+`line 313 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 315 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+
+`line 317 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 319 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+    always_comb begin : axi_aw_channel
+         
+        mst_aw_id_o     = slv_aw_id_i;
+        mst_aw_addr_o   = slv_aw_addr_i;
+        mst_aw_len_o    = slv_aw_len_i;
+        mst_aw_size_o   = slv_aw_size_i;
+        mst_aw_burst_o  = slv_aw_burst_i;
+        mst_aw_lock_o   = slv_aw_lock_i;
+        mst_aw_cache_o  = slv_aw_cache_i;
+        mst_aw_prot_o   = slv_aw_prot_i;
+        mst_aw_qos_o    = slv_aw_qos_i;
+        mst_aw_region_o = slv_aw_region_i;
+        mst_aw_atop_o   = 6'b0;
+        mst_aw_user_o   = slv_aw_user_i;
+         
+        addr_d          = addr_q;
+        id_d            = id_q;
+        size_d          = size_q;
+        atop_d          = atop_q;
+        cache_d         = cache_q;
+        prot_d          = prot_q;
+        qos_d           = qos_q;
+        region_d        = region_q;
+        aw_user_d       = aw_user_q;
+        w_cnt_inj_d     = w_cnt_inj_q;
+         
+        aw_state_d      = aw_state_q;
+
+`line 348 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+         
+        if (slv_aw_valid_i && (slv_aw_atop_i[5:4] != axi_pkg::ATOP_NONE)) begin
+             
+            mst_aw_valid_o = 1'b0;
+            slv_aw_ready_o = 1'b0;
+        end else if (w_cnt_q == AXI_MAX_WRITE_TXNS || aw_trans_q == AXI_MAX_WRITE_TXNS) begin
+             
+            mst_aw_valid_o = 1'b0;
+            slv_aw_ready_o = 1'b0;
+        end else if (force_wf_q && aw_free) begin
+             
+            mst_aw_valid_o = 1'b0;
+            slv_aw_ready_o = 1'b0;
+        end else if (slv_aw_valid_i && transaction_collision && !adapter_ready) begin
+             
+            mst_aw_valid_o = 1'b0;
+            slv_aw_ready_o = 1'b0;
+        end else begin
+             
+            mst_aw_valid_o = slv_aw_valid_i;
+            slv_aw_ready_o = mst_aw_ready_i;
+        end
+
+`line 371 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+         
+        if (w_cnt_inj_q && mst_w_valid_o && mst_w_ready_i && mst_w_last_o) begin
+            w_cnt_inj_d = w_cnt_inj_q - 1;
+        end
+
+`line 376 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        unique case (aw_state_q)
+
+`line 378 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            FEEDTHROUGH_AW: begin
+                 
+                if (slv_aw_valid_i && (slv_aw_atop_i[5:4] != axi_pkg::ATOP_NONE) && adapter_ready) begin
+                     
+                    slv_aw_ready_o = 1'b1;
+                     
+                    atop_d    = slv_aw_atop_i;
+                    addr_d    = slv_aw_addr_i;
+                    id_d      = slv_aw_id_i;
+                    size_d    = slv_aw_size_i;
+                    cache_d   = slv_aw_cache_i;
+                    prot_d    = slv_aw_prot_i;
+                    qos_d     = slv_aw_qos_i;
+                    region_d  = slv_aw_region_i;
+                    aw_user_d = slv_aw_user_i;
+                     
+                    if (atop_valid_d != INVALID) begin
+                        aw_state_d = WAIT_RESULT_AW;
+                    end
+                end
+
+`line 399 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (start_wf_q) begin
+                     
+                    aw_state_d = WAIT_RESULT_AW;
+                end
+
+
+`line 405 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            end  
+
+`line 407 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_RESULT_AW, SEND_AW: begin
+                 
+                if ((r_d_valid_q && w_d_valid_q && aw_free) || (aw_state_q == SEND_AW)) begin
+                     
+                    slv_aw_ready_o  = 1'b0;
+                     
+                    mst_aw_valid_o  = 1'b1;
+                    mst_aw_addr_o   = addr_q;
+                    mst_aw_len_o    = 8'h00;
+                    mst_aw_id_o     = id_q;
+                    mst_aw_size_o   = size_q;
+                    mst_aw_burst_o  = axi_pkg::BURST_INCR;
+                    mst_aw_lock_o   = ~force_wf_q;
+                    mst_aw_cache_o  = cache_q;
+                    mst_aw_prot_o   = prot_q;
+                    mst_aw_qos_o    = qos_q;
+                    mst_aw_region_o = region_q;
+                    mst_aw_user_o   = aw_user_q;
+                     
+                    if (mst_aw_ready_i) begin
+                        aw_state_d = FEEDTHROUGH_AW;
+                    end else begin
+                        aw_state_d = SEND_AW;
+                    end
+                     
+                    if (aw_state_q == WAIT_RESULT_AW) begin
+                        if (w_cnt_q && mst_w_valid_o && mst_w_ready_i && mst_w_last_o) begin
+                            w_cnt_inj_d = w_cnt_q - 1;
+                        end else begin
+                            w_cnt_inj_d = w_cnt_q;
+                        end
+                    end
+                end
+            end  
+
+`line 442 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            default: aw_state_d = FEEDTHROUGH_AW;
+
+`line 444 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        endcase
+    end  
+
+`line 447 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 449 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+    always_comb begin : axi_w_channel
+         
+        mst_w_data_o = slv_w_data_i;
+        mst_w_strb_o = slv_w_strb_i;
+        mst_w_last_o = slv_w_last_i;
+        mst_w_user_o = slv_w_user_i;
+         
+        strb_d       = strb_q;
+        w_user_d     = w_user_q;
+        w_data_d     = w_data_q;
+        result_d     = result_q;
+        w_d_valid_d  = w_d_valid_q;
+        w_cnt_req_d  = w_cnt_req_q;
+         
+        w_state_d    = w_state_q;
+
+`line 466 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+         
+         
+        if (w_cnt_q == 0) begin
+             
+            slv_w_ready_o = 1'b0;
+            mst_w_valid_o = 1'b0;
+        end else begin
+            mst_w_valid_o = slv_w_valid_i;
+            slv_w_ready_o = mst_w_ready_i;
+        end
+
+`line 477 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        unique case (w_state_q)
+
+`line 479 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            FEEDTHROUGH_W: begin
+                if (adapter_ready) begin
+                     
+                    w_d_valid_d = 1'b0;
+                    result_d    = '0;
+
+`line 485 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                    if (atop_valid_d != NONE) begin
+                         
+                        if (w_cnt_q == 0) begin
+                             
+                            mst_w_valid_o = 1'b0;
+                             
+                            slv_w_ready_o  = 1'b1;
+                            if (slv_w_valid_i) begin
+                                if (atop_valid_d != INVALID) begin
+                                    w_data_d    = slv_w_data_i;
+                                    strb_d      = slv_w_strb_i;
+                                    w_user_d    = slv_w_user_i;
+                                    w_d_valid_d = 1'b1;
+                                    w_state_d   = WAIT_RESULT_W;
+                                end
+                            end else begin
+                                w_cnt_req_d = '0;
+                                w_state_d   = WAIT_DATA_W;
+                            end
+                        end else begin
+                             
+                            if (mst_w_valid_o && mst_w_ready_i && mst_w_last_o) begin
+                                w_cnt_req_d = w_cnt_q - 1;
+                            end else begin
+                                w_cnt_req_d = w_cnt_q;
+                            end
+                            w_state_d   = WAIT_DATA_W;
+                        end
+                    end
+                end
+
+`line 516 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (start_wf_q) begin
+                     
+                    w_state_d = WAIT_RESULT_W;
+                end
+
+`line 521 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            end  
+
+`line 523 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_DATA_W: begin
+                 
+                if (w_cnt_req_q == 0) begin
+                     
+                    mst_w_valid_o = 1'b0;
+                     
+                    slv_w_ready_o = 1'b1;
+
+`line 531 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                    if (slv_w_valid_i) begin
+                        if (atop_valid_q == INVALID) begin
+                            w_state_d    = FEEDTHROUGH_W;
+                        end else begin
+                            w_data_d    = slv_w_data_i;
+                            strb_d      = slv_w_strb_i;
+                            w_user_d    = slv_w_user_i;
+                            w_d_valid_d = 1'b1;
+                            w_state_d   = WAIT_RESULT_W;
+                        end
+                    end
+                end else if (mst_w_valid_o && mst_w_ready_i && mst_w_last_o) begin
+                    w_cnt_req_d = w_cnt_req_q - 1;
+                end
+            end  
+
+`line 547 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_RESULT_W: begin
+                 
+                if (r_d_valid_q && w_d_valid_q && aw_free) begin
+                     
+                    result_d = alu_result_ext;
+                    if (w_free && w_cnt_q == 0) begin
+                         
+                        slv_w_ready_o = 1'b0;
+                         
+                        mst_w_valid_o = 1'b1;
+                        mst_w_data_o  = alu_result_ext;
+                        mst_w_last_o  = 1'b1;
+                        mst_w_strb_o  = strb_q;
+                        mst_w_user_o  = w_user_q;
+                        if (mst_w_ready_i) begin
+                            w_state_d = FEEDTHROUGH_W;
+                        end else begin
+                            w_state_d = SEND_W;
+                        end
+                    end else begin
+                        w_state_d = WAIT_CHANNEL_W;
+                    end
+                end
+            end  
+
+`line 572 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_CHANNEL_W, SEND_W: begin
+                 
+                if ((w_free && w_cnt_inj_q == 0) || (w_state_q == SEND_W)) begin
+                     
+                    slv_w_ready_o = 1'b0;
+                     
+                    mst_w_valid_o = 1'b1;
+                    mst_w_data_o  = result_q;
+                    mst_w_last_o  = 1'b1;
+                    mst_w_strb_o  = strb_q;
+                    mst_w_user_o  = w_user_q;
+                    if (mst_w_ready_i) begin
+                        w_state_d = FEEDTHROUGH_W;
+                    end else begin
+                        w_state_d = SEND_W;
+                    end
+                end
+            end  
+
+`line 591 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            default: w_state_d = FEEDTHROUGH_W;
+
+`line 593 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        endcase
+    end  
+
+`line 596 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 598 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+    always_comb begin : axi_b_channel
+         
+        mst_b_ready_o = slv_b_ready_i;
+        slv_b_id_o    = mst_b_id_i;
+        slv_b_resp_o  = mst_b_resp_i;
+        slv_b_user_o  = mst_b_user_i;
+        slv_b_valid_o = mst_b_valid_i;
+         
+        force_wf_d    = force_wf_q;
+        start_wf_d    = 1'b0;
+        b_resp_valid  = 1'b0;
+         
+        b_state_d     = b_state_q;
+
+`line 613 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        unique case (b_state_q)
+
+`line 615 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            FEEDTHROUGH_B: begin
+                if (adapter_ready) begin
+                    if (atop_valid_d == LOAD || atop_valid_d == STORE) begin
+                         
+                        b_state_d = WAIT_COMPLETE_B;
+                    end else if (atop_valid_d == INVALID) begin
+                         
+                        if (b_free) begin
+                             
+                            mst_b_ready_o = 1'b0;
+                             
+                            slv_b_valid_o = 1'b1;
+                            slv_b_id_o    = slv_aw_id_i;
+                            slv_b_resp_o  = axi_pkg::RESP_SLVERR;
+                            slv_b_user_o  = slv_aw_user_i;
+                            if (!slv_b_ready_i) begin
+                                b_state_d = SEND_B;
+                            end
+                        end else begin
+                            b_state_d = WAIT_CHANNEL_B;
+                        end
+                    end
+                end
+            end  
+
+`line 640 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_CHANNEL_B, SEND_B: begin
+                if (b_free || (b_state_q == SEND_B)) begin
+                     
+                    mst_b_ready_o = 1'b0;
+                     
+                    slv_b_valid_o = 1'b1;
+                    slv_b_id_o    = id_q;
+                    slv_b_resp_o  = axi_pkg::RESP_SLVERR;
+                    slv_b_user_o  = aw_user_q;
+                    if (slv_b_ready_i) begin
+                        b_state_d = FEEDTHROUGH_B;
+                    end else begin
+                        b_state_d = SEND_B;
+                    end
+                end
+            end  
+
+`line 657 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_COMPLETE_B: begin
+                if (mst_b_valid_i && (mst_b_id_i == id_q)) begin
+                     
+                    if (mst_b_resp_i == axi_pkg::RESP_OKAY) begin
+                        if (force_wf_q) begin
+                             
+                            force_wf_d    = 1'b0;
+                            b_resp_valid  = 1'b1;
+                            b_state_d     = FEEDTHROUGH_B;
+                        end else begin
+                             
+                            mst_b_ready_o = 1'b1;
+                            slv_b_valid_o = 1'b0;
+                             
+                            start_wf_d    = 1'b1;
+                            force_wf_d    = 1'b1;
+                        end
+                    end else if (mst_b_resp_i == axi_pkg::RESP_EXOKAY) begin
+                         
+                        b_resp_valid = 1'b1;
+                        slv_b_resp_o = axi_pkg::RESP_OKAY;
+                        if (slv_b_ready_i) begin
+                            b_state_d = FEEDTHROUGH_B;
+                        end
+                    end else begin
+                        b_resp_valid = 1'b1;
+                        b_state_d    = FEEDTHROUGH_B;
+                    end
+                end
+            end  
+
+`line 688 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            default: b_state_d = FEEDTHROUGH_B;
+
+`line 690 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        endcase
+    end  
+
+`line 693 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+    always_comb begin
+        w_cnt_d    = w_cnt_q;
+        aw_trans_d = aw_trans_q;
+        if (mst_aw_valid_o && mst_aw_ready_i) begin
+            w_cnt_d    += 1;
+            aw_trans_d += 1;
+        end
+        if (mst_w_valid_o && mst_w_ready_i && mst_w_last_o) begin
+            w_cnt_d    -= 1;
+        end
+        if (mst_b_valid_i && mst_b_ready_o) begin
+            aw_trans_d -= 1;
+        end
+    end
+
+`line 709 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    always_ff @(posedge clk_i or negedge rst_ni) begin : axi_write_channel_ff
+        if(~rst_ni) begin
+            aw_state_q  <= FEEDTHROUGH_AW;
+            w_state_q   <= FEEDTHROUGH_W;
+            b_state_q   <= FEEDTHROUGH_B;
+            aw_trans_q  <= '0;
+            w_cnt_q     <= '0;
+            w_cnt_req_q <= '0;
+            w_cnt_inj_q <= '0;
+            force_wf_q  <= 1'b0;
+            start_wf_q  <= 1'b0;
+            addr_q      <= '0;
+            id_q        <= '0;
+            size_q      <= '0;
+            strb_q      <= '0;
+            cache_q     <= '0;
+            prot_q      <= '0;
+            qos_q       <= '0;
+            region_q    <= '0;
+            aw_user_q   <= '0;
+            w_user_q    <= '0;
+            w_data_q    <= '0;
+            result_q    <= '0;
+            w_d_valid_q <= '0;
+            atop_q      <= 6'b0;
+        end else begin
+            aw_state_q  <= aw_state_d;
+            w_state_q   <= w_state_d;
+            b_state_q   <= b_state_d;
+            aw_trans_q  <= aw_trans_d;
+            w_cnt_q     <= w_cnt_d;
+            w_cnt_req_q <= w_cnt_req_d;
+            w_cnt_inj_q <= w_cnt_inj_d;
+            force_wf_q  <= force_wf_d;
+            start_wf_q  <= start_wf_d;
+            addr_q      <= addr_d;
+            id_q        <= id_d;
+            size_q      <= size_d;
+            strb_q      <= strb_d;
+            cache_q     <= cache_d;
+            prot_q      <= prot_d;
+            qos_q       <= qos_d;
+            region_q    <= region_d;
+            aw_user_q   <= aw_user_d;
+            w_user_q    <= w_user_d;
+            w_data_q    <= w_data_d;
+            result_q    <= result_d;
+            w_d_valid_q <= w_d_valid_d;
+            atop_q      <= atop_d;
+        end
+    end
+
+`line 761 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 763 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+
+`line 765 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 767 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+    always_comb begin : axi_ar_channel
+         
+        mst_ar_id_o     = slv_ar_id_i;
+        mst_ar_addr_o   = slv_ar_addr_i;
+        mst_ar_len_o    = slv_ar_len_i;
+        mst_ar_size_o   = slv_ar_size_i;
+        mst_ar_burst_o  = slv_ar_burst_i;
+        mst_ar_lock_o   = slv_ar_lock_i;
+        mst_ar_cache_o  = slv_ar_cache_i;
+        mst_ar_prot_o   = slv_ar_prot_i;
+        mst_ar_qos_o    = slv_ar_qos_i;
+        mst_ar_region_o = slv_ar_region_i;
+        mst_ar_user_o   = slv_ar_user_i;
+        mst_ar_valid_o  = 1'b0;
+        slv_ar_ready_o  = 1'b0;
+         
+        ar_state_d      = ar_state_q;
+
+`line 786 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        unique case (ar_state_q)
+
+`line 788 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            FEEDTHROUGH_AR: begin
+                 
+                mst_ar_valid_o = slv_ar_valid_i;
+                slv_ar_ready_o = mst_ar_ready_i;
+
+`line 793 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (adapter_ready && (atop_valid_d == LOAD || atop_valid_d == STORE)) begin
+                    if (ar_free) begin
+                         
+                        slv_ar_ready_o  = 1'b0;
+                         
+                        mst_ar_valid_o  = 1'b1;
+                        mst_ar_addr_o   = slv_aw_addr_i;
+                        mst_ar_id_o     = slv_aw_id_i;
+                        mst_ar_len_o    = 8'h00;
+                        mst_ar_size_o   = slv_aw_size_i;
+                        mst_ar_burst_o  = axi_pkg::BURST_INCR;
+                        mst_ar_lock_o   = ~force_wf_q;
+                        mst_ar_cache_o  = slv_aw_cache_i;
+                        mst_ar_prot_o   = slv_aw_prot_i;
+                        mst_ar_qos_o    = slv_aw_qos_i;
+                        mst_ar_region_o = slv_aw_region_i;
+                        mst_ar_user_o   = slv_aw_user_i;
+                        if (!mst_ar_ready_i) begin
+                             
+                            ar_state_d = SEND_AR;
+                        end
+                    end else begin
+                         
+                        ar_state_d   = WAIT_CHANNEL_AR;
+                    end
+                end
+
+`line 820 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (start_wf_q) begin
+                    ar_state_d = WAIT_CHANNEL_AR;
+                end
+            end  
+
+`line 825 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_CHANNEL_AR, SEND_AR: begin
+                 
+                if ((ar_free  && (aw_trans_q == 0 || force_wf_q == 0)) || (ar_state_q == SEND_AR)) begin
+                     
+                    mst_ar_valid_o  = 1'b1;
+                    mst_ar_addr_o   = addr_q;
+                    mst_ar_id_o     = id_q;
+                    mst_ar_len_o    = 8'h00;
+                    mst_ar_size_o   = size_q;
+                    mst_ar_burst_o  = axi_pkg::BURST_INCR;
+                    mst_ar_lock_o   = ~force_wf_q;
+                    mst_ar_cache_o  = cache_q;
+                    mst_ar_prot_o   = prot_q;
+                    mst_ar_qos_o    = qos_q;
+                    mst_ar_region_o = region_q;
+                    mst_ar_user_o   = aw_user_q;
+                    if (mst_ar_ready_i) begin
+                         
+                        ar_state_d = FEEDTHROUGH_AR;
+                    end else begin
+                         
+                        ar_state_d = SEND_AR;
+                    end
+                end else begin
+                     
+                    mst_ar_valid_o = slv_ar_valid_i;
+                    slv_ar_ready_o = mst_ar_ready_i;
+                end
+            end  
+
+`line 855 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            default: ar_state_d = FEEDTHROUGH_AR;
+
+`line 857 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        endcase
+    end  
+
+`line 860 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 862 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+    always_comb begin : axi_r_channel
+         
+        mst_r_ready_o = slv_r_ready_i;
+        slv_r_id_o    = mst_r_id_i;
+        slv_r_data_o  = mst_r_data_i;
+        slv_r_resp_o  = mst_r_resp_i;
+        slv_r_last_o  = mst_r_last_i;
+        slv_r_user_o  = mst_r_user_i;
+        slv_r_valid_o = mst_r_valid_i;
+         
+        r_data_d      = r_data_q;
+        r_resp_d      = r_resp_q;
+        r_user_d      = r_user_q;
+        r_d_valid_d   = r_d_valid_q;
+         
+        r_state_d     = r_state_q;
+
+`line 880 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        unique case (r_state_q)
+
+`line 882 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            FEEDTHROUGH_R: begin
+                if (adapter_ready) begin
+                     
+                    r_d_valid_d = 1'b0;
+
+`line 887 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                    if (atop_valid_d == LOAD || atop_valid_d == STORE) begin
+                         
+                        r_state_d = WAIT_DATA_R;
+                    end else if (atop_valid_d == INVALID && atop_r_resp_d) begin
+                         
+                        if (r_free) begin
+                             
+                             
+                            mst_r_ready_o = 1'b0;
+                             
+                            slv_r_valid_o = 1'b1;
+                            slv_r_data_o  = '0;
+                            slv_r_id_o    = slv_aw_id_i;
+                            slv_r_last_o  = 1'b1;
+                            slv_r_resp_o  = axi_pkg::RESP_SLVERR;
+                            slv_r_user_o  = slv_aw_user_i;
+                            if (!slv_r_ready_i) begin
+                                 
+                                r_state_d = SEND_R;
+                            end
+                        end else begin
+                            r_state_d = WAIT_CHANNEL_R;
+                        end
+                    end
+                end
+
+`line 913 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (start_wf_q) begin
+                    r_d_valid_d = 1'b0;
+                    r_state_d   = WAIT_DATA_R;
+                end
+            end  
+
+`line 919 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_DATA_R: begin
+                 
+                if (mst_r_valid_i && (mst_r_id_i == id_q)) begin
+                     
+                    mst_r_ready_o = 1'b1;
+                    slv_r_valid_o = 1'b0;
+                     
+                    r_data_d    = mst_r_data_i;
+                    r_resp_d    = mst_r_resp_i;
+                    r_user_d    = mst_r_user_i;
+                    r_d_valid_d = 1'b1;
+                    if (atop_valid_q == STORE) begin
+                        r_state_d = FEEDTHROUGH_R;
+                    end else begin
+                         
+                        r_state_d = WAIT_CHANNEL_R;
+                    end
+                end
+            end  
+
+`line 939 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            WAIT_CHANNEL_R, SEND_R: begin
+                 
+                if ((r_free && (b_resp_valid || b_state_q != WAIT_COMPLETE_B)) || (r_state_q == SEND_R)) begin
+                     
+                    mst_r_ready_o = 1'b0;
+                     
+                    slv_r_valid_o = 1'b1;
+                    slv_r_data_o  = r_data_q;
+                    slv_r_id_o    = id_q;
+                    slv_r_last_o  = 1'b1;
+                    slv_r_resp_o  = r_resp_q;
+                    slv_r_user_o  = r_user_q;
+                    if (atop_valid_q == INVALID && atop_r_resp_q) begin
+                        slv_r_data_o = '0;
+                        slv_r_resp_o = axi_pkg::RESP_SLVERR;
+                        slv_r_user_o = aw_user_q;
+                    end
+                    if (slv_r_ready_i) begin
+                        r_state_d = FEEDTHROUGH_R;
+                    end else begin
+                        r_state_d = SEND_R;
+                    end
+                end
+
+`line 963 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (start_wf_q) begin
+                    r_d_valid_d = 1'b0;
+                    r_state_d   = WAIT_DATA_R;
+                end
+            end  
+
+`line 969 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+            default: r_state_d = FEEDTHROUGH_R;
+
+`line 971 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+        endcase
+    end  
+
+`line 974 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    always_ff @(posedge clk_i or negedge rst_ni) begin : axi_read_channel_ff
+        if(~rst_ni) begin
+            ar_state_q  <= FEEDTHROUGH_AR;
+            r_state_q   <= FEEDTHROUGH_R;
+            r_data_q    <= '0;
+            r_resp_q    <= '0;
+            r_user_q    <= '0;
+            r_d_valid_q <= 1'b0;
+        end else begin
+            ar_state_q  <= ar_state_d;
+            r_state_q   <= r_state_d;
+            r_data_q    <= r_data_d;
+            r_resp_q    <= r_resp_d;
+            r_user_q    <= r_user_d;
+            r_d_valid_q <= r_d_valid_d;
+        end
+    end
+
+`line 992 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    
+
+`line 994 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+
+`line 996 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    assign op_a           = r_data_q & strb_ext;
+    assign op_b           = w_data_q & strb_ext;
+    assign sign_a         = |(op_a & ~(strb_ext >> 1));
+    assign sign_b         = |(op_b & ~(strb_ext >> 1));
+    assign alu_result_ext = res;
+
+`line 1002 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    generate
+        if (AXI_ALU_RATIO == 1 && RISCV_WORD_WIDTH == 32) begin
+            assign alu_operand_a  = op_a;
+            assign alu_operand_b  = op_b;
+            assign res            = alu_result;
+        end else if (AXI_ALU_RATIO == 1 && RISCV_WORD_WIDTH == 64) begin
+            assign res        = alu_result;
+            always_comb begin
+                op_a_sign_ext = op_a | ({AXI_ALU_RATIO*RISCV_WORD_WIDTH{sign_a}} & ~strb_ext);
+                op_b_sign_ext = op_b | ({AXI_ALU_RATIO*RISCV_WORD_WIDTH{sign_b}} & ~strb_ext);
+
+`line 1013 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (atop_q[2:0] == axi_pkg::ATOP_SMAX || atop_q[2:0] == axi_pkg::ATOP_SMIN) begin
+                     
+                    alu_operand_a = op_a_sign_ext;
+                    alu_operand_b = op_b_sign_ext;
+                end else begin
+                     
+                    alu_operand_a = op_a;
+                    alu_operand_b = op_b;
+                end
+            end
+        end else begin
+            always_comb begin
+                op_a_sign_ext = op_a | ({AXI_ALU_RATIO*RISCV_WORD_WIDTH{sign_a}} & ~strb_ext);
+                op_b_sign_ext = op_b | ({AXI_ALU_RATIO*RISCV_WORD_WIDTH{sign_b}} & ~strb_ext);
+
+`line 1028 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+                if (atop_q[2:0] == axi_pkg::ATOP_SMAX || atop_q[2:0] == axi_pkg::ATOP_SMIN) begin
+                     
+                    alu_operand_a = op_a_sign_ext[addr_q[$clog2(AXI_DATA_WIDTH/8)-1:$clog2(RISCV_WORD_WIDTH/8)]];
+                    alu_operand_b = op_b_sign_ext[addr_q[$clog2(AXI_DATA_WIDTH/8)-1:$clog2(RISCV_WORD_WIDTH/8)]];
+                end else begin
+                     
+                    alu_operand_a = op_a[addr_q[$clog2(AXI_DATA_WIDTH/8)-1:$clog2(RISCV_WORD_WIDTH/8)]];
+                    alu_operand_b = op_b[addr_q[$clog2(AXI_DATA_WIDTH/8)-1:$clog2(RISCV_WORD_WIDTH/8)]];
+                end
+                res = '0;
+                res[addr_q[$clog2(AXI_DATA_WIDTH/8)-1:$clog2(RISCV_WORD_WIDTH/8)]] = alu_result;
+            end
+        end
+    endgenerate
+
+`line 1043 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    generate
+        for (genvar i = 0; i < AXI_STRB_WIDTH; i++) begin
+            always_comb begin
+                if (strb_q[i]) begin
+                    strb_ext[i] = 8'hFF;
+                end else begin
+                    strb_ext[i] = 8'h00;
+                end
+            end
+        end
+    endgenerate
+
+`line 1055 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+    axi_riscv_amos_alu #(
+        .DATA_WIDTH ( RISCV_WORD_WIDTH )
+    ) i_amo_alu (
+        .amo_op_i           ( atop_q        ),
+        .amo_operand_a_i    ( alu_operand_a ),
+        .amo_operand_b_i    ( alu_operand_b ),
+        .amo_result_o       ( alu_result    )
+    );
+
+`line 1064 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+     
+ 
+ 
+      
+           
+              
+           
+              
+           
+              
+           
+              
+               
+              
+           
+              
+    
+
+`line 1082 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+ 
+
+`line 1084 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 0
+endmodule
+
+`line 1086 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi_riscv_atomics-43bb8a5855ebe984/src/axi_riscv_amos.sv" 2

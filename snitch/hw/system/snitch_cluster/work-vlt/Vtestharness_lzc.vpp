@@ -1,0 +1,131 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module lzc #(
+   
+  parameter int unsigned WIDTH = 2,
+   
+  parameter bit          MODE  = 1'b0,
+   
+   
+   
+  parameter int unsigned CNT_WIDTH = cf_math_pkg::idx_width(WIDTH)
+) (
+   
+  input  logic [WIDTH-1:0]     in_i,
+   
+  output logic [CNT_WIDTH-1:0] cnt_o,
+   
+  output logic                 empty_o
+);
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+  if (WIDTH == 1) begin : gen_degenerate_lzc
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+    assign cnt_o[0] = !in_i[0];
+    assign empty_o = !in_i[0];
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+  end else begin : gen_lzc
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+    localparam int unsigned NumLevels = $clog2(WIDTH);
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+     
+    initial begin
+      assert(WIDTH > 0) else $fatal(1, "input must be at least one bit wide");
+    end
+     
+
+`line 48 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+    logic [WIDTH-1:0][NumLevels-1:0] index_lut;
+    logic [2**NumLevels-1:0] sel_nodes;
+    logic [2**NumLevels-1:0][NumLevels-1:0] index_nodes;
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+    logic [WIDTH-1:0] in_tmp;
+
+`line 54 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+     
+    always_comb begin : flip_vector
+      for (int unsigned i = 0; i < WIDTH; i++) begin
+        in_tmp[i] = (MODE) ? in_i[WIDTH-1-i] : in_i[i];
+      end
+    end
+
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+    for (genvar j = 0; unsigned'(j) < WIDTH; j++) begin : g_index_lut
+      assign index_lut[j] = (NumLevels)'(unsigned'(j));
+    end
+
+`line 65 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+    for (genvar level = 0; unsigned'(level) < NumLevels; level++) begin : g_levels
+      if (unsigned'(level) == NumLevels - 1) begin : g_last_level
+        for (genvar k = 0; k < 2 ** level; k++) begin : g_level
+           
+          if (unsigned'(k) * 2 < WIDTH - 1) begin : g_reduce
+            assign sel_nodes[2 ** level - 1 + k] = in_tmp[k * 2] | in_tmp[k * 2 + 1];
+            assign index_nodes[2 ** level - 1 + k] = (in_tmp[k * 2] == 1'b1)
+              ? index_lut[k * 2] :
+                index_lut[k * 2 + 1];
+          end
+           
+          if (unsigned'(k) * 2 == WIDTH - 1) begin : g_base
+            assign sel_nodes[2 ** level - 1 + k] = in_tmp[k * 2];
+            assign index_nodes[2 ** level - 1 + k] = index_lut[k * 2];
+          end
+           
+          if (unsigned'(k) * 2 > WIDTH - 1) begin : g_out_of_range
+            assign sel_nodes[2 ** level - 1 + k] = 1'b0;
+            assign index_nodes[2 ** level - 1 + k] = '0;
+          end
+        end
+      end else begin : g_not_last_level
+        for (genvar l = 0; l < 2 ** level; l++) begin : g_level
+          assign sel_nodes[2 ** level - 1 + l] =
+              sel_nodes[2 ** (level + 1) - 1 + l * 2] | sel_nodes[2 ** (level + 1) - 1 + l * 2 + 1];
+          assign index_nodes[2 ** level - 1 + l] = (sel_nodes[2 ** (level + 1) - 1 + l * 2] == 1'b1)
+            ? index_nodes[2 ** (level + 1) - 1 + l * 2] :
+              index_nodes[2 ** (level + 1) - 1 + l * 2 + 1];
+        end
+      end
+    end
+
+`line 97 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+    assign cnt_o = NumLevels > unsigned'(0) ? index_nodes[0] : {($clog2(WIDTH)) {1'b0}};
+    assign empty_o = NumLevels > unsigned'(0) ? ~sel_nodes[0] : ~(|in_i);
+
+`line 100 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+  end : gen_lzc
+
+`line 102 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+ 
+ 
+    
+       
+        
+  
+
+`line 109 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+ 
+
+`line 111 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 0
+endmodule : lzc
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/lzc.sv" 2

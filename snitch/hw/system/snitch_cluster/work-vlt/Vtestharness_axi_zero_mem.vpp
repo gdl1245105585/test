@@ -1,0 +1,357 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/future/src/axi_zero_mem.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+ 
+`line 8 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 8 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+
+`line 9 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module axi_zero_mem #(
+   
+  parameter type         axi_req_t  = logic,
+   
+  parameter type         axi_resp_t = logic,
+   
+   
+   
+  parameter int unsigned AddrWidth  = 0,
+   
+  parameter int unsigned DataWidth  = 0,
+   
+  parameter int unsigned IdWidth    = 0,
+   
+  parameter int unsigned NumBanks   = 0,
+   
+  parameter int unsigned BufDepth   = 1,
+   
+  localparam type addr_t     = logic [AddrWidth-1:0],
+   
+  localparam type mem_data_t = logic [DataWidth/NumBanks-1:0],
+   
+  localparam type mem_strb_t = logic [DataWidth/NumBanks/8-1:0]
+) (
+   
+  input  logic                           clk_i,
+   
+  input  logic                           rst_ni,
+   
+  output logic                           busy_o,
+   
+  input  axi_req_t                       axi_req_i,
+   
+  output axi_resp_t                      axi_resp_o
+);
+
+`line 52 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+  logic zero_mem_gnt, zero_mem_req, zero_mem_we;
+  logic zero_mem_valid_req_d, zero_mem_valid_req_q;
+
+`line 55 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+  axi_to_mem #(
+    .axi_req_t (axi_req_t),
+    .axi_resp_t (axi_resp_t),
+    .AddrWidth (AddrWidth),
+    .DataWidth (DataWidth),
+    .IdWidth (IdWidth),
+    .NumBanks (1),
+    .BufDepth (BufDepth)
+  ) i_axi_to_zeromem (
+    .clk_i,
+    .rst_ni,
+    .busy_o (busy_o),
+    .axi_req_i (axi_req_i),
+    .axi_resp_o (axi_resp_o),
+    .mem_req_o (zero_mem_req),
+    .mem_gnt_i (zero_mem_gnt),
+    .mem_addr_o ( ),
+    .mem_wdata_o ( ),
+    .mem_strb_o ( ),
+    .mem_atop_o ( ),
+    .mem_we_o (zero_mem_we),
+    .mem_rvalid_i (zero_mem_valid_req_q),
+    .mem_rdata_i ('0)
+  );
+
+`line 80 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+  assign zero_mem_gnt = zero_mem_req;
+  assign zero_mem_valid_req_d = zero_mem_gnt & zero_mem_req;
+
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+  
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+    if (!rst_ni) begin                                                             
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+      zero_mem_valid_req_q <= ('0);                                                        
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+    end else begin                                                                   
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+      zero_mem_valid_req_q <= (zero_mem_valid_req_d);                                                                  
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+    end                                                                              
+`line 83 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+  end
+
+`line 85 "/repo/hw/ip/future/src/axi_zero_mem.sv" 0
+endmodule
+
+`line 87 "/repo/hw/ip/future/src/axi_zero_mem.sv" 2

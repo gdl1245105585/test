@@ -1,0 +1,197 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+ 
+ 
+`line 6 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 11 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 21 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 27 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 34 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 41 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 49 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 2
+`line 6 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+
+
+`line 8 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+ 
+module axi_to_tcdm #(
+    parameter type axi_req_t = logic,
+    parameter type axi_rsp_t = logic,
+    parameter type tcdm_req_t = logic,
+    parameter type tcdm_rsp_t = logic,
+    parameter int unsigned AddrWidth  = 0,
+    parameter int unsigned DataWidth  = 0,
+    parameter int unsigned IdWidth    = 0,
+    parameter int unsigned BufDepth   = 1
+) (
+    input  logic      clk_i,
+    input  logic      rst_ni,
+    input  axi_req_t  axi_req_i,
+    output axi_rsp_t  axi_rsp_o,
+    output tcdm_req_t tcdm_req_o,
+    input  tcdm_rsp_t tcdm_rsp_i
+);
+
+`line 27 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  typedef logic [AddrWidth-1:0] addr_t;
+  typedef logic [DataWidth-1:0] data_t;
+  typedef logic [DataWidth/8-1:0] strb_t;
+
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  typedef struct packed { 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    addr_t             addr;  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    logic                write; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    data_t             data;  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    strb_t             strb;  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    reqrsp_pkg::size_t   size;  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  } reqrsp_req_chan_t; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  typedef struct packed { 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    data_t data;        
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+     logic  error;       
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  } reqrsp_rsp_chan_t; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  typedef struct packed { 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    reqrsp_req_chan_t q;       
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    logic      q_valid; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    logic      p_ready; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  } reqrsp_req_t; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  typedef struct packed { 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    reqrsp_rsp_chan_t p;       
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    logic      p_valid; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+    logic      q_ready; 
+`line 31 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  } reqrsp_rsp_t;
+
+`line 33 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  reqrsp_req_t reqrsp_req;
+  reqrsp_rsp_t reqrsp_rsp;
+
+`line 36 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  axi_to_reqrsp #(
+    .axi_req_t (axi_req_t),
+    .axi_rsp_t (axi_rsp_t),
+    .AddrWidth (AddrWidth),
+    .DataWidth (DataWidth),
+    .IdWidth (IdWidth),
+    .BufDepth (BufDepth),
+    .reqrsp_req_t (reqrsp_req_t),
+    .reqrsp_rsp_t (reqrsp_rsp_t)
+  ) i_axi_to_reqrsp (
+    .clk_i (clk_i),
+    .rst_ni (rst_ni),
+    .busy_o ( ),
+    .axi_req_i (axi_req_i),
+    .axi_rsp_o (axi_rsp_o),
+    .reqrsp_req_o (reqrsp_req),
+    .reqrsp_rsp_i (reqrsp_rsp)
+  );
+
+`line 55 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+  reqrsp_to_tcdm #(
+    .AddrWidth (AddrWidth),
+    .DataWidth (DataWidth),
+    .BufDepth (BufDepth),
+    .reqrsp_req_t (reqrsp_req_t),
+    .reqrsp_rsp_t (reqrsp_rsp_t),
+    .tcdm_req_t (tcdm_req_t),
+    .tcdm_rsp_t (tcdm_rsp_t)
+  ) i_reqrsp_to_tcdm (
+    .clk_i (clk_i),
+    .rst_ni (rst_ni),
+    .reqrsp_req_i (reqrsp_req),
+    .reqrsp_rsp_o (reqrsp_rsp),
+    .tcdm_req_o (tcdm_req_o),
+    .tcdm_rsp_i (tcdm_rsp_i)
+  );
+
+`line 72 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 0
+endmodule
+
+`line 74 "/repo/hw/ip/tcdm_interface/src/axi_to_tcdm.sv" 2

@@ -1,0 +1,1466 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+ 
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 136 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 171 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 195 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 247 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 274 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+`line 314 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+ 
+
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 358 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 403 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 427 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 454 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 479 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 506 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 531 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+`line 547 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 600 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 657 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 2
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+ 
+ 
+module axi_bus_compare #(
+     
+    parameter int unsigned AxiIdWidth = 32'd0,
+     
+    parameter int unsigned FifoDepth  = 32'd0,
+     
+    parameter type axi_aw_chan_t = logic,
+     
+    parameter type axi_w_chan_t  = logic,
+     
+    parameter type axi_b_chan_t  = logic,
+     
+    parameter type axi_ar_chan_t = logic,
+     
+    parameter type axi_r_chan_t  = logic,
+     
+    parameter type axi_req_t     = logic,
+     
+    parameter type axi_rsp_t     = logic,
+     
+    parameter type id_t          = logic [2**AxiIdWidth-1:0]
+)(
+     
+    input  logic     clk_i,
+     
+    input  logic     rst_ni,
+     
+    input  logic     testmode_i,
+     
+    input  axi_req_t axi_a_req_i,
+     
+    output axi_rsp_t axi_a_rsp_o,
+     
+    output axi_req_t axi_a_req_o,
+     
+    input  axi_rsp_t axi_a_rsp_i,
+     
+    input  axi_req_t axi_b_req_i,
+     
+    output axi_rsp_t axi_b_rsp_o,
+     
+    output axi_req_t axi_b_req_o,
+     
+    input  axi_rsp_t axi_b_rsp_i,
+     
+    output id_t      aw_mismatch_o,
+     
+    output logic     w_mismatch_o,
+     
+    output id_t      b_mismatch_o,
+     
+    output id_t      ar_mismatch_o,
+     
+    output id_t      r_mismatch_o,
+     
+    output logic     mismatch_o,
+     
+    output logic     busy_o
+);
+
+
+`line 79 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+     
+
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.id     = axi_a_req_i.aw.id;         
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.addr   = axi_a_req_i.aw.addr;       
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.len    = axi_a_req_i.aw.len;        
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.size   = axi_a_req_i.aw.size;       
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.burst  = axi_a_req_i.aw.burst;      
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.lock   = axi_a_req_i.aw.lock;       
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.cache  = axi_a_req_i.aw.cache;      
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.prot   = axi_a_req_i.aw.prot;       
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.qos    = axi_a_req_i.aw.qos;        
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.region = axi_a_req_i.aw.region;     
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.atop   = axi_a_req_i.aw.atop;       
+`line 84 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.aw.user   = axi_a_req_i.aw.user;
+    
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.w.data   = axi_a_req_i.w.data;       
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.w.strb   = axi_a_req_i.w.strb;       
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.w.last   = axi_a_req_i.w.last;       
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.w.user   = axi_a_req_i.w.user;
+    
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.id     = axi_a_req_i.ar.id;         
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.addr   = axi_a_req_i.ar.addr;       
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.len    = axi_a_req_i.ar.len;        
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.size   = axi_a_req_i.ar.size;       
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.burst  = axi_a_req_i.ar.burst;      
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.lock   = axi_a_req_i.ar.lock;       
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.cache  = axi_a_req_i.ar.cache;      
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.prot   = axi_a_req_i.ar.prot;       
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.qos    = axi_a_req_i.ar.qos;        
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.region = axi_a_req_i.ar.region;     
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_req_o.ar.user   = axi_a_req_i.ar.user;
+
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+    
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.r.id     = axi_a_rsp_i.r.id;         
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.r.data   = axi_a_rsp_i.r.data;       
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.r.resp   = axi_a_rsp_i.r.resp;       
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.r.last   = axi_a_rsp_i.r.last;       
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.r.user   = axi_a_rsp_i.r.user;
+    
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.b.id     = axi_a_rsp_i.b.id;         
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.b.resp   = axi_a_rsp_i.b.resp;       
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_a_rsp_o.b.user   = axi_a_rsp_i.b.user;
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+    
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.id     = axi_b_req_i.aw.id;         
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.addr   = axi_b_req_i.aw.addr;       
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.len    = axi_b_req_i.aw.len;        
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.size   = axi_b_req_i.aw.size;       
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.burst  = axi_b_req_i.aw.burst;      
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.lock   = axi_b_req_i.aw.lock;       
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.cache  = axi_b_req_i.aw.cache;      
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.prot   = axi_b_req_i.aw.prot;       
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.qos    = axi_b_req_i.aw.qos;        
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.region = axi_b_req_i.aw.region;     
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.atop   = axi_b_req_i.aw.atop;       
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.aw.user   = axi_b_req_i.aw.user;
+    
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.w.data   = axi_b_req_i.w.data;       
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.w.strb   = axi_b_req_i.w.strb;       
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.w.last   = axi_b_req_i.w.last;       
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.w.user   = axi_b_req_i.w.user;
+    
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.id     = axi_b_req_i.ar.id;         
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.addr   = axi_b_req_i.ar.addr;       
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.len    = axi_b_req_i.ar.len;        
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.size   = axi_b_req_i.ar.size;       
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.burst  = axi_b_req_i.ar.burst;      
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.lock   = axi_b_req_i.ar.lock;       
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.cache  = axi_b_req_i.ar.cache;      
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.prot   = axi_b_req_i.ar.prot;       
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.qos    = axi_b_req_i.ar.qos;        
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.region = axi_b_req_i.ar.region;     
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_req_o.ar.user   = axi_b_req_i.ar.user;
+
+`line 97 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+    
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.r.id     = axi_b_rsp_i.r.id;         
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.r.data   = axi_b_rsp_i.r.data;       
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.r.resp   = axi_b_rsp_i.r.resp;       
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.r.last   = axi_b_rsp_i.r.last;       
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.r.user   = axi_b_rsp_i.r.user;
+    
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.b.id     = axi_b_rsp_i.b.id;         
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.b.resp   = axi_b_rsp_i.b.resp;       
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+  assign axi_b_rsp_o.b.user   = axi_b_rsp_i.b.user;
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+    id_t  fifo_valid_aw_a, fifo_ready_aw_a;
+    id_t  fifo_valid_b_a,  fifo_ready_b_a;
+    id_t  fifo_valid_ar_a, fifo_ready_ar_a;
+    id_t  fifo_valid_r_a,  fifo_ready_r_a;
+
+`line 107 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    logic fifo_sel_valid_aw_a, fifo_sel_ready_aw_a;
+    logic fifo_sel_valid_w_a,  fifo_sel_ready_w_a;
+    logic fifo_sel_valid_b_a,  fifo_sel_ready_b_a;
+    logic fifo_sel_valid_ar_a, fifo_sel_ready_ar_a;
+    logic fifo_sel_valid_r_a,  fifo_sel_ready_r_a;
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+    id_t  fifo_valid_aw_b, fifo_ready_aw_b;
+    id_t  fifo_valid_b_b,  fifo_ready_b_b;
+    id_t  fifo_valid_ar_b, fifo_ready_ar_b;
+    id_t  fifo_valid_r_b,  fifo_ready_r_b;
+
+`line 119 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    logic fifo_sel_valid_aw_b, fifo_sel_ready_aw_b;
+    logic fifo_sel_valid_w_b,  fifo_sel_ready_w_b;
+    logic fifo_sel_valid_b_b,  fifo_sel_ready_b_b;
+    logic fifo_sel_valid_ar_b, fifo_sel_ready_ar_b;
+    logic fifo_sel_valid_r_b,  fifo_sel_ready_r_b;
+
+
+`line 126 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    id_t  fifo_cmp_valid_aw_a;
+    logic fifo_cmp_valid_w_a;
+    id_t  fifo_cmp_valid_b_a;
+    id_t  fifo_cmp_valid_ar_a;
+    id_t  fifo_cmp_valid_r_a;
+
+`line 135 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    id_t  fifo_cmp_valid_aw_b;
+    logic fifo_cmp_valid_w_b;
+    id_t  fifo_cmp_valid_b_b;
+    id_t  fifo_cmp_valid_ar_b;
+    id_t  fifo_cmp_valid_r_b;
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    axi_aw_chan_t [2**AxiIdWidth-1:0] fifo_cmp_data_aw_a;
+    axi_w_chan_t                      fifo_cmp_data_w_a;
+    axi_b_chan_t  [2**AxiIdWidth-1:0] fifo_cmp_data_b_a;
+    axi_ar_chan_t [2**AxiIdWidth-1:0] fifo_cmp_data_ar_a;
+    axi_r_chan_t  [2**AxiIdWidth-1:0] fifo_cmp_data_r_a;
+
+`line 147 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    axi_aw_chan_t [2**AxiIdWidth-1:0] fifo_cmp_data_aw_b;
+    axi_w_chan_t                      fifo_cmp_data_w_b;
+    axi_b_chan_t  [2**AxiIdWidth-1:0] fifo_cmp_data_b_b;
+    axi_ar_chan_t [2**AxiIdWidth-1:0] fifo_cmp_data_ar_b;
+    axi_r_chan_t  [2**AxiIdWidth-1:0] fifo_cmp_data_r_b;
+
+
+`line 154 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_aw_a (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_a_req_i.aw_valid                        ),
+        .ready_o ( axi_a_rsp_o.aw_ready                        ),
+        .valid_o ( {fifo_sel_valid_aw_a, axi_a_req_o.aw_valid} ),
+        .ready_i ( {fifo_sel_ready_aw_a, axi_a_rsp_i.aw_ready} )
+    );
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_w_a (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_a_req_i.w_valid                       ),
+        .ready_o ( axi_a_rsp_o.w_ready                       ),
+        .valid_o ( {fifo_sel_valid_w_a, axi_a_req_o.w_valid} ),
+        .ready_i ( {fifo_sel_ready_w_a, axi_a_rsp_i.w_ready} )
+    );
+
+`line 179 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_b_a (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_a_rsp_i.b_valid                       ),
+        .ready_o ( axi_a_req_o.b_ready                       ),
+        .valid_o ( {fifo_sel_valid_b_a, axi_a_rsp_o.b_valid} ),
+        .ready_i ( {fifo_sel_ready_b_a, axi_a_req_i.b_ready} )
+    );
+
+`line 190 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_ar_a (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_a_req_i.ar_valid                        ),
+        .ready_o ( axi_a_rsp_o.ar_ready                        ),
+        .valid_o ( {fifo_sel_valid_ar_a, axi_a_req_o.ar_valid} ),
+        .ready_i ( {fifo_sel_ready_ar_a, axi_a_rsp_i.ar_ready} )
+    );
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_r_a (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_a_rsp_i.r_valid                       ),
+        .ready_o ( axi_a_req_o.r_ready                       ),
+        .valid_o ( {fifo_sel_valid_r_a, axi_a_rsp_o.r_valid} ),
+        .ready_i ( {fifo_sel_ready_r_a, axi_a_req_i.r_ready} )
+    );
+
+
+`line 213 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    for (genvar id = 0; id < 2**AxiIdWidth; id++) begin : gen_fifos_a
+
+`line 218 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_aw_chan_t )
+        ) i_stream_fifo_aw_a (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                                ),
+            .usage_o    (                                   ),
+            .data_i     ( axi_a_req_i.aw                                      ),
+            .valid_i    ( fifo_valid_aw_a     [id]                            ),
+            .ready_o    ( fifo_ready_aw_a     [id]                            ),
+            .data_o     ( fifo_cmp_data_aw_a  [id]                            ),
+            .valid_o    ( fifo_cmp_valid_aw_a [id]                            ),
+            .ready_i    ( fifo_cmp_valid_aw_a [id] & fifo_cmp_valid_aw_b [id] )
+        );
+
+`line 237 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_b_chan_t  )
+        ) i_stream_fifo_b_a (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                              ),
+            .usage_o    (                                 ),
+            .data_i     ( axi_a_rsp_i.b                                     ),
+            .valid_i    ( fifo_valid_b_a     [id]                           ),
+            .ready_o    ( fifo_ready_b_a     [id]                           ),
+            .data_o     ( fifo_cmp_data_b_a  [id]                           ),
+            .valid_o    ( fifo_cmp_valid_b_a [id]                           ),
+            .ready_i    ( fifo_cmp_valid_b_a [id] & fifo_cmp_valid_b_b [id] )
+        );
+
+`line 256 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_ar_chan_t )
+        ) i_stream_fifo_ar_a (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                                ),
+            .usage_o    (                                   ),
+            .data_i     ( axi_a_req_i.ar                                      ),
+            .valid_i    ( fifo_valid_ar_a     [id]                            ),
+            .ready_o    ( fifo_ready_ar_a     [id]                            ),
+            .data_o     ( fifo_cmp_data_ar_a  [id]                            ),
+            .valid_o    ( fifo_cmp_valid_ar_a [id]                            ),
+            .ready_i    ( fifo_cmp_valid_ar_a [id] & fifo_cmp_valid_ar_b [id] )
+        );
+
+`line 275 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_r_chan_t  )
+        ) i_stream_fifo_r_a (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                              ),
+            .usage_o    (                                 ),
+            .data_i     ( axi_a_rsp_i.r                                     ),
+            .valid_i    ( fifo_valid_r_a     [id]                           ),
+            .ready_o    ( fifo_ready_r_a     [id]                           ),
+            .data_o     ( fifo_cmp_data_r_a  [id]                           ),
+            .valid_o    ( fifo_cmp_valid_r_a [id]                           ),
+            .ready_i    ( fifo_cmp_valid_r_a [id] & fifo_cmp_valid_r_b [id] )
+        );
+    end
+
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fifo #(
+        .FALL_THROUGH ( 1'b0          ),
+        .DATA_WIDTH   ( 1'b0          ),
+        .DEPTH        ( FifoDepth     ),
+        .T            ( axi_w_chan_t  )
+    ) i_stream_fifo_w_a (
+        .clk_i,
+        .rst_ni,
+        .testmode_i,
+        .flush_i    ( 1'b0                                    ),
+        .usage_o    (                       ),
+        .data_i     ( axi_a_req_i.w                           ),
+        .valid_i    ( fifo_sel_valid_w_a                      ),
+        .ready_o    ( fifo_sel_ready_w_a                      ),
+        .data_o     ( fifo_cmp_data_w_a                       ),
+        .valid_o    ( fifo_cmp_valid_w_a                      ),
+        .ready_i    ( fifo_cmp_valid_w_a & fifo_cmp_valid_w_b )
+    );
+
+
+`line 315 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    always_comb begin : gen_handshaking_a
+         
+         
+        fifo_valid_aw_a     = '0;
+        fifo_sel_ready_aw_a = '0;
+         
+        fifo_valid_aw_a [axi_a_req_i.aw.id] = fifo_sel_valid_aw_a;
+        fifo_sel_ready_aw_a                 = fifo_ready_aw_a[axi_a_req_i.aw.id];
+
+
+`line 328 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+         
+         
+        fifo_valid_b_a      = '0;
+        fifo_sel_ready_b_a  = '0;
+         
+        fifo_valid_b_a [axi_a_rsp_i.b.id] = fifo_sel_valid_b_a;
+        fifo_sel_ready_b_a                = fifo_ready_b_a[axi_a_rsp_i.b.id];
+
+`line 336 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+         
+         
+        fifo_valid_ar_a     = '0;
+        fifo_sel_ready_ar_a = '0;
+         
+        fifo_valid_ar_a [axi_a_req_i.ar.id] = fifo_sel_valid_ar_a;
+        fifo_sel_ready_ar_a                 = fifo_ready_ar_a[axi_a_req_i.ar.id];
+
+`line 344 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+         
+         
+        fifo_valid_r_a      = '0;
+        fifo_sel_ready_r_a  = '0;
+         
+        fifo_valid_r_a [axi_a_rsp_i.r.id] = fifo_sel_valid_r_a;
+        fifo_sel_ready_r_a                = fifo_ready_r_a[axi_a_rsp_i.r.id];
+    end
+
+
+`line 354 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_aw_b (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_b_req_i.aw_valid                        ),
+        .ready_o ( axi_b_rsp_o.aw_ready                        ),
+        .valid_o ( {fifo_sel_valid_aw_b, axi_b_req_o.aw_valid} ),
+        .ready_i ( {fifo_sel_ready_aw_b, axi_b_rsp_i.aw_ready} )
+    );
+
+`line 368 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_w_b (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_b_req_i.w_valid                       ),
+        .ready_o ( axi_b_rsp_o.w_ready                       ),
+        .valid_o ( {fifo_sel_valid_w_b, axi_b_req_o.w_valid} ),
+        .ready_i ( {fifo_sel_ready_w_b, axi_b_rsp_i.w_ready} )
+    );
+
+`line 379 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_b_b (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_b_rsp_i.b_valid                       ),
+        .ready_o ( axi_b_req_o.b_ready                       ),
+        .valid_o ( {fifo_sel_valid_b_b, axi_b_rsp_o.b_valid} ),
+        .ready_i ( {fifo_sel_ready_b_b, axi_b_req_i.b_ready} )
+    );
+
+`line 390 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_ar_b (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_b_req_i.ar_valid                        ),
+        .ready_o ( axi_b_rsp_o.ar_ready                        ),
+        .valid_o ( {fifo_sel_valid_ar_b, axi_b_req_o.ar_valid} ),
+        .ready_i ( {fifo_sel_ready_ar_b, axi_b_rsp_i.ar_ready} )
+    );
+
+`line 401 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fork #(
+        .N_OUP ( 32'd2 )
+    ) i_stream_fork_r_b (
+        .clk_i,
+        .rst_ni,
+        .valid_i ( axi_b_rsp_i.r_valid                       ),
+        .ready_o ( axi_b_req_o.r_ready                       ),
+        .valid_o ( {fifo_sel_valid_r_b, axi_b_rsp_o.r_valid} ),
+        .ready_i ( {fifo_sel_ready_r_b, axi_b_req_i.r_ready} )
+    );
+
+
+`line 413 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    for (genvar id = 0; id < 2**AxiIdWidth; id++) begin : gen_fifos_b
+
+`line 418 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_aw_chan_t )
+        ) i_stream_fifo_aw_b (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                                ),
+            .usage_o    (                                   ),
+            .data_i     ( axi_b_req_i.aw                                      ),
+            .valid_i    ( fifo_valid_aw_b     [id]                            ),
+            .ready_o    ( fifo_ready_aw_b     [id]                            ),
+            .data_o     ( fifo_cmp_data_aw_b  [id]                            ),
+            .valid_o    ( fifo_cmp_valid_aw_b [id]                            ),
+            .ready_i    ( fifo_cmp_valid_aw_a [id] & fifo_cmp_valid_aw_b [id] )
+        );
+
+`line 437 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_b_chan_t  )
+        ) i_stream_fifo_b_b (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                               ),
+            .usage_o    (                                  ),
+            .data_i     ( axi_b_rsp_i.b                                      ),
+            .valid_i    ( fifo_valid_b_b      [id]                           ),
+            .ready_o    ( fifo_ready_b_b      [id]                           ),
+            .data_o     ( fifo_cmp_data_b_b   [id]                           ),
+            .valid_o    ( fifo_cmp_valid_b_b  [id]                           ),
+            .ready_i    ( fifo_cmp_valid_b_a  [id] & fifo_cmp_valid_b_b [id] )
+        );
+
+`line 456 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_ar_chan_t )
+        ) i_stream_fifo_ar_b (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                                ),
+            .usage_o    (                                   ),
+            .data_i     ( axi_b_req_i.ar                                      ),
+            .valid_i    ( fifo_valid_ar_b     [id]                            ),
+            .ready_o    ( fifo_ready_ar_b     [id]                            ),
+            .data_o     ( fifo_cmp_data_ar_b  [id]                            ),
+            .valid_o    ( fifo_cmp_valid_ar_b [id]                            ),
+            .ready_i    ( fifo_cmp_valid_ar_a [id] & fifo_cmp_valid_ar_b [id] )
+        );
+
+`line 475 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+        stream_fifo #(
+            .FALL_THROUGH ( 1'b0          ),
+            .DATA_WIDTH   ( 1'b0          ),
+            .DEPTH        ( FifoDepth     ),
+            .T            ( axi_r_chan_t  )
+        ) i_stream_fifo_r_b (
+            .clk_i,
+            .rst_ni,
+            .testmode_i,
+            .flush_i    ( 1'b0                                               ),
+            .usage_o    (                                  ),
+            .data_i     ( axi_b_rsp_i.r                                      ),
+            .valid_i    ( fifo_valid_r_b      [id]                           ),
+            .ready_o    ( fifo_ready_r_b      [id]                           ),
+            .data_o     ( fifo_cmp_data_r_b   [id]                           ),
+            .valid_o    ( fifo_cmp_valid_r_b  [id]                           ),
+            .ready_i    ( fifo_cmp_valid_r_a  [id] & fifo_cmp_valid_r_b [id] )
+        );
+    end
+
+`line 495 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    stream_fifo #(
+        .FALL_THROUGH ( 1'b0          ),
+        .DATA_WIDTH   ( 1'b0          ),
+        .DEPTH        ( FifoDepth     ),
+        .T            ( axi_w_chan_t  )
+    ) i_stream_fifo_w_b (
+        .clk_i,
+        .rst_ni,
+        .testmode_i,
+        .flush_i    ( 1'b0                                    ),
+        .usage_o    (                       ),
+        .data_i     ( axi_b_req_i.w                           ),
+        .valid_i    ( fifo_sel_valid_w_b                      ),
+        .ready_o    ( fifo_sel_ready_w_b                      ),
+        .data_o     ( fifo_cmp_data_w_b                       ),
+        .valid_o    ( fifo_cmp_valid_w_b                      ),
+        .ready_i    ( fifo_cmp_valid_w_a & fifo_cmp_valid_w_b )
+    );
+
+
+`line 515 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    always_comb begin : gen_handshaking_b
+         
+         
+        fifo_valid_aw_b     = '0;
+        fifo_sel_ready_aw_b = '0;
+         
+        fifo_valid_aw_b [axi_b_req_i.aw.id] = fifo_sel_valid_aw_b;
+        fifo_sel_ready_aw_b                 = fifo_ready_aw_b[axi_b_req_i.aw.id];
+
+
+`line 528 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+         
+         
+        fifo_valid_b_b      = '0;
+        fifo_sel_ready_b_b  = '0;
+         
+        fifo_valid_b_b [axi_b_rsp_i.b.id] = fifo_sel_valid_b_b;
+        fifo_sel_ready_b_b                = fifo_ready_b_b[axi_b_rsp_i.b.id];
+
+`line 536 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+         
+         
+        fifo_valid_ar_b     = '0;
+        fifo_sel_ready_ar_b = '0;
+         
+        fifo_valid_ar_b [axi_b_req_i.ar.id] = fifo_sel_valid_ar_b;
+        fifo_sel_ready_ar_b                 = fifo_ready_ar_b[axi_b_req_i.ar.id];
+
+`line 544 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+         
+         
+        fifo_valid_r_b      = '0;
+        fifo_sel_ready_r_b  = '0;
+         
+        fifo_valid_r_b [axi_b_rsp_i.r.id] = fifo_sel_valid_r_b;
+        fifo_sel_ready_r_b                = fifo_ready_r_b[axi_b_rsp_i.r.id];
+    end
+
+
+`line 554 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    for (genvar id = 0; id < 2**AxiIdWidth; id++) begin : gen_cmp
+        assign aw_mismatch_o [id] = (fifo_cmp_valid_aw_a [id] & fifo_cmp_valid_aw_b [id]) ?
+                                     fifo_cmp_data_aw_a  [id] == fifo_cmp_data_aw_b [id] : '0;
+        assign b_mismatch_o  [id] = (fifo_cmp_valid_b_a  [id] & fifo_cmp_valid_b_b  [id]) ?
+                                     fifo_cmp_data_b_a   [id] == fifo_cmp_data_b_b  [id] : '0;
+        assign ar_mismatch_o [id] = (fifo_cmp_valid_ar_a [id] & fifo_cmp_valid_ar_b [id]) ?
+                                     fifo_cmp_data_ar_a  [id] == fifo_cmp_data_ar_b [id] : '0;
+        assign r_mismatch_o  [id] = (fifo_cmp_valid_r_a  [id] & fifo_cmp_valid_r_b  [id]) ?
+                                     fifo_cmp_data_r_a   [id] == fifo_cmp_data_r_b  [id] : '0;
+    end
+
+`line 568 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    assign w_mismatch_o  = (fifo_cmp_valid_w_a  & fifo_cmp_valid_w_b ) ?
+                            fifo_cmp_data_w_a  != fifo_cmp_data_w_b  : '0;
+
+
+`line 572 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+     
+     
+     
+    assign busy_o = (|fifo_cmp_valid_aw_a) | (|fifo_cmp_valid_aw_b) |
+                    (|fifo_cmp_valid_w_a)  | (|fifo_cmp_valid_w_b)  |
+                    (|fifo_cmp_valid_b_a)  | (|fifo_cmp_valid_b_b)  |
+                    (|fifo_cmp_valid_ar_a) | (|fifo_cmp_valid_ar_b) |
+                    (|fifo_cmp_valid_r_a)  | (|fifo_cmp_valid_r_b);
+
+
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+    assign mismatch_o = (|aw_mismatch_o) | (|w_mismatch_o) | (|b_mismatch_o) |
+                        (|ar_mismatch_o) | (|r_mismatch_o);
+
+`line 585 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 0
+endmodule
+
+`line 587 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_bus_compare.sv" 2

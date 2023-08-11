@@ -1,0 +1,215 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+ 
+ 
+ 
+module stream_xbar #(
+   
+  parameter int unsigned NumInp      = 32'd0,
+   
+  parameter int unsigned NumOut      = 32'd0,
+   
+  parameter int unsigned DataWidth   = 32'd1,
+   
+  parameter type         payload_t   = logic [DataWidth-1:0],
+   
+  parameter bit          OutSpillReg = 1'b0,
+   
+  parameter int unsigned ExtPrio     = 1'b0,
+   
+   
+  parameter int unsigned AxiVldRdy   = 1'b1,
+   
+   
+   
+  parameter int unsigned LockIn      = 1'b1,
+   
+   
+   
+  parameter int unsigned SelWidth = (NumOut > 32'd1) ? unsigned'($clog2(NumOut)) : 32'd1,
+   
+   
+   
+  parameter type sel_oup_t = logic[SelWidth-1:0],
+   
+   
+   
+  parameter int unsigned IdxWidth = (NumInp > 32'd1) ? unsigned'($clog2(NumInp)) : 32'd1,
+   
+   
+   
+  parameter type idx_inp_t = logic[IdxWidth-1:0]
+) (
+   
+  input  logic                  clk_i,
+   
+  input  logic                  rst_ni,
+   
+   
+   
+   
+  input  logic                  flush_i,
+   
+   
+  input  idx_inp_t [NumOut-1:0] rr_i,
+   
+   
+  input  payload_t [NumInp-1:0] data_i,
+   
+   
+  input  sel_oup_t [NumInp-1:0] sel_i,
+   
+  input  logic     [NumInp-1:0] valid_i,
+   
+  output logic     [NumInp-1:0] ready_o,
+   
+  output payload_t [NumOut-1:0] data_o,
+   
+  output idx_inp_t [NumOut-1:0] idx_o,
+   
+  output logic     [NumOut-1:0] valid_o,
+   
+  input  logic     [NumOut-1:0] ready_i
+);
+  typedef struct packed {
+    payload_t data;
+    idx_inp_t idx;
+  } spill_data_t;
+
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+  logic     [NumInp-1:0][NumOut-1:0] inp_valid;
+  logic     [NumInp-1:0][NumOut-1:0] inp_ready;
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+  payload_t [NumOut-1:0][NumInp-1:0] out_data;
+  logic     [NumOut-1:0][NumInp-1:0] out_valid;
+  logic     [NumOut-1:0][NumInp-1:0] out_ready;
+
+`line 96 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+   
+  for (genvar i = 0; unsigned'(i) < NumInp; i++) begin : gen_inps
+    stream_demux #(
+      .N_OUP ( NumOut )
+    ) i_stream_demux (
+      .inp_valid_i ( valid_i[i]   ),
+      .inp_ready_o ( ready_o[i]   ),
+      .oup_sel_i   ( sel_i[i]     ),
+      .oup_valid_o ( inp_valid[i] ),
+      .oup_ready_i ( inp_ready[i] )
+    );
+
+`line 108 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+     
+    for (genvar j = 0; unsigned'(j) < NumOut; j++) begin : gen_cross
+       
+      assign out_data[j][i]  = data_i[i];
+       
+      assign out_valid[j][i] = inp_valid[i][j];
+      assign inp_ready[i][j] = out_ready[j][i];
+    end
+  end
+
+`line 118 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+   
+  for (genvar j = 0; unsigned'(j) < NumOut; j++) begin : gen_outs
+    spill_data_t arb;
+    logic        arb_valid, arb_ready;
+
+`line 123 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+    rr_arb_tree #(
+      .NumIn     ( NumInp    ),
+      .DataType  ( payload_t ),
+      .ExtPrio   ( ExtPrio   ),
+      .AxiVldRdy ( AxiVldRdy ),
+      .LockIn    ( LockIn    )
+    ) i_rr_arb_tree (
+      .clk_i,
+      .rst_ni,
+      .flush_i,
+      .rr_i    ( rr_i[j]      ),
+      .req_i   ( out_valid[j] ),
+      .gnt_o   ( out_ready[j] ),
+      .data_i  ( out_data[j]  ),
+      .req_o   ( arb_valid    ),
+      .gnt_i   ( arb_ready    ),
+      .data_o  ( arb.data     ),
+      .idx_o   ( arb.idx      )
+    );
+
+`line 143 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+    spill_data_t spill;
+
+`line 145 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+    spill_register #(
+      .T      ( spill_data_t ),
+      .Bypass ( !OutSpillReg )
+    ) i_spill_register (
+      .clk_i,
+      .rst_ni,
+      .valid_i ( arb_valid  ),
+      .ready_o ( arb_ready  ),
+      .data_i  ( arb        ),
+      .valid_o ( valid_o[j] ),
+      .ready_i ( ready_i[j] ),
+      .data_o  ( spill      )
+    );
+     
+    assign data_o[j] = spill.data;
+    assign idx_o[j]  = spill.idx;
+  end
+
+`line 163 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+   
+   
+   
+   
+     
+             
+             
+         
+  
+
+`line 173 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+      
+               
+               
+           
+               
+           
+               
+           
+    
+               
+               
+           
+               
+           
+               
+           
+    
+  
+
+`line 192 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 0
+     
+          
+          
+  
+  
+   
+endmodule
+
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_xbar.sv" 2

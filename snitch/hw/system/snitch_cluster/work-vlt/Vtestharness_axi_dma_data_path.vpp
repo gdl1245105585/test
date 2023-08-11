@@ -1,0 +1,449 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+ 
+
+`line 13 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+ 
+ 
+ 
+ 
+ 
+module axi_dma_data_path #(
+     
+    parameter int DataWidth   = -1,
+     
+     
+    parameter int BufferDepth = -1,
+     
+    parameter int StrbWidth   = DataWidth / 8,
+    parameter int OffsetWidth = $clog2(StrbWidth)
+) (
+     
+     
+    input logic clk_i,
+     
+    input logic rst_ni,
+
+`line 34 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    input  logic r_dp_valid_i,
+     
+    output logic r_dp_ready_o,
+     
+    input  logic w_dp_valid_i,
+     
+    output logic w_dp_ready_o,
+
+`line 44 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    output logic data_path_idle_o,
+
+`line 48 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    input  logic [DataWidth-1:0] r_data_i,
+     
+    input  logic                 r_valid_i,
+     
+    input  logic                 r_last_i,
+     
+    input  logic [          1:0] r_resp_i,
+     
+    output logic                 r_ready_o,
+
+`line 60 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    input logic [OffsetWidth-1:0] r_tailer_i,
+     
+     
+    input logic [OffsetWidth-1:0] r_offset_i,
+     
+    input logic [OffsetWidth-1:0] r_shift_i,
+
+`line 69 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    output logic [DataWidth-1:0] w_data_o,
+     
+    output logic [StrbWidth-1:0] w_strb_o,
+     
+    output logic                 w_valid_o,
+     
+    output logic                 w_last_o,
+     
+    input  logic                 w_ready_i,
+
+`line 81 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    input logic [OffsetWidth-1:0] w_offset_i,
+     
+     
+    input logic [OffsetWidth-1:0] w_tailer_i,
+     
+    input logic [            7:0] w_num_beats_i,
+     
+    input logic                   w_is_single_i
+);
+
+`line 93 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+
+`line 96 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+   
+   
+
+
+`line 103 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+   
+   
+   
+   
+   
+
+`line 112 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+  logic [StrbWidth-1:0] r_first_mask;
+  logic [StrbWidth-1:0] r_last_mask;
+  logic [StrbWidth-1:0] w_first_mask;
+  logic [StrbWidth-1:0] w_last_mask;
+
+`line 118 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+  assign r_first_mask = '1 << r_offset_i;
+  assign r_last_mask  = '1 >> (StrbWidth - r_tailer_i);
+
+`line 122 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+  assign w_first_mask = '1 << w_offset_i;
+  assign w_last_mask  = '1 >> (StrbWidth - w_tailer_i);
+
+
+`line 127 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+   
+   
+   
+
+`line 134 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+  logic [StrbWidth-1:0][7:0] buffer_in;
+
+`line 137 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+  logic [StrbWidth-1:0]      read_aligned_in_mask;
+
+`line 141 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+  logic [StrbWidth-1:0]      in_mask;
+
+`line 145 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+  assign buffer_in = {r_data_i, r_data_i} >> (r_shift_i * 8);
+  assign in_mask   = {read_aligned_in_mask, read_aligned_in_mask} >> r_shift_i;
+
+`line 150 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+   
+  logic is_first_r, is_first_r_d;
+
+`line 156 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+  always_comb begin : proc_in_mask_generator
+     
+    read_aligned_in_mask = '1;
+     
+    read_aligned_in_mask = is_first_r ? read_aligned_in_mask & r_first_mask : read_aligned_in_mask;
+     
+    if (r_tailer_i != '0) begin
+      read_aligned_in_mask = r_last_i ? read_aligned_in_mask & r_last_mask : read_aligned_in_mask;
+    end
+  end
+
+`line 167 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+  logic [StrbWidth-1:0] buffer_full;
+  logic [StrbWidth-1:0] buffer_push;
+  logic                 full;
+   
+  logic                 push;
+
+`line 176 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+  always_comb begin : proc_read_control
+     
+    if (r_valid_i & !r_last_i) begin
+       
+      is_first_r_d = 1'b0;
+    end else if (r_last_i & r_valid_i) begin
+       
+      is_first_r_d = 1'b1;
+    end else begin
+       
+      is_first_r_d = is_first_r;
+    end
+
+`line 189 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    full         = |(buffer_full & in_mask);
+     
+    r_ready_o    = ~full;
+
+`line 194 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    push         = r_valid_i && ~full;
+    buffer_push  = push ? in_mask : '0;
+
+`line 198 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    r_dp_ready_o = r_dp_valid_i && r_last_i && r_valid_i && ~full;
+  end
+
+`line 202 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+   
+   
+  logic [StrbWidth-1:0] out_mask;
+  logic                 is_first_w;
+  logic                 is_last_w;
+
+`line 211 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+  always_comb begin : proc_out_mask_generator
+     
+    out_mask = '1;
+     
+    out_mask = is_first_w ? (out_mask & w_first_mask) : out_mask;
+     
+    if (w_tailer_i != '0) begin
+      out_mask = is_last_w ? out_mask & w_last_mask : out_mask;
+    end
+  end
+
+`line 222 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+   
+   
+   
+  logic [StrbWidth-1:0][7:0] buffer_out;
+  logic [StrbWidth-1:0]      buffer_empty;
+  logic [StrbWidth-1:0]      buffer_pop;
+
+`line 232 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+   
+   
+  logic [7:0] w_num_beats_d, w_num_beats_q;
+  logic w_cnt_valid_d, w_cnt_valid_q;
+
+`line 240 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+  logic pop;
+   
+  logic write_happening;
+   
+  logic ready_to_write;
+   
+   
+  logic first_possible;
+   
+  logic buffer_clean;
+
+`line 252 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+  always_comb begin : proc_write_control
+     
+    w_num_beats_d   = w_num_beats_q;
+    w_cnt_valid_d   = w_cnt_valid_q;
+     
+    pop             = 1'b0;
+    buffer_pop      = 'b0;
+    write_happening = 1'b0;
+    ready_to_write  = 1'b0;
+    first_possible  = 1'b0;
+     
+    w_valid_o       = 1'b0;
+    w_data_o        = '0;
+    w_strb_o        = '0;
+    w_last_o        = 1'b0;
+     
+    is_first_w      = 1'b0;
+    is_last_w       = 1'b0;
+     
+    w_dp_ready_o    = 1'b0;
+
+
+`line 274 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    ready_to_write  = ((~buffer_empty & out_mask) == out_mask) && (buffer_empty != '1);
+
+`line 277 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    first_possible  = ((~buffer_empty & w_first_mask) == w_first_mask) && (buffer_empty != '1);
+
+`line 281 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    buffer_clean    = &(buffer_empty);
+
+`line 284 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    write_happening = ready_to_write & w_ready_i;
+
+`line 287 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    pop             = write_happening;
+
+`line 290 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    buffer_pop      = write_happening ? out_mask : '0;
+
+`line 293 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    w_valid_o       = ready_to_write;
+
+`line 296 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    if (ready_to_write == 1'b1) begin
+       
+      for (int i = 0; i < StrbWidth; i++) begin
+        w_data_o[i*8+:8] = out_mask[i] ? buffer_out[i] : 8'b0;
+      end
+       
+      w_strb_o = out_mask;
+    end
+
+`line 306 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+     
+    if (w_is_single_i) begin
+       
+      is_first_w = 1'b1;
+      is_last_w  = 1'b1;
+
+`line 313 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+       
+       
+    end else begin
+       
+       
+      is_first_w = first_possible & ~w_cnt_valid_q;
+
+`line 320 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+       
+      is_last_w  = w_cnt_valid_q & (w_num_beats_q == 8'h01);
+
+`line 323 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+       
+      if (is_first_w && write_happening) begin
+        w_num_beats_d = w_num_beats_i;
+        w_cnt_valid_d = 1'b1;
+      end
+
+`line 329 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+       
+       
+      if (is_last_w && write_happening) begin
+        w_cnt_valid_d = 1'b0;
+      end
+
+`line 335 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+       
+      if (w_cnt_valid_q && write_happening) w_num_beats_d = w_num_beats_q - 8'h01;
+    end
+
+`line 339 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    w_last_o = is_last_w & ready_to_write;
+
+`line 342 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+     
+    w_dp_ready_o = is_last_w & write_happening;
+  end
+
+
+`line 347 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+  logic control_empty;
+
+`line 352 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+  for (genvar i = 0; i < StrbWidth; i++) begin : gen_fifo_buffer
+    fifo_v3 #(
+        .FALL_THROUGH(1'b0),
+        .DATA_WIDTH  (8),
+        .DEPTH       (BufferDepth)
+    ) i_fifo_buffer (
+        .clk_i     (clk_i),
+        .rst_ni    (rst_ni),
+        .flush_i   (1'b0),
+        .testmode_i(1'b0),
+        .full_o    (buffer_full[i]),
+        .empty_o   (buffer_empty[i]),
+        .usage_o   (),
+        .data_i    (buffer_in[i]),
+        .push_i    (buffer_push[i]),
+        .data_o    (buffer_out[i]),
+        .pop_i     (buffer_pop[i])
+    );
+  end
+
+`line 372 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+   
+   
+   
+  assign data_path_idle_o = !(r_dp_valid_i | r_dp_ready_o |
+                                w_dp_valid_i | w_dp_ready_o | !buffer_clean);
+
+`line 378 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+  always_ff @(posedge clk_i or negedge rst_ni) begin : proc_ff
+    if (!rst_ni) begin
+      is_first_r    <= 1'b1;
+      w_cnt_valid_q <= 1'b0;
+      w_num_beats_q <= 8'h0;
+    end else begin
+       
+      if (r_valid_i & r_ready_o) is_first_r <= is_first_r_d;
+      w_cnt_valid_q <= w_cnt_valid_d;
+      w_num_beats_q <= w_num_beats_d;
+    end
+  end
+
+`line 391 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 0
+endmodule : axi_dma_data_path
+
+`line 393 "/repo/hw/ip/future/src/dma/axi_dma_data_path.sv" 2

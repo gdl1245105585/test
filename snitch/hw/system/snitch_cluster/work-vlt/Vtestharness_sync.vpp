@@ -1,0 +1,47 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 0
+module sync #(
+    parameter int unsigned STAGES = 2,
+    parameter bit ResetValue = 1'b0
+) (
+    input  logic clk_i,
+    input  logic rst_ni,
+    input  logic serial_i,
+    output logic serial_o
+);
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 0
+   (* dont_touch = "true" *)
+   (* async_reg = "true" *)
+   logic [STAGES-1:0] reg_q;
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 0
+    always_ff @(posedge clk_i, negedge rst_ni) begin
+        if (!rst_ni) begin
+            reg_q <= {STAGES{ResetValue}};
+        end else begin
+            reg_q <= {reg_q[STAGES-2:0], serial_i};
+        end
+    end
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 0
+    assign serial_o = reg_q[STAGES-1];
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 0
+endmodule
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/sync.sv" 2

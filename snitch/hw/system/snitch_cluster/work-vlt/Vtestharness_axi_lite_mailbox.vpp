@@ -1,0 +1,2090 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+ 
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+ 
+ 
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+ 
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+
+
+`line 21 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+module axi_lite_mailbox #(
+  parameter int unsigned MailboxDepth = 32'd0,
+  parameter bit unsigned IrqEdgeTrig  = 1'b0,
+  parameter bit unsigned IrqActHigh   = 1'b1,
+  parameter int unsigned AxiAddrWidth = 32'd0,
+  parameter int unsigned AxiDataWidth = 32'd0,
+  parameter type         req_lite_t   = logic,
+  parameter type         resp_lite_t  = logic,
+   
+  parameter type         addr_t       = logic [AxiAddrWidth-1:0]
+) (
+  input  logic             clk_i,        
+  input  logic             rst_ni,       
+  input  logic             test_i,       
+   
+  input  req_lite_t  [1:0] slv_reqs_i,
+  output resp_lite_t [1:0] slv_resps_o,
+  output logic       [1:0] irq_o,        
+  input  addr_t      [1:0] base_addr_i   
+);
+  localparam int unsigned FifoUsageWidth = $clog2(MailboxDepth);
+  typedef logic [AxiDataWidth-1:0] data_t;
+   
+   
+  typedef logic [FifoUsageWidth:0] usage_t;
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+  logic   [1:0] mbox_full,    mbox_empty;    
+  logic   [1:0] mbox_push,    mbox_pop;      
+  logic   [1:0] w_mbox_flush, r_mbox_flush;  
+  data_t  [1:0] mbox_w_data,  mbox_r_data;   
+  usage_t [1:0] mbox_usage;                  
+   
+  logic   [1:0] slv_irq;
+  logic   [1:0] clear_irq;
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  axi_lite_mailbox_slave #(
+    .MailboxDepth ( MailboxDepth ),
+    .AxiAddrWidth ( AxiAddrWidth ),
+    .AxiDataWidth ( AxiDataWidth ),
+    .req_lite_t   ( req_lite_t   ),
+    .resp_lite_t  ( resp_lite_t  ),
+    .addr_t       ( addr_t       ),
+    .data_t       ( data_t       ),
+    .usage_t      ( usage_t      )   
+  ) i_slv_port_0 (
+    .clk_i,    
+    .rst_ni,   
+     
+    .slv_req_i      ( slv_reqs_i[0]   ),
+    .slv_resp_o     ( slv_resps_o[0]  ),
+    .base_addr_i    ( base_addr_i[0]  ),  
+     
+    .mbox_w_data_o  ( mbox_w_data[0]  ),
+    .mbox_w_full_i  ( mbox_full[0]    ),
+    .mbox_w_push_o  ( mbox_push[0]    ),
+    .mbox_w_flush_o ( w_mbox_flush[0] ),
+    .mbox_w_usage_i ( mbox_usage[0]   ),
+     
+    .mbox_r_data_i  ( mbox_r_data[0]  ),
+    .mbox_r_empty_i ( mbox_empty[1]   ),
+    .mbox_r_pop_o   ( mbox_pop[0]     ),
+    .mbox_r_flush_o ( r_mbox_flush[0] ),
+    .mbox_r_usage_i ( mbox_usage[1]   ),
+     
+    .irq_o          ( slv_irq[0]      ),
+    .clear_irq_o    ( clear_irq[0]    )
+  );
+
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  axi_lite_mailbox_slave #(
+    .MailboxDepth ( MailboxDepth ),
+    .AxiAddrWidth ( AxiAddrWidth ),
+    .AxiDataWidth ( AxiDataWidth ),
+    .req_lite_t   ( req_lite_t   ),
+    .resp_lite_t  ( resp_lite_t  ),
+    .addr_t       ( addr_t       ),
+    .data_t       ( data_t       ),
+    .usage_t      ( usage_t      )   
+  ) i_slv_port_1 (
+    .clk_i,    
+    .rst_ni,   
+     
+    .slv_req_i      ( slv_reqs_i[1]   ),
+    .slv_resp_o     ( slv_resps_o[1]  ),
+    .base_addr_i    ( base_addr_i[1]  ),  
+     
+    .mbox_w_data_o  ( mbox_w_data[1]  ),
+    .mbox_w_full_i  ( mbox_full[1]    ),
+    .mbox_w_push_o  ( mbox_push[1]    ),
+    .mbox_w_flush_o ( w_mbox_flush[1] ),
+    .mbox_w_usage_i ( mbox_usage[1]   ),
+     
+    .mbox_r_data_i  ( mbox_r_data[1]  ),
+    .mbox_r_empty_i ( mbox_empty[0]   ),
+    .mbox_r_pop_o   ( mbox_pop[1]     ),
+    .mbox_r_flush_o ( r_mbox_flush[1] ),
+    .mbox_r_usage_i ( mbox_usage[0]   ),
+     
+    .irq_o          ( slv_irq[1]      ),
+    .clear_irq_o    ( clear_irq[1]    )
+  );
+
+`line 123 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+  logic [FifoUsageWidth-1:0] mbox_0_to_1_usage, mbox_1_to_0_usage;
+  fifo_v3 #(
+    .FALL_THROUGH ( 1'b0         ),
+    .DEPTH        ( MailboxDepth ),
+    .dtype        ( data_t       )
+  ) i_mbox_0_to_1 (
+    .clk_i,
+    .rst_ni,
+    .testmode_i( test_i                            ),
+    .flush_i   ( w_mbox_flush[0] | r_mbox_flush[1] ),
+    .full_o    ( mbox_full[0]                      ),
+    .empty_o   ( mbox_empty[0]                     ),
+    .usage_o   ( mbox_0_to_1_usage                 ),
+    .data_i    ( mbox_w_data[0]                    ),
+    .push_i    ( mbox_push[0]                      ),
+    .data_o    ( mbox_r_data[1]                    ),
+    .pop_i     ( mbox_pop[1]                       )
+  );
+   
+  assign mbox_usage[0] = {mbox_full[0], mbox_0_to_1_usage};
+
+`line 145 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  fifo_v3 #(
+    .FALL_THROUGH ( 1'b0         ),
+    .DEPTH        ( MailboxDepth ),
+    .dtype        ( data_t       )
+  ) i_mbox_1_to_0 (
+    .clk_i,
+    .rst_ni,
+    .testmode_i( test_i                            ),
+    .flush_i   ( w_mbox_flush[1] | r_mbox_flush[0] ),
+    .full_o    ( mbox_full[1]                      ),
+    .empty_o   ( mbox_empty[1]                     ),
+    .usage_o   ( mbox_1_to_0_usage                 ),
+    .data_i    ( mbox_w_data[1]                    ),
+    .push_i    ( mbox_push[1]                      ),
+    .data_o    ( mbox_r_data[0]                    ),
+    .pop_i     ( mbox_pop[0]                       )
+  );
+  assign mbox_usage[1] = {mbox_full[1], mbox_1_to_0_usage};
+
+`line 164 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  for (genvar i = 0; i < 2; i++) begin : gen_irq_conversion
+    if (IrqEdgeTrig) begin : gen_irq_edge
+      logic irq_q, irq_d, update_irq;
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      always_comb begin
+         
+        irq_d      = irq_q;
+        update_irq = 1'b0;
+         
+        irq_o[i]   = ~IrqActHigh;
+        if (clear_irq[i]) begin
+          irq_d      = 1'b0;
+          update_irq = 1'b1;
+        end else if (!irq_q && slv_irq[i]) begin
+          irq_d      = 1'b1;
+          update_irq = 1'b1;
+          irq_o[i]   = IrqActHigh;  
+        end
+      end
+
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      irq_q <= ('0);                                                                 
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end else begin                                                                            
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      irq_q <= (update_irq) ? (irq_d) : (irq_q);                                                        
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end                                                                                       
+`line 184 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  end
+    end else begin : gen_irq_level
+      assign irq_o[i] = (IrqActHigh) ? slv_irq[i] : ~slv_irq[i];
+    end
+  end
+
+`line 190 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+   
+     
+            
+           
+           
+  
+  
+   
+endmodule
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+ 
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 118 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 239 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 246 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 2
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+
+
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+ 
+module axi_lite_mailbox_slave #(
+  parameter int unsigned MailboxDepth = 32'd16,
+  parameter int unsigned AxiAddrWidth = 32'd32,
+  parameter int unsigned AxiDataWidth = 32'd32,
+  parameter type         req_lite_t   = logic,
+  parameter type         resp_lite_t  = logic,
+  parameter type         addr_t       = logic [AxiAddrWidth-1:0],
+  parameter type         data_t       = logic [AxiDataWidth-1:0],
+  parameter type         usage_t      = logic                      
+) (
+  input  logic       clk_i,    
+  input  logic       rst_ni,   
+   
+  input  req_lite_t  slv_req_i,
+  output resp_lite_t slv_resp_o,
+  input  addr_t      base_addr_i,  
+   
+  output data_t      mbox_w_data_o,
+  input  logic       mbox_w_full_i,
+  output logic       mbox_w_push_o,
+  output logic       mbox_w_flush_o,
+  input  usage_t     mbox_w_usage_i,
+   
+  input  data_t      mbox_r_data_i,
+  input  logic       mbox_r_empty_i,
+  output logic       mbox_r_pop_o,
+  output logic       mbox_r_flush_o,
+  input  usage_t     mbox_r_usage_i,
+   
+  output logic       irq_o,
+  output logic       clear_irq_o  
+);
+
+`line 237 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 237 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                         
+`line 237 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    axi_pkg::resp_t resp;                         
+`line 237 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } b_chan_lite_t;
+  
+`line 238 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                                 
+`line 238 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    data_t          data;                                 
+`line 238 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    axi_pkg::resp_t resp;                                 
+`line 238 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } r_chan_lite_t;
+
+`line 240 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  localparam int unsigned NoRegs = 32'd10;
+  typedef enum logic [3:0] {
+    MBOXW  = 4'd0,  
+    MBOXR  = 4'd1,  
+    STATUS = 4'd2,  
+    ERROR  = 4'd3,  
+    WIRQT  = 4'd4,  
+    RIRQT  = 4'd5,  
+    IRQS   = 4'd6,  
+    IRQEN  = 4'd7,  
+    IRQP   = 4'd8,  
+    CTRL   = 4'd9   
+  } reg_e;
+   
+  typedef struct packed {
+    int unsigned idx;
+    addr_t       start_addr;
+    addr_t       end_addr;
+  } rule_t;
+   
+  typedef logic [$clog2(NoRegs)-1:0] idx_t;
+
+`line 262 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+  logic         b_valid, b_ready;
+  b_chan_lite_t b_chan;
+  logic         r_valid, r_ready;
+  r_chan_lite_t r_chan;
+   
+  rule_t [NoRegs-1:0] addr_map;
+  for (genvar i = 0; i < NoRegs; i++) begin : gen_addr_map
+    assign addr_map[i] = '{
+        idx:        i,
+        start_addr: base_addr_i +  i      * (AxiDataWidth / 8),
+        end_addr:   base_addr_i + (i + 1) * (AxiDataWidth / 8),
+        default:    '0
+    };
+  end
+   
+  idx_t w_reg_idx,   r_reg_idx;
+  logic dec_w_valid, dec_r_valid;
+
+`line 281 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+   
+
+`line 284 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  logic [3:0] status_q;            
+  logic [1:0] error_q,   error_d;  
+  data_t      wirqt_q,   wirqt_d;  
+  data_t      rirqt_q,   rirqt_d;  
+  logic [2:0] irqs_q,    irqs_d;   
+  logic [2:0] irqen_q,   irqen_d;  
+  logic [2:0] irqp_q;              
+  logic [1:0] ctrl_q;              
+  logic       update_regs;         
+
+`line 294 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+  
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      error_q <= ('0);                                                                 
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end else begin                                                                            
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      error_q <= (update_regs) ? (error_d) : (error_q);                                                        
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end                                                                                       
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  end
+  
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      wirqt_q <= ('0);                                                                 
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end else begin                                                                            
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      wirqt_q <= (update_regs) ? (wirqt_d) : (wirqt_q);                                                        
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end                                                                                       
+`line 296 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  end
+  
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      rirqt_q <= ('0);                                                                 
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end else begin                                                                            
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      rirqt_q <= (update_regs) ? (rirqt_d) : (rirqt_q);                                                        
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end                                                                                       
+`line 297 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  end
+  
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      irqs_q <= ('0);                                                                 
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end else begin                                                                            
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      irqs_q <= (update_regs) ? (irqs_d) : (irqs_q);                                                        
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end                                                                                       
+`line 298 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  end
+  
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      irqen_q <= ('0);                                                                 
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end else begin                                                                            
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+      irqen_q <= (update_regs) ? (irqen_d) : (irqen_q);                                                        
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    end                                                                                       
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  end
+
+`line 301 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+  for (genvar i = 0; i < (AxiDataWidth/8); i++) begin : gen_w_mbox_data
+    assign mbox_w_data_o[i*8+:8] = slv_req_i.w.strb[i] ? slv_req_i.w.data[i*8+:8] : '0;
+  end
+
+`line 306 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+  assign status_q = { mbox_r_usage_i > usage_t'(rirqt_q),
+                      mbox_w_usage_i > usage_t'(wirqt_q),
+                      mbox_w_full_i,
+                      mbox_r_empty_i };
+  assign irqp_q   = irqs_q & irqen_q;                  
+  assign ctrl_q   = {mbox_r_flush_o, mbox_w_flush_o};  
+  assign irq_o    = |irqp_q;                           
+
+`line 315 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  always_comb begin
+     
+    slv_resp_o.aw_ready = 1'b0;
+    slv_resp_o.w_ready  = 1'b0;
+    b_chan              = '{resp: axi_pkg::RESP_SLVERR};
+    b_valid             = 1'b0;
+    slv_resp_o.ar_ready = 1'b0;
+    r_chan              = '{data: '0, resp: axi_pkg::RESP_SLVERR};
+    r_valid             = 1'b0;
+     
+    error_d     = error_q;    
+    wirqt_d     = wirqt_q;    
+    rirqt_d     = rirqt_q;    
+    irqs_d      = irqs_q;     
+    irqen_d     = irqen_q;    
+    update_regs = 1'b0;       
+     
+    mbox_w_push_o  = 1'b0;
+    mbox_w_flush_o = 1'b0;
+    mbox_r_pop_o   = 1'b0;
+    mbox_r_flush_o = 1'b0;
+     
+    clear_irq_o    = 1'b0;
+
+`line 339 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+     
+     
+     
+     
+     
+    if (!irqs_q[1] && status_q[3]) begin
+      irqs_d[1]   = 1'b1;
+      update_regs = 1'b1;
+    end
+     
+    if (!irqs_q[0] && status_q[2]) begin
+      irqs_d[0]   = 1'b1;
+      update_regs = 1'b1;
+    end
+
+`line 354 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+     
+     
+     
+     
+     
+     
+     
+     
+
+`line 363 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+     
+    if (slv_req_i.ar_valid) begin
+       
+      if (dec_r_valid) begin
+         
+         
+        unique case (reg_e'(r_reg_idx))
+          MBOXW: r_chan = '{data: data_t'( 32'hFEEDC0DE ), resp: axi_pkg::RESP_OKAY};
+          MBOXR: begin
+            if (!mbox_r_empty_i) begin
+              r_chan       = '{data: data_t'( mbox_r_data_i ), resp: axi_pkg::RESP_OKAY};
+              mbox_r_pop_o = 1'b1;
+            end else begin
+               
+              r_chan      = '{data: data_t'( 32'hFEEDDEAD ), resp: axi_pkg::RESP_SLVERR};
+              error_d[0]  = 1'b1;
+              irqs_d[2]   = 1'b1;
+              update_regs = 1'b1;
+            end
+          end
+          STATUS: r_chan = '{data: data_t'( status_q ), resp: axi_pkg::RESP_OKAY};
+          ERROR: begin  
+            r_chan      = '{data: data_t'( error_q  ), resp: axi_pkg::RESP_OKAY};
+            error_d     = '0;
+            update_regs = 1'b1;
+          end
+          WIRQT: r_chan = '{data: data_t'( wirqt_q  ), resp: axi_pkg::RESP_OKAY};
+          RIRQT: r_chan = '{data: data_t'( rirqt_q  ), resp: axi_pkg::RESP_OKAY};
+          IRQS:  r_chan = '{data: data_t'( irqs_q   ), resp: axi_pkg::RESP_OKAY};
+          IRQEN: r_chan = '{data: data_t'( irqen_q  ), resp: axi_pkg::RESP_OKAY};
+          IRQP:  r_chan = '{data: data_t'( irqp_q   ), resp: axi_pkg::RESP_OKAY};
+          CTRL:  r_chan = '{data: data_t'( ctrl_q   ), resp: axi_pkg::RESP_OKAY};
+          default:  ;
+        endcase
+      end
+      r_valid = 1'b1;
+      if (r_ready) begin
+        slv_resp_o.ar_ready = 1'b1;
+      end
+    end  
+
+`line 404 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+     
+     
+     
+     
+    if (slv_req_i.aw_valid && slv_req_i.w_valid) begin
+       
+       
+      b_valid = 1'b1;
+      if (b_ready) begin
+         
+        if (dec_w_valid) begin
+          unique case (reg_e'(w_reg_idx))
+            MBOXW:  begin
+              if (!mbox_w_full_i) begin
+                mbox_w_push_o = 1'b1;
+                b_chan        = '{resp: axi_pkg::RESP_OKAY};
+              end else begin
+                 
+                error_d[1]  = 1'b1;
+                irqs_d[2]   = 1'b1;
+                update_regs = 1'b1;
+              end
+            end
+             
+             
+             
+            WIRQT:  begin
+              for (int unsigned i = 0; i < AxiDataWidth/8; i++) begin
+                wirqt_d[i*8+:8] = slv_req_i.w.strb[i] ? slv_req_i.w.data[i*8+:8] : 8'b0000_0000;
+              end
+              if (wirqt_d >= data_t'(MailboxDepth)) begin
+                 
+                wirqt_d = data_t'(MailboxDepth) - data_t'(32'd1);  
+              end
+              update_regs = 1'b1;
+              b_chan      = '{resp: axi_pkg::RESP_OKAY};
+            end
+            RIRQT:  begin
+              for (int unsigned i = 0; i < AxiDataWidth/8; i++) begin
+                rirqt_d[i*8+:8] = slv_req_i.w.strb[i] ? slv_req_i.w.data[i*8+:8] : 8'b0000_0000;
+              end
+              if (rirqt_d >= data_t'(MailboxDepth)) begin
+               
+                rirqt_d = data_t'(MailboxDepth) - data_t'(32'd1);
+              end
+              update_regs = 1'b1;
+              b_chan      = '{resp: axi_pkg::RESP_OKAY};
+            end
+            IRQS:   begin
+               
+              if (slv_req_i.w.strb[0]) begin
+                 
+                 
+                irqs_d[2]   = slv_req_i.w.data[2] ? 1'b0 : irqs_d[2];  
+                irqs_d[1]   = slv_req_i.w.data[1] ? 1'b0 : irqs_d[1];  
+                irqs_d[0]   = slv_req_i.w.data[0] ? 1'b0 : irqs_d[0];  
+                clear_irq_o = 1'b1;
+                update_regs = 1'b1;
+              end
+              b_chan = '{resp: axi_pkg::RESP_OKAY};
+            end
+            IRQEN:  begin
+              if (slv_req_i.w.strb[0]) begin
+                irqen_d[2:0]  = slv_req_i.w.data[2:0];  
+                update_regs = 1'b1;
+              end
+              b_chan = '{resp: axi_pkg::RESP_OKAY};
+            end
+             
+            CTRL:   begin
+              if (slv_req_i.w.strb[0]) begin
+                mbox_r_flush_o = slv_req_i.w.data[1];  
+                mbox_w_flush_o = slv_req_i.w.data[0];  
+              end
+              b_chan = '{resp: axi_pkg::RESP_OKAY};
+            end
+            default :  ;
+          endcase
+        end
+        slv_resp_o.aw_ready = 1'b1;
+        slv_resp_o.w_ready  = 1'b1;
+      end  
+           
+    end  
+  end
+
+`line 490 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+   
+  addr_decode #(
+    .NoIndices( NoRegs ),
+    .NoRules  ( NoRegs ),
+    .addr_t   ( addr_t ),
+    .rule_t   ( rule_t )
+  ) i_waddr_decode (
+    .addr_i           ( slv_req_i.aw.addr ),
+    .addr_map_i       ( addr_map          ),
+    .idx_o            ( w_reg_idx         ),
+    .dec_valid_o      ( dec_w_valid       ),
+    .dec_error_o      (        ),
+    .en_default_idx_i ( 1'b0              ),
+    .default_idx_i    ( '0                )
+  );
+  spill_register #(
+    .T ( b_chan_lite_t )
+  ) i_b_chan_outp (
+    .clk_i,
+    .rst_ni,
+    .valid_i ( b_valid            ),
+    .ready_o ( b_ready            ),
+    .data_i  ( b_chan             ),
+    .valid_o ( slv_resp_o.b_valid ),
+    .ready_i ( slv_req_i.b_ready  ),
+    .data_o  ( slv_resp_o.b       )
+  );
+  addr_decode #(
+    .NoIndices( NoRegs ),
+    .NoRules  ( NoRegs ),
+    .addr_t   ( addr_t ),
+    .rule_t   ( rule_t )
+  ) i_raddr_decode (
+    .addr_i           ( slv_req_i.ar.addr ),
+    .addr_map_i       ( addr_map          ),
+    .idx_o            ( r_reg_idx         ),
+    .dec_valid_o      ( dec_r_valid       ),
+    .dec_error_o      (        ),
+    .en_default_idx_i ( 1'b0              ),
+    .default_idx_i    ( '0                )
+  );
+  spill_register #(
+    .T ( r_chan_lite_t )
+  ) i_r_chan_outp (
+    .clk_i,
+    .rst_ni,
+    .valid_i ( r_valid            ),
+    .ready_o ( r_ready            ),
+    .data_i  ( r_chan             ),
+    .valid_o ( slv_resp_o.r_valid ),
+    .ready_i ( slv_req_i.r_ready  ),
+    .data_o  ( slv_resp_o.r       )
+  );
+   
+   
+     
+          
+           
+          
+          
+  
+  
+   
+endmodule
+
+`line 556 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+ 
+`line 556 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 136 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 171 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 195 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 247 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 274 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+`line 314 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+ 
+
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 358 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 403 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 427 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 454 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 479 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 506 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 531 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+`line 547 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 600 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 657 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 2
+`line 556 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+
+
+`line 558 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+module axi_lite_mailbox_intf #(
+  parameter int unsigned MAILBOX_DEPTH  = 32'd0,
+  parameter bit unsigned IRQ_EDGE_TRIG  = 1'b0,
+  parameter bit unsigned IRQ_ACT_HIGH   = 1'b1,
+  parameter int unsigned AXI_ADDR_WIDTH = 32'd0,
+  parameter int unsigned AXI_DATA_WIDTH = 32'd0,
+   
+  parameter type addr_t               = logic [AXI_ADDR_WIDTH-1:0]
+) (
+  input  logic         clk_i,       
+  input  logic         rst_ni,      
+  input  logic         test_i,      
+  AXI_LITE.Slave       slv [1:0],   
+  output logic   [1:0] irq_o,       
+  input  addr_t  [1:0] base_addr_i  
+);
+  typedef logic [AXI_DATA_WIDTH-1:0]   data_t;
+  typedef logic [AXI_DATA_WIDTH/8-1:0] strb_t;
+  
+`line 576 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                                   
+`line 576 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    addr_t          addr;                                   
+`line 576 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    axi_pkg::prot_t prot;                                   
+`line 576 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } aw_chan_lite_t;
+  
+`line 577 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                                         
+`line 577 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    data_t   data;                                                
+`line 577 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    strb_t   strb;                                                
+`line 577 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } w_chan_lite_t;
+  
+`line 578 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                         
+`line 578 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    axi_pkg::resp_t resp;                         
+`line 578 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } b_chan_lite_t;
+  
+`line 579 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                                   
+`line 579 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    addr_t          addr;                                   
+`line 579 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    axi_pkg::prot_t prot;                                   
+`line 579 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } ar_chan_lite_t;
+  
+`line 580 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                                 
+`line 580 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    data_t          data;                                 
+`line 580 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    axi_pkg::resp_t resp;                                 
+`line 580 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } r_chan_lite_t;
+  
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                                                                  
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    aw_chan_lite_t aw;                                                                     
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          aw_valid;                                                               
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    w_chan_lite_t  w;                                                                      
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          w_valid;                                                                
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          b_ready;                                                                
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    ar_chan_lite_t ar;                                                                     
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          ar_valid;                                                               
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          r_ready;                                                                
+`line 581 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } req_lite_t;
+  
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  typedef struct packed {                                                   
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          aw_ready;                                                
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          w_ready;                                                 
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    b_chan_lite_t  b;                                                       
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          b_valid;                                                 
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          ar_ready;                                                
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    r_chan_lite_t  r;                                                       
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+    logic          r_valid;                                                 
+`line 582 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  } resp_lite_t;
+
+`line 584 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  req_lite_t  [1:0] slv_reqs;
+  resp_lite_t [1:0] slv_resps;
+
+`line 587 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  for (genvar i = 0; i < 2; i++) begin : gen_port_assign
+    
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].aw.addr = slv[i].aw_addr;             
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].aw.prot = slv[i].aw_prot; 
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].aw_valid = slv[i].aw_valid;                             
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].w.data = slv[i].w_data;           
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].w.strb = slv[i].w_strb;    
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].w_valid = slv[i].w_valid;                               
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].b_ready = slv[i].b_ready;                               
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].ar.addr = slv[i].ar_addr;             
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].ar.prot = slv[i].ar_prot; 
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].ar_valid = slv[i].ar_valid;                             
+`line 588 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv_reqs[i].r_ready = slv[i].r_ready;
+    
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].aw_ready = slv_resps[i].aw_ready;                               
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].ar_ready = slv_resps[i].ar_ready;                               
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].w_ready = slv_resps[i].w_ready;                                 
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].b_valid = slv_resps[i].b_valid;                                 
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].b_resp = slv_resps[i].b.resp;      
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].r_valid = slv_resps[i].r_valid;                                 
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].r_data = slv_resps[i].r.data;           
+`line 589 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  assign slv[i].r_resp = slv_resps[i].r.resp;
+  end
+
+`line 592 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+  axi_lite_mailbox #(
+    .MailboxDepth ( MAILBOX_DEPTH  ),
+    .IrqEdgeTrig  ( IRQ_EDGE_TRIG  ),
+    .IrqActHigh   ( IRQ_ACT_HIGH   ),
+    .AxiAddrWidth ( AXI_ADDR_WIDTH ),
+    .AxiDataWidth ( AXI_DATA_WIDTH ),
+    .req_lite_t   ( req_lite_t     ),
+    .resp_lite_t  ( resp_lite_t    )
+  ) i_axi_lite_mailbox (
+    .clk_i,       
+    .rst_ni,      
+    .test_i,      
+     
+    .slv_reqs_i  ( slv_reqs  ),
+    .slv_resps_o ( slv_resps ),
+    .irq_o,       
+    .base_addr_i  
+  );
+
+`line 611 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 0
+   
+   
+   
+       
+          
+       
+          
+       
+          
+       
+          
+  
+  
+   
+endmodule
+
+`line 627 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_lite_mailbox.sv" 2

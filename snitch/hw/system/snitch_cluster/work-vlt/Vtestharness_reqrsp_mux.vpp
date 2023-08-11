@@ -1,0 +1,624 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+ 
+`line 7 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 11 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 21 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 27 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 34 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 41 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 49 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 2
+`line 7 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+
+
+`line 9 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+ 
+module reqrsp_mux #(
+     
+    parameter int unsigned               NrPorts      = 2,
+     
+    parameter int unsigned               AddrWidth    = 0,
+     
+    parameter int unsigned               DataWidth    = 0,
+     
+    parameter type                       req_t        = logic,
+     
+    parameter type                       rsp_t        = logic,
+     
+    parameter int unsigned               RespDepth    = 8,
+     
+     
+    parameter bit          [NrPorts-1:0] RegisterReq  = '0,
+     
+     
+    parameter int unsigned IdxWidth   = (NrPorts > 32'd1) ? unsigned'($clog2(NrPorts)) : 32'd1
+) (
+    input  logic                clk_i,
+    input  logic                rst_ni,
+    input  req_t [NrPorts-1:0]  slv_req_i,
+    output rsp_t [NrPorts-1:0]  slv_rsp_o,
+    output req_t                mst_req_o,
+    input  rsp_t                mst_rsp_i,
+    output logic [IdxWidth-1:0] idx_o
+);
+
+`line 39 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  typedef logic [AddrWidth-1:0] addr_t;
+  typedef logic [DataWidth-1:0] data_t;
+  typedef logic [DataWidth/8-1:0] strb_t;
+
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  typedef struct packed { 
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    addr_t             addr;  
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    logic                write; 
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    data_t             data;  
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    strb_t             strb;  
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    reqrsp_pkg::size_t   size;  
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  } req_chan_t;
+
+`line 45 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  localparam int unsigned LogNrPorts = cf_math_pkg::idx_width(NrPorts);
+
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  logic [NrPorts-1:0] req_valid_masked, req_ready_masked;
+  logic [LogNrPorts-1:0] idx, idx_rsp;
+  logic full;
+
+`line 51 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  req_chan_t [NrPorts-1:0] req_payload_q;
+  logic [NrPorts-1:0] req_valid_q, req_ready_q;
+
+`line 54 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+   
+   
+   
+  logic [NrPorts-1:0] slv_rsp_q_ready;
+
+`line 59 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+   
+  for (genvar i = 0; i < NrPorts; i++) begin : gen_cuts
+    spill_register #(
+      .T (req_chan_t),
+      .Bypass (!RegisterReq[i])
+    ) i_spill_register_req (
+      .clk_i,
+      .rst_ni,
+      .valid_i (slv_req_i[i].q_valid),
+      .ready_o (slv_rsp_q_ready[i]),
+      .data_i (slv_req_i[i].q),
+      .valid_o (req_valid_q[i]),
+      .ready_i (req_ready_masked[i]),
+      .data_o (req_payload_q[i])
+    );
+  end
+
+`line 76 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+   
+   
+  for (genvar i = 0; i < NrPorts; i++) begin : gen_req_valid_masked
+    assign req_valid_masked[i] = req_valid_q[i] & ~full;
+    assign req_ready_masked[i] = req_ready_q[i] & ~full;
+  end
+
+`line 83 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+   
+  rr_arb_tree #(
+    .NumIn (NrPorts),
+    .DataType (req_chan_t),
+    .AxiVldRdy (1'b1),
+    .LockIn (1'b1)
+  ) i_q_mux (
+    .clk_i,
+    .rst_ni,
+    .flush_i (1'b0),
+    .rr_i  ('0),
+    .req_i (req_valid_masked),
+    .gnt_o (req_ready_q),
+    .data_i (req_payload_q),
+    .gnt_i (mst_rsp_i.q_ready),
+    .req_o (mst_req_o.q_valid),
+    .data_o (mst_req_o.q),
+    .idx_o (idx_o)
+  );
+
+`line 103 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+   
+   
+  if (NrPorts == 1) begin : gen_single_port
+    assign idx_rsp = 0;
+    assign full = 1'b0;
+  end else begin : gen_multi_port
+     
+     
+     
+    onehot_to_bin #(
+      .ONEHOT_WIDTH (NrPorts)
+    ) i_onehot_to_bin (
+      .onehot (req_valid_q & req_ready_q),
+      .bin    (idx)
+    );
+     
+    fifo_v3 #(
+      .DATA_WIDTH (LogNrPorts),
+      .DEPTH (RespDepth)
+    ) i_resp_fifo (
+      .clk_i,
+      .rst_ni,
+      .flush_i (1'b0),
+      .testmode_i (1'b0),
+      .full_o (full),
+      .empty_o (),
+      .usage_o (),
+      .data_i (idx),
+      .push_i (mst_req_o.q_valid & mst_rsp_i.q_ready),
+      .data_o (idx_rsp),
+      .pop_i (mst_req_o.p_ready & mst_rsp_i.p_valid)
+    );
+  end
+
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+   
+  always_comb begin
+    for (int i = 0; i < NrPorts; i++) begin
+      slv_rsp_o[i].p_valid = '0;
+      slv_rsp_o[i].q_ready = slv_rsp_q_ready[i];
+      slv_rsp_o[i].p = mst_rsp_i.p;
+    end
+    slv_rsp_o[idx_rsp].p_valid = mst_rsp_i.p_valid;
+  end
+
+`line 147 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst_req_o.p_ready = slv_req_i[idx_rsp].p_ready;
+
+`line 149 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+endmodule
+
+`line 151 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+ 
+`line 151 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 11 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 21 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 27 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 34 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 41 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 49 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 2
+`line 151 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+
+`line 152 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+ 
+`line 152 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+`line 10 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+
+`line 14 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+ 
+
+
+`line 19 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 35 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 65 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+`line 70 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 90 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+`line 95 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+
+`line 103 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 2
+`line 152 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+
+
+`line 154 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+ 
+module reqrsp_mux_intf #(
+     
+    parameter int unsigned      NrPorts      = 2,
+     
+    parameter int unsigned      AddrWidth    = 0,
+     
+    parameter int unsigned      DataWidth    = 0,
+     
+    parameter int unsigned      RespDepth    = 8,
+     
+     
+    parameter bit [NrPorts-1:0] RegisterReq  = '0
+) (
+    input  logic clk_i,
+    input  logic rst_ni,
+    REQRSP_BUS   slv [NrPorts],
+    REQRSP_BUS   mst,
+    output logic [$clog2(NrPorts)-1:0] idx_o
+);
+
+`line 175 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  typedef logic [AddrWidth-1:0] addr_t;
+  typedef logic [DataWidth-1:0] data_t;
+  typedef logic [DataWidth/8-1:0] strb_t;
+
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  typedef struct packed { 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    addr_t             addr;  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    logic                write; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    data_t             data;  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    strb_t             strb;  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    reqrsp_pkg::size_t   size;  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  } reqrsp_req_chan_t; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  typedef struct packed { 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    data_t data;        
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+     logic  error;       
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  } reqrsp_rsp_chan_t; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  typedef struct packed { 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    reqrsp_req_chan_t q;       
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    logic      q_valid; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    logic      p_ready; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  } reqrsp_req_t; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  typedef struct packed { 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    reqrsp_rsp_chan_t p;       
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    logic      p_valid; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+    logic      q_ready; 
+`line 179 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  } reqrsp_rsp_t;
+
+`line 181 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  reqrsp_req_t [NrPorts-1:0] reqrsp_slv_req;
+  reqrsp_rsp_t [NrPorts-1:0] reqrsp_slv_rsp;
+
+`line 184 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  reqrsp_req_t reqrsp_mst_req;
+  reqrsp_rsp_t reqrsp_mst_rsp;
+
+`line 187 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  reqrsp_mux #(
+    .NrPorts (NrPorts),
+    .AddrWidth (AddrWidth),
+    .DataWidth (DataWidth),
+    .req_t (reqrsp_req_t),
+    .rsp_t (reqrsp_rsp_t),
+    .RespDepth (RespDepth),
+    .RegisterReq (RegisterReq)
+  ) i_reqrsp_mux (
+    .clk_i,
+    .rst_ni,
+    .slv_req_i (reqrsp_slv_req),
+    .slv_rsp_o (reqrsp_slv_rsp),
+    .mst_req_o (reqrsp_mst_req),
+    .mst_rsp_i (reqrsp_mst_rsp),
+    .idx_o (idx_o)
+  );
+
+`line 205 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  for (genvar i = 0; i < NrPorts; i++) begin : gen_interface_assignment
+    
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].q_valid   = slv[i].q_valid;     
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].q.addr  = slv[i].q_addr;           
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].q.write = slv[i].q_write;          
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].q.amo   = slv[i].q_amo;            
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].q.data  = slv[i].q_data;           
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].q.strb  = slv[i].q_strb;           
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].q.size  = slv[i].q_size; 
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 206 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_slv_req[i].p_ready   = slv[i].p_ready;
+    
+`line 207 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 207 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign slv[i].q_ready   = reqrsp_slv_rsp[i].q_ready;     
+`line 207 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 207 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign slv[i].p_data   = reqrsp_slv_rsp[i].p.data;          
+`line 207 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign slv[i].p_error   = reqrsp_slv_rsp[i].p.error; 
+`line 207 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 207 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign slv[i].p_valid   = reqrsp_slv_rsp[i].p_valid;
+  end
+
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.q_valid   = reqrsp_mst_req.q_valid;     
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.q_addr  = reqrsp_mst_req.q.addr;           
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.q_write = reqrsp_mst_req.q.write;          
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.q_amo   = reqrsp_mst_req.q.amo;            
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.q_data  = reqrsp_mst_req.q.data;           
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.q_strb  = reqrsp_mst_req.q.strb;           
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.q_size  = reqrsp_mst_req.q.size; 
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 210 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign mst.p_ready   = reqrsp_mst_req.p_ready;
+  
+`line 211 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 211 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_mst_rsp.q_ready   = mst.q_ready;     
+`line 211 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 211 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_mst_rsp.p.data   = mst.p_data;          
+`line 211 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_mst_rsp.p.error   = mst.p_error; 
+`line 211 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  
+`line 211 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+  assign reqrsp_mst_rsp.p_valid   = mst.p_valid;
+
+`line 213 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 0
+endmodule
+
+`line 215 "/repo/hw/ip/reqrsp_interface/src/reqrsp_mux.sv" 2

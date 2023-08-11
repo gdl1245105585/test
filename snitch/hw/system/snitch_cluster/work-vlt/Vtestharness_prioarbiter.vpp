@@ -1,0 +1,106 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+ 
+module prioarbiter #(
+  parameter int unsigned NUM_REQ = 13,
+  parameter int unsigned LOCK_IN = 0
+) (
+  input logic                         clk_i,
+  input logic                         rst_ni,
+
+`line 25 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  input logic                         flush_i,  
+  input logic                         en_i,     
+  input logic [NUM_REQ-1:0]           req_i,    
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  output logic [NUM_REQ-1:0]          ack_o,    
+  output logic                        vld_o,    
+  output logic [$clog2(NUM_REQ)-1:0]  idx_o     
+);
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  localparam SEL_WIDTH = $clog2(NUM_REQ);
+
+`line 36 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  logic [SEL_WIDTH-1:0] arb_sel_lock_d, arb_sel_lock_q;
+  logic lock_d, lock_q;
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  logic [$clog2(NUM_REQ)-1:0] idx;
+
+`line 41 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+   
+  assign vld_o = (|req_i) & en_i;
+  assign idx_o  = (lock_q) ? arb_sel_lock_q : idx;
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+   
+   
+  assign ack_o[0] = (req_i[0]) ? en_i : 1'b0;
+   
+  for (genvar i = 1; i < NUM_REQ; i++) begin : gen_arb_req_ports
+       
+      assign ack_o[i] = (req_i[i] & ~(|ack_o[i-1:0])) ? en_i : 1'b0;
+  end
+
+`line 54 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  onehot_to_bin #(
+    .ONEHOT_WIDTH ( NUM_REQ )
+  ) i_onehot_to_bin (
+    .onehot ( ack_o ),
+    .bin    ( idx   )
+  );
+
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  if (LOCK_IN) begin : gen_lock_in
+     
+    assign lock_d         = (|req_i) & ~en_i;
+    assign arb_sel_lock_d = idx_o;
+  end else begin
+     
+    assign lock_d         = '0;
+    assign arb_sel_lock_d = '0;
+  end
+
+`line 71 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+  always_ff @(posedge clk_i or negedge rst_ni) begin : p_regs
+    if (!rst_ni) begin
+      lock_q         <= 1'b0;
+      arb_sel_lock_q <= '0;
+    end else begin
+      if (flush_i) begin
+        lock_q         <= 1'b0;
+        arb_sel_lock_q <= '0;
+      end else begin
+        lock_q         <= lock_d;
+        arb_sel_lock_q <= arb_sel_lock_d;
+      end
+    end
+  end
+
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 0
+endmodule : prioarbiter
+
+
+
+
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/prioarbiter.sv" 2

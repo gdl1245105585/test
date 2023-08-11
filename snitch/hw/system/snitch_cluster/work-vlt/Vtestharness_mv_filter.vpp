@@ -1,0 +1,66 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 0
+module mv_filter #(
+    parameter int unsigned WIDTH     = 4,
+    parameter int unsigned THRESHOLD = 10
+)(
+    input  logic clk_i,
+    input  logic rst_ni,
+    input  logic sample_i,
+    input  logic clear_i,
+    input  logic d_i,
+    output logic q_o
+);
+    logic [WIDTH-1:0] counter_q, counter_d;
+    logic d, q;
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 0
+    assign q_o = q;
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 0
+    always_comb begin
+        counter_d = counter_q;
+        d = q;
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 0
+        if (counter_q >= THRESHOLD[WIDTH-1:0]) begin
+            d = 1'b1;
+        end else if (sample_i && d_i) begin
+            counter_d = counter_q + 1;
+        end
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 0
+         
+        if (clear_i) begin
+            counter_d = '0;
+            d = 1'b0;
+        end
+    end
+
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 0
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+        if (~rst_ni) begin
+            counter_q <= '0;
+            q         <= 1'b0;
+        end else begin
+            counter_q <= counter_d;
+            q         <= d;
+        end
+    end
+endmodule
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/mv_filter.sv" 2

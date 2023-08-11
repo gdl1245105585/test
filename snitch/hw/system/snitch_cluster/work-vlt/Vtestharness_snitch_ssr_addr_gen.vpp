@@ -1,0 +1,1365 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+ 
+`line 8 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 8 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+
+`line 9 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+ 
+`line 9 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 1
+ 
+`line 2 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+
+`line 9 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+  
+   
+     
+     
+       
+       
+    
+  
+
+
+
+
+
+
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+ 
+   
+
+
+
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 105 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 115 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+`line 121 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 131 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 138 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 145 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 165 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 182 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 189 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 196 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+  
+
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 2
+`line 9 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+
+
+`line 11 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+module snitch_ssr_addr_gen import snitch_ssr_pkg::*; #(
+  parameter ssr_cfg_t Cfg = '0,
+  parameter int unsigned AddrWidth = 0,
+  parameter int unsigned DataWidth = 0,
+  parameter type tcdm_req_t   = logic,
+  parameter type tcdm_rsp_t   = logic,
+  parameter type tcdm_user_t  = logic,
+  parameter type isect_slv_req_t = logic,
+  parameter type isect_slv_rsp_t = logic,
+  parameter type isect_mst_req_t = logic,
+  parameter type isect_mst_rsp_t = logic,
+   
+  parameter int unsigned BytecntWidth = $clog2(DataWidth/8),
+  parameter type addr_t     = logic [AddrWidth-1:0],
+  parameter type data_t     = logic [DataWidth-1:0],
+  parameter type pointer_t  = logic [Cfg.PointerWidth-1:0],
+  parameter type index_t    = logic [Cfg.IndexWidth-1:0],
+  parameter type bytecnt_t  = logic [BytecntWidth-1:0],
+  parameter type idx_size_t = logic [$clog2($clog2(DataWidth/8)+1)-1:0]
+) (
+  input  logic        clk_i,
+  input  logic        rst_ni,
+
+`line 34 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  output tcdm_req_t   idx_req_o,
+  input  tcdm_rsp_t   idx_rsp_i,
+
+`line 38 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  output isect_slv_req_t isect_slv_req_o,
+  input  isect_slv_rsp_t isect_slv_rsp_i,
+  output isect_mst_req_t isect_mst_req_o,
+  input  isect_mst_rsp_t isect_mst_rsp_i,
+
+`line 44 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  input  logic [4:0]  cfg_word_i,
+  output logic [31:0] cfg_rdata_o,
+  input  logic [31:0] cfg_wdata_i,
+  input  logic        cfg_write_i,
+  output logic        cfg_wready_o,
+
+`line 50 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  output logic [Cfg.RptWidth-1:0] reg_rep_o,
+
+`line 52 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  output addr_t       mem_addr_o,
+  output logic        mem_zero_o,
+  output logic        mem_write_o,
+  output logic        mem_valid_o,
+  input  logic        mem_ready_i
+);
+
+`line 59 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  localparam logic [31:0] WordAddrMask = {{(32-BytecntWidth){1'b1}}, {(BytecntWidth){1'b0}}};
+
+`line 62 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  pointer_t [Cfg.NumLoops-1:0] stride_q, stride_sd, stride_sq;
+  pointer_t pointer_q, pointer_qn, pointer_sd, pointer_sq, pointer_sqn, selected_stride;
+  index_t [Cfg.NumLoops-1:0] index_q, index_d, bound_q, bound_sd, bound_sq;
+  logic [Cfg.RptWidth-1:0] rep_q, rep_sd, rep_sq;
+  logic [Cfg.NumLoops-1:0] loop_enabled;
+  logic [Cfg.NumLoops-1:0] loop_last;
+  logic enable, done;
+
+`line 70 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  logic cfg_write_ena;
+
+`line 72 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  typedef struct packed {
+    logic idx_base;
+    logic idx_cfg;
+    logic [3:0] stride;
+    logic [3:0] bound;
+    logic rep;
+    logic status;
+  } write_strobe_t;
+  write_strobe_t write_strobe;
+
+`line 82 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  logic alias_strobe;
+
+`line 84 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  cfg_status_upper_t config_q, config_qn, config_sd, config_sq, config_sqn;
+
+`line 86 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  cfg_alias_fields_t alias_fields;
+
+`line 88 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  typedef struct packed {
+    logic [31:0]  idx_isect;
+    logic [31:0]  idx_base;
+    logic [31:0]  idx_cfg;
+  } indir_read_map_t;
+
+`line 95 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  indir_read_map_t indir_read_map;
+  pointer_t mem_pointer;
+  logic mem_last, mem_kill, mem_ptr_hs;
+
+`line 100 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  typedef struct packed {
+    pointer_t pointer;
+    logic     last;
+    logic     zero;
+    logic     kill;
+  } out_spill_t;
+
+`line 108 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  if (Cfg.Indirection) begin : gen_indirection
+
+`line 110 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    logic natit_base_last_d, natit_base_last_q;
+    logic natit_ready;
+    logic natit_extraword;
+    logic natit_last_word_inflight_q;
+    logic natit_done;
+    bytecnt_t natit_boundoffs;
+    index_t natit_base_bound;
+
+`line 119 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    logic indir_valid;
+    pointer_t indir_pointer;
+    logic indir_last, indir_zero, indir_kill;
+
+`line 124 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    logic [Cfg.ShiftWidth-1:0]    idx_shift_q, idx_shift_sd, idx_shift_sq;
+    logic [Cfg.PointerWidth-1:0]  idx_base_q, idx_base_sd, idx_base_sq;
+    idx_size_t                    idx_size_q, idx_size_sd, idx_size_sq;
+    idx_flags_t                   idx_flags_q, idx_flags_sd, idx_flags_sq;
+    index_t                       idx_isect;
+
+`line 131 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    out_spill_t spill_in_data;
+    logic spill_in_valid, spill_in_ready;
+    logic spill_out_valid, spill_out_ready;
+
+`line 136 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    cfg_idx_ctl_t cfg_wdata_idx_ctl, cfg_rdata_idx_ctl;
+    assign cfg_wdata_idx_ctl = cfg_wdata_i;
+    always_comb begin
+      idx_shift_sd  = idx_shift_sq;
+      idx_base_sd   = idx_base_sq;
+      idx_size_sd   = idx_size_sq;
+      idx_flags_sd  = idx_flags_sq;
+      if (write_strobe.idx_cfg) begin
+        idx_flags_sd = cfg_wdata_idx_ctl.flags;
+        idx_shift_sd = cfg_wdata_idx_ctl.shift;
+        idx_size_sd  = cfg_wdata_idx_ctl.size;
+      end
+      if (write_strobe.idx_base)  idx_base_sd  = cfg_wdata_i & WordAddrMask;
+    end
+
+`line 152 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    assign cfg_rdata_idx_ctl = '{flags: idx_flags_q, shift: idx_shift_q, size: idx_size_q};
+    assign indir_read_map = '{
+      idx_base:   idx_base_q,
+      idx_cfg:    cfg_rdata_idx_ctl,
+      idx_isect:  idx_isect
+    };
+
+`line 160 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_shift_sq <= ('0);                                                        
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_shift_sq <= (idx_shift_sd);                                                                  
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 161 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_shift_q <= ('0);                                                                 
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                            
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_shift_q <= (config_q.done) ? (idx_shift_sd) : (idx_shift_q);                                                        
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                                       
+`line 162 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_base_sq <= ('0);                                                        
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_base_sq <= (idx_base_sd);                                                                  
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 163 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_base_q <= ('0);                                                                 
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                            
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_base_q <= (config_q.done) ? (idx_base_sd) : (idx_base_q);                                                        
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                                       
+`line 164 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_size_sq <= ('0);                                                        
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_size_sq <= (idx_size_sd);                                                                  
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 165 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_size_q <= ('0);                                                                 
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                            
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_size_q <= (config_q.done) ? (idx_size_sd) : (idx_size_q);                                                        
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                                       
+`line 166 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_flags_sq <= ('0);                                                        
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_flags_sq <= (idx_flags_sd);                                                                  
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 167 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_flags_q <= ('0);                                                                 
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                            
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      idx_flags_q <= (config_q.done) ? (idx_flags_sd) : (idx_flags_q);                                                        
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                                       
+`line 168 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 170 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                                      
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                  
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                                                     
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                 
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                   
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      natit_base_last_q <= (1'b0);                                              
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                         
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      natit_base_last_q <= (natit_done) ? (1'b0) : (enable) ? (natit_base_last_d) : (natit_base_last_q);       
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                    
+`line 171 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 173 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    assign natit_base_bound   = bound_q[0] >> (config_q.indir ? idx_size_t'('1) - idx_size_q : '0);
+    assign natit_base_last_d  = (index_q[0] == natit_base_bound);
+    assign loop_last[0]       = (natit_extraword ? natit_base_last_q : natit_base_last_d);
+
+`line 178 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    logic config_load;
+    assign config_load = enable & done;
+    
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                                      
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                  
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                                                     
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                 
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                   
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      natit_last_word_inflight_q <= (1'b0);                                              
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                         
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      natit_last_word_inflight_q <= (config_q.done) ? (1'b0) : (config_load) ? (1'b1) : (natit_last_word_inflight_q);       
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                    
+`line 181 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 183 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    assign natit_done = natit_last_word_inflight_q | config_q.done;
+
+`line 186 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    assign natit_boundoffs = bytecnt_t'(bound_q[0]) << idx_size_q;
+
+`line 189 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    snitch_ssr_indirector #(
+      .Cfg          ( Cfg         ),
+      .AddrWidth    ( AddrWidth   ),
+      .DataWidth    ( DataWidth   ),
+      .tcdm_req_t   ( tcdm_req_t  ),
+      .tcdm_rsp_t   ( tcdm_rsp_t  ),
+      .tcdm_user_t  ( tcdm_user_t ),
+      .isect_slv_req_t ( isect_slv_req_t ),
+      .isect_slv_rsp_t ( isect_slv_rsp_t ),
+      .isect_mst_req_t ( isect_mst_req_t ),
+      .isect_mst_rsp_t ( isect_mst_rsp_t )
+    ) i_snitch_ssr_indirector (
+      .clk_i,
+      .rst_ni,
+      .idx_req_o,
+      .idx_rsp_i,
+      .isect_slv_req_o,
+      .isect_slv_rsp_i,
+      .isect_mst_req_o,
+      .isect_mst_rsp_i,
+      .cfg_done_i          ( config_q.done    ),
+      .cfg_offs_next_i     ( pointer_sd[BytecntWidth-1:0] ),
+      .cfg_indir_i         ( config_q.indir   ),
+      .cfg_isect_slv_i     ( config_q.indir & (config_q.dims == 2'b01)  ),
+      .cfg_isect_mst_i     ( config_q.indir & config_q.dims[1]          ),
+      .cfg_isect_slv_ena_i ( config_q.indir & (config_q.dims == 2'b11)  ),
+      .cfg_size_i          ( idx_size_q       ),
+      .cfg_base_i          ( idx_base_q       ),
+      .cfg_shift_i         ( idx_shift_q      ),
+      .cfg_flags_i         ( idx_flags_q      ),
+      .cfg_idx_isect_o     ( idx_isect        ),
+      .natit_pointer_i     ( pointer_q        ),
+      .natit_ready_o       ( natit_ready      ),
+      .natit_done_i        ( natit_done       ),
+      .natit_boundoffs_i   ( natit_boundoffs  ),
+      .natit_extraword_o   ( natit_extraword  ),
+      .mem_pointer_o       ( indir_pointer    ),
+      .mem_zero_o          ( indir_zero       ),
+      .mem_done_o          ( indir_kill       ),
+      .mem_last_o          ( indir_last       ),
+      .mem_valid_o         ( indir_valid      ),
+      .mem_ready_i         ( spill_in_ready   )
+    );
+
+`line 234 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+     
+    always_comb begin
+      if (config_q.indir) begin
+        spill_in_valid  = indir_valid;
+        spill_in_data   = {indir_pointer, indir_last, indir_zero, indir_kill};
+        enable          = ~natit_done & natit_ready;
+      end else begin
+        spill_in_valid  = ~natit_done;
+        spill_in_data   = {pointer_q, done, 1'b0, 1'b0};
+        enable          = ~natit_done & spill_in_ready;
+      end
+    end
+
+`line 248 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    spill_register #(
+      .T      ( out_spill_t         ),
+      .Bypass ( !Cfg.IndirOutSpill  )
+    ) i_out_spill (
+      .clk_i,
+      .rst_ni,
+      .valid_i ( spill_in_valid ),
+      .ready_o ( spill_in_ready ),
+      .data_i  ( spill_in_data  ),
+      .valid_o ( spill_out_valid ),
+      .ready_i ( spill_out_ready ),
+      .data_o  ( {mem_pointer, mem_last, mem_zero_o, mem_kill} )
+    );
+
+`line 263 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    assign mem_valid_o      = spill_out_valid & ~mem_kill;
+    assign spill_out_ready  = mem_ready_i | mem_kill;
+    assign mem_ptr_hs       = spill_out_valid & spill_out_ready;
+
+`line 268 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end else begin : gen_no_indirection
+
+`line 270 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+     
+    assign enable = ~config_q.done & mem_valid_o & mem_ready_i;
+    assign mem_valid_o = ~config_q.done;
+    assign mem_pointer = pointer_q;
+    assign mem_last    = done;
+    assign mem_kill    = 1'b0;
+    assign mem_ptr_hs  = mem_valid_o & mem_ready_i;
+    assign mem_zero_o  = 1'b0;
+
+`line 280 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    assign idx_req_o = '0;
+
+`line 283 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    assign loop_last[0] = (index_q[0] == bound_q[0]);
+
+`line 286 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 288 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  assign mem_write_o  = config_q.write;
+  assign mem_addr_o   = addr_t'(mem_pointer);
+
+`line 291 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+   
+   
+  assign write_strobe = (cfg_write_ena << cfg_word_i);
+  assign alias_strobe = cfg_write_ena & (cfg_word_i[$bits(cfg_word_i)-1:$bits(alias_fields)] == '1);
+  assign alias_fields = cfg_word_i[0+:$bits(alias_fields)];
+
+`line 298 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  for (genvar i = 0; i < Cfg.NumLoops; i++) begin : gen_loop_counter
+    logic index_ena;
+    logic index_clear;
+
+`line 303 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    always_comb begin
+      stride_sd[i] = stride_sq[i];
+      bound_sd[i] = bound_sq[i];
+      if (write_strobe.stride[i])
+        stride_sd[i] = cfg_wdata_i & WordAddrMask;
+      if (write_strobe.bound[i])
+        bound_sd[i] = cfg_wdata_i;
+    end
+
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      stride_sq[i] <= ('0);                                                        
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      stride_sq[i] <= (stride_sd[i]);                                                                  
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 312 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      stride_q[i] <= ('0);                                                                 
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                            
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      stride_q[i] <= (config_q.done) ? (stride_sd[i]) : (stride_q[i]);                                                        
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                                       
+`line 313 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      bound_sq[i] <= ('0);                                                        
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      bound_sq[i] <= (bound_sd[i]);                                                                  
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 314 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+    
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      bound_q[i] <= ('0);                                                                 
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                            
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      bound_q[i] <= (config_q.done) ? (bound_sd[i]) : (bound_q[i]);                                                        
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                                       
+`line 315 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 317 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    assign index_ena = enable & loop_enabled[i];
+
+`line 319 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    assign index_d[i] = index_q[i] + 1;
+    
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                                      
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                  
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                                                     
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                 
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                   
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      index_q[i] <= ('0);                                              
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                         
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      index_q[i] <= (index_clear) ? ('0) : (index_ena) ? (index_d[i]) : (index_q[i]);       
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                    
+`line 320 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 322 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+     
+    if (i > 0) begin : gen_loop_upper
+      assign loop_last[i] = config_q.indir ? 1'b1: (index_q[i] == bound_q[i] || config_q.dims < i);
+      assign index_clear = index_ena & loop_last[i];
+    end else begin : gen_loop_base
+      assign index_clear = (index_ena & loop_last[0]) | (mem_ptr_hs & mem_kill);
+    end
+  end
+
+`line 331 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  always_comb begin
+    rep_sd = rep_sq;
+    if (write_strobe.rep)
+      rep_sd = cfg_wdata_i;
+  end
+
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      rep_sq <= ('0);                                                        
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      rep_sq <= (rep_sd);                                                                  
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 338 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+  
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                                    
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                                      
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      rep_q <= ('0);                                                                 
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                            
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      rep_q <= (config_q.done) ? (rep_sd) : (rep_q);                                                        
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                                       
+`line 339 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 341 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  assign reg_rep_o = rep_q;
+
+`line 343 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+   
+  always_comb begin
+    logic e;
+    e = 1;
+    for (int i = 0; i < Cfg.NumLoops; i++) begin
+      loop_enabled[i] = e;
+      e &= loop_last[i];
+    end
+    done = e;
+  end
+
+`line 355 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  always_comb begin
+    logic [Cfg.NumLoops-1:0] outermost;
+    outermost = loop_enabled & ~(loop_enabled >> 1);
+    selected_stride = '0;
+    if (Cfg.Indirection && config_q.indir)
+      selected_stride = DataWidth/8;
+    else for (int i = 0; i < Cfg.NumLoops; i++)
+      selected_stride |= outermost[i] ? stride_q[i] : '0;
+  end
+
+`line 366 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  always_comb begin
+    pointer_sd = pointer_sq;
+    config_sd = config_sq;
+    if (write_strobe.status) begin
+      pointer_sd = cfg_wdata_i;
+      config_sd = cfg_wdata_i[31-:$bits(config_sq)];
+    end else if (alias_strobe) begin
+      pointer_sd = cfg_wdata_i;
+      config_sd.done = 0;
+      config_sd.write = alias_fields.write;
+      config_sd.dims = alias_fields.dims;
+      config_sd.indir = ~alias_fields.no_indir;
+    end
+  end
+
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      pointer_q <= ('0);                                                        
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      pointer_q <= (pointer_qn);                                                                  
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 382 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+  
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      pointer_sq <= ('0);                                                        
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      pointer_sq <= (pointer_sqn);                                                                  
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 383 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+  
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      config_q <= ('{done: 1, default: '0});                                                        
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      config_q <= (config_qn);                                                                  
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 384 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+  
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    if (!rst_ni) begin                                                             
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      config_sq <= ('{done: 1, default: '0});                                                        
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end else begin                                                                   
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+      config_sq <= (config_sqn);                                                                  
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    end                                                                              
+`line 385 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  end
+
+`line 387 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  always_comb begin
+    pointer_qn  = pointer_q;
+    config_qn   = config_q;
+    pointer_sqn = pointer_sd;
+    config_sqn  = config_sd;
+    if (config_q.done) begin
+      pointer_qn  = pointer_sd;
+      config_qn   = config_sd;
+      config_sqn.done = 1;
+    end else begin
+      if (enable)
+        pointer_qn = pointer_q + selected_stride;
+      if (mem_ptr_hs)
+        config_qn.done = mem_last | mem_kill;
+    end
+  end
+
+`line 404 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+  typedef struct packed {
+    indir_read_map_t indir_read_map;
+    logic [3:0][31:0] stride;
+    logic [3:0][31:0] bound;
+    logic [31:0] rep;
+    logic [31:0] status;
+  } read_map_t;
+
+`line 412 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  always_comb begin
+    read_map_t read_map;
+
+`line 416 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    read_map.indir_read_map = Cfg.Indirection ? indir_read_map : '0;
+    read_map.status = pointer_q;
+    read_map.status[31-:$bits(config_q)] = config_q;
+    read_map.rep = rep_q;
+    read_map.bound = '0;
+    read_map.stride = '0;
+    for (int i = 0; i < Cfg.NumLoops; i++) begin
+      read_map.bound[i] = bound_q[i];
+      read_map.stride[i] = stride_q[i];
+    end
+
+`line 427 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+    cfg_rdata_o = read_map[(cfg_word_i*32)+:32];
+  end
+
+`line 430 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+   
+  assign cfg_wready_o  = config_sq.done;
+  assign cfg_write_ena = config_sq.done & cfg_write_i;
+
+`line 435 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+   
+  
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                             
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                 
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                          
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                    
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+         
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                          
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                          
+`line 436 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+;
+   
+  
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                             
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                 
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                          
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                    
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+         
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                          
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+                                          
+`line 438 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+;
+
+`line 440 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 0
+endmodule
+
+`line 442 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_addr_gen.sv" 2

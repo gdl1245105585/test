@@ -1,0 +1,153 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 21 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+interface REQRSP_BUS #(
+   
+  parameter int ADDR_WIDTH = -1,
+   
+  parameter int DATA_WIDTH = -1
+);
+
+`line 28 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  import reqrsp_pkg::*;
+
+`line 30 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  localparam int unsigned StrbWidth = DATA_WIDTH / 8;
+
+`line 32 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  typedef logic [ADDR_WIDTH-1:0] addr_t;
+  typedef logic [DATA_WIDTH-1:0] data_t;
+  typedef logic [StrbWidth-1:0] strb_t;
+   
+  addr_t   q_addr;
+   
+  logic    q_write;
+  amo_op_e q_amo;
+  data_t   q_data;
+   
+  strb_t   q_strb;
+  size_t   q_size;
+  logic    q_valid;
+  logic    q_ready;
+
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+   
+  data_t   p_data;
+   
+  logic    p_error;
+  logic    p_valid;
+  logic    p_ready;
+
+
+`line 55 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  modport in  (
+    input  q_addr, q_write, q_amo, q_size, q_data, q_strb, q_valid, p_ready,
+    output q_ready, p_data, p_error, p_valid
+  );
+  modport out (
+    output q_addr, q_write, q_amo, q_size, q_data, q_strb, q_valid, p_ready,
+    input  q_ready, p_data, p_error, p_valid
+  );
+
+`line 64 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+endinterface
+
+`line 66 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+ 
+interface REQRSP_BUS_DV #(
+   
+  parameter int ADDR_WIDTH = -1,
+   
+  parameter int DATA_WIDTH = -1
+) (
+  input logic clk_i
+);
+
+`line 76 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  import reqrsp_pkg::*;
+
+`line 78 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  localparam int unsigned StrbWidth = DATA_WIDTH / 8;
+
+`line 80 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  typedef logic [ADDR_WIDTH-1:0] addr_t;
+  typedef logic [DATA_WIDTH-1:0] data_t;
+  typedef logic [StrbWidth-1:0] strb_t;
+   
+  addr_t   q_addr;
+   
+  logic    q_write;
+  amo_op_e q_amo;
+  data_t   q_data;
+   
+  strb_t   q_strb;
+  size_t   q_size;
+  logic    q_valid;
+  logic    q_ready;
+
+`line 95 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+   
+  data_t   p_data;
+   
+  logic    p_error;
+  logic    p_valid;
+  logic    p_ready;
+
+`line 102 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+  modport in  (
+    input  q_addr, q_write, q_amo, q_size, q_data, q_strb, q_valid, p_ready,
+    output q_ready, p_data, p_error, p_valid
+  );
+  modport out (
+    output q_addr, q_write, q_amo, q_size, q_data, q_strb, q_valid, p_ready,
+    input  q_ready, p_data, p_error, p_valid
+  );
+  modport monitor (
+    input q_addr, q_write, q_amo, q_size, q_data, q_strb, q_valid, p_ready,
+          q_ready, p_data, p_error, p_valid
+  );
+
+`line 115 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+   
+   
+          
+          
+          
+          
+          
+          
+          
+
+`line 125 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+          
+          
+          
+  
+   
+
+`line 131 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 0
+endinterface
+
+`line 133 "/repo/hw/ip/reqrsp_interface/src/reqrsp_intf.sv" 2

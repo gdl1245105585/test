@@ -1,0 +1,132 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+ 
+
+`line 7 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+ 
+ 
+ 
+module stream_fifo_optimal_wrap #(
+     
+    parameter int unsigned Depth = 32'd8,
+     
+    parameter type type_t = logic,
+     
+    parameter bit PrintInfo = 1'b0,
+     
+    parameter int unsigned AddrDepth  = (Depth > 32'd1) ? $clog2(Depth) : 32'd1
+) (
+    input  logic                 clk_i,       
+    input  logic                 rst_ni,      
+    input  logic                 flush_i,     
+    input  logic                 testmode_i,  
+    output logic [AddrDepth-1:0] usage_o,     
+     
+    input  type_t                data_i,      
+    input  logic                 valid_i,     
+    output logic                 ready_o,     
+     
+    output type_t                data_o,      
+    output logic                 valid_o,     
+    input  logic                 ready_i      
+);
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+     
+     
+     
+     
+     
+    if (Depth < 32'd2) begin : gen_fatal
+        initial begin
+            $fatal(1, "FIFO of depth %d does not make any sense!", Depth);
+        end
+    end
+     
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+     
+     
+     
+     
+    if (Depth == 32'd2) begin : gen_spill
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+         
+         
+        if (PrintInfo) begin : gen_info
+            initial begin
+                $display("[%m] Instantiate spill register (of depth %d)", Depth);
+            end
+        end
+         
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+         
+        spill_register_flushable #(
+            .T       ( type_t ),
+            .Bypass  ( 1'b0   )
+        ) i_spill_register_flushable (
+            .clk_i,
+            .rst_ni,
+            .flush_i,
+            .valid_i,
+            .ready_o,
+            .data_i,
+            .valid_o,
+            .ready_i,
+            .data_o
+        );
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+         
+        assign usage_o = 'x;
+    end
+
+
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+     
+     
+     
+     
+    if (Depth > 32'd2) begin : gen_fifo
+
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+         
+         
+        if (PrintInfo) begin : gen_info
+            initial begin
+                $info("[%m] Instantiate stream FIFO of depth %d", Depth);
+            end
+        end
+         
+
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+         
+        stream_fifo #(
+            .DEPTH        ( Depth  ),
+            .T            ( type_t )
+        ) i_stream_fifo (
+            .clk_i,
+            .rst_ni,
+            .flush_i,
+            .testmode_i,
+            .usage_o,
+            .data_i,
+            .valid_i,
+            .ready_o,
+            .data_o,
+            .valid_o,
+            .ready_i
+        );
+    end
+
+`line 117 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 0
+endmodule : stream_fifo_optimal_wrap
+
+`line 119 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_fifo_optimal_wrap.sv" 2

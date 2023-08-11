@@ -1,0 +1,52 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_intf.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_intf.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_intf.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+interface REG_BUS #(
+   
+  parameter int ADDR_WIDTH = -1,
+   
+  parameter int DATA_WIDTH = -1
+)(
+  input logic clk_i
+);
+
+`line 31 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_intf.sv" 0
+  logic [ADDR_WIDTH-1:0]   addr;
+  logic                    write;  
+  logic [DATA_WIDTH-1:0]   rdata;
+  logic [DATA_WIDTH-1:0]   wdata;
+  logic [DATA_WIDTH/8-1:0] wstrb;  
+  logic                    error;  
+  logic                    valid;
+  logic                    ready;
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_intf.sv" 0
+  modport in  (input  addr, write, wdata, wstrb, valid, output rdata, error, ready);
+  modport out (output addr, write, wdata, wstrb, valid, input  rdata, error, ready);
+
+`line 43 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_intf.sv" 0
+endinterface
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_intf.sv" 2

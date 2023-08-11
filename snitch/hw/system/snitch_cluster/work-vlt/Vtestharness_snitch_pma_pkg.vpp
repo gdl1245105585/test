@@ -1,0 +1,79 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+ 
+package snitch_pma_pkg;
+
+`line 10 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+  localparam int unsigned NrMaxRules = 4;
+
+`line 12 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+  typedef struct packed {
+      logic [47:0] base;  
+      logic [47:0] mask;  
+  } rule_t;
+
+`line 17 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+  typedef struct packed {
+     
+     
+    int unsigned            NrNonIdempotentRegionRules;  
+    rule_t [NrMaxRules-1:0] NonIdempotentRegion;
+     
+    int unsigned            NrExecuteRegionRules;  
+    rule_t [NrMaxRules-1:0] ExecuteRegion;
+     
+    int unsigned            NrCachedRegionRules;  
+    rule_t [NrMaxRules-1:0] CachedRegion;
+     
+    int unsigned            NrAMORegionRules;  
+    rule_t [NrMaxRules-1:0] AMORegion;
+  } snitch_pma_t;
+
+`line 33 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+   
+  function automatic logic range_check(logic[47:0] base, logic[47:0] mask, logic[47:0] address);
+    return (address & mask) == (base & mask);
+  endfunction : range_check
+
+`line 38 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+  function automatic logic is_inside_nonidempotent_regions (snitch_pma_t cfg, logic[47:0] address);
+    logic [NrMaxRules-1:0] pass;
+    pass = '0;
+    for (int unsigned k = 0; k < cfg.NrNonIdempotentRegionRules; k++) begin
+      pass[k] =
+        range_check(cfg.NonIdempotentRegion[k].base, cfg.NonIdempotentRegion[k].mask, address);
+    end
+    return |pass;
+  endfunction : is_inside_nonidempotent_regions
+
+`line 48 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+  function automatic logic is_inside_execute_regions (snitch_pma_t cfg, logic[47:0] address);
+     
+    logic [NrMaxRules-1:0] pass;
+    pass = '0;
+    for (int unsigned k = 0; k < cfg.NrExecuteRegionRules; k++) begin
+      pass[k] = range_check(cfg.ExecuteRegion[k].base, cfg.ExecuteRegion[k].mask, address);
+    end
+    return |pass;
+  endfunction : is_inside_execute_regions
+
+`line 58 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 0
+  function automatic logic is_inside_cacheable_regions (snitch_pma_t cfg, logic[47:0] address);
+    automatic logic [NrMaxRules-1:0] pass;
+    pass = '0;
+    for (int unsigned k = 0; k < cfg.NrCachedRegionRules; k++) begin
+      pass[k] = range_check(cfg.CachedRegion[k].base, cfg.CachedRegion[k].mask, address);
+    end
+    return |pass;
+  endfunction : is_inside_cacheable_regions
+endpackage
+
+`line 68 "/repo/hw/ip/snitch/src/snitch_pma_pkg.sv" 2

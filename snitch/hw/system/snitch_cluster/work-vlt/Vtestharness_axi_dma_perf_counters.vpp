@@ -1,0 +1,486 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+ 
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+
+
+`line 9 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+ 
+module axi_dma_perf_counters #(
+    parameter int unsigned TRANSFER_ID_WIDTH  = -1,
+    parameter int unsigned DATA_WIDTH         = -1,
+    parameter type         axi_req_t          = logic,
+    parameter type         axi_res_t          = logic,
+    parameter type         dma_events_t       = logic,
+    localparam bit         EnablePerfCounters = 0
+) (
+    input  logic                         clk_i,
+    input  logic                         rst_ni,
+     
+    input  axi_req_t                     axi_dma_req_i,
+    input  axi_res_t                     axi_dma_res_i,
+     
+    input  logic [TRANSFER_ID_WIDTH-1:0] next_id_i,
+    input  logic [TRANSFER_ID_WIDTH-1:0] completed_id_i,
+     
+    input  logic                         dma_busy_i,
+     
+    output axi_dma_pkg::dma_perf_t       dma_perf_o,
+    output dma_events_t                  dma_events_o
+);
+
+`line 33 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+    localparam int unsigned StrbWidth = DATA_WIDTH / 8;
+
+`line 35 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+     
+    axi_dma_pkg::dma_perf_t dma_perf_d, dma_perf_q;
+
+`line 38 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+     
+    dma_events_t dma_events;
+
+`line 41 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+     
+    logic [$clog2(StrbWidth)+1-1:0] num_bytes_written;
+    popcount #(
+        .INPUT_WIDTH ( StrbWidth  )
+    ) i_popcount (
+        .data_i      ( axi_dma_req_i.w.strb   ),
+        .popcount_o  ( num_bytes_written      )
+    );
+
+`line 50 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+     
+    always_comb begin : proc_next_perf_state
+
+`line 53 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        dma_perf_d = dma_perf_q;
+        dma_events = '0;
+
+`line 57 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        if ( axi_dma_req_i.aw_valid) begin
+          dma_perf_d.aw_valid_cnt = dma_perf_q.aw_valid_cnt + 'h1;
+          dma_events.aw_valid = 1'b1;
+        end
+
+`line 63 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+        if ( axi_dma_res_i.aw_ready) begin
+          dma_perf_d.aw_ready_cnt = dma_perf_q.aw_ready_cnt + 'h1;
+          dma_events.aw_ready = 1'b1;
+        end
+
+`line 68 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+        if ( axi_dma_res_i.aw_ready && axi_dma_req_i.aw_valid) begin
+          dma_perf_d.aw_done_cnt  = dma_perf_q.aw_done_cnt  + 'h1;
+          dma_events.aw_done = 1'b1;
+        end
+
+`line 73 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+        if ( axi_dma_res_i.aw_ready && axi_dma_req_i.aw_valid) begin
+          dma_perf_d.aw_bw =
+            dma_perf_q.aw_bw + ((axi_dma_req_i.aw.len + 1) << axi_dma_req_i.aw.size);
+          dma_events.aw_len = axi_dma_req_i.aw.len;
+          dma_events.aw_size = axi_dma_req_i.aw.size;
+        end
+
+`line 80 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+        if (!axi_dma_res_i.aw_ready && axi_dma_req_i.aw_valid) begin
+          dma_perf_d.aw_stall_cnt = dma_perf_q.aw_stall_cnt + 'h1;
+          dma_events.aw_stall = 1'b1;
+        end
+
+
+`line 86 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        if (axi_dma_req_i.ar_valid) begin
+          dma_perf_d.ar_valid_cnt = dma_perf_q.ar_valid_cnt + 'h1;
+          dma_events.ar_valid = 1'b1;
+        end
+        if (axi_dma_res_i.ar_ready) begin
+          dma_perf_d.ar_ready_cnt = dma_perf_q.ar_ready_cnt + 'h1;
+          dma_events.ar_ready = 1'b1;
+        end
+        if (axi_dma_res_i.ar_ready && axi_dma_req_i.ar_valid) begin
+          dma_perf_d.ar_done_cnt  = dma_perf_q.ar_done_cnt  + 'h1;
+          dma_events.ar_done = 1'b1;
+        end
+        if (axi_dma_res_i.ar_ready && axi_dma_req_i.ar_valid) begin
+          dma_perf_d.ar_bw        =
+            dma_perf_q.ar_bw        + ((axi_dma_req_i.ar.len + 1) << axi_dma_req_i.ar.size);
+          dma_events.ar_len = axi_dma_req_i.ar.len;
+          dma_events.ar_size = axi_dma_req_i.ar.size;
+        end
+        if (!axi_dma_res_i.ar_ready && axi_dma_req_i.ar_valid) begin
+          dma_perf_d.ar_stall_cnt = dma_perf_q.ar_stall_cnt + 'h1;
+          dma_events.ar_stall = 1'b1;
+        end
+
+`line 110 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        if (axi_dma_res_i.r_valid) begin
+          dma_perf_d.r_valid_cnt  = dma_perf_q.r_valid_cnt  + 'h1;
+          dma_events.r_valid = 1'b1;
+        end
+        if (axi_dma_req_i.r_ready) begin
+          dma_perf_d.r_ready_cnt  = dma_perf_q.r_ready_cnt  + 'h1;
+          dma_events.r_ready = 1'b1;
+        end
+        if (axi_dma_req_i.r_ready &&  axi_dma_res_i.r_valid) begin
+          dma_perf_d.r_done_cnt   = dma_perf_q.r_done_cnt   + 'h1;
+          dma_events.r_done = 1'b1;
+        end
+        if (axi_dma_req_i.r_ready &&  axi_dma_res_i.r_valid) begin
+          dma_perf_d.r_bw         = dma_perf_q.r_bw         + DATA_WIDTH / 8;
+          dma_events.r_bw = 1'b1;
+        end
+        if (axi_dma_req_i.r_ready && !axi_dma_res_i.r_valid) begin
+          dma_perf_d.r_stall_cnt  = dma_perf_q.r_stall_cnt  + 'h1;
+          dma_events.r_stall = 1'b1;
+        end
+
+`line 132 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        if (axi_dma_req_i.w_valid) begin
+          dma_perf_d.w_valid_cnt  = dma_perf_q.w_valid_cnt  + 'h1;
+          dma_events.w_valid = 1'b1;
+        end
+        if (axi_dma_res_i.w_ready) begin
+          dma_perf_d.w_ready_cnt  = dma_perf_q.w_ready_cnt  + 'h1;
+          dma_events.w_ready = 1'b1;
+        end
+        if (axi_dma_res_i.w_ready && axi_dma_req_i.w_valid) begin
+          dma_perf_d.w_done_cnt   = dma_perf_q.w_done_cnt   + 'h1;
+          dma_events.w_done = 1'b1;
+        end
+        if (axi_dma_res_i.w_ready && axi_dma_req_i.w_valid) begin
+          dma_perf_d.w_bw         = dma_perf_q.w_bw         + num_bytes_written;
+          dma_events.num_bytes_written = num_bytes_written;
+        end
+        if (!axi_dma_res_i.w_ready && axi_dma_req_i.w_valid) begin
+          dma_perf_d.w_stall_cnt  = dma_perf_q.w_stall_cnt  + 'h1;
+          dma_events.w_stall = 1'b1;
+        end
+
+`line 154 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        if (axi_dma_res_i.b_valid) begin
+          dma_perf_d.b_valid_cnt  = dma_perf_q.b_valid_cnt  + 'h1;
+          dma_events.b_valid = 1'b1;
+        end
+        if (axi_dma_req_i.b_ready) begin
+          dma_perf_d.b_ready_cnt  = dma_perf_q.b_ready_cnt  + 'h1;
+          dma_events.b_ready = 1'b1;
+        end
+        if (axi_dma_req_i.b_ready && axi_dma_res_i.b_valid) begin
+          dma_perf_d.b_done_cnt   = dma_perf_q.b_done_cnt   + 'h1;
+          dma_events.b_done = 1'b1;
+        end
+
+`line 168 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        if ( axi_dma_res_i.w_ready && !axi_dma_req_i.w_valid) begin
+          dma_perf_d.buf_w_stall_cnt = dma_perf_q.buf_w_stall_cnt + 'h1;
+          dma_events.w_stall = 1'b1;
+        end
+        if (!axi_dma_req_i.r_ready &&  axi_dma_res_i.r_valid) begin
+          dma_perf_d.buf_r_stall_cnt = dma_perf_q.buf_r_stall_cnt + 'h1;
+          dma_events.r_stall = 1'b1;
+        end
+
+`line 178 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        dma_perf_d.next_id      = 32'h0 + next_id_i;
+        dma_perf_d.completed_id = 32'h0 + completed_id_i;
+
+`line 182 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+         
+        if (dma_busy_i) begin
+          dma_perf_d.dma_busy_cnt = dma_perf_q.dma_busy_cnt + 'h1;
+          dma_events.dma_busy = 1'b1;
+        end
+    end
+
+`line 189 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+    assign dma_events_o = dma_events;
+
+`line 191 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+    if (EnablePerfCounters) begin : gen_perf_counters
+      
+`line 192 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                           
+`line 192 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+    if (! rst_ni) begin                                                             
+`line 192 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+      dma_perf_q <= (0);                                                        
+`line 192 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+    end else begin                                                                   
+`line 192 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+      dma_perf_q <= (dma_perf_d);                                                                  
+`line 192 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+    end                                                                              
+`line 192 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+  end;
+      assign dma_perf_o = dma_perf_q;
+    end
+
+
+
+`line 198 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 0
+endmodule
+
+`line 200 "/repo/hw/ip/snitch_dma/src/axi_dma_perf_counters.sv" 2

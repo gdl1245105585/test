@@ -1,0 +1,72 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+module apb_to_reg (
+  input  logic          clk_i,
+  input  logic          rst_ni,
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+  input  logic          penable_i,
+  input  logic          pwrite_i,
+  input  logic [31:0]   paddr_i,
+  input  logic          psel_i,
+  input  logic [31:0]   pwdata_i,
+  output logic [31:0]   prdata_o,
+  output logic          pready_o,
+  output logic          pslverr_o,
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+  REG_BUS.out  reg_o
+);
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+  always_comb begin
+    reg_o.addr = paddr_i;
+    reg_o.write = pwrite_i;
+    reg_o.wdata = pwdata_i;
+    reg_o.wstrb = '1;
+    reg_o.valid = psel_i & penable_i;
+    pready_o = reg_o.ready;
+    pslverr_o = reg_o.error;
+    prdata_o = reg_o.rdata;
+  end
+endmodule
+
+`line 41 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+module apb_to_reg_intf #(
+  parameter int unsigned DATA_WIDTH = 32,
+  parameter int unsigned ADDR_WIDTH = 32
+)(
+  APB.Slave    apb_i,
+  REG_BUS.out  reg_o
+);
+
+`line 49 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+  always_comb begin
+    reg_o.addr    = apb_i.paddr;
+    reg_o.write   = apb_i.pwrite;
+    reg_o.wdata   = apb_i.pwdata;
+    reg_o.wstrb   = '1;
+    reg_o.valid   = apb_i.psel & apb_i.penable;
+    apb_i.pready  = reg_o.ready;
+    apb_i.pslverr = reg_o.error;
+    apb_i.prdata  = reg_o.rdata;
+  end
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 0
+endmodule
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/apb_to_reg.sv" 2

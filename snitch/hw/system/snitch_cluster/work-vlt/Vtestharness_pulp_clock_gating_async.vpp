@@ -1,0 +1,54 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 0
+module pulp_clock_gating_async #(
+  parameter int unsigned STAGES = 2
+) (
+  input  logic clk_i,
+  input  logic rstn_i,
+  input  logic en_async_i,
+  output logic en_ack_o,
+  input  logic test_en_i,
+  output logic clk_o
+);
+
+`line 24 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 0
+  logic [STAGES-1:0] r_reg;
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 0
+  assign en_ack_o =  r_reg[STAGES-1];
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 0
+   
+  always_ff @ (posedge clk_i or negedge rstn_i) begin
+    if (!rstn_i) begin
+      r_reg <= '0;
+    end else begin
+      r_reg <= {r_reg[STAGES-2:0], en_async_i};
+    end
+  end
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 0
+  pulp_clock_gating i_clk_gate (
+    .clk_i,
+    .en_i ( r_reg[STAGES-1] ),
+    .test_en_i,
+    .clk_o
+  );
+
+`line 44 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 0
+endmodule
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/pulp_clock_gating_async.sv" 2

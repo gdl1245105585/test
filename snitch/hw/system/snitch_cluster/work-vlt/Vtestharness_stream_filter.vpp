@@ -1,0 +1,35 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_filter.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_filter.sv" 0
+ 
+ 
+module stream_filter (
+    input  logic valid_i,
+    output logic ready_o,
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_filter.sv" 0
+    input  logic drop_i,
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_filter.sv" 0
+    output logic valid_o,
+    input  logic ready_i
+);
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_filter.sv" 0
+    assign valid_o = drop_i ? 1'b0 : valid_i;
+    assign ready_o = drop_i ? 1'b1 : ready_i;
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_filter.sv" 0
+endmodule
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_filter.sv" 2

@@ -1,0 +1,63 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 1
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 0
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 0
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 0
+module shift_reg #(
+    parameter type dtype         = logic,
+    parameter int unsigned Depth = 1
+)(
+    input  logic clk_i,     
+    input  logic rst_ni,    
+    input  dtype d_i,
+    output dtype d_o
+);
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 0
+     
+    if (Depth == 0) begin : gen_pass_through
+        assign d_o = d_i;
+     
+    end else if (Depth == 1) begin : gen_register
+        always_ff @(posedge clk_i or negedge rst_ni) begin
+            if (~rst_ni) begin
+                d_o <= '0;
+            end else begin
+                d_o <= d_i;
+            end
+        end
+     
+    end else if (Depth > 1) begin : gen_shift_reg
+        dtype [Depth-1:0] reg_d, reg_q;
+        assign d_o = reg_q[Depth-1];
+        assign reg_d = {reg_q[Depth-2:0], d_i};
+
+`line 44 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 0
+        always_ff @(posedge clk_i or negedge rst_ni) begin
+            if (~rst_ni) begin
+                reg_q <= '0;
+            end else begin
+                reg_q <= reg_d;
+            end
+        end
+    end
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 0
+endmodule
+
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/shift_reg.sv" 2

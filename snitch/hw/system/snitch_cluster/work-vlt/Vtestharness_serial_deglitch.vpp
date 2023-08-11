@@ -1,0 +1,58 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/serial_deglitch.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/serial_deglitch.sv" 0
+ 
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/serial_deglitch.sv" 0
+module serial_deglitch #(
+    parameter int unsigned SIZE = 4
+)(
+    input  logic clk_i,     
+    input  logic rst_ni,    
+    input  logic en_i,      
+    input  logic d_i,       
+    output logic q_o        
+);
+    logic [SIZE-1:0] count_q;
+    logic q;
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/serial_deglitch.sv" 0
+    always_ff @(posedge clk_i or negedge rst_ni) begin
+        if (~rst_ni) begin
+            count_q <= '0;
+            q       <= 1'b0;
+        end else begin
+            if (en_i) begin
+                if (d_i == 1'b1 && count_q != SIZE[SIZE-1:0]) begin
+                    count_q <= count_q + 1;
+                end else if (d_i == 1'b0 && count_q != SIZE[SIZE-1:0]) begin
+                    count_q <= count_q - 1;
+                end
+            end
+        end
+    end
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/serial_deglitch.sv" 0
+     
+    always_comb begin
+        if (count_q == SIZE[SIZE-1:0]) begin
+            q_o = 1'b1;
+        end else if (count_q == 0) begin
+            q_o = 1'b0;
+        end
+    end
+endmodule
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/serial_deglitch.sv" 2

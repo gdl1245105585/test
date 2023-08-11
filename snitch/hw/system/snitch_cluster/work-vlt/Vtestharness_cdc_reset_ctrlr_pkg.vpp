@@ -1,0 +1,36 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr_pkg.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr_pkg.sv" 0
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr_pkg.sv" 0
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr_pkg.sv" 0
+package cdc_reset_ctrlr_pkg;
+
+`line 20 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr_pkg.sv" 0
+typedef enum logic[1:0] {
+  CLEAR_PHASE_IDLE,
+  CLEAR_PHASE_ISOLATE,
+  CLEAR_PHASE_CLEAR,
+  CLEAR_PHASE_POST_CLEAR
+} clear_seq_phase_e;
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr_pkg.sv" 0
+endpackage : cdc_reset_ctrlr_pkg
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_reset_ctrlr_pkg.sv" 2

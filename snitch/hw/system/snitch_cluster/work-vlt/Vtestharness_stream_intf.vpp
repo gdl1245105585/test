@@ -1,0 +1,60 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 0
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 0
+ 
+ 
+interface STREAM_DV #(
+   
+  parameter type payload_t = logic
+)(
+   
+  input logic clk_i
+);
+  payload_t data;
+  logic valid;
+  logic ready;
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 0
+  modport In (
+    output ready,
+    input valid, data
+  );
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 0
+  modport Out (
+    output valid, data,
+    input ready
+  );
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 0
+   
+  modport Passive (
+    input valid, ready, data
+  );
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 0
+   
+   
+   
+          
+          
+  
+   
+endinterface
+
+`line 51 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_intf.sv" 2

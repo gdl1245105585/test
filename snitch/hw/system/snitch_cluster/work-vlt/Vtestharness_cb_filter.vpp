@@ -1,0 +1,269 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+ 
+module cb_filter #(
+  parameter int unsigned KHashes     =  32'd3,   
+  parameter int unsigned HashWidth   =  32'd4,   
+  parameter int unsigned HashRounds  =  32'd1,   
+  parameter int unsigned InpWidth    =  32'd32,  
+  parameter int unsigned BucketWidth =  32'd4,   
+   
+  parameter cb_filter_pkg::cb_seed_t [KHashes-1:0] Seeds = cb_filter_pkg::EgSeeds
+) (
+  input  logic                 clk_i,    
+  input  logic                 rst_ni,   
+   
+  input  logic [InpWidth-1:0]  look_data_i,
+  output logic                 look_valid_o,
+   
+  input  logic [InpWidth-1:0]  incr_data_i,
+  input  logic                 incr_valid_i,
+   
+  input  logic [InpWidth-1:0]  decr_data_i,
+  input  logic                 decr_valid_i,
+   
+  input  logic                 filter_clear_i,
+  output logic [HashWidth-1:0] filter_usage_o,
+  output logic                 filter_full_o,
+  output logic                 filter_empty_o,
+  output logic                 filter_error_o
+);
+
+`line 71 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+  localparam int unsigned NoCounters  = 2**HashWidth;
+
+`line 73 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+  logic [NoCounters-1:0] look_ind;  
+  logic [NoCounters-1:0] incr_ind;  
+  logic [NoCounters-1:0] decr_ind;  
+   
+  logic [NoCounters-1:0] bucket_en;
+  logic [NoCounters-1:0] bucket_down;
+  logic [NoCounters-1:0] bucket_occupied;
+  logic [NoCounters-1:0] bucket_overflow;
+  logic [NoCounters-1:0] bucket_full;
+  logic [NoCounters-1:0] bucket_empty;
+   
+  logic [NoCounters-1:0] data_in_bucket;
+   
+  logic cnt_en;
+  logic cnt_down;
+  logic cnt_overflow;
+
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+   
+  hash_block #(
+    .NoHashes     ( KHashes      ),
+    .InpWidth     ( InpWidth     ),
+    .HashWidth    ( HashWidth    ),
+    .NoRounds     ( HashRounds   ),
+    .Seeds        ( Seeds        )
+  ) i_look_hashes (
+    .data_i       ( look_data_i  ),
+    .indicator_o  ( look_ind     )
+  );
+  assign data_in_bucket = look_ind & bucket_occupied;
+  assign look_valid_o   = (data_in_bucket == look_ind) ? 1'b1 : 1'b0;
+
+`line 107 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+   
+  hash_block #(
+    .NoHashes     ( KHashes      ),
+    .InpWidth     ( InpWidth     ),
+    .HashWidth    ( HashWidth    ),
+    .NoRounds     ( HashRounds   ),
+    .Seeds        ( Seeds        )
+  ) i_incr_hashes (
+    .data_i       ( incr_data_i  ),
+    .indicator_o  ( incr_ind     )
+  );
+
+`line 121 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+   
+  hash_block #(
+    .NoHashes     ( KHashes      ),
+    .InpWidth     ( InpWidth     ),
+    .HashWidth    ( HashWidth    ),
+    .NoRounds     ( HashRounds   ),
+    .Seeds        ( Seeds        )
+  ) i_decr_hashes (
+    .data_i       ( decr_data_i  ),
+    .indicator_o  ( decr_ind     )
+  );
+
+`line 135 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+   
+  assign bucket_down = decr_valid_i ? decr_ind : '0;
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+  always_comb begin : proc_bucket_control
+    case ({incr_valid_i, decr_valid_i})
+      2'b00 : bucket_en = '0;
+      2'b10 : bucket_en = incr_ind;
+      2'b01 : bucket_en = decr_ind;
+      2'b11 : bucket_en = incr_ind ^ decr_ind;
+      default: bucket_en = '0;  
+    endcase
+  end
+
+`line 150 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+   
+  for (genvar i = 0; i < NoCounters; i++) begin : gen_buckets
+    logic [BucketWidth-1:0] bucket_content;
+    counter #(
+      .WIDTH( BucketWidth )
+    ) i_bucket (
+      .clk_i      ( clk_i             ),
+      .rst_ni     ( rst_ni            ),
+      .clear_i    ( filter_clear_i    ),
+      .en_i       ( bucket_en[i]      ),
+      .load_i     ( '0                ),
+      .down_i     ( bucket_down[i]    ),
+      .d_i        ( '0                ),
+      .q_o        ( bucket_content    ),
+      .overflow_o ( bucket_overflow[i])
+    );
+    assign bucket_full[i]     =  bucket_overflow[i] | (&bucket_content);
+    assign bucket_occupied[i] = |bucket_content;
+    assign bucket_empty[i]    = ~bucket_occupied[i];
+  end
+
+`line 173 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+   
+  assign cnt_en   = incr_valid_i ^ decr_valid_i;
+  assign cnt_down = decr_valid_i;
+  counter #(
+    .WIDTH ( HashWidth )
+  ) i_tot_count (
+    .clk_i     ( clk_i          ),
+    .rst_ni    ( rst_ni         ),
+    .clear_i   ( filter_clear_i ),
+    .en_i      ( cnt_en         ),
+    .load_i    ( '0             ),
+    .down_i    ( cnt_down       ),
+    .d_i       ( '0             ),
+    .q_o       ( filter_usage_o ),
+    .overflow_o( cnt_overflow   )
+  );
+
+`line 192 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+   
+  assign filter_full_o  = |bucket_full;
+  assign filter_empty_o = &bucket_empty;
+  assign filter_error_o = |bucket_overflow | cnt_overflow;
+endmodule
+
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+ 
+module hash_block #(
+  parameter int unsigned NoHashes                         = 32'd3,
+  parameter int unsigned InpWidth                         = 32'd11,
+  parameter int unsigned HashWidth                        = 32'd5,
+  parameter int unsigned NoRounds                         = 32'd1,
+  parameter cb_filter_pkg::cb_seed_t [NoHashes-1:0] Seeds = cb_filter_pkg::EgSeeds
+) (
+  input  logic [InpWidth-1:0]     data_i,
+  output logic [2**HashWidth-1:0] indicator_o
+);
+
+`line 212 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+  logic [NoHashes-1:0][2**HashWidth-1:0] hashes;
+
+`line 214 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+  for (genvar i = 0; i < NoHashes; i++) begin : gen_hashes
+    sub_per_hash #(
+      .InpWidth   ( InpWidth             ),
+      .HashWidth  ( HashWidth            ),
+      .NoRounds   ( NoRounds             ),
+      .PermuteKey ( Seeds[i].PermuteSeed ),
+      .XorKey     ( Seeds[i].XorSeed     )
+    ) i_hash (
+      .data_i        ( data_i    ),
+      .hash_o        (           ),  
+      .hash_onehot_o ( hashes[i] )
+    );
+  end
+
+`line 228 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+  always_comb begin : proc_hash_or
+    indicator_o = '0;
+    for (int unsigned i = 0; i < (2**HashWidth); i++) begin
+      for (int unsigned j = 0; j < NoHashes; j++) begin
+        indicator_o[i] = indicator_o[i] | hashes[j][i];
+      end
+    end
+  end
+
+`line 238 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 0
+   
+   
+  initial begin
+    hash_conf: assume (InpWidth > HashWidth) else
+      $fatal(1, "%m:\nA Hash Function reduces the width of the input>\nInpWidth: %s\nOUT_WIDTH: %s",
+          InpWidth, HashWidth);
+  end
+   
+endmodule
+
+`line 248 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter.sv" 2

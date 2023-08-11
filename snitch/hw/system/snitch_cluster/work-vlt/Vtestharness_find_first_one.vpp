@@ -1,0 +1,101 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+ 
+ 
+ 
+module find_first_one #(
+     
+    parameter int WIDTH = -1,
+    parameter int FLIP = 0
+)(
+    input  logic [WIDTH-1:0]         in_i,
+    output logic [$clog2(WIDTH)-1:0] first_one_o,
+    output logic                     no_ones_o
+);
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+    localparam int NUM_LEVELS = $clog2(WIDTH);
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+     
+    initial begin
+        assert(WIDTH >= 0);
+    end
+     
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+    logic [WIDTH-1:0][NUM_LEVELS-1:0]          index_lut;
+    logic [2**NUM_LEVELS-1:0]                  sel_nodes;
+    logic [2**NUM_LEVELS-1:0][NUM_LEVELS-1:0]  index_nodes;
+
+`line 39 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+    logic [WIDTH-1:0] in_tmp;
+
+`line 41 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+    for (genvar i = 0; i < WIDTH; i++) begin
+        assign in_tmp[i] = FLIP ? in_i[WIDTH-1-i] : in_i[i];
+    end
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+    for (genvar j = 0; j < WIDTH; j++) begin
+        assign index_lut[j] = j;
+    end
+
+`line 49 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+    for (genvar level = 0; level < NUM_LEVELS; level++) begin
+
+`line 51 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+        if (level < NUM_LEVELS-1) begin
+            for (genvar l = 0; l < 2**level; l++) begin
+                assign sel_nodes[2**level-1+l]   = sel_nodes[2**(level+1)-1+l*2] | sel_nodes[2**(level+1)-1+l*2+1];
+                assign index_nodes[2**level-1+l] = (sel_nodes[2**(level+1)-1+l*2] == 1'b1) ?
+                    index_nodes[2**(level+1)-1+l*2] : index_nodes[2**(level+1)-1+l*2+1];
+            end
+        end
+
+`line 59 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+        if (level == NUM_LEVELS-1) begin
+            for (genvar k = 0; k < 2**level; k++) begin
+                 
+                if (k * 2 < WIDTH-1) begin
+                    assign sel_nodes[2**level-1+k]   = in_tmp[k*2] | in_tmp[k*2+1];
+                    assign index_nodes[2**level-1+k] = (in_tmp[k*2] == 1'b1) ? index_lut[k*2] : index_lut[k*2+1];
+                end
+                 
+                if (k * 2 == WIDTH-1) begin
+                    assign sel_nodes[2**level-1+k]   = in_tmp[k*2];
+                    assign index_nodes[2**level-1+k] = index_lut[k*2];
+                end
+                 
+                if (k * 2 > WIDTH-1) begin
+                    assign sel_nodes[2**level-1+k]   = 1'b0;
+                    assign index_nodes[2**level-1+k] = '0;
+                end
+            end
+        end
+    end
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+    assign first_one_o = NUM_LEVELS > 0 ? index_nodes[0] : '0;
+    assign no_ones_o   = NUM_LEVELS > 0 ? ~sel_nodes[0]  : '1;
+
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 0
+endmodule
+
+`line 85 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/find_first_one.sv" 2

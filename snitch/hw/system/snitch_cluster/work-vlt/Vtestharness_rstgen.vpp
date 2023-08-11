@@ -1,0 +1,38 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/rstgen.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/rstgen.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/rstgen.sv" 0
+module rstgen (
+    input  logic clk_i,
+    input  logic rst_ni,
+    input  logic test_mode_i,
+    output logic rst_no,
+    output logic init_no
+);
+
+`line 21 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/rstgen.sv" 0
+    rstgen_bypass i_rstgen_bypass (
+        .clk_i            ( clk_i       ),
+        .rst_ni           ( rst_ni      ),
+        .rst_test_mode_ni ( rst_ni      ),
+        .test_mode_i      ( test_mode_i ),
+        .rst_no           ( rst_no      ),
+        .init_no          ( init_no     )
+    );
+
+`line 30 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/rstgen.sv" 0
+endmodule
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/rstgen.sv" 2

@@ -1,0 +1,55 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/spill_register.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/spill_register.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/spill_register.sv" 0
+ 
+
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/spill_register.sv" 0
+ 
+ 
+module spill_register #(
+  parameter type T      = logic,
+  parameter bit  Bypass = 1'b0      
+) (
+  input  logic clk_i   ,
+  input  logic rst_ni  ,
+  input  logic valid_i ,
+  output logic ready_o ,
+  input  T     data_i  ,
+  output logic valid_o ,
+  input  logic ready_i ,
+  output T     data_o
+);
+
+`line 31 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/spill_register.sv" 0
+  spill_register_flushable #(
+    .T(T),
+    .Bypass(Bypass)
+  ) spill_register_flushable_i (
+    .clk_i,
+    .rst_ni,
+    .valid_i,
+    .flush_i(1'b0),
+    .ready_o,
+    .data_i,
+    .valid_o,
+    .ready_i,
+    .data_o
+  );
+
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/spill_register.sv" 0
+endmodule
+
+`line 48 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/spill_register.sv" 2

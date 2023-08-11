@@ -1,0 +1,1846 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+ 
+module axi_interleaved_xbar
+import cf_math_pkg::idx_width;
+#(
+  parameter axi_pkg::xbar_cfg_t Cfg                                   = '0,
+  parameter bit  ATOPs                                                = 1'b1,
+  parameter bit [Cfg.NoSlvPorts-1:0][Cfg.NoMstPorts-1:0] Connectivity = '1,
+  parameter type slv_aw_chan_t                                        = logic,
+  parameter type mst_aw_chan_t                                        = logic,
+  parameter type w_chan_t                                             = logic,
+  parameter type slv_b_chan_t                                         = logic,
+  parameter type mst_b_chan_t                                         = logic,
+  parameter type slv_ar_chan_t                                        = logic,
+  parameter type mst_ar_chan_t                                        = logic,
+  parameter type slv_r_chan_t                                         = logic,
+  parameter type mst_r_chan_t                                         = logic,
+  parameter type slv_req_t                                            = logic,
+  parameter type slv_resp_t                                           = logic,
+  parameter type mst_req_t                                            = logic,
+  parameter type mst_resp_t                                           = logic,
+  parameter type rule_t                                               = axi_pkg::xbar_rule_64_t,
+   
+  parameter int unsigned MstPortsIdxWidth =
+      (Cfg.NoMstPorts == 32'd1) ? 32'd1 : unsigned'($clog2(Cfg.NoMstPorts))
+) (
+  input  logic                                                          clk_i,
+  input  logic                                                          rst_ni,
+  input  logic                                                          test_i,
+  input  slv_req_t  [Cfg.NoSlvPorts-1:0]                                slv_ports_req_i,
+  output slv_resp_t [Cfg.NoSlvPorts-1:0]                                slv_ports_resp_o,
+  output mst_req_t  [Cfg.NoMstPorts-1:0]                                mst_ports_req_o,
+  input  mst_resp_t [Cfg.NoMstPorts-1:0]                                mst_ports_resp_i,
+  input  rule_t     [Cfg.NoAddrRules-1:0]                               addr_map_i,
+  input  logic                                                          interleaved_mode_ena_i,
+  input  logic      [Cfg.NoSlvPorts-1:0]                                en_default_mst_port_i,
+ 
+                    
+
+`line 49 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  input  logic      [Cfg.NoSlvPorts-1:0][idx_width(Cfg.NoMstPorts)-1:0] default_mst_port_i
+
+`line 51 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+);
+
+`line 53 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef logic [Cfg.AxiAddrWidth-1:0]           addr_t;
+   
+ 
+      
+              
+               
+
+`line 60 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef logic [idx_width(Cfg.NoMstPorts + 1)-1:0] mst_port_idx_t;
+
+
+`line 63 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+   
+  slv_req_t  [Cfg.NoSlvPorts-1:0][Cfg.NoMstPorts:0]  slv_reqs;
+  slv_resp_t [Cfg.NoSlvPorts-1:0][Cfg.NoMstPorts:0]  slv_resps;
+
+`line 67 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+   
+  localparam int unsigned cfg_NoMstPorts = Cfg.NoMstPorts;
+
+`line 70 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+   
+  slv_req_t  [Cfg.NoMstPorts-1:0][Cfg.NoSlvPorts-1:0] mst_reqs;
+  slv_resp_t [Cfg.NoMstPorts-1:0][Cfg.NoSlvPorts-1:0] mst_resps;
+
+`line 74 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+   
+  slv_req_t  [Cfg.NoSlvPorts-1:0]      slv_reqs_mod;
+
+`line 77 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  for (genvar i = 0; i < Cfg.NoSlvPorts; i++) begin : gen_slv_port_demux
+ 
+                       
+                 
+
+`line 82 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic [idx_width(Cfg.NoMstPorts)-1:0] dec_aw,        dec_ar;
+    logic [idx_width(Cfg.NoMstPorts)-1:0] dec_inter_aw,  dec_inter_ar;
+
+`line 85 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    mst_port_idx_t                        slv_aw_select, slv_ar_select;
+    logic                                 dec_aw_valid,  dec_aw_error;
+    logic                                 dec_ar_valid,  dec_ar_error;
+
+`line 89 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    localparam int unsigned BankSelLow  = 'd16;
+    localparam int unsigned BankSelHigh = BankSelLow + MstPortsIdxWidth;
+
+`line 92 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+     
+    assign dec_inter_aw = slv_ports_req_i[i].aw.addr[BankSelLow +: MstPortsIdxWidth];
+    assign dec_inter_ar = slv_ports_req_i[i].ar.addr[BankSelLow +: MstPortsIdxWidth];
+
+`line 96 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+     
+    always_comb begin : proc_modify_addr_interleaved
+      slv_reqs_mod[i] = slv_ports_req_i[i];
+
+`line 100 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+       
+      if (interleaved_mode_ena_i == 1'b1) begin
+         
+        slv_reqs_mod[i].aw.addr = { {(MstPortsIdxWidth){1'b0}},
+                                    slv_ports_req_i[i].aw.addr[Cfg.AxiAddrWidth-1:BankSelHigh],
+                                    slv_ports_req_i[i].aw.addr[BankSelLow-1:0] };
+
+`line 107 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+         
+        slv_reqs_mod[i].ar.addr = { {(MstPortsIdxWidth){1'b0}},
+                                    slv_ports_req_i[i].ar.addr[Cfg.AxiAddrWidth-1:BankSelHigh],
+                                    slv_ports_req_i[i].ar.addr[BankSelLow-1:0] };
+      end
+    end
+
+`line 114 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    addr_decode #(
+      .NoIndices  ( Cfg.NoMstPorts  ),
+      .NoRules    ( Cfg.NoAddrRules ),
+      .addr_t     ( addr_t          ),
+      .rule_t     ( rule_t          )
+    ) i_axi_aw_decode (
+      .addr_i           ( slv_ports_req_i[i].aw.addr ),
+      .addr_map_i       ( addr_map_i                 ),
+      .idx_o            ( dec_aw                     ),
+      .dec_valid_o      ( dec_aw_valid               ),
+      .dec_error_o      ( dec_aw_error               ),
+      .en_default_idx_i ( en_default_mst_port_i[i]   ),
+      .default_idx_i    ( default_mst_port_i[i]      )
+    );
+
+`line 129 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    addr_decode #(
+      .NoIndices  ( Cfg.NoMstPorts  ),
+      .addr_t     ( addr_t          ),
+      .NoRules    ( Cfg.NoAddrRules ),
+      .rule_t     ( rule_t          )
+    ) i_axi_ar_decode (
+      .addr_i           ( slv_ports_req_i[i].ar.addr ),
+      .addr_map_i       ( addr_map_i                 ),
+      .idx_o            ( dec_ar                     ),
+      .dec_valid_o      ( dec_ar_valid               ),
+      .dec_error_o      ( dec_ar_error               ),
+      .en_default_idx_i ( en_default_mst_port_i[i]   ),
+      .default_idx_i    ( default_mst_port_i[i]      )
+    );
+
+`line 144 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    always_comb begin : ax_select
+      if (interleaved_mode_ena_i == 1'b1) begin
+        slv_aw_select = dec_inter_aw;
+        slv_ar_select = dec_inter_ar;
+      end else begin
+        slv_aw_select = (dec_aw_error) ?
+            mst_port_idx_t'(Cfg.NoMstPorts) : mst_port_idx_t'(dec_aw);
+        slv_ar_select = (dec_ar_error) ?
+            mst_port_idx_t'(Cfg.NoMstPorts) : mst_port_idx_t'(dec_ar);
+      end
+    end
+
+`line 156 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+     
+     
+     
+     
+       
+      
+          
+           
+           
+                                    
+      
+          
+           
+           
+                                    
+      
+          
+           
+           
+                                    
+      
+          
+           
+           
+                                    
+    
+    
+     
+    axi_demux #(
+      .AxiIdWidth     ( Cfg.AxiIdWidthSlvPorts ),   
+      .AtopSupport    ( ATOPs                  ),
+      .aw_chan_t      ( slv_aw_chan_t          ),   
+      .w_chan_t       ( w_chan_t               ),   
+      .b_chan_t       ( slv_b_chan_t           ),   
+      .ar_chan_t      ( slv_ar_chan_t          ),   
+      .r_chan_t       ( slv_r_chan_t           ),   
+      .axi_req_t      ( slv_req_t              ),
+      .axi_resp_t     ( slv_resp_t             ),
+      .NoMstPorts     ( Cfg.NoMstPorts + 1     ),
+      .MaxTrans       ( Cfg.MaxMstTrans        ),
+      .AxiLookBits    ( Cfg.AxiIdUsedSlvPorts  ),
+      .UniqueIds      ( Cfg.UniqueIds          ),
+      .SpillAw        ( Cfg.LatencyMode[9]     ),
+      .SpillW         ( Cfg.LatencyMode[8]     ),
+      .SpillB         ( Cfg.LatencyMode[7]     ),
+      .SpillAr        ( Cfg.LatencyMode[6]     ),
+      .SpillR         ( Cfg.LatencyMode[5]     )
+    ) i_axi_demux (
+      .clk_i,    
+      .rst_ni,   
+      .test_i,   
+      .slv_req_i       ( slv_reqs_mod[i]     ),
+      .slv_aw_select_i ( slv_aw_select       ),
+      .slv_ar_select_i ( slv_ar_select       ),
+      .slv_resp_o      ( slv_ports_resp_o[i] ),
+      .mst_reqs_o      ( slv_reqs[i]         ),
+      .mst_resps_i     ( slv_resps[i]        )
+    );
+
+`line 215 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_err_slv #(
+      .AxiIdWidth  ( Cfg.AxiIdWidthSlvPorts ),
+      .axi_req_t   ( slv_req_t              ),
+      .axi_resp_t  ( slv_resp_t             ),
+      .Resp        ( axi_pkg::RESP_DECERR   ),
+      .ATOPs       ( ATOPs                  ),
+      .MaxTrans    ( 4                      )    
+                                                 
+                                                 
+    ) i_axi_err_slv (
+      .clk_i,    
+      .rst_ni,   
+      .test_i,   
+       
+      .slv_req_i  ( slv_reqs[i][Cfg.NoMstPorts]   ),
+      .slv_resp_o ( slv_resps[i][cfg_NoMstPorts]  )
+    );
+  end
+
+`line 234 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+   
+  for (genvar i = 0; i < Cfg.NoSlvPorts; i++) begin : gen_xbar_slv_cross
+    for (genvar j = 0; j < Cfg.NoMstPorts; j++) begin : gen_xbar_mst_cross
+      if (Connectivity[i][j]) begin : gen_connection
+        assign mst_reqs[j][i]  = slv_reqs[i][j];
+        assign slv_resps[i][j] = mst_resps[j][i];
+
+`line 241 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+      end else begin : gen_no_connection
+        assign mst_reqs[j][i] = '0;
+        axi_err_slv #(
+          .AxiIdWidth ( Cfg.AxiIdWidthSlvPorts  ),
+          .axi_req_t  ( slv_req_t               ),
+          .axi_resp_t ( slv_resp_t              ),
+          .Resp       ( axi_pkg::RESP_DECERR    ),
+          .ATOPs      ( ATOPs                   ),
+          .MaxTrans   ( 1                       )
+        ) i_axi_err_slv (
+          .clk_i,
+          .rst_ni,
+          .test_i,
+          .slv_req_i  ( slv_reqs[i][j]  ),
+          .slv_resp_o ( slv_resps[i][j] )
+        );
+      end
+    end
+  end
+
+`line 261 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  for (genvar i = 0; i < Cfg.NoMstPorts; i++) begin : gen_mst_port_mux
+    axi_mux #(
+      .SlvAxiIDWidth ( Cfg.AxiIdWidthSlvPorts ),  
+      .slv_aw_chan_t ( slv_aw_chan_t          ),  
+      .mst_aw_chan_t ( mst_aw_chan_t          ),  
+      .w_chan_t      ( w_chan_t               ),  
+      .slv_b_chan_t  ( slv_b_chan_t           ),  
+      .mst_b_chan_t  ( mst_b_chan_t           ),  
+      .slv_ar_chan_t ( slv_ar_chan_t          ),  
+      .mst_ar_chan_t ( mst_ar_chan_t          ),  
+      .slv_r_chan_t  ( slv_r_chan_t           ),  
+      .mst_r_chan_t  ( mst_r_chan_t           ),  
+      .slv_req_t     ( slv_req_t              ),
+      .slv_resp_t    ( slv_resp_t             ),
+      .mst_req_t     ( mst_req_t              ),
+      .mst_resp_t    ( mst_resp_t             ),
+      .NoSlvPorts    ( Cfg.NoSlvPorts         ),  
+      .MaxWTrans     ( Cfg.MaxSlvTrans        ),
+      .FallThrough   ( Cfg.FallThrough        ),
+      .SpillAw       ( Cfg.LatencyMode[4]     ),
+      .SpillW        ( Cfg.LatencyMode[3]     ),
+      .SpillB        ( Cfg.LatencyMode[2]     ),
+      .SpillAr       ( Cfg.LatencyMode[1]     ),
+      .SpillR        ( Cfg.LatencyMode[0]     )
+    ) i_axi_mux (
+      .clk_i,    
+      .rst_ni,   
+      .test_i,   
+      .slv_reqs_i  ( mst_reqs[i]         ),
+      .slv_resps_o ( mst_resps[i]        ),
+      .mst_req_o   ( mst_ports_req_o[i]  ),
+      .mst_resp_i  ( mst_ports_resp_i[i] )
+    );
+  end
+
+`line 296 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+   
+   
+   
+     
+          
+       
+         
+       
+  
+  
+  
+   
+endmodule : axi_interleaved_xbar
+
+`line 310 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+ 
+`line 310 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 136 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 171 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 195 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 247 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 274 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+`line 314 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+ 
+
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 358 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 403 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 427 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 454 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 479 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 506 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 531 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+`line 547 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 600 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 657 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 2
+`line 310 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+
+`line 311 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+ 
+`line 311 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 118 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 239 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 246 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 2
+`line 311 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+
+
+`line 313 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+module axi_interleaved_xbar_intf
+import cf_math_pkg::idx_width;
+#(
+  parameter int unsigned AXI_USER_WIDTH =  0,
+  parameter bit ATOPS                   = 1'b1,
+  parameter bit [Cfg.NoSlvPorts-1:0][Cfg.NoMstPorts-1:0] CONNECTIVITY = '1,
+  parameter axi_pkg::xbar_cfg_t Cfg     = '0,
+  parameter type rule_t                 = axi_pkg::xbar_rule_64_t
+ 
+       
+              
+
+`line 325 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+) (
+  input  logic                                                      clk_i,
+  input  logic                                                      rst_ni,
+  input  logic                                                      test_i,
+  AXI_BUS.Slave                                                     slv_ports [Cfg.NoSlvPorts-1:0],
+  AXI_BUS.Master                                                    mst_ports [Cfg.NoMstPorts-1:0],
+  input  rule_t [Cfg.NoAddrRules-1:0]                               addr_map_i,
+  input  logic  [Cfg.NoSlvPorts-1:0]                                en_default_mst_port_i,
+  input  logic                                                      interleaved_mode_ena_i,
+ 
+                
+
+`line 337 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  input  logic  [Cfg.NoSlvPorts-1:0][idx_width(Cfg.NoMstPorts)-1:0] default_mst_port_i
+
+`line 339 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+);
+
+`line 341 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  localparam int unsigned AxiIdWidthMstPorts = Cfg.AxiIdWidthSlvPorts + $clog2(Cfg.NoSlvPorts);
+
+`line 343 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef logic [AxiIdWidthMstPorts     -1:0] id_mst_t;
+  typedef logic [Cfg.AxiIdWidthSlvPorts -1:0] id_slv_t;
+  typedef logic [Cfg.AxiAddrWidth       -1:0] addr_t;
+  typedef logic [Cfg.AxiDataWidth       -1:0] data_t;
+  typedef logic [Cfg.AxiDataWidth/8     -1:0] strb_t;
+  typedef logic [AXI_USER_WIDTH         -1:0] user_t;
+
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                       
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_mst_t              id;                                       
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    addr_t            addr;                                     
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic             lock;                                     
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::region_t region;                                   
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::atop_t   atop;                                     
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t            user;                                     
+`line 350 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } mst_aw_chan_t;
+  
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                       
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_slv_t              id;                                       
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    addr_t            addr;                                     
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic             lock;                                     
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::region_t region;                                   
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::atop_t   atop;                                     
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t            user;                                     
+`line 351 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } slv_aw_chan_t;
+  
+`line 352 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                       
+`line 352 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    data_t data;                                                
+`line 352 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    strb_t strb;                                                
+`line 352 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic  last;                                                
+`line 352 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t user;                                                
+`line 352 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } w_chan_t;
+  
+`line 353 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                             
+`line 353 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_mst_t            id;                               
+`line 353 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::resp_t resp;                             
+`line 353 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t          user;                             
+`line 353 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } mst_b_chan_t;
+  
+`line 354 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                             
+`line 354 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_slv_t            id;                               
+`line 354 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::resp_t resp;                             
+`line 354 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t          user;                             
+`line 354 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } slv_b_chan_t;
+  
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                       
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_mst_t              id;                                       
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    addr_t            addr;                                     
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic             lock;                                     
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::region_t region;                                   
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t            user;                                     
+`line 355 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } mst_ar_chan_t;
+  
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                       
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_slv_t              id;                                       
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    addr_t            addr;                                     
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic             lock;                                     
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::region_t region;                                   
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t            user;                                     
+`line 356 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } slv_ar_chan_t;
+  
+`line 357 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                     
+`line 357 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_mst_t            id;                                       
+`line 357 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    data_t          data;                                     
+`line 357 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::resp_t resp;                                     
+`line 357 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic           last;                                     
+`line 357 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t          user;                                     
+`line 357 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } mst_r_chan_t;
+  
+`line 358 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                     
+`line 358 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    id_slv_t            id;                                       
+`line 358 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    data_t          data;                                     
+`line 358 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    axi_pkg::resp_t resp;                                     
+`line 358 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic           last;                                     
+`line 358 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    user_t          user;                                     
+`line 358 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } slv_r_chan_t;
+  
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                         
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    mst_aw_chan_t aw;                                                 
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     aw_valid;                                           
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    w_chan_t  w;                                                  
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     w_valid;                                            
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     b_ready;                                            
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    mst_ar_chan_t ar;                                                 
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     ar_valid;                                           
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     r_ready;                                            
+`line 359 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } mst_req_t;
+  
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                                         
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    slv_aw_chan_t aw;                                                 
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     aw_valid;                                           
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    w_chan_t  w;                                                  
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     w_valid;                                            
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     b_ready;                                            
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    slv_ar_chan_t ar;                                                 
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     ar_valid;                                           
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     r_ready;                                            
+`line 360 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } slv_req_t;
+  
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                               
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     aw_ready;                                 
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     ar_ready;                                 
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     w_ready;                                  
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     b_valid;                                  
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    mst_b_chan_t  b;                                        
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     r_valid;                                  
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    mst_r_chan_t  r;                                        
+`line 361 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } mst_resp_t;
+  
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  typedef struct packed {                               
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     aw_ready;                                 
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     ar_ready;                                 
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     w_ready;                                  
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     b_valid;                                  
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    slv_b_chan_t  b;                                        
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    logic     r_valid;                                  
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+    slv_r_chan_t  r;                                        
+`line 362 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  } slv_resp_t;
+
+`line 364 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  mst_req_t   [Cfg.NoMstPorts-1:0]  mst_reqs;
+  mst_resp_t  [Cfg.NoMstPorts-1:0]  mst_resps;
+  slv_req_t   [Cfg.NoSlvPorts-1:0]  slv_reqs;
+  slv_resp_t  [Cfg.NoSlvPorts-1:0]  slv_resps;
+
+`line 369 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  for (genvar i = 0; i < Cfg.NoMstPorts; i++) begin : gen_assign_mst
+    
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_id     = mst_reqs[i].aw.id;         
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_addr   = mst_reqs[i].aw.addr;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_len    = mst_reqs[i].aw.len;        
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_size   = mst_reqs[i].aw.size;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_burst  = mst_reqs[i].aw.burst;      
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_lock   = mst_reqs[i].aw.lock;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_cache  = mst_reqs[i].aw.cache;      
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_prot   = mst_reqs[i].aw.prot;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_qos    = mst_reqs[i].aw.qos;        
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_region = mst_reqs[i].aw.region;     
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_atop   = mst_reqs[i].aw.atop;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_user   = mst_reqs[i].aw.user;  
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].aw_valid = mst_reqs[i].aw_valid;                         
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].w_data   = mst_reqs[i].w.data;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].w_strb   = mst_reqs[i].w.strb;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].w_last   = mst_reqs[i].w.last;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].w_user   = mst_reqs[i].w.user;     
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].w_valid = mst_reqs[i].w_valid;                           
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].b_ready = mst_reqs[i].b_ready;                           
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_id     = mst_reqs[i].ar.id;         
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_addr   = mst_reqs[i].ar.addr;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_len    = mst_reqs[i].ar.len;        
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_size   = mst_reqs[i].ar.size;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_burst  = mst_reqs[i].ar.burst;      
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_lock   = mst_reqs[i].ar.lock;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_cache  = mst_reqs[i].ar.cache;      
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_prot   = mst_reqs[i].ar.prot;       
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_qos    = mst_reqs[i].ar.qos;        
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_region = mst_reqs[i].ar.region;     
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_user   = mst_reqs[i].ar.user;  
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].ar_valid = mst_reqs[i].ar_valid;                         
+`line 370 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_ports[i].r_ready = mst_reqs[i].r_ready;
+    
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].aw_ready = mst_ports[i].aw_ready;                         
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].ar_ready = mst_ports[i].ar_ready;                         
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].w_ready = mst_ports[i].w_ready;                           
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].b_valid = mst_ports[i].b_valid;                           
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].b.id     = mst_ports[i].b_id;         
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].b.resp   = mst_ports[i].b_resp;       
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].b.user   = mst_ports[i].b_user;     
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].r_valid = mst_ports[i].r_valid;                           
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].r.id     = mst_ports[i].r_id;         
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].r.data   = mst_ports[i].r_data;       
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].r.resp   = mst_ports[i].r_resp;       
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].r.last   = mst_ports[i].r_last;       
+`line 371 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign mst_resps[i].r.user   = mst_ports[i].r_user;
+  end
+
+`line 374 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  for (genvar i = 0; i < Cfg.NoSlvPorts; i++) begin : gen_assign_slv
+    
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.id     = slv_ports[i].aw_id;         
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.addr   = slv_ports[i].aw_addr;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.len    = slv_ports[i].aw_len;        
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.size   = slv_ports[i].aw_size;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.burst  = slv_ports[i].aw_burst;      
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.lock   = slv_ports[i].aw_lock;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.cache  = slv_ports[i].aw_cache;      
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.prot   = slv_ports[i].aw_prot;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.qos    = slv_ports[i].aw_qos;        
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.region = slv_ports[i].aw_region;     
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.atop   = slv_ports[i].aw_atop;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw.user   = slv_ports[i].aw_user;  
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].aw_valid = slv_ports[i].aw_valid;                         
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].w.data   = slv_ports[i].w_data;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].w.strb   = slv_ports[i].w_strb;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].w.last   = slv_ports[i].w_last;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].w.user   = slv_ports[i].w_user;     
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].w_valid = slv_ports[i].w_valid;                           
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].b_ready = slv_ports[i].b_ready;                           
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.id     = slv_ports[i].ar_id;         
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.addr   = slv_ports[i].ar_addr;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.len    = slv_ports[i].ar_len;        
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.size   = slv_ports[i].ar_size;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.burst  = slv_ports[i].ar_burst;      
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.lock   = slv_ports[i].ar_lock;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.cache  = slv_ports[i].ar_cache;      
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.prot   = slv_ports[i].ar_prot;       
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.qos    = slv_ports[i].ar_qos;        
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.region = slv_ports[i].ar_region;     
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar.user   = slv_ports[i].ar_user;  
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].ar_valid = slv_ports[i].ar_valid;                         
+`line 375 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_reqs[i].r_ready = slv_ports[i].r_ready;
+    
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].aw_ready = slv_resps[i].aw_ready;                         
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].ar_ready = slv_resps[i].ar_ready;                         
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].w_ready = slv_resps[i].w_ready;                           
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].b_valid = slv_resps[i].b_valid;                           
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].b_id     = slv_resps[i].b.id;         
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].b_resp   = slv_resps[i].b.resp;       
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].b_user   = slv_resps[i].b.user;     
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].r_valid = slv_resps[i].r_valid;                           
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].r_id     = slv_resps[i].r.id;         
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].r_data   = slv_resps[i].r.data;       
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].r_resp   = slv_resps[i].r.resp;       
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].r_last   = slv_resps[i].r.last;       
+`line 376 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  assign slv_ports[i].r_user   = slv_resps[i].r.user;
+  end
+
+`line 379 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+  axi_interleaved_xbar #(
+    .Cfg  (Cfg),
+    .ATOPs          ( ATOPS         ),
+    .Connectivity   ( CONNECTIVITY  ),
+    .slv_aw_chan_t  ( slv_aw_chan_t ),
+    .mst_aw_chan_t  ( mst_aw_chan_t ),
+    .w_chan_t       ( w_chan_t      ),
+    .slv_b_chan_t   ( slv_b_chan_t  ),
+    .mst_b_chan_t   ( mst_b_chan_t  ),
+    .slv_ar_chan_t  ( slv_ar_chan_t ),
+    .mst_ar_chan_t  ( mst_ar_chan_t ),
+    .slv_r_chan_t   ( slv_r_chan_t  ),
+    .mst_r_chan_t   ( mst_r_chan_t  ),
+    .slv_req_t      ( slv_req_t     ),
+    .slv_resp_t     ( slv_resp_t    ),
+    .mst_req_t      ( mst_req_t     ),
+    .mst_resp_t     ( mst_resp_t    ),
+    .rule_t         ( rule_t        )
+  ) i_interleaved_xbar (
+    .clk_i,
+    .rst_ni,
+    .test_i,
+    .slv_ports_req_i  (slv_reqs ),
+    .slv_ports_resp_o (slv_resps),
+    .mst_ports_req_o  (mst_reqs ),
+    .mst_ports_resp_i (mst_resps),
+    .addr_map_i,
+    .interleaved_mode_ena_i,
+    .en_default_mst_port_i,
+    .default_mst_port_i
+  );
+
+`line 411 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 0
+endmodule : axi_interleaved_xbar_intf
+
+`line 413 "/repo/hw/ip/future/src/axi_interleaved_xbar.sv" 2

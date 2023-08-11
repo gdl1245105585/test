@@ -1,0 +1,58 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 1
+ 
+ 
+ 
+
+
+`line 7 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 0
+
+`line 7 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 0
+ 
+
+`line 9 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 0
+module reg_to_tlul #(
+  parameter type req_t = logic,
+  parameter type rsp_t = logic,
+  parameter type tl_h2d_t = logic,
+  parameter type tl_d2h_t = logic,
+   
+  parameter type tl_a_user_t  = logic,
+  parameter type tl_a_op_e  = logic,
+  parameter tl_a_user_t TL_A_USER_DEFAULT = '0,
+  parameter tl_a_op_e PutFullData = '0,
+  parameter tl_a_op_e Get = '0
+) (
+     
+    output tl_h2d_t tl_o,
+    input  tl_d2h_t tl_i,
+
+`line 25 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 0
+     
+    input  req_t reg_req_i,
+    output rsp_t reg_rsp_o
+);
+
+
+`line 31 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 0
+  assign tl_o.a_valid    = reg_req_i.valid & tl_i.a_ready;
+  assign tl_o.a_opcode   = reg_req_i.write ? PutFullData : Get;
+  assign tl_o.a_param    = '0;
+  assign tl_o.a_size     = 'h2;
+  assign tl_o.a_source   = '0;
+  assign tl_o.a_address  = reg_req_i.addr;
+  assign tl_o.a_mask     = reg_req_i.wstrb;
+  assign tl_o.a_data     = reg_req_i.wdata;
+  assign tl_o.a_user     = TL_A_USER_DEFAULT;
+  assign tl_o.d_ready    = 1'b1;
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 0
+  assign reg_rsp_o.ready = tl_i.d_valid & tl_o.d_ready;
+  assign reg_rsp_o.rdata = tl_i.d_data;
+  assign reg_rsp_o.error = tl_i.d_error;
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 0
+endmodule
+
+`line 49 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_tlul.sv" 2

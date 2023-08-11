@@ -1,0 +1,75 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+ 
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+ 
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+ 
+ 
+ 
+
+`line 22 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+ 
+
+`line 24 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+module rrarbiter #(
+  parameter int unsigned NUM_REQ   = 64,
+  parameter bit          LOCK_IN   = 1'b0
+) (
+  input logic                         clk_i,
+  input logic                         rst_ni,
+
+`line 31 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+  input logic                         flush_i,  
+  input logic                         en_i,     
+  input logic [NUM_REQ-1:0]           req_i,    
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+  output logic [NUM_REQ-1:0]          ack_o,    
+  output logic                        vld_o,    
+  output logic [$clog2(NUM_REQ)-1:0]  idx_o     
+);
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+  logic req;
+  assign vld_o = (|req_i) & en_i;
+
+`line 43 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+  rr_arb_tree #(
+    .NumIn     ( NUM_REQ ),
+    .DataWidth ( 1       ),
+    .LockIn    ( LOCK_IN ))
+  i_rr_arb_tree (
+    .clk_i   ( clk_i      ),
+    .rst_ni  ( rst_ni     ),
+    .flush_i ( flush_i    ),
+    .rr_i    ( '0         ),
+    .req_i   ( req_i      ),
+    .gnt_o   ( ack_o      ),
+    .data_i  ( '0         ),
+    .gnt_i   ( en_i & req ),
+    .req_o   ( req        ),
+    .data_o  (            ),
+    .idx_o   ( idx_o      )
+  );
+
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 0
+endmodule : rrarbiter
+
+`line 63 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/rrarbiter.sv" 2

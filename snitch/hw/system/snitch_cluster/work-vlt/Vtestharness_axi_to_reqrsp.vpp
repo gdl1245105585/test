@@ -1,0 +1,2569 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+ 
+ 
+ 
+
+`line 10 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+`line 10 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 10 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+
+`line 11 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+`line 11 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 1
+ 
+`line 2 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+
+`line 9 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+  
+   
+     
+     
+       
+       
+    
+  
+
+
+
+
+
+
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+ 
+   
+
+
+
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 105 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 115 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+`line 121 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 131 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 138 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 145 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 165 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 182 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 189 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 196 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+  
+
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 2
+`line 11 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+
+
+`line 13 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module axi_to_reqrsp #(
+   
+  parameter type         axi_req_t  = logic,
+   
+  parameter type         axi_rsp_t = logic,
+   
+   
+   
+  parameter int unsigned AddrWidth  = 0,
+  parameter int unsigned DataWidth  = 0,
+   
+  parameter int unsigned IdWidth    = 0,
+   
+   
+  parameter int unsigned BufDepth   = 1,
+   
+  parameter type         reqrsp_req_t = logic,
+   
+  parameter type         reqrsp_rsp_t = logic
+) (
+   
+  input  logic                           clk_i,
+   
+  input  logic                           rst_ni,
+   
+  output logic                           busy_o,
+   
+  input  axi_req_t                       axi_req_i,
+   
+  output axi_rsp_t                       axi_rsp_o,
+   
+  output reqrsp_req_t                    reqrsp_req_o,
+   
+  input  reqrsp_rsp_t                    reqrsp_rsp_i
+);
+
+`line 63 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  localparam int unsigned StrbWidth = DataWidth/8;
+
+`line 65 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef logic [AddrWidth-1:0]   addr_t;
+  typedef logic [DataWidth-1:0]   data_t;
+  typedef logic [IdWidth-1:0]     axi_id_t;
+
+`line 69 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {
+    addr_t          addr;
+    axi_pkg::atop_t atop;
+    axi_id_t        id;
+    logic           last;
+    axi_pkg::qos_t  qos;
+    axi_pkg::size_t size;
+    logic           write;
+    logic           lock;
+  } meta_t;
+
+`line 80 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  reqrsp_pkg::amo_op_e amo;
+  data_t data;
+  axi_pkg::resp_t resp;
+  axi_pkg::len_t  r_cnt_d,        r_cnt_q,
+                  w_cnt_d,        w_cnt_q;
+  logic           arb_valid,      arb_ready,
+                  rd_valid,       rd_ready,
+                  wr_valid,       wr_ready,
+                  sel_b,          sel_buf_b,
+                  sel_r,          sel_buf_r,
+                  sel_valid,      sel_ready,
+                  sel_buf_valid,  sel_buf_ready,
+                  sel_lock_d,     sel_lock_q,
+                  meta_valid,     meta_ready,
+                  meta_buf_valid, meta_buf_ready,
+                  meta_sel_d,     meta_sel_q;
+  meta_t          rd_meta,
+                  rd_meta_d,      rd_meta_q,
+                  wr_meta,
+                  wr_meta_d,      wr_meta_q,
+                  meta,           meta_buf;
+
+`line 102 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign busy_o = axi_req_i.aw_valid | axi_req_i.ar_valid | axi_req_i.w_valid |
+                    axi_rsp_o.b_valid | axi_rsp_o.r_valid |
+                    (r_cnt_q > 0) | (w_cnt_q > 0);
+
+`line 106 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  always_comb begin
+     
+    axi_rsp_o.ar_ready = 1'b0;
+    rd_meta_d           = rd_meta_q;
+    rd_meta             = '{default: '0};
+    rd_valid            = 1'b0;
+    r_cnt_d             = r_cnt_q;
+     
+    if (r_cnt_q > '0) begin
+      rd_meta_d.last = (r_cnt_q == 8'd1);
+      rd_meta        = rd_meta_d;
+      rd_meta.addr   = rd_meta_q.addr + axi_pkg::num_bytes(rd_meta_q.size);
+      rd_valid       = 1'b1;
+      if (rd_ready) begin
+        r_cnt_d--;
+        rd_meta_d.addr = rd_meta.addr;
+      end
+     
+    end else if (axi_req_i.ar_valid) begin
+      rd_meta_d = '{
+        addr:  addr_t'(axi_pkg::aligned_addr(axi_req_i.ar.addr, axi_req_i.ar.size)),
+        atop:  '0,
+        id:    axi_req_i.ar.id,
+        last:  (axi_req_i.ar.len == '0),
+        qos:   axi_req_i.ar.qos,
+        size:  axi_req_i.ar.size,
+        write: 1'b0,
+        lock: axi_req_i.ar.lock
+      };
+      rd_meta      = rd_meta_d;
+      rd_meta.addr = addr_t'(axi_req_i.ar.addr);
+      rd_valid     = 1'b1;
+      if (rd_ready) begin
+        r_cnt_d             = axi_req_i.ar.len;
+        axi_rsp_o.ar_ready = 1'b1;
+      end
+    end
+  end
+
+`line 146 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  always_comb begin
+     
+    axi_rsp_o.aw_ready = 1'b0;
+    axi_rsp_o.w_ready  = 1'b0;
+    wr_meta_d           = wr_meta_q;
+    wr_meta             = '{default: '0};
+    wr_valid            = 1'b0;
+    w_cnt_d             = w_cnt_q;
+     
+    if (w_cnt_q > '0) begin
+      wr_meta_d.last = (w_cnt_q == 8'd1);
+      wr_meta        = wr_meta_d;
+      wr_meta.addr   = wr_meta_q.addr + axi_pkg::num_bytes(wr_meta_q.size);
+      if (axi_req_i.w_valid) begin
+        wr_valid = 1'b1;
+        if (wr_ready) begin
+          axi_rsp_o.w_ready = 1'b1;
+          w_cnt_d--;
+          wr_meta_d.addr = wr_meta.addr;
+        end
+      end
+     
+    end else if (axi_req_i.aw_valid && axi_req_i.w_valid) begin
+      wr_meta_d = '{
+        addr:   addr_t'(axi_pkg::aligned_addr(axi_req_i.aw.addr, axi_req_i.aw.size)),
+        atop:   axi_req_i.aw.atop,
+        id:     axi_req_i.aw.id,
+        last:   (axi_req_i.aw.len == '0),
+        qos:    axi_req_i.aw.qos,
+        size:   axi_req_i.aw.size,
+        write:  1'b1,
+        lock:   axi_req_i.aw.lock
+      };
+      wr_meta = wr_meta_d;
+      wr_meta.addr = addr_t'(axi_req_i.aw.addr);
+      wr_valid = 1'b1;
+      if (wr_ready) begin
+        w_cnt_d = axi_req_i.aw.len;
+        axi_rsp_o.aw_ready = 1'b1;
+        axi_rsp_o.w_ready = 1'b1;
+      end
+    end
+  end
+
+`line 191 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  stream_mux #(
+    .DATA_T ( meta_t ),
+    .N_INP  ( 32'd2  )
+  ) i_ax_mux (
+    .inp_data_i   ({wr_meta,  rd_meta }),
+    .inp_valid_i  ({wr_valid, rd_valid}),
+    .inp_ready_o  ({wr_ready, rd_ready}),
+    .inp_sel_i    ( meta_sel_d         ),
+    .oup_data_o   ( meta               ),
+    .oup_valid_o  ( arb_valid          ),
+    .oup_ready_i  ( arb_ready          )
+  );
+  always_comb begin
+    meta_sel_d = meta_sel_q;
+    sel_lock_d = sel_lock_q;
+    if (sel_lock_q) begin
+      meta_sel_d = meta_sel_q;
+      if (arb_valid && arb_ready) begin
+        sel_lock_d = 1'b0;
+      end
+    end else begin
+      if (wr_valid ^ rd_valid) begin
+         
+        meta_sel_d = wr_valid;
+      end else if (wr_valid && rd_valid) begin
+         
+         
+        if (wr_meta.qos > rd_meta.qos) begin
+          meta_sel_d = 1'b1;
+        end else if (rd_meta.qos > wr_meta.qos) begin
+          meta_sel_d = 1'b0;
+         
+        end else if (wr_meta.qos == rd_meta.qos) begin
+           
+           
+          if (wr_meta.last && !rd_meta.last) begin
+            meta_sel_d = 1'b1;
+           
+           
+          end else if (w_cnt_q > '0) begin
+            meta_sel_d = 1'b1;
+          end else if (r_cnt_q > '0) begin
+            meta_sel_d = 1'b0;
+           
+          end else begin
+            meta_sel_d = ~meta_sel_q;
+          end
+        end
+      end
+       
+      if (arb_valid && !arb_ready) begin
+        sel_lock_d = 1'b1;
+      end
+    end
+  end
+
+`line 248 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  stream_fork #(
+    .N_OUP ( 32'd3 )
+  ) i_fork (
+    .clk_i,
+    .rst_ni,
+    .valid_i ( arb_valid                            ),
+    .ready_o ( arb_ready                            ),
+    .valid_o ({sel_valid, meta_valid, reqrsp_req_o.q_valid}),
+    .ready_i ({sel_ready, meta_ready, reqrsp_rsp_i.q_ready})
+  );
+
+`line 260 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign sel_b = meta.write & meta.last;
+  assign sel_r = ~meta.write | meta.atop[5];
+
+`line 263 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  stream_fifo #(
+    .FALL_THROUGH ( 1'b1             ),
+    .DEPTH        ( 32'd1 + BufDepth ),
+    .T            ( logic[1:0]       )
+  ) i_sel_buf (
+    .clk_i,
+    .rst_ni,
+    .flush_i    ( 1'b0                    ),
+    .testmode_i ( 1'b0                    ),
+    .data_i     ({sel_b,        sel_r    }),
+    .valid_i    ( sel_valid               ),
+    .ready_o    ( sel_ready               ),
+    .data_o     ({sel_buf_b,    sel_buf_r}),
+    .valid_o    ( sel_buf_valid           ),
+    .ready_i    ( sel_buf_ready           ),
+    .usage_o    (              )
+  );
+
+`line 281 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  stream_fifo #(
+    .FALL_THROUGH ( 1'b1             ),
+    .DEPTH        ( 32'd1 + BufDepth ),
+    .T            ( meta_t           )
+  ) i_meta_buf (
+    .clk_i,
+    .rst_ni,
+    .flush_i    ( 1'b0           ),
+    .testmode_i ( 1'b0           ),
+    .data_i     ( meta           ),
+    .valid_i    ( meta_valid     ),
+    .ready_o    ( meta_ready     ),
+    .data_o     ( meta_buf       ),
+    .valid_o    ( meta_buf_valid ),
+    .ready_i    ( meta_buf_ready ),
+    .usage_o    (     )
+  );
+
+`line 299 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp_req_o.q = '{
+    addr: meta.addr,
+    write: meta.write & (amo == reqrsp_pkg::AMONone),
+    amo: amo,
+     
+    data: data & {DataWidth{meta.write}},
+    strb: axi_req_i.w.strb & {StrbWidth{meta.write}},
+    size: meta.size
+  };
+
+`line 309 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  always_comb begin
+    amo = reqrsp_pkg::from_axi_amo(meta.atop);
+    data = axi_req_i.w.data;
+     
+    if (amo == reqrsp_pkg::AMOAnd) data = ~axi_req_i.w.data;
+     
+    if (meta.lock) begin
+      if (meta.write) amo = reqrsp_pkg::AMOSC;
+      else amo = reqrsp_pkg::AMOLR;
+    end
+  end
+
+`line 321 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  logic mem_join_valid, mem_join_ready;
+  stream_join #(
+    .N_INP ( 32'd2 )
+  ) i_join (
+    .inp_valid_i  ({reqrsp_rsp_i.p_valid, meta_buf_valid}),
+    .inp_ready_o  ({reqrsp_req_o.p_ready, meta_buf_ready}),
+    .oup_valid_o  ( mem_join_valid                 ),
+    .oup_ready_i  ( mem_join_ready                 )
+  );
+
+`line 332 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  stream_fork_dynamic #(
+    .N_OUP ( 32'd2 )
+  ) i_fork_dynamic (
+    .clk_i,
+    .rst_ni,
+    .valid_i      ( mem_join_valid                         ),
+    .ready_o      ( mem_join_ready                         ),
+    .sel_i        ({sel_buf_b,          sel_buf_r         }),
+    .sel_valid_i  ( sel_buf_valid                          ),
+    .sel_ready_o  ( sel_buf_ready                          ),
+    .valid_o      ({axi_rsp_o.b_valid, axi_rsp_o.r_valid}),
+    .ready_i      ({axi_req_i.b_ready,  axi_req_i.r_ready })
+  );
+
+`line 347 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  always_comb begin
+    resp = axi_pkg::RESP_OKAY;
+    resp[1] = reqrsp_rsp_i.p.error;
+     
+    if (meta_buf.lock) begin
+      resp[0] = reqrsp_rsp_i.p.data[0];
+    end
+  end
+
+`line 357 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  assign axi_rsp_o.b = '{
+    id:   meta_buf.id,
+    resp: resp,
+    user: '0
+  };
+
+`line 364 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  assign axi_rsp_o.r = '{
+    data: reqrsp_rsp_i.p.data,
+    id:   meta_buf.id,
+    last: meta_buf.last,
+    resp: resp,
+    user: '0
+  };
+
+`line 373 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+  
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    if (!rst_ni) begin                                                             
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      meta_sel_q <= (1'b0);                                                        
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end else begin                                                                   
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      meta_sel_q <= (meta_sel_d);                                                                  
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end                                                                              
+`line 374 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  end
+  
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    if (!rst_ni) begin                                                             
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      sel_lock_q <= (1'b0);                                                        
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end else begin                                                                   
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      sel_lock_q <= (sel_lock_d);                                                                  
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end                                                                              
+`line 375 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  end
+  
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    if (!rst_ni) begin                                                             
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      rd_meta_q <= (meta_t'{default: '0});                                                        
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end else begin                                                                   
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      rd_meta_q <= (rd_meta_d);                                                                  
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end                                                                              
+`line 376 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  end
+  
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    if (!rst_ni) begin                                                             
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      wr_meta_q <= (meta_t'{default: '0});                                                        
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end else begin                                                                   
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      wr_meta_q <= (wr_meta_d);                                                                  
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end                                                                              
+`line 377 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  end
+  
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    if (!rst_ni) begin                                                             
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      r_cnt_q <= ('0);                                                        
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end else begin                                                                   
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      r_cnt_q <= (r_cnt_d);                                                                  
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end                                                                              
+`line 378 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  end
+  
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  always_ff @(posedge (clk_i) or negedge (rst_ni)) begin                           
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    if (!rst_ni) begin                                                             
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      w_cnt_q <= ('0);                                                        
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end else begin                                                                   
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+      w_cnt_q <= (w_cnt_d);                                                                  
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    end                                                                              
+`line 379 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  end
+
+`line 381 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+   
+  
+
+`line 384 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+                                                                         
+`line 384 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+                              
+`line 384 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+                                                                                
+`line 384 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+                                                     
+`line 384 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+                                                                                      
+
+`line 385 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+   
+   
+     
+     
+          
+     
+     
+          
+     
+     
+          
+     
+     
+          
+     
+     
+          
+     
+           
+        
+     
+           
+        
+     
+            
+     
+  
+   
+endmodule
+
+`line 415 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+`line 415 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 11 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 21 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 27 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 34 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 41 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 49 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 2
+`line 415 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+
+`line 416 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+`line 416 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+`line 10 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+`line 13 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+ 
+
+
+`line 19 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+`line 23 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+
+`line 27 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 33 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+ 
+
+`line 52 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+
+`line 56 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 63 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+
+
+
+
+`line 70 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+`line 75 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+`line 77 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+
+`line 81 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 88 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+ 
+
+
+
+
+`line 95 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+`line 103 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 2
+`line 416 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+
+`line 417 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+`line 417 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+ 
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 118 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 239 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 246 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/typedef.svh" 2
+`line 417 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+
+`line 418 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+`line 418 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+
+
+
+
+
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 136 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 171 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 195 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 247 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 274 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 299 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+`line 314 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+ 
+
+
+ 
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 358 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 403 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 427 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 454 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 479 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 506 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 531 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+`line 547 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 600 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 657 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/include/axi/assign.svh" 2
+`line 418 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+
+
+`line 420 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+ 
+module axi_to_reqrsp_intf #(
+   
+  parameter int unsigned AddrWidth  = 0,
+   
+  parameter int unsigned DataWidth  = 0,
+   
+  parameter int unsigned IdWidth    = 0,
+   
+  parameter int unsigned UserWidth  = 0,
+   
+   
+  parameter int unsigned BufDepth   = 1
+) (
+   
+  input  logic   clk_i,
+   
+  input  logic   rst_ni,
+   
+  output logic   busy_o,
+  REQRSP_BUS     reqrsp,
+  AXI_BUS        axi
+);
+
+`line 444 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef logic [AddrWidth-1:0] addr_t;
+  typedef logic [DataWidth-1:0] data_t;
+  typedef logic [DataWidth/8-1:0] strb_t;
+  typedef logic [IdWidth-1:0] id_t;
+  typedef logic [UserWidth-1:0] user_t;
+
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed { 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    addr_t             addr;  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic                write; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    data_t             data;  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    strb_t             strb;  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    reqrsp_pkg::size_t   size;  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } reqrsp_req_chan_t; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed { 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    data_t data;        
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+     logic  error;       
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } reqrsp_rsp_chan_t; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed { 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    reqrsp_req_chan_t q;       
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic      q_valid; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic      p_ready; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } reqrsp_req_t; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed { 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    reqrsp_rsp_chan_t p;       
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic      p_valid; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic      q_ready; 
+`line 450 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } reqrsp_rsp_t;
+
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {                                       
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    id_t              id;                                       
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    addr_t            addr;                                     
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic             lock;                                     
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::region_t region;                                   
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::atop_t   atop;                                     
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    user_t            user;                                     
+`line 452 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } aw_chan_t;
+  
+`line 453 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {                                       
+`line 453 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    data_t data;                                                
+`line 453 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    strb_t strb;                                                
+`line 453 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic  last;                                                
+`line 453 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    user_t user;                                                
+`line 453 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } w_chan_t;
+  
+`line 454 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {                             
+`line 454 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    id_t            id;                               
+`line 454 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::resp_t resp;                             
+`line 454 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    user_t          user;                             
+`line 454 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } b_chan_t;
+  
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {                                       
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    id_t              id;                                       
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    addr_t            addr;                                     
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::len_t    len;                                      
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::size_t   size;                                     
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::burst_t  burst;                                    
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic             lock;                                     
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::cache_t  cache;                                    
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::prot_t   prot;                                     
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::qos_t    qos;                                      
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::region_t region;                                   
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    user_t            user;                                     
+`line 455 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } ar_chan_t;
+  
+`line 456 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {                                     
+`line 456 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    id_t            id;                                       
+`line 456 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    data_t          data;                                     
+`line 456 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    axi_pkg::resp_t resp;                                     
+`line 456 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic           last;                                     
+`line 456 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    user_t          user;                                     
+`line 456 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } r_chan_t;
+
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {                                         
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    aw_chan_t aw;                                                 
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     aw_valid;                                           
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    w_chan_t  w;                                                  
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     w_valid;                                            
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     b_ready;                                            
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    ar_chan_t ar;                                                 
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     ar_valid;                                           
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     r_ready;                                            
+`line 458 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } axi_req_t;
+  
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  typedef struct packed {                               
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     aw_ready;                                 
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     ar_ready;                                 
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     w_ready;                                  
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     b_valid;                                  
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    b_chan_t  b;                                        
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    logic     r_valid;                                  
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+    r_chan_t  r;                                        
+`line 459 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  } axi_rsp_t;
+
+`line 461 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  reqrsp_req_t reqrsp_req;
+  reqrsp_rsp_t reqrsp_rsp;
+
+`line 464 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  axi_req_t axi_req;
+  axi_rsp_t axi_rsp;
+
+`line 467 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  axi_to_reqrsp #(
+    .axi_req_t (axi_req_t),
+    .axi_rsp_t (axi_rsp_t),
+    .AddrWidth (AddrWidth),
+    .DataWidth (DataWidth),
+    .IdWidth (IdWidth),
+    .BufDepth (BufDepth),
+    .reqrsp_req_t (reqrsp_req_t),
+    .reqrsp_rsp_t (reqrsp_rsp_t )
+  ) i_dut (
+    .clk_i,
+    .rst_ni,
+    .busy_o,
+    .axi_req_i (axi_req),
+    .axi_rsp_o (axi_rsp),
+    .reqrsp_req_o (reqrsp_req),
+    .reqrsp_rsp_i (reqrsp_rsp)
+  );
+
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.q_valid   = reqrsp_req.q_valid;     
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.q_addr  = reqrsp_req.q.addr;           
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.q_write = reqrsp_req.q.write;          
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.q_amo   = reqrsp_req.q.amo;            
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.q_data  = reqrsp_req.q.data;           
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.q_strb  = reqrsp_req.q.strb;           
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.q_size  = reqrsp_req.q.size; 
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 486 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp.p_ready   = reqrsp_req.p_ready;
+  
+`line 487 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 487 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp_rsp.q_ready   = reqrsp.q_ready;     
+`line 487 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 487 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp_rsp.p.data   = reqrsp.p_data;          
+`line 487 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp_rsp.p.error   = reqrsp.p_error; 
+`line 487 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 487 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign reqrsp_rsp.p_valid   = reqrsp.p_valid;
+
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.id     = axi.aw_id;         
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.addr   = axi.aw_addr;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.len    = axi.aw_len;        
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.size   = axi.aw_size;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.burst  = axi.aw_burst;      
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.lock   = axi.aw_lock;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.cache  = axi.aw_cache;      
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.prot   = axi.aw_prot;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.qos    = axi.aw_qos;        
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.region = axi.aw_region;     
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.atop   = axi.aw_atop;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw.user   = axi.aw_user;  
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.aw_valid = axi.aw_valid;                         
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.w.data   = axi.w_data;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.w.strb   = axi.w_strb;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.w.last   = axi.w_last;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.w.user   = axi.w_user;     
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.w_valid = axi.w_valid;                           
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.b_ready = axi.b_ready;                           
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.id     = axi.ar_id;         
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.addr   = axi.ar_addr;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.len    = axi.ar_len;        
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.size   = axi.ar_size;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.burst  = axi.ar_burst;      
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.lock   = axi.ar_lock;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.cache  = axi.ar_cache;      
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.prot   = axi.ar_prot;       
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.qos    = axi.ar_qos;        
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.region = axi.ar_region;     
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar.user   = axi.ar_user;  
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.ar_valid = axi.ar_valid;                         
+`line 489 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi_req.r_ready = axi.r_ready;
+  
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.aw_ready = axi_rsp.aw_ready;                         
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.ar_ready = axi_rsp.ar_ready;                         
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.w_ready = axi_rsp.w_ready;                           
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.b_valid = axi_rsp.b_valid;                           
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.b_id     = axi_rsp.b.id;         
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.b_resp   = axi_rsp.b.resp;       
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.b_user   = axi_rsp.b.user;     
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.r_valid = axi_rsp.r_valid;                           
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.r_id     = axi_rsp.r.id;         
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.r_data   = axi_rsp.r.data;       
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.r_resp   = axi_rsp.r.resp;       
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.r_last   = axi_rsp.r.last;       
+`line 490 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+  assign axi.r_user   = axi_rsp.r.user;
+
+`line 492 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 0
+endmodule
+
+`line 494 "/repo/hw/ip/reqrsp_interface/src/axi_to_reqrsp.sv" 2

@@ -1,0 +1,84 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+ 
+
+`line 9 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+package snitch_ssr_pkg;
+
+`line 11 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+   
+  typedef struct packed {
+    bit           Indirection;
+    bit           IsectMaster;
+    bit           IsectMasterIdx;
+    bit           IsectSlave;
+    bit           IsectSlaveSpill;
+    bit           IndirOutSpill;
+    int unsigned  NumLoops;
+    int unsigned  IndexWidth;
+    int unsigned  PointerWidth;
+    int unsigned  ShiftWidth;
+    int unsigned  RptWidth;
+    int unsigned  IndexCredits;
+    int unsigned  IsectSlaveCredits;
+    int unsigned  DataCredits;
+    int unsigned  MuxRespDepth;
+  } ssr_cfg_t;
+
+`line 30 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+   
+  typedef struct packed {
+    int unsigned  IndexWidth;
+    int unsigned  NumMaster0;
+    int unsigned  NumMaster1;
+    int unsigned  NumSlave;
+    int unsigned  IdxMaster0;
+    int unsigned  IdxMaster1;
+    int unsigned  IdxSlave;
+    int unsigned  StreamctlDepth;
+  } isect_cfg_t;
+
+`line 42 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+   
+   
+  typedef struct packed {
+    logic no_indir;
+    logic write;
+    logic [1:0] dims;
+  } cfg_alias_fields_t;
+
+`line 50 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+   
+  typedef struct packed {
+    logic done;
+    logic write;
+    logic [1:0] dims;
+    logic indir;
+  } cfg_status_upper_t;
+
+`line 58 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+   
+  typedef struct packed {
+    logic merge;
+  } idx_flags_t;
+
+`line 63 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+   
+  typedef struct packed {
+    idx_flags_t flags;
+    logic [7:0] shift;
+    logic [7:0] size;
+  } cfg_idx_ctl_t;
+
+`line 70 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 0
+endpackage
+
+`line 72 "/repo/hw/ip/snitch_ssr/src/snitch_ssr_pkg.sv" 2

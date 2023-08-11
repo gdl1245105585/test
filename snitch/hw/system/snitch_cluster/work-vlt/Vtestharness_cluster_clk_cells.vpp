@@ -1,0 +1,116 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+module cluster_clock_and2 (
+  input  logic clk0_i,
+  input  logic clk1_i,
+  output logic clk_o
+);
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+  tc_clk_and2 i_tc_clk_and2 (
+    .clk0_i,
+    .clk1_i,
+    .clk_o
+  );
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+endmodule
+
+`line 25 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+module cluster_clock_buffer (
+  input  logic clk_i,
+  output logic clk_o
+);
+
+`line 30 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+  tc_clk_buffer i_tc_clk_buffer (
+    .clk_i,
+    .clk_o
+  );
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+endmodule
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+ 
+module cluster_clock_gating (
+   input  logic clk_i,
+   input  logic en_i,
+   input  logic test_en_i,
+   output logic clk_o
+);
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+  tc_clk_gating i_tc_clk_gating (
+     .clk_i,
+     .en_i,
+     .test_en_i,
+     .clk_o
+  );
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+endmodule
+
+`line 54 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+module cluster_clock_inverter (
+  input  logic clk_i,
+  output logic clk_o
+);
+
+`line 59 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+  tc_clk_inverter i_tc_clk_inverter (
+    .clk_i,
+    .clk_o
+  );
+
+`line 64 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+endmodule
+
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+module cluster_clock_mux2 (
+  input  logic clk0_i,
+  input  logic clk1_i,
+  input  logic clk_sel_i,
+  output logic clk_o
+);
+
+`line 73 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+  tc_clk_mux2 i_tc_clk_mux2 (
+    .clk0_i,
+    .clk1_i,
+    .clk_sel_i,
+    .clk_o
+  );
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+endmodule
+
+`line 82 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+module cluster_clock_xor2 (
+  input  logic clk0_i,
+  input  logic clk1_i,
+  output logic clk_o
+);
+
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+  tc_clk_xor2 i_tc_clk_xor2 (
+    .clk0_i,
+    .clk1_i,
+    .clk_o
+  );
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 0
+endmodule
+
+`line 96 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/tech_cells_generic-915802181d7b6e9c/src/deprecated/cluster_clk_cells.sv" 2

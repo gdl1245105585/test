@@ -1,0 +1,363 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+/*verilator lint_off DECLFILENAME*/ 
+module cdc_4phase #(
+  parameter type T = logic,
+  parameter bit DECOUPLED = 1'b1,
+  parameter bit SEND_RESET_MSG = 1'b0,
+  parameter T RESET_MSG = T'('0)
+)(
+  input  logic src_rst_ni,
+  input  logic src_clk_i,
+  input  T     src_data_i,
+  input  logic src_valid_i,
+  output logic src_ready_o,
+
+`line 48 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  input  logic dst_rst_ni,
+  input  logic dst_clk_i,
+  output T     dst_data_o,
+  output logic dst_valid_o,
+  input  logic dst_ready_i
+);
+
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  (* dont_touch = "true" *) logic async_req;
+  (* dont_touch = "true" *) logic async_ack;
+  (* dont_touch = "true" *) T async_data;
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  cdc_4phase_src #(
+    .T(T),
+    .DECOUPLED(DECOUPLED),
+    .SEND_RESET_MSG(SEND_RESET_MSG),
+    .RESET_MSG(RESET_MSG)
+  ) i_src (
+    .rst_ni       ( src_rst_ni  ),
+    .clk_i        ( src_clk_i   ),
+    .data_i       ( src_data_i  ),
+    .valid_i      ( src_valid_i ),
+    .ready_o      ( src_ready_o ),
+    .async_req_o  ( async_req   ),
+    .async_ack_i  ( async_ack   ),
+    .async_data_o ( async_data  )
+  );
+
+`line 77 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  cdc_4phase_dst #(.T(T), .DECOUPLED(DECOUPLED)) i_dst (
+    .rst_ni       ( dst_rst_ni  ),
+    .clk_i        ( dst_clk_i   ),
+    .data_o       ( dst_data_o  ),
+    .valid_o      ( dst_valid_o ),
+    .ready_i      ( dst_ready_i ),
+    .async_req_i  ( async_req   ),
+    .async_ack_o  ( async_ack   ),
+    .async_data_i ( async_data  )
+  );
+endmodule
+
+
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+ 
+module cdc_4phase_src #(
+  parameter type T = logic,
+  parameter int unsigned SYNC_STAGES = 2,
+  parameter bit DECOUPLED = 1'b1,
+  parameter bit SEND_RESET_MSG = 1'b0,
+  parameter T RESET_MSG = T'('0)
+)(
+  input  logic rst_ni,
+  input  logic clk_i,
+  input  T     data_i,
+  input  logic valid_i,
+  output logic ready_o,
+  output logic async_req_o,
+  input  logic async_ack_i,
+  output T     async_data_o
+);
+
+`line 109 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  (* dont_touch = "true" *)
+  logic  req_src_d, req_src_q;
+  (* dont_touch = "true" *)
+  T data_src_d, data_src_q;
+  (* dont_touch = "true" *)
+  logic  ack_synced;
+
+`line 116 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  typedef enum logic[1:0] {IDLE, WAIT_ACK_ASSERT, WAIT_ACK_DEASSERT} state_e;
+  state_e state_d, state_q;
+
+`line 119 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  sync #(
+    .STAGES(SYNC_STAGES)
+  ) i_sync(
+    .clk_i,
+    .rst_ni,
+    .serial_i( async_ack_i ),
+    .serial_o( ack_synced  )
+  );
+
+`line 129 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  always_comb begin
+    state_d    = state_q;
+    req_src_d  = 1'b0;
+    data_src_d = data_src_q;
+    ready_o    = 1'b0;
+    case (state_q)
+      IDLE: begin
+         
+         
+        if (DECOUPLED) begin
+          ready_o = 1'b1;
+        end else begin
+          ready_o = 1'b0;
+        end
+         
+        if (valid_i) begin
+          data_src_d = data_i;
+          req_src_d  = 1'b1;
+          state_d = WAIT_ACK_ASSERT;
+        end
+      end
+      WAIT_ACK_ASSERT: begin
+        req_src_d = 1'b1;
+        if (ack_synced == 1'b1) begin
+          req_src_d = 1'b0;
+          state_d   = WAIT_ACK_DEASSERT;
+        end
+      end
+      WAIT_ACK_DEASSERT: begin
+        if (ack_synced == 1'b0) begin
+          state_d = IDLE;
+          if (!DECOUPLED) begin
+            ready_o = 1'b1;
+          end
+        end
+      end
+      default: begin
+        state_d = IDLE;
+      end
+    endcase
+  end
+
+`line 172 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  always_ff @(posedge clk_i, negedge rst_ni) begin
+    if (!rst_ni) begin
+      state_q <= IDLE;
+    end else begin
+      state_q <= state_d;
+    end
+  end
+
+`line 180 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  always_ff @(posedge clk_i or negedge rst_ni) begin
+    if (!rst_ni) begin
+      if (SEND_RESET_MSG) begin
+        req_src_q  <= 1'b1;
+        data_src_q <= RESET_MSG;
+      end else begin
+        req_src_q  <= 1'b0;
+        data_src_q <= T'('0);
+      end
+    end else begin
+      req_src_q  <= req_src_d;
+      data_src_q <= data_src_d;
+    end
+  end
+
+`line 196 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  assign async_req_o = req_src_q;
+  assign async_data_o = data_src_q;
+
+`line 200 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+endmodule
+
+
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+ 
+ 
+module cdc_4phase_dst #(
+  parameter type T = logic,
+  parameter int unsigned SYNC_STAGES = 2,
+  parameter bit DECOUPLED = 1
+)(
+  input  logic rst_ni,
+  input  logic clk_i,
+  output T     data_o,
+  output logic valid_o,
+  input  logic ready_i,
+  input  logic async_req_i,
+  output logic async_ack_o,
+  input  T     async_data_i
+);
+
+`line 220 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  (* dont_touch = "true" *)
+  logic  ack_dst_d, ack_dst_q;
+  (* dont_touch = "true" *)
+  logic  req_synced;
+
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  logic  data_valid;
+
+`line 227 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  logic  output_ready;
+
+
+`line 230 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  typedef enum logic[1:0] {IDLE, WAIT_DOWNSTREAM_ACK, WAIT_REQ_DEASSERT} state_e;
+  state_e state_d, state_q;
+
+`line 233 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  sync #(
+    .STAGES(SYNC_STAGES)
+  ) i_sync(
+    .clk_i,
+    .rst_ni,
+    .serial_i( async_req_i ),
+    .serial_o( req_synced  )
+  );
+
+`line 243 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  always_comb begin
+    state_d    = state_q;
+    data_valid = 1'b0;
+    ack_dst_d  = 1'b0;
+
+`line 249 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+    case (state_q)
+      IDLE: begin
+         
+        if (req_synced == 1'b1) begin
+          data_valid = 1'b1;
+          if (output_ready == 1'b1) begin
+            state_d = WAIT_REQ_DEASSERT;
+          end else begin
+            state_d = WAIT_DOWNSTREAM_ACK;
+          end
+        end
+      end
+
+`line 262 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+      WAIT_DOWNSTREAM_ACK: begin
+        data_valid       = 1'b1;
+        if (output_ready == 1'b1) begin
+          state_d    = WAIT_REQ_DEASSERT;
+          ack_dst_d  = 1'b1;
+        end
+      end
+
+`line 270 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+      WAIT_REQ_DEASSERT: begin
+        ack_dst_d = 1'b1;
+        if (req_synced == 1'b0) begin
+          ack_dst_d = 1'b0;
+          state_d   = IDLE;
+        end
+      end
+
+`line 278 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+      default: begin
+        state_d = IDLE;
+      end
+    endcase
+  end
+
+`line 284 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  always_ff @(posedge clk_i, negedge rst_ni) begin
+    if (!rst_ni) begin
+      state_q <= IDLE;
+    end else begin
+      state_q <= state_d;
+    end
+  end
+
+`line 292 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  always_ff @(posedge clk_i, negedge rst_ni) begin
+    if (!rst_ni) begin
+      ack_dst_q <= 1'b0;
+    end else begin
+      ack_dst_q <= ack_dst_d;
+    end
+  end
+
+`line 301 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+  if (DECOUPLED) begin : gen_decoupled
+     
+     
+    spill_register #(
+      .T(T),
+      .Bypass(1'b0)
+    ) i_spill_register (
+      .clk_i,
+      .rst_ni,
+      .valid_i(data_valid),
+      .ready_o(output_ready),
+      .data_i(async_data_i),
+      .valid_o,
+      .ready_i,
+      .data_o
+    );
+  end else begin : gen_not_decoupled
+    assign valid_o      = data_valid;
+    assign output_ready = ready_i;
+    assign data_o       = async_data_i;
+  end
+
+`line 323 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+   
+  assign async_ack_o = ack_dst_q;
+
+`line 326 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 0
+endmodule
+/*verilator lint_on DECLFILENAME*/ 
+
+`line 329 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_4phase.sv" 2

@@ -1,0 +1,203 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+ 
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+module reg_cdc #(
+    parameter type req_t = logic,
+    parameter type rsp_t = logic
+) (
+    input  logic src_clk_i,
+    input  logic src_rst_ni,
+    input  req_t src_req_i,
+    output rsp_t src_rsp_o,
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    input  logic dst_clk_i,
+    input  logic dst_rst_ni,
+    output req_t dst_req_o,
+    input  rsp_t dst_rsp_i
+);
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    typedef enum logic { Idle, Busy } state_e;
+    state_e src_state_d, src_state_q, dst_state_d, dst_state_q;
+    rsp_t dst_rsp_d, dst_rsp_q;
+    logic src_req_valid, src_req_ready, src_rsp_valid, src_rsp_ready;
+    logic dst_req_valid, dst_req_ready, dst_rsp_valid, dst_rsp_ready;
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    logic src_ready_o;
+    logic dst_valid_o;
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    req_t src_req, dst_req;
+    rsp_t src_rsp, dst_rsp;
+
+`line 41 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    always_comb begin
+        src_req = src_req_i;
+        src_req.valid = 0;
+        dst_req_o = dst_req;
+        dst_req_o.valid = dst_valid_o;
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+        src_rsp_o = src_rsp;
+        src_rsp_o.ready = src_ready_o;
+        dst_rsp = dst_rsp_i;
+        dst_rsp.ready = 0;
+    end
+
+
+`line 54 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+     
+     
+     
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+     
+    cdc_2phase #(.T(req_t)) i_cdc_req (
+        .src_rst_ni  ( src_rst_ni    ),
+        .src_clk_i   ( src_clk_i     ),
+        .src_data_i  ( src_req       ),
+        .src_valid_i ( src_req_valid ),
+        .src_ready_o ( src_req_ready ),
+
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+        .dst_rst_ni  ( dst_rst_ni    ),
+        .dst_clk_i   ( dst_clk_i     ),
+        .dst_data_o  ( dst_req       ),
+        .dst_valid_o ( dst_req_valid ),
+        .dst_ready_i ( dst_req_ready )
+    );
+
+`line 73 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+     
+    cdc_2phase #(.T(rsp_t)) i_cdc_rsp (
+        .src_rst_ni  ( dst_rst_ni    ),
+        .src_clk_i   ( dst_clk_i     ),
+        .src_data_i  ( dst_rsp_q     ),
+        .src_valid_i ( dst_rsp_valid ),
+        .src_ready_o ( dst_rsp_ready ),
+
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+        .dst_rst_ni  ( src_rst_ni    ),
+        .dst_clk_i   ( src_clk_i     ),
+        .dst_data_o  ( src_rsp       ),
+        .dst_valid_o ( src_rsp_valid ),
+        .dst_ready_i ( src_rsp_ready )
+    );
+
+
+`line 89 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+     
+     
+     
+
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+     
+     
+     
+     
+     
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    always_comb begin
+        src_state_d = src_state_q;
+        src_req_valid = 0;
+        src_rsp_ready = 0;
+        src_ready_o = 0;
+        case (src_state_q)
+            Idle: begin
+                if (src_req_i.valid) begin
+                    src_req_valid = 1;
+                    if (src_req_ready) src_state_d = Busy;
+                end
+            end
+            Busy: begin
+                src_rsp_ready = 1;
+                if (src_rsp_valid) begin
+                    src_ready_o = 1;
+                    src_state_d = Idle;
+                end
+            end
+            default:;
+        endcase
+    end
+
+`line 122 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    always_ff @(posedge src_clk_i, negedge src_rst_ni) begin
+        if (!src_rst_ni)
+            src_state_q <= Idle;
+        else
+            src_state_q <= src_state_d;
+    end
+
+
+`line 130 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+     
+     
+     
+
+`line 134 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+     
+     
+     
+     
+     
+
+`line 140 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    always_comb begin
+        dst_state_d = dst_state_q;
+        dst_req_ready = 0;
+        dst_rsp_valid = 0;
+        dst_valid_o = 0;
+        dst_rsp_d = dst_rsp_q;
+        case (dst_state_q)
+            Idle: begin
+                if (dst_req_valid) begin
+                    dst_valid_o = 1;
+                    if (dst_rsp_i.ready) begin
+                        dst_req_ready = 1;
+                        dst_rsp_d = dst_rsp;
+                        dst_state_d = Busy;
+                    end
+                end
+            end
+            Busy: begin
+                dst_rsp_valid = 1;
+                if (dst_rsp_ready) begin
+                    dst_state_d = Idle;
+                end
+            end
+            default:;
+        endcase
+    end
+
+`line 167 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+    always_ff @(posedge dst_clk_i, negedge dst_rst_ni) begin
+        if (!dst_rst_ni) begin
+            dst_state_q <= Idle;
+            dst_rsp_q <= '0;
+        end else begin
+            dst_state_q <= dst_state_d;
+            dst_rsp_q <= dst_rsp_d;
+        end
+    end
+
+`line 177 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 0
+endmodule
+
+`line 179 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_cdc.sv" 2

@@ -1,0 +1,645 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+ 
+
+`line 13 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+ 
+module axi_dma_backend #(
+     
+    parameter int unsigned DataWidth      = -1,
+     
+    parameter int unsigned AddrWidth      = -1,
+     
+    parameter int unsigned IdWidth        = -1,
+     
+    parameter int unsigned AxReqFifoDepth = -1,
+     
+    parameter int unsigned TransFifoDepth = -1,
+     
+     
+    parameter int unsigned BufferDepth    = -1,
+     
+    parameter type         axi_req_t      = logic,
+     
+    parameter type         axi_res_t      = logic,
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+    parameter type         burst_req_t    = logic,
+     
+    parameter int unsigned DmaIdWidth     = -1,
+     
+    parameter bit          DmaTracing     = 0
+
+`line 53 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+) (
+     
+    input  logic                        clk_i,
+     
+    input  logic                        rst_ni,
+     
+    output axi_req_t                    axi_dma_req_o,
+     
+    input  axi_res_t                    axi_dma_res_i,
+     
+    input  burst_req_t                  burst_req_i,
+     
+    input  logic                        valid_i,
+     
+    output logic                        ready_o,
+     
+    output logic                        backend_idle_o,
+     
+    output logic                        trans_complete_o,
+     
+    input  logic       [DmaIdWidth-1:0] dma_id_i
+);
+
+`line 76 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+  localparam int unsigned StrobeWidth = DataWidth / 8;
+   
+  localparam int unsigned OffsetWidth = $clog2(StrobeWidth);
+   
+  typedef logic [OffsetWidth-1:0] offset_t;
+   
+  typedef logic [AddrWidth-1:0] addr_t;
+   
+  typedef logic [IdWidth-1:0] axi_id_t;
+
+`line 87 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+   
+   
+   
+   
+  typedef struct packed {
+    axi_id_t id;
+    logic last;
+    addr_t addr;
+    axi_pkg::len_t len;
+    axi_pkg::size_t size;
+    axi_pkg::burst_t burst;
+    axi_pkg::cache_t cache;
+  } desc_ax_t;
+
+`line 104 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+  typedef struct packed {
+    offset_t offset;
+    offset_t tailer;
+    offset_t shift;
+  } desc_r_t;
+
+`line 113 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+   
+  typedef struct packed {
+    offset_t offset;
+    offset_t tailer;
+    axi_pkg::len_t num_beats;
+    logic is_single;
+  } desc_w_t;
+
+`line 124 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+  typedef struct packed {
+    desc_ax_t aw;
+    desc_w_t w;
+  } write_req_t;
+
+`line 130 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+  typedef struct packed {
+    desc_ax_t ar;
+    desc_r_t r;
+  } read_req_t;
+
+`line 136 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+   
+ 
+   
+             
+      
+           
+      
+  
+
+`line 148 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+
+`line 150 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+  burst_req_t burst_req;
+  logic       burst_req_empty;
+  logic       burst_req_pop;
+  logic       burst_req_full;
+
+`line 158 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+  fifo_v3 #(
+      .dtype(burst_req_t),
+      .DEPTH(TransFifoDepth)
+  ) i_burst_request_fifo (
+      .clk_i     (clk_i),
+      .rst_ni    (rst_ni),
+      .flush_i   (1'b0),
+      .testmode_i(1'b0),
+      .full_o    (burst_req_full),
+      .empty_o   (burst_req_empty),
+      .usage_o   (),
+      .data_i    (burst_req_i),
+      .push_i    (valid_i && ready_o),
+      .data_o    (burst_req),
+      .pop_i     (burst_req_pop)
+  );
+
+`line 176 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+  assign ready_o = !burst_req_full;
+
+`line 178 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+  write_req_t write_req;
+  read_req_t  read_req;
+
+`line 184 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+  logic       read_req_valid;
+  logic       read_req_ready;
+  logic       write_req_valid;
+  logic       write_req_ready;
+
+`line 189 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+  logic in_flight_d, in_flight_q;
+  logic burst_valid;
+  always_comb begin : proc_select_burst_valid
+    if (burst_req.serialize) begin
+       
+       
+      burst_valid = ~burst_req_empty & (~in_flight_q | trans_complete_o);
+    end else begin
+       
+       
+      burst_valid = ~burst_req_empty;
+    end
+  end
+
+`line 206 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+  axi_dma_burst_reshaper #(
+      .DataWidth  (DataWidth),
+      .AddrWidth  (AddrWidth),
+      .IdWidth    (IdWidth),
+      .burst_req_t(burst_req_t),
+      .read_req_t (read_req_t),
+      .write_req_t(write_req_t)
+  ) i_axi_dma_burst_reshaper (
+      .clk_i      (clk_i),
+      .rst_ni     (rst_ni),
+      .burst_req_i(burst_req),
+      .valid_i    (burst_valid),
+      .ready_o    (burst_req_pop),
+      .write_req_o(write_req),
+      .read_req_o (read_req),
+      .r_valid_o  (read_req_valid),
+      .r_ready_i  (read_req_ready),
+      .w_valid_o  (write_req_valid),
+      .w_ready_i  (write_req_ready)
+  );
+
+`line 228 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+  axi_dma_data_mover #(
+      .DataWidth   (DataWidth),
+      .ReqFifoDepth(AxReqFifoDepth),
+      .BufferDepth (BufferDepth),
+      .read_req_t  (read_req_t),
+      .write_req_t (write_req_t),
+      .axi_req_t   (axi_req_t),
+      .axi_res_t   (axi_res_t),
+      .desc_ax_t   (desc_ax_t),
+      .desc_r_t    (desc_r_t),
+      .desc_w_t    (desc_w_t)
+  ) i_axi_dma_data_mover (
+      .clk_i            (clk_i),
+      .rst_ni           (rst_ni),
+      .axi_dma_req_o    (axi_dma_req_o),
+      .axi_dma_res_i    (axi_dma_res_i),
+      .read_req_i       (read_req),
+      .write_req_i      (write_req),
+      .r_valid_i        (read_req_valid),
+      .r_ready_o        (read_req_ready),
+      .w_valid_i        (write_req_valid),
+      .w_ready_o        (write_req_ready),
+      .data_mover_idle_o(backend_idle_o),
+      .trans_complete_o (trans_complete_o)
+  );
+
+`line 257 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+   
+   
+  always_comb begin : proc_in_flight_check
+
+`line 264 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+     
+    in_flight_d = in_flight_q;
+
+`line 267 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+     
+    if (burst_req_pop & ~burst_req_empty) begin
+      in_flight_d = 1;
+    end else begin
+       
+      if (trans_complete_o) begin
+        in_flight_d = 0;
+      end
+    end
+  end
+
+`line 278 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+  always_ff @(posedge clk_i or negedge rst_ni) begin : proc_in_flight_check_state
+    if (~rst_ni) begin
+      in_flight_q <= 0;
+    end else begin
+      in_flight_q <= in_flight_d;
+    end
+  end
+
+`line 286 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+   
+   
+   
+ 
+ 
+  
+        
+       
+       
+
+`line 297 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+        
+
+`line 299 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+      
+       
+        
+          
+           
+          
+      
+
+`line 307 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+      
+                 
+                       
+            
+            
+        
+      
+
+`line 315 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+      
+           
+        
+                                
+                             
+                           
+                          
+              
+                           
+
+`line 325 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+        
+          
+
+`line 328 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+        
+          
+
+`line 331 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+          
+
+`line 333 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+          
+          
+          
+            
+          
+                      
+                           
+                           
+                             
+                      
+                      
+                         
+                
+
+`line 347 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+          
+          
+          
+            
+          
+                           
+                          
+                          
+                    
+          
+          
+          
+          
+            
+                
+                        
+                        
+                                   
+                             
+          
+
+`line 368 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+          
+          
+          
+            
+          
+                     
+                    
+                    
+              
+          
+          
+          
+          
+            
+                
+                  
+                  
+          
+                  
+                
+                
+                 
+                
+               
+               
+               
+               
+            
+          
+                  
+                  
+          
+                   
+                 
+                 
+                  
+                 
+                
+                
+                
+                
+                 
+                   
+                   
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+
+`line 445 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+          
+          
+          
+            
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+                             
+                            
+          
+          
+                           
+                           
+          
+                            
+                            
+          
+          
+          
+                             
+                            
+          
+          
+                           
+                           
+                
+
+`line 493 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+          
+          
+          
+            
+          
+                    
+                    
+                    
+                    
+                     
+                     
+          
+          
+          
+                    
+              
+          
+                    
+                    
+                    
+                    
+                   
+                   
+                     
+          
+                      
+          
+                     
+          
+                  
+                   
+                  
+                   
+          
+          
+            
+                  
+           
+                  
+          
+          
+          
+          
+          
+          
+          
+          
+                          
+          
+                      
+          
+          
+          
+          
+          
+          
+          
+          
+                             
+          
+          
+          
+          
+          
+
+`line 558 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+          
+           
+                 
+          
+                
+                       
+                     
+                     
+                     
+             
+                   
+             
+                   
+             
+                   
+             
+                   
+
+`line 576 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+          
+             
+           
+           
+        
+      
+      
+       
+        
+      
+    
+  
+
+
+`line 600 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 0
+   
+endmodule : axi_dma_backend
+
+`line 603 "/repo/hw/ip/future/src/dma/axi_dma_backend.sv" 2

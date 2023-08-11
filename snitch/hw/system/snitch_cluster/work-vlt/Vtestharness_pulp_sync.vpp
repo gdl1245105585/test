@@ -1,0 +1,42 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/pulp_sync.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/pulp_sync.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/pulp_sync.sv" 0
+module pulp_sync
+  #(
+    parameter STAGES = 2
+    )
+   (
+    input  logic clk_i,
+    input  logic rstn_i,
+    input  logic serial_i,
+    output logic serial_o
+    );
+   
+   logic [STAGES-1:0] r_reg;
+   
+   always_ff @(posedge clk_i, negedge rstn_i)
+     begin
+	if(!rstn_i)
+          r_reg <= 'h0;
+	else
+          r_reg <= {r_reg[STAGES-2:0], serial_i};
+     end
+   
+   assign serial_o   =  r_reg[STAGES-1];
+   
+endmodule
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/pulp_sync.sv" 2

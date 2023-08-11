@@ -1,0 +1,696 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+ 
+ 
+
+`line 10 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+ 
+`line 10 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 10 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+
+
+`line 12 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+module axi_dma_tc_snitch_fe #(
+    parameter int unsigned AddrWidth     = 0,
+    parameter int unsigned DataWidth     = 0,
+    parameter int unsigned DMADataWidth  = 0,
+    parameter int unsigned IdWidth       = 0,
+    parameter int unsigned DMAAxiReqFifoDepth = 3,
+    parameter int unsigned DMAReqFifoDepth    = 3,
+    parameter type         axi_req_t     = logic,
+    parameter type         axi_res_t     = logic,
+    parameter type         acc_resp_t    = logic,
+    parameter type         dma_events_t  = logic,
+     
+    parameter type addr_t = logic [AddrWidth-1:0],
+    parameter type data_t = logic [DataWidth-1:0]
+) (
+    input  logic           clk_i,
+    input  logic           rst_ni,
+     
+    output axi_req_t       axi_dma_req_o,
+    input  axi_res_t       axi_dma_res_i,
+     
+    output logic           dma_busy_o,
+     
+    input  logic [31:0]    acc_qaddr_i,
+    input  logic [ 4:0]    acc_qid_i,
+    input  logic [31:0]    acc_qdata_op_i,
+    input  data_t          acc_qdata_arga_i,
+    input  data_t          acc_qdata_argb_i,
+    input  addr_t          acc_qdata_argc_i,
+    input  logic           acc_qvalid_i,
+    output logic           acc_qready_o,
+
+`line 44 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    output data_t          acc_pdata_o,
+    output logic [ 4:0]    acc_pid_o,
+    output logic           acc_perror_o,
+    output logic           acc_pvalid_o,
+    input  logic           acc_pready_i,
+
+`line 50 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+    input  logic [31:0]       hart_id_i,
+
+`line 53 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+    output axi_dma_pkg::dma_perf_t dma_perf_o,
+    output dma_events_t dma_events_o
+);
+
+`line 58 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    typedef logic [IdWidth-1:0] id_t;
+
+`line 60 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    typedef struct packed {
+        id_t              id;
+        addr_t            src, dst, num_bytes;
+        axi_pkg::cache_t  cache_src, cache_dst;
+        axi_pkg::burst_t  burst_src, burst_dst;
+        logic             decouple_rw;
+        logic             deburst;
+        logic             serialize;
+    } burst_req_t;
+
+`line 70 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    typedef struct packed {
+        id_t              id;
+        addr_t            src, dst, num_bytes;
+        axi_pkg::cache_t  cache_src, cache_dst;
+        addr_t            stride_src, stride_dst, num_repetitions;
+        axi_pkg::burst_t  burst_src, burst_dst;
+        logic             decouple_rw;
+        logic             deburst;
+        logic             is_twod;
+    } twod_req_t;
+
+`line 81 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    logic backend_idle;
+    burst_req_t burst_req;
+    logic burst_req_valid;
+    logic burst_req_ready;
+    logic oned_trans_complete;
+
+`line 90 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    axi_dma_backend #(
+        .DataWidth       ( DMADataWidth ),
+        .AddrWidth       ( AddrWidth ),
+        .IdWidth         ( IdWidth ),
+        .AxReqFifoDepth  ( DMAAxiReqFifoDepth ),
+        .TransFifoDepth  ( DMAReqFifoDepth ),
+        .BufferDepth     ( 3 ),
+        .axi_req_t       ( axi_req_t ),
+        .axi_res_t       ( axi_res_t ),
+        .burst_req_t     ( burst_req_t ),
+        .DmaIdWidth      ( 32 ),
+        .DmaTracing      ( 1 )
+    ) i_axi_dma_backend (
+        .clk_i            ( clk_i               ),
+        .rst_ni           ( rst_ni              ),
+        .axi_dma_req_o    ( axi_dma_req_o       ),
+        .axi_dma_res_i    ( axi_dma_res_i       ),
+        .burst_req_i      ( burst_req           ),
+        .valid_i          ( burst_req_valid     ),
+        .ready_o          ( burst_req_ready     ),
+        .backend_idle_o   ( backend_idle        ),
+        .trans_complete_o ( oned_trans_complete ),
+        .dma_id_i         ( hart_id_i           )
+    );
+
+`line 115 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    twod_req_t twod_req_d, twod_req_q;
+    logic      twod_req_valid;
+    logic      twod_req_ready;
+    logic      twod_req_last;
+
+`line 123 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    axi_dma_twod_ext #(
+        .ADDR_WIDTH       ( AddrWidth   ),
+        .REQ_FIFO_DEPTH   ( DMAReqFifoDepth ),
+        .burst_req_t      ( burst_req_t ),
+        .twod_req_t       ( twod_req_t )
+    ) i_axi_dma_twod_ext (
+        .clk_i                ( clk_i           ),
+        .rst_ni               ( rst_ni          ),
+        .twod_req_i           ( twod_req_d      ),
+        .twod_req_valid_i     ( twod_req_valid  ),
+        .twod_req_ready_o     ( twod_req_ready  ),
+        .burst_req_o          ( burst_req       ),
+        .burst_req_valid_o    ( burst_req_valid ),
+        .burst_req_ready_i    ( burst_req_ready ),
+        .twod_req_last_o      ( twod_req_last   )
+    );
+
+`line 140 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    localparam int unsigned TwodBufferDepth = 2 * (DMAReqFifoDepth +
+        DMAAxiReqFifoDepth) + 3 + 1;
+    logic twod_req_last_realigned;
+    fifo_v3 # (
+        .DATA_WIDTH  (  1                 ),
+        .DEPTH       ( TwodBufferDepth  )
+    ) i_fifo_v3_last_twod_buffer (
+        .clk_i       ( clk_i                             ),
+        .rst_ni      ( rst_ni                            ),
+        .flush_i     ( 1'b0                              ),
+        .testmode_i  ( 1'b0                              ),
+        .full_o      ( ),
+        .empty_o     ( ),
+        .usage_o     ( ),
+        .data_i      ( twod_req_last                     ),
+        .push_i      ( burst_req_valid & burst_req_ready ),
+        .data_o      ( twod_req_last_realigned           ),
+        .pop_i       ( oned_trans_complete               )
+    );
+
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    logic [31:0] next_id;
+    logic [31:0] completed_id;
+
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                                    
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    if (! rst_ni) begin                                                                      
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+      next_id <= (0);                                                                 
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    end else begin                                                                            
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+      next_id <= (twod_req_valid & twod_req_ready) ? (next_id + 'h1) : (next_id);                                                        
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    end                                                                                       
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+  end
+    
+`line 170 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                                    
+`line 170 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    if (! rst_ni) begin                                                                      
+`line 170 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+      completed_id <= (0);                                                                 
+`line 170 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    end else begin                                                                            
+`line 170 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+      completed_id <= (oned_trans_complete & twod_req_last_realigned) ? (completed_id + 'h1) : (completed_id);                                                        
+`line 170 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    end                                                                                       
+`line 170 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+  end
+
+`line 172 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+    assign dma_busy_o = next_id != completed_id;
+
+`line 175 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    axi_dma_perf_counters #(
+        .TRANSFER_ID_WIDTH  ( 32           ),
+        .DATA_WIDTH         ( DMADataWidth ),
+        .axi_req_t          ( axi_req_t    ),
+        .axi_res_t          ( axi_res_t    ),
+        .dma_events_t       ( dma_events_t )
+    ) i_axi_dma_perf_counters (
+        .clk_i           ( clk_i               ),
+        .rst_ni          ( rst_ni              ),
+        .axi_dma_req_i   ( axi_dma_req_o       ),
+        .axi_dma_res_i   ( axi_dma_res_i       ),
+        .next_id_i       ( next_id             ),
+        .completed_id_i  ( completed_id        ),
+        .dma_busy_i      ( dma_busy_o          ),
+        .dma_perf_o      ( dma_perf_o          ),
+        .dma_events_o    ( dma_events_o        )
+    );
+
+`line 196 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    acc_resp_t acc_pdata_spill, acc_pdata;
+    logic acc_pvalid_spill;
+    logic acc_pready_spill;
+
+`line 203 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+    spill_register #(
+        .T            ( acc_resp_t )
+    ) i_spill_register_dma_resp (
+        .clk_i        ( clk_i            ),
+        .rst_ni       ( rst_ni           ),
+        .valid_i      ( acc_pvalid_spill ),
+        .ready_o      ( acc_pready_spill ),
+        .data_i       ( acc_pdata_spill   ),
+        .valid_o      ( acc_pvalid_o     ),
+        .ready_i      ( acc_pready_i     ),
+        .data_o       ( acc_pdata         )
+    );
+
+`line 217 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    assign acc_pdata_o  = acc_pdata.data;
+    assign acc_pid_o    = acc_pdata.id;
+    assign acc_perror_o = acc_pdata.error;
+
+`line 221 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    logic            is_dma_op;
+    logic [12*8-1:0] dma_op_name;
+
+`line 227 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    always_comb begin : proc_fe_inst_decode
+        twod_req_d            = twod_req_q;
+        twod_req_d.burst_src  = axi_pkg::BURST_INCR;
+        twod_req_d.burst_dst  = axi_pkg::BURST_INCR;
+        twod_req_d.cache_src  = axi_pkg::CACHE_MODIFIABLE;
+        twod_req_d.cache_dst  = axi_pkg::CACHE_MODIFIABLE;
+        twod_req_valid        = 1'b0;
+        acc_qready_o          = 1'b0;
+        acc_pdata_spill       = '0;
+        acc_pdata_spill.error = 1'b1;
+        acc_pvalid_spill      = 1'b0;
+
+`line 239 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+         
+        is_dma_op        = 1'b0;
+        dma_op_name      = "Invalid";
+
+`line 243 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+         
+        if (acc_qvalid_i == 1'b1) begin
+          unique casez (acc_qdata_op_i)
+
+`line 247 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+               
+              riscv_instr::DMSRC : begin
+                  twod_req_d.src[31: 0] = acc_qdata_arga_i[31:0];
+                  twod_req_d.src[AddrWidth-1:32] = acc_qdata_argb_i[AddrWidth-1-32: 0];
+                  acc_qready_o = 1'b1;
+                  is_dma_op    = 1'b1;
+                  dma_op_name  = "DMSRC";
+              end
+
+`line 256 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+               
+              riscv_instr::DMDST : begin
+                  twod_req_d.dst[31: 0] = acc_qdata_arga_i[31:0];
+                  twod_req_d.dst[AddrWidth-1:32] = acc_qdata_argb_i[AddrWidth-1-32: 0];
+                  acc_qready_o = 1'b1;
+                  is_dma_op    = 1'b1;
+                  dma_op_name  = "DMDST";
+              end
+
+`line 265 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+               
+              riscv_instr::DMCPYI,
+              riscv_instr::DMCPY : begin
+                  automatic logic [1:0] cfg;
+
+`line 270 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+                   
+                  cfg = '0;
+                  unique casez (acc_qdata_op_i)
+                      riscv_instr::DMCPYI : cfg = acc_qdata_op_i[24:20];
+                      riscv_instr::DMCPY :  cfg = acc_qdata_argb_i;
+                      default:;
+                  endcase
+                  dma_op_name = "DMCPY";
+                  is_dma_op   = 1'b1;
+
+`line 280 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+                  twod_req_d.num_bytes   = acc_qdata_arga_i;
+                  twod_req_d.decouple_rw = cfg[0];
+                  twod_req_d.is_twod     = cfg[1];
+
+`line 284 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+                   
+                   
+                   
+                   
+                   
+                   
+                  if (acc_pready_spill) begin
+                      twod_req_valid = 1'b1;
+                      if (twod_req_ready) begin
+                          acc_pdata_spill.id    = acc_qid_i;
+                          acc_pdata_spill.data  = next_id;
+                          acc_pdata_spill.error = 1'b0;
+                          acc_pvalid_spill      = 1'b1;
+                          acc_qready_o          = twod_req_ready;
+                      end
+                  end
+              end
+
+`line 302 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+               
+              riscv_instr::DMSTATI,
+              riscv_instr::DMSTAT: begin
+                  automatic logic [1:0] status;
+
+`line 307 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+                   
+                  status = '0;
+                  unique casez (acc_qdata_op_i)
+                      riscv_instr::DMSTATI: status = acc_qdata_op_i[24:20];
+                      riscv_instr::DMSTAT:  status = acc_qdata_argb_i;
+                      default:;
+                  endcase
+                  dma_op_name = "DMSTAT";
+                  is_dma_op   = 1'b1;
+
+`line 317 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+                   
+                  acc_pdata_spill.id    = acc_qid_i;
+                  acc_pdata_spill.error = 1'b0;
+                  case (status)
+                      2'b00 : acc_pdata_spill.data = completed_id;
+                      2'b01 : acc_pdata_spill.data = next_id;
+                      2'b10 : acc_pdata_spill.data = {{{8'd63}{1'b0}}, dma_busy_o};
+                      2'b11 : acc_pdata_spill.data = {{{8'd63}{1'b0}}, !twod_req_ready};
+                      default:;
+                  endcase
+
+`line 328 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+                   
+                   
+                  if (acc_pready_spill) begin
+                      acc_pvalid_spill = 1'b1;
+                      acc_qready_o     = 1'b1;
+                  end
+              end
+
+`line 336 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+               
+              riscv_instr::DMSTR : begin
+                  twod_req_d.stride_src = acc_qdata_arga_i;
+                  twod_req_d.stride_dst = acc_qdata_argb_i;
+                  acc_qready_o = 1'b1;
+                  is_dma_op    = 1'b1;
+                  dma_op_name  = "DMSTR";
+              end
+
+`line 345 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+               
+              riscv_instr::DMREP : begin
+                  twod_req_d.num_repetitions = acc_qdata_arga_i;
+                  acc_qready_o = 1'b1;
+                  is_dma_op    = 1'b1;
+                  dma_op_name  = "DMREP";
+              end
+
+`line 353 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+              default:;
+          endcase
+        end
+    end
+
+`line 358 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+     
+     
+     
+    
+`line 361 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+  always_ff @(posedge ( clk_i) or negedge ( rst_ni)) begin                           
+`line 361 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    if (! rst_ni) begin                                                             
+`line 361 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+      twod_req_q <= ('0);                                                        
+`line 361 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    end else begin                                                                   
+`line 361 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+      twod_req_q <= (twod_req_d);                                                                  
+`line 361 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+    end                                                                              
+`line 361 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+  end
+
+`line 363 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 0
+endmodule
+
+`line 365 "/repo/hw/ip/snitch_dma/src/axi_dma_tc_snitch_fe.sv" 2

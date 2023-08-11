@@ -1,0 +1,33 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter_pkg.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter_pkg.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter_pkg.sv" 0
+ 
+package cb_filter_pkg;
+  typedef struct packed {
+    int unsigned PermuteSeed;
+    int unsigned XorSeed;
+  } cb_seed_t;
+
+`line 20 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter_pkg.sv" 0
+   
+  localparam cb_seed_t [2:0] EgSeeds = '{
+    '{PermuteSeed: 32'd299034753, XorSeed: 32'd4094834  },
+    '{PermuteSeed: 32'd19921030,  XorSeed: 32'd995713   },
+    '{PermuteSeed: 32'd294388,    XorSeed: 32'd65146511 }
+  };
+endpackage
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cb_filter_pkg.sv" 2

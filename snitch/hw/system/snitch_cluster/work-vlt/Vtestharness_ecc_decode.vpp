@@ -1,0 +1,146 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 29 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+module ecc_decode import ecc_pkg::*; #(
+   
+  parameter  int unsigned DataWidth   = 64,
+   
+  parameter type data_t         = logic [DataWidth-1:0],
+  parameter type parity_t       = logic [get_parity_width(DataWidth)-1:0],
+  parameter type code_word_t    = logic [get_cw_width(DataWidth)-1:0],
+  parameter type encoded_data_t = struct packed {
+                                    logic parity;
+                                    code_word_t code_word;
+                                  }
+  ) (
+   
+  input  encoded_data_t data_i,
+   
+  output data_t         data_o,
+   
+  output parity_t       syndrome_o,
+   
+  output logic          single_error_o,
+   
+  output logic          parity_error_o,
+   
+  output logic          double_error_o
+);
+
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+  logic       parity;
+  data_t      data_wo_parity;
+  parity_t    syndrome;
+  logic       syndrome_not_zero;
+  code_word_t correct_data;
+
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+   
+  assign parity = data_i.parity ^ (^data_i.code_word);
+
+`line 64 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+   
+   
+   
+   
+   
+   
+   
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+  always_comb begin : calculate_syndrome
+    syndrome = 0;
+    for (int unsigned i = 0; i < unsigned'($bits(parity_t)); i++) begin
+      for (int unsigned j = 0; j < unsigned'($bits(code_word_t)); j++) begin
+        if (|(unsigned'(2**i) & (j + 1))) syndrome[i] = syndrome[i] ^ data_i.code_word[j];
+      end
+    end
+  end
+
+`line 91 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+  assign syndrome_not_zero = |syndrome;
+
+`line 93 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+   
+  always_comb begin
+    correct_data = data_i.code_word;
+    if (syndrome_not_zero) begin
+      correct_data[syndrome - 1] = ~data_i.code_word[syndrome - 1];
+    end
+  end
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+   
+   
+   
+   
+   
+   
+  assign single_error_o = parity & syndrome_not_zero;
+  assign parity_error_o = parity & ~syndrome_not_zero;
+  assign double_error_o = ~parity & syndrome_not_zero;
+
+`line 111 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+   
+  always_comb begin
+    automatic int unsigned idx;  
+    data_wo_parity = '0;
+    idx = 0;
+
+`line 117 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+    for (int unsigned i = 1; i < unsigned'($bits(code_word_t)) + 1; i++) begin
+       
+      if (unsigned'(2**$clog2(i)) != i) begin
+        data_wo_parity[idx] = correct_data[i - 1];
+        idx++;
+      end
+    end
+  end
+
+`line 126 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+  assign data_o = data_wo_parity;
+
+`line 128 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 0
+endmodule
+
+`line 130 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_decode.sv" 2

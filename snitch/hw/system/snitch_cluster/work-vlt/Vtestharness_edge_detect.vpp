@@ -1,0 +1,40 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_detect.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_detect.sv" 0
+ 
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_detect.sv" 0
+module edge_detect (
+    input  logic clk_i,    
+    input  logic rst_ni,   
+    input  logic d_i,      
+    output logic re_o,     
+    output logic fe_o      
+);
+
+`line 22 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_detect.sv" 0
+    sync_wedge i_sync_wedge (
+        .clk_i    ( clk_i  ),
+        .rst_ni   ( rst_ni ),
+        .en_i     ( 1'b1   ),
+        .serial_i ( d_i    ),
+        .r_edge_o ( re_o   ),
+        .f_edge_o ( fe_o   ),
+        .serial_o (        )
+    );
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_detect.sv" 0
+endmodule
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/edge_detect.sv" 2

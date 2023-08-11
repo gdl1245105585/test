@@ -1,0 +1,32 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 0
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 0
+package apb_pkg;
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 0
+  typedef logic [2:0]  prot_t;
+
+`line 19 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 0
+  localparam RESP_OKAY   = 1'b0;
+  localparam RESP_SLVERR = 1'b1;
+
+`line 22 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 0
+endpackage
+
+`line 24 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_pkg.sv" 2

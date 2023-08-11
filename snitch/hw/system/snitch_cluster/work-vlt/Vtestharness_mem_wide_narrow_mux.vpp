@@ -1,0 +1,910 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+ 
+`line 8 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 1
+ 
+`line 2 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+
+`line 9 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+  
+   
+     
+     
+       
+       
+    
+  
+
+
+
+
+
+
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+ 
+   
+
+
+
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 105 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 115 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+`line 121 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 131 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 138 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 145 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 165 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 182 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 189 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 196 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+  
+
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 2
+`line 8 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+
+
+`line 10 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module mem_wide_narrow_mux #(
+   
+  parameter int unsigned NarrowDataWidth = 0,
+   
+  parameter int unsigned WideDataWidth   = 0,
+   
+  parameter int unsigned MemoryLatency   = 1,
+   
+  parameter type mem_narrow_req_t        = logic,
+   
+  parameter type mem_narrow_rsp_t        = logic,
+   
+  parameter type mem_wide_req_t          = logic,
+   
+  parameter type mem_wide_rsp_t          = logic,
+   
+   
+  parameter int unsigned NrPorts = WideDataWidth / NarrowDataWidth
+) (
+  input  logic                          clk_i,
+  input  logic                          rst_ni,
+   
+   
+  input  mem_narrow_req_t [NrPorts-1:0] in_narrow_req_i,
+  output mem_narrow_rsp_t [NrPorts-1:0] in_narrow_rsp_o,
+   
+  input  mem_wide_req_t                 in_wide_req_i,
+  output mem_wide_rsp_t                 in_wide_rsp_o,
+   
+  output mem_narrow_req_t [NrPorts-1:0] out_req_o,
+  input  mem_narrow_rsp_t [NrPorts-1:0] out_rsp_i,
+   
+  input  logic                          sel_wide_i
+);
+
+`line 60 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  localparam int unsigned NarrowStrbWidth = NarrowDataWidth/8;
+
+`line 62 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  always_comb begin
+     
+     
+     
+    in_narrow_rsp_o = out_rsp_i;
+     
+    for (int i = 0; i < NrPorts; i++) begin
+      in_wide_rsp_o.p[i*NarrowDataWidth+:NarrowDataWidth] = out_rsp_i[i].p.data;
+    end
+
+`line 72 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+     
+     
+     
+     
+    out_req_o = in_narrow_req_i;
+     
+    in_wide_rsp_o.q_ready = 1'b0;
+
+`line 80 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+     
+    if (sel_wide_i) begin
+      for (int i = 0; i < NrPorts; i++) begin
+        out_req_o[i].q_valid = in_wide_req_i.q_valid;
+         
+        in_narrow_rsp_o[i].q_ready = 1'b0;
+        out_req_o[i].q = '{
+          addr: in_wide_req_i.q.addr,
+          write: in_wide_req_i.q.write,
+          amo: reqrsp_pkg::AMONone,
+          data: in_wide_req_i.q.data[i*NarrowDataWidth+:NarrowDataWidth],
+          strb: in_wide_req_i.q.strb[i*NarrowStrbWidth+:NarrowStrbWidth],
+          user: in_wide_req_i.q.user
+        };
+         
+         
+        in_wide_rsp_o.q_ready = 1'b1;
+      end
+    end
+  end
+
+`line 101 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+   
+   
+   
+  
+`line 104 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                             
+`line 104 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                 
+`line 104 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                             
+`line 104 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                    
+`line 104 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+         
+`line 104 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                          
+`line 104 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                          
+
+
+`line 106 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+   
+   
+  logic [NrPorts-1:0] q_valid_flat;
+  logic [NrPorts-1:0][NarrowDataWidth-1:0] q_data;
+  logic [NrPorts-1:0][NarrowStrbWidth-1:0] q_strb;
+  
+`line 111 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                         
+`line 111 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                       
+`line 111 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                
+`line 111 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                     
+`line 111 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                      
+
+`line 112 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  for (genvar i = 0; i < NrPorts; i++) begin : gen_per_port
+    assign q_valid_flat[i] = out_req_o[i].q_valid;
+    assign q_data[i] = out_req_o[i].q.data;
+    assign q_strb[i] = out_req_o[i].q.strb;
+    
+`line 116 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                         
+`line 116 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                         
+`line 116 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                
+`line 116 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                     
+`line 116 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                      
+
+`line 117 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    
+`line 117 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                         
+`line 117 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                       
+`line 117 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                
+`line 117 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                     
+`line 117 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                      
+
+`line 118 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    
+`line 118 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                         
+`line 118 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                         
+`line 118 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                
+`line 118 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                     
+`line 118 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                      
+
+`line 119 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  end
+  
+`line 120 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                         
+`line 120 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                         
+`line 120 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                
+`line 120 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                     
+`line 120 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                      
+
+`line 121 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+
+`line 122 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                         
+`line 122 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                         
+`line 122 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                
+`line 122 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                     
+`line 122 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                      
+
+`line 123 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+
+`line 125 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+
+`line 125 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                         
+`line 125 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                  
+`line 125 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                
+`line 125 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                     
+`line 125 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+                                                                                      
+
+
+`line 127 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+endmodule
+
+`line 129 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+ 
+`line 129 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+`line 1 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 1
+ 
+`line 2 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+ 
+
+`line 11 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 21 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+
+
+
+
+`line 26 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 32 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 38 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 46 "/repo/hw/ip/mem_interface/include/mem_interface/typedef.svh" 2
+`line 129 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+
+`line 130 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+ 
+`line 130 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+`line 1 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 1
+ 
+`line 2 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+
+`line 10 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+
+`line 13 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+
+ 
+
+
+`line 19 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+
+
+
+`line 23 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+
+`line 27 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+
+`line 33 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+
+`line 50 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+
+`line 54 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 61 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+
+
+
+`line 67 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+
+
+
+`line 71 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+
+`line 73 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+
+`line 77 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 84 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+ 
+ 
+
+
+
+`line 90 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 0
+ 
+
+
+ 
+
+
+
+`line 97 "/repo/hw/ip/mem_interface/include/mem_interface/assign.svh" 2
+`line 130 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+
+
+`line 132 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+ 
+module mem_wide_narrow_mux_intf #(
+   
+  parameter int unsigned AddrWidth        = 0,
+   
+  parameter int unsigned NarrowDataWidth  = 0,
+   
+  parameter int unsigned WideDataWidth    = 0,
+   
+  parameter type         user_t           = logic,
+   
+  parameter int unsigned MemoryLatency    = 1,
+   
+   
+  parameter int unsigned NrPorts = WideDataWidth / NarrowDataWidth
+) (
+  input  logic clk_i,
+  input  logic rst_ni,
+   
+   
+  MEM_BUS      in_narrow [NrPorts],
+  MEM_BUS      in_wide,
+   
+  MEM_BUS      out [NrPorts],
+   
+  input  logic sel_wide_i
+);
+
+`line 160 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef logic [AddrWidth-1:0] addr_t;
+  typedef logic [NarrowDataWidth-1:0] narrow_data_t;
+  typedef logic [NarrowDataWidth/8-1:0] narrow_strb_t;
+  typedef logic [WideDataWidth-1:0] wide_data_t;
+  typedef logic [WideDataWidth/8-1:0] wide_strb_t;
+
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    addr_t             addr;  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    logic                write; 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    narrow_data_t             data;  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    narrow_strb_t             strb;  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    user_t             user;  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_narrow_req_chan_t; 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    narrow_data_t data;        
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_narrow_rsp_chan_t; 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    mem_narrow_req_chan_t q;       
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    logic        q_valid; 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_narrow_req_t; 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    mem_narrow_rsp_chan_t p;       
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    logic        q_ready; 
+`line 166 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_narrow_rsp_t;
+  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    addr_t             addr;  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    logic                write; 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    wide_data_t             data;  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    wide_strb_t             strb;  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    user_t             user;  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_wide_req_chan_t; 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    wide_data_t data;        
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_wide_rsp_chan_t; 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    mem_wide_req_chan_t q;       
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    logic        q_valid; 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_wide_req_t; 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  typedef struct packed { 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    mem_wide_rsp_chan_t p;       
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+    logic        q_ready; 
+`line 167 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  } mem_wide_rsp_t;
+
+`line 169 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  mem_narrow_req_t [NrPorts-1:0] in_narrow_req;
+  mem_narrow_rsp_t [NrPorts-1:0] in_narrow_rsp;
+  mem_wide_req_t in_wide_req;
+  mem_wide_rsp_t in_wide_rsp;
+
+`line 174 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  mem_narrow_req_t [NrPorts-1:0] out_req;
+  mem_narrow_rsp_t [NrPorts-1:0] out_rsp;
+
+`line 177 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  mem_wide_narrow_mux #(
+    .NarrowDataWidth (NarrowDataWidth),
+    .WideDataWidth (WideDataWidth),
+    .NrPorts (NrPorts),
+    .MemoryLatency (MemoryLatency),
+    .mem_narrow_req_t (mem_narrow_req_t),
+    .mem_narrow_rsp_t (mem_narrow_rsp_t),
+    .mem_wide_req_t (mem_wide_req_t),
+    .mem_wide_rsp_t (mem_wide_rsp_t)
+  ) i_mem_wide_narrow_mux (
+    .clk_i (clk_i),
+    .rst_ni (rst_ni),
+    .in_narrow_req_i (in_narrow_req),
+    .in_narrow_rsp_o (in_narrow_rsp),
+    .in_wide_req_i (in_wide_req),
+    .in_wide_rsp_o (in_wide_rsp),
+    .out_req_o (out_req),
+    .out_rsp_i (out_rsp),
+    .sel_wide_i (sel_wide_i)
+  );
+
+`line 198 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  for (genvar i = 0; i < NrPorts; i++) begin : gen_interface_assign
+    
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow_req[i].q_valid   = in_narrow[i].q_valid;     
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow_req[i].q.addr  = in_narrow[i].q_addr;           
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow_req[i].q.write = in_narrow[i].q_write;          
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow_req[i].q.amo   = in_narrow[i].q_amo;            
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow_req[i].q.data  = in_narrow[i].q_data;           
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow_req[i].q.strb  = in_narrow[i].q_strb;           
+`line 199 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow_req[i].q.user  = in_narrow[i].q_user;
+    
+`line 200 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 200 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow[i].q_ready   = in_narrow_rsp[i].q_ready;     
+`line 200 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 200 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_narrow[i].p_data   = in_narrow_rsp[i].p.data;
+    
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out[i].q_valid   = out_req[i].q_valid;     
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out[i].q_addr  = out_req[i].q.addr;           
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out[i].q_write = out_req[i].q.write;          
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out[i].q_amo   = out_req[i].q.amo;            
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out[i].q_data  = out_req[i].q.data;           
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out[i].q_strb  = out_req[i].q.strb;           
+`line 201 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out[i].q_user  = out_req[i].q.user;
+    
+`line 202 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 202 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out_rsp[i].q_ready   = out[i].q_ready;     
+`line 202 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 202 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign out_rsp[i].p.data   = out[i].p_data;
+  end
+
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide_req.q_valid   = in_wide.q_valid;     
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide_req.q.addr  = in_wide.q_addr;           
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide_req.q.write = in_wide.q_write;          
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide_req.q.amo   = in_wide.q_amo;            
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide_req.q.data  = in_wide.q_data;           
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide_req.q.strb  = in_wide.q_strb;           
+`line 205 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide_req.q.user  = in_wide.q_user;
+  
+`line 206 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 206 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide.q_ready   = in_wide_rsp.q_ready;     
+`line 206 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  
+`line 206 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+  assign in_wide.p_data   = in_wide_rsp.p.data;
+
+`line 208 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 0
+endmodule
+
+`line 210 "/repo/hw/ip/mem_interface/src/mem_wide_narrow_mux.sv" 2

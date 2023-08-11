@@ -1,0 +1,199 @@
+---
+packages:
+  FPnew:
+    revision: 1202ca3a767b563bca5de505574373e53941506f
+    version: ~
+    source:
+      Git: "https://github.com/openhwgroup/cvfpu.git"
+    dependencies:
+      - common_cells
+      - fpu_div_sqrt_mvp
+  apb:
+    revision: 77ddf073f194d44b9119949d2421be59789e69ae
+    version: 0.2.4
+    source:
+      Git: "https://github.com/pulp-platform/apb.git"
+    dependencies:
+      - common_cells
+  axi:
+    revision: 45cfe01040d3db5d4aece8cc0e439e4e4ff13672
+    version: 0.39.0-beta.7
+    source:
+      Git: "https://github.com/pulp-platform/axi.git"
+    dependencies:
+      - common_cells
+      - common_verification
+      - tech_cells_generic
+  axi_riscv_atomics:
+    revision: 430838a10a9bdf1e381d4fcb33907428f3273420
+    version: 0.6.0
+    source:
+      Git: "https://github.com/pulp-platform/axi_riscv_atomics.git"
+    dependencies:
+      - axi
+      - common_cells
+      - common_verification
+  common_cells:
+    revision: 4dc9413990622dcbf4b37a19f792834c800da5c7
+    version: 1.28.0
+    source:
+      Git: "https://github.com/pulp-platform/common_cells.git"
+    dependencies:
+      - common_verification
+      - tech_cells_generic
+  common_verification:
+    revision: 9c07fa860593b2caabd9b5681740c25fac04b878
+    version: 0.2.3
+    source:
+      Git: "https://github.com/pulp-platform/common_verification.git"
+    dependencies: []
+  fpu_div_sqrt_mvp:
+    revision: 86e1f558b3c95e91577c41b2fc452c86b04e85ac
+    version: 1.0.4
+    source:
+      Git: "https://github.com/pulp-platform/fpu_div_sqrt_mvp.git"
+    dependencies:
+      - common_cells
+  future:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/future
+    dependencies:
+      - axi
+      - common_cells
+  mem_interface:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/mem_interface
+    dependencies:
+      - common_cells
+      - reqrsp_interface
+  register_interface:
+    revision: 146501d80052b61475cdc333d3aab4cd769fd5dc
+    version: 0.3.9
+    source:
+      Git: "https://github.com/pulp-platform/register_interface.git"
+    dependencies:
+      - apb
+      - axi
+      - common_cells
+  reqrsp_interface:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/reqrsp_interface
+    dependencies:
+      - axi
+      - common_cells
+  riscv-dbg:
+    revision: ec0d92fa5fdaaf611e5b8a4cc8ee84017ff98710
+    version: ~
+    source:
+      Git: "https://github.com/pulp-platform/riscv-dbg.git"
+    dependencies:
+      - common_cells
+      - tech_cells_generic
+  snitch:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/snitch
+    dependencies:
+      - FPnew
+      - axi
+      - common_cells
+      - reqrsp_interface
+      - riscv-dbg
+  snitch_cluster:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster
+    dependencies:
+      - FPnew
+      - axi
+      - common_cells
+      - future
+      - mem_interface
+      - register_interface
+      - reqrsp_interface
+      - riscv-dbg
+      - snitch
+      - snitch_dma
+      - snitch_icache
+      - snitch_ipu
+      - snitch_ssr
+      - snitch_vm
+      - tcdm_interface
+      - tech_cells_generic
+  snitch_dma:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/snitch_dma
+    dependencies:
+      - axi
+      - common_cells
+      - snitch
+  snitch_icache:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/snitch_icache
+    dependencies:
+      - common_cells
+      - snitch
+      - tech_cells_generic
+  snitch_ipu:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/snitch_ipu
+    dependencies:
+      - common_cells
+      - snitch
+  snitch_ssr:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/snitch_ssr
+    dependencies:
+      - common_cells
+      - register_interface
+      - tcdm_interface
+  snitch_vm:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/snitch_vm
+    dependencies:
+      - common_cells
+      - snitch
+  tcdm_interface:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/snitch_cluster/../../ip/tcdm_interface
+    dependencies:
+      - common_cells
+      - reqrsp_interface
+  tech_cells_generic:
+    revision: a9cae21902e75b1434328ecf36f85327ba5717de
+    version: 0.2.11
+    source:
+      Git: "https://github.com/pulp-platform/tech_cells_generic.git"
+    dependencies:
+      - common_verification
+  test:
+    revision: ~
+    version: ~
+    source:
+      Path: /repo/hw/system/snitch_cluster/../../ip/test
+    dependencies:
+      - axi
+      - axi_riscv_atomics
+      - common_cells
+      - register_interface
+      - reqrsp_interface

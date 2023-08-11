@@ -1,0 +1,41 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 0
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 0
+package ecc_pkg;
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 0
+   
+  function automatic int unsigned get_parity_width (input int unsigned data_width);
+     
+    int unsigned cw_width = 2;
+    while (unsigned'(2**cw_width) < cw_width + data_width + 1) cw_width++;
+    return cw_width;
+  endfunction
+
+`line 25 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 0
+   
+  function automatic int unsigned get_cw_width (input int unsigned data_width);
+     
+    return data_width + get_parity_width(data_width);
+  endfunction
+
+`line 31 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 0
+endpackage
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/ecc_pkg.sv" 2

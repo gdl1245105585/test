@@ -1,0 +1,145 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+module periph_to_reg #(
+  parameter int unsigned AW    = 32,     
+  parameter int unsigned DW    = 32,     
+  parameter int unsigned BW    = 8,      
+  parameter int unsigned IW    = 0,      
+  parameter type         req_t = logic,  
+  parameter type         rsp_t = logic   
+) (
+  input  logic             clk_i,     
+  input  logic             rst_ni,    
+
+`line 24 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  input  logic             req_i,
+  input  logic [   AW-1:0] add_i,
+  input  logic             wen_i,
+  input  logic [   DW-1:0] wdata_i,
+  input  logic [DW/BW-1:0] be_i,
+  input  logic [   IW-1:0] id_i,
+  output logic             gnt_o,
+  output logic [   DW-1:0] r_rdata_o,
+  output logic             r_opc_o,
+  output logic [   IW-1:0] r_id_o,
+  output logic             r_valid_o,
+
+`line 36 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  output req_t             reg_req_o,
+  input  rsp_t             reg_rsp_i
+);
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  logic [IW-1:0] r_id_d, r_id_q;
+  logic          r_opc_d, r_opc_q;
+  logic          r_valid_d, r_valid_q;
+  logic [DW-1:0] r_rdata_d, r_rdata_q;
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  always_comb begin : proc_logic
+    r_id_d = id_i;
+    r_opc_d = reg_rsp_i.error;
+    r_valid_d = gnt_o;
+    r_rdata_d = reg_rsp_i.rdata;
+  end
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  always_ff @(posedge clk_i or negedge rst_ni) begin : proc_seq
+    if (!rst_ni) begin
+      r_id_q <= '0;
+      r_opc_q <= '0;
+      r_valid_q <= '0;
+      r_rdata_q <= '0;
+    end else begin
+      r_id_q <= r_id_d;
+      r_opc_q <= r_opc_d;
+      r_valid_q <= r_valid_d;
+      r_rdata_q <= r_rdata_d;
+    end
+  end
+
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  assign reg_req_o.addr  = add_i;
+  assign reg_req_o.write = ~wen_i;
+  assign reg_req_o.wdata = wdata_i;
+  assign reg_req_o.wstrb = be_i;
+  assign reg_req_o.valid = req_i;
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  assign gnt_o     = req_i & reg_rsp_i.ready;
+
+`line 74 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+  assign r_rdata_o = r_rdata_q;
+  assign r_opc_o   = r_opc_q;
+  assign r_id_o    = r_id_q;
+  assign r_valid_o = r_valid_q;
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+
+`line 103 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+ 
+
+`line 105 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 0
+endmodule
+
+`line 107 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/periph_to_reg.sv" 2

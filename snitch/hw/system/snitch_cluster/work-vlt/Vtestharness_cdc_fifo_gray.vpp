@@ -1,0 +1,612 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+ 
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+`line 16 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+ 
+
+
+
+
+
+
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 87 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 101 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 113 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 168 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 199 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 0
+ 
+
+
+
+
+
+
+`line 223 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/registers.svh" 2
+`line 98 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+
+
+`line 100 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+(* no_ungroup *)
+(* no_boundary_optimization *)
+module cdc_fifo_gray #(
+   
+  parameter int unsigned WIDTH = 1,
+   
+  parameter type T = logic [WIDTH-1:0],
+   
+  parameter int LOG_DEPTH = 3,
+   
+  parameter int SYNC_STAGES = 2
+) (
+  input  logic src_rst_ni,
+  input  logic src_clk_i,
+  input  T     src_data_i,
+  input  logic src_valid_i,
+  output logic src_ready_o,
+
+`line 118 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  input  logic dst_rst_ni,
+  input  logic dst_clk_i,
+  output T     dst_data_o,
+  output logic dst_valid_o,
+  input  logic dst_ready_i
+);
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  T [2**LOG_DEPTH-1:0] async_data;
+  logic [LOG_DEPTH:0]  async_wptr;
+  logic [LOG_DEPTH:0]  async_rptr;
+
+`line 129 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  cdc_fifo_gray_src #(
+    .T         ( T         ),
+    .LOG_DEPTH ( LOG_DEPTH )
+  ) i_src (
+    .src_rst_ni,
+    .src_clk_i,
+    .src_data_i,
+    .src_valid_i,
+    .src_ready_o,
+
+`line 139 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    (* async *) .async_data_o ( async_data ),
+    (* async *) .async_wptr_o ( async_wptr ),
+    (* async *) .async_rptr_i ( async_rptr )
+  );
+
+`line 144 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  cdc_fifo_gray_dst #(
+    .T         ( T         ),
+    .LOG_DEPTH ( LOG_DEPTH )
+  ) i_dst (
+    .dst_rst_ni,
+    .dst_clk_i,
+    .dst_data_o,
+    .dst_valid_o,
+    .dst_ready_i,
+
+`line 154 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    (* async *) .async_data_i ( async_data ),
+    (* async *) .async_wptr_i ( async_wptr ),
+    (* async *) .async_rptr_o ( async_rptr )
+  );
+
+`line 159 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+   
+   
+     
+     
+  
+   
+
+`line 167 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+endmodule
+
+
+`line 170 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+(* no_ungroup *)
+(* no_boundary_optimization *)
+module cdc_fifo_gray_src #(
+  parameter type T = logic,
+  parameter int LOG_DEPTH = 3,
+  parameter int SYNC_STAGES = 2
+)(
+  input  logic src_rst_ni,
+  input  logic src_clk_i,
+  input  T     src_data_i,
+  input  logic src_valid_i,
+  output logic src_ready_o,
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  output T [2**LOG_DEPTH-1:0] async_data_o,
+  output logic [LOG_DEPTH:0]  async_wptr_o,
+  input  logic [LOG_DEPTH:0]  async_rptr_i
+);
+
+`line 188 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  localparam int PtrWidth = LOG_DEPTH+1;
+  localparam logic [PtrWidth-1:0] PtrFull = (1 << LOG_DEPTH);
+
+`line 191 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  T [2**LOG_DEPTH-1:0] data_q;
+  logic [PtrWidth-1:0] wptr_q, wptr_d, wptr_bin, wptr_next, rptr, rptr_bin;
+
+`line 194 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+  assign async_data_o = data_q;
+  for (genvar i = 0; i < 2**LOG_DEPTH; i++) begin : gen_word
+    
+
+`line 198 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  always_ff @(posedge (src_clk_i)) begin   
+`line 198 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    data_q[i] <= (src_valid_i & src_ready_o & (wptr_bin[LOG_DEPTH-1:0] == i)) ? (src_data_i) : (data_q[i]);   
+`line 198 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  end
+  end
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+  for (genvar i = 0; i < PtrWidth; i++) begin : gen_sync
+    sync #(.STAGES(SYNC_STAGES)) i_sync (
+      .clk_i    ( src_clk_i       ),
+      .rst_ni   ( src_rst_ni      ),
+      .serial_i ( async_rptr_i[i] ),
+      .serial_o ( rptr[i]         )
+    );
+  end
+  gray_to_binary #(PtrWidth) i_rptr_g2b (.A(rptr), .Z(rptr_bin));
+
+`line 212 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+  assign wptr_next = wptr_bin+1;
+  gray_to_binary #(PtrWidth) i_wptr_g2b (.A(wptr_q), .Z(wptr_bin));
+  binary_to_gray #(PtrWidth) i_wptr_b2g (.A(wptr_next), .Z(wptr_d));
+  
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  always_ff @(posedge (src_clk_i) or negedge (src_rst_ni)) begin                                    
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    if (!src_rst_ni) begin                                                                      
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+      wptr_q <= ('0);                                                                 
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    end else begin                                                                            
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+      wptr_q <= (src_valid_i & src_ready_o) ? (wptr_d) : (wptr_q);                                                        
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    end                                                                                       
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  end
+  assign async_wptr_o = wptr_q;
+
+`line 219 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+   
+   
+   
+  assign src_ready_o = ((wptr_bin ^ rptr_bin) != PtrFull);
+
+`line 225 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+endmodule
+
+
+`line 228 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+(* no_ungroup *)
+(* no_boundary_optimization *)
+module cdc_fifo_gray_dst #(
+  parameter type T = logic,
+  parameter int LOG_DEPTH = 3,
+  parameter int SYNC_STAGES = 2
+)(
+  input  logic dst_rst_ni,
+  input  logic dst_clk_i,
+  output T     dst_data_o,
+  output logic dst_valid_o,
+  input  logic dst_ready_i,
+
+`line 241 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  input  T [2**LOG_DEPTH-1:0] async_data_i,
+  input  logic [LOG_DEPTH:0]  async_wptr_i,
+  output logic [LOG_DEPTH:0]  async_rptr_o
+);
+
+`line 246 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  localparam int PtrWidth = LOG_DEPTH+1;
+  localparam logic [PtrWidth-1:0] PtrEmpty = '0;
+
+`line 249 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  T dst_data;
+  logic [PtrWidth-1:0] rptr_q, rptr_d, rptr_bin, rptr_bin_d, rptr_next, wptr, wptr_bin;
+  logic dst_valid, dst_ready;
+   
+  assign dst_data = async_data_i[rptr_bin[LOG_DEPTH-1:0]];
+
+`line 255 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+  assign rptr_next = rptr_bin+1;
+  gray_to_binary #(PtrWidth) i_rptr_g2b (.A(rptr_q), .Z(rptr_bin));
+  binary_to_gray #(PtrWidth) i_rptr_b2g (.A(rptr_next), .Z(rptr_d));
+  
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  always_ff @(posedge (dst_clk_i) or negedge (dst_rst_ni)) begin                                    
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    if (!dst_rst_ni) begin                                                                      
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+      rptr_q <= ('0);                                                                 
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    end else begin                                                                            
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+      rptr_q <= (dst_valid & dst_ready) ? (rptr_d) : (rptr_q);                                                        
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+    end                                                                                       
+`line 259 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+  end
+  assign async_rptr_o = rptr_q;
+
+`line 262 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+  for (genvar i = 0; i < PtrWidth; i++) begin : gen_sync
+    sync #(.STAGES(SYNC_STAGES)) i_sync (
+      .clk_i    ( dst_clk_i       ),
+      .rst_ni   ( dst_rst_ni      ),
+      .serial_i ( async_wptr_i[i] ),
+      .serial_o ( wptr[i]         )
+    );
+  end
+  gray_to_binary #(PtrWidth) i_wptr_g2b (.A(wptr), .Z(wptr_bin));
+
+`line 273 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+   
+   
+   
+  assign dst_valid = ((wptr_bin ^ rptr_bin) != PtrEmpty);
+
+`line 279 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+   
+  spill_register #(
+    .T       ( T           )
+  ) i_spill_register (
+    .clk_i   ( dst_clk_i   ),
+    .rst_ni  ( dst_rst_ni  ),
+    .valid_i ( dst_valid   ),
+    .ready_o ( dst_ready   ),
+    .data_i  ( dst_data    ),
+    .valid_o ( dst_valid_o ),
+    .ready_i ( dst_ready_i ),
+    .data_o  ( dst_data_o  )
+  );
+
+`line 293 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 0
+endmodule
+
+`line 295 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/cdc_fifo_gray.sv" 2

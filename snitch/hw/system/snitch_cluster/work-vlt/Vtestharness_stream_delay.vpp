@@ -1,0 +1,158 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+ 
+ 
+
+`line 14 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+module stream_delay #(
+    parameter bit   StallRandom = 0,
+    parameter int   FixedDelay  = 1,
+    parameter type  payload_t  = logic,
+    parameter logic [15:0] Seed = '0
+)(
+    input  logic     clk_i,
+    input  logic     rst_ni,
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+    input  payload_t payload_i,
+    output logic     ready_o,
+    input  logic     valid_i,
+
+`line 27 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+    output payload_t payload_o,
+    input  logic     ready_i,
+    output logic     valid_o
+);
+
+`line 32 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+    if (FixedDelay == 0 && !StallRandom) begin : gen_pass_through
+        assign ready_o = ready_i;
+        assign valid_o = valid_i;
+        assign payload_o = payload_i;
+    end else begin : gen_delay
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        localparam int unsigned CounterBits = 4;
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        typedef enum logic [1:0] {
+            Idle, Valid, Ready
+        } state_e;
+
+`line 44 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        state_e state_d, state_q;
+
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        logic       load;
+        logic [3:0] count_out;
+        logic       en;
+
+`line 50 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        logic [CounterBits-1:0] counter_load;
+
+`line 52 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        assign payload_o = payload_i;
+
+`line 54 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        always_comb begin
+            state_d = state_q;
+            valid_o = 1'b0;
+            ready_o = 1'b0;
+            load    = 1'b0;
+            en      = 1'b0;
+
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+            unique case (state_q)
+                Idle: begin
+                    if (valid_i) begin
+                        load = 1'b1;
+                        state_d = Valid;
+                         
+                        if (FixedDelay == 1 || (StallRandom && counter_load == 1)) begin
+                            state_d = Ready;
+                        end
+
+`line 71 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+                        if (StallRandom && counter_load == 0) begin
+                            valid_o = 1'b1;
+                            ready_o = ready_i;
+                            if (ready_i) state_d = Idle;
+                            else state_d = Ready;
+                        end
+                    end
+                end
+                Valid: begin
+                    en = 1'b1;
+                    if (count_out == 0) begin
+                        state_d = Ready;
+                    end
+                end
+
+`line 86 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+                Ready: begin
+                    valid_o = 1'b1;
+                    ready_o = ready_i;
+                    if (ready_i) state_d = Idle;
+                end
+                default :  ;
+            endcase
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        end
+
+`line 96 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        if (StallRandom) begin : gen_random_stall
+            lfsr_16bit #(
+              .WIDTH ( 16   ),
+              .SEED  ( Seed )
+            ) i_lfsr_16bit (
+              .clk_i          ( clk_i        ),
+              .rst_ni         ( rst_ni       ),
+              .en_i           ( load         ),
+              .refill_way_oh  (              ),
+              .refill_way_bin ( counter_load )
+            );
+        end else begin : gen_fixed_delay
+            assign counter_load = FixedDelay;
+        end
+
+`line 111 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        counter #(
+            .WIDTH      ( CounterBits )
+        ) i_counter (
+            .clk_i      ( clk_i        ),
+            .rst_ni     ( rst_ni       ),
+            .clear_i    ( 1'b0         ),
+            .en_i       ( en           ),
+            .load_i     ( load         ),
+            .down_i     ( 1'b1         ),
+            .d_i        ( counter_load ),
+            .q_o        ( count_out    ),
+            .overflow_o (              )
+        );
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+        always_ff @(posedge clk_i or negedge rst_ni) begin
+            if (~rst_ni) begin
+                state_q <= Idle;
+            end else begin
+                state_q <= state_d;
+            end
+        end
+    end
+
+`line 134 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 0
+endmodule
+
+`line 136 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/stream_delay.sv" 2

@@ -1,0 +1,321 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+module generic_fifo
+#(
+   parameter int unsigned          DATA_WIDTH = 32,
+   parameter int unsigned          DATA_DEPTH = 8
+)
+(
+   input  logic                                    clk,
+   input  logic                                    rst_n,
+    
+   input  logic [DATA_WIDTH-1:0]                   data_i,
+   input  logic                                    valid_i,
+   output logic                                    grant_o,
+    
+   output logic [DATA_WIDTH-1:0]                   data_o,
+   output logic                                    valid_o,
+   input  logic                                    grant_i,
+
+`line 55 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+   input  logic                                    test_mode_i
+);
+
+
+`line 59 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+    
+   localparam int unsigned ADDR_DEPTH = $clog2(DATA_DEPTH);
+   enum logic [1:0] { EMPTY, FULL, MIDDLE } CS, NS;
+    
+
+`line 64 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+   logic       gate_clock;
+   logic       clk_gated;
+
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+   logic [ADDR_DEPTH-1:0]  Pop_Pointer_CS,  Pop_Pointer_NS;
+   logic [ADDR_DEPTH-1:0]  Push_Pointer_CS, Push_Pointer_NS;
+   logic [DATA_WIDTH-1:0]  FIFO_REGISTERS[DATA_DEPTH-1:0];
+   int unsigned            i;
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+    
+    
+   initial begin : parameter_check
+      integer param_err_flg;
+      param_err_flg = 0;
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      if (DATA_WIDTH < 1) begin
+         param_err_flg = 1;
+         $display("ERROR: %m :\n  Invalid value (%d) for parameter DATA_WIDTH (legal range: greater than 1)", DATA_WIDTH );
+      end
+
+`line 83 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      if (DATA_DEPTH < 1) begin
+         param_err_flg = 1;
+         $display("ERROR: %m :\n  Invalid value (%d) for parameter DATA_DEPTH (legal range: greater than 1)", DATA_DEPTH );
+      end
+   end
+    
+
+`line 90 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+ 
+   cluster_clock_gating cg_cell
+   (
+     .clk_i     ( clk         ),
+     .en_i      (~gate_clock  ),
+     .test_en_i ( test_mode_i ),
+     .clk_o     ( clk_gated   )
+   );
+
+`line 99 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      
+
+
+`line 102 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+    
+   always_ff @(posedge clk, negedge rst_n)
+   begin
+       if(rst_n == 1'b0)
+       begin
+               CS              <= EMPTY;
+               Pop_Pointer_CS  <= {ADDR_DEPTH {1'b0}};
+               Push_Pointer_CS <= {ADDR_DEPTH {1'b0}};
+       end
+       else
+       begin
+               CS              <= NS;
+               Pop_Pointer_CS  <= Pop_Pointer_NS;
+               Push_Pointer_CS <= Push_Pointer_NS;
+       end
+   end
+
+
+`line 120 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+    
+   always_comb
+   begin
+      gate_clock      = 1'b0;
+
+`line 125 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      case(CS)
+
+`line 127 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      EMPTY:
+      begin
+          grant_o = 1'b1;
+          valid_o = 1'b0;
+
+`line 132 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          case(valid_i)
+          1'b0 :
+          begin
+                  NS              = EMPTY;
+                  Push_Pointer_NS = Push_Pointer_CS;
+                  Pop_Pointer_NS  = Pop_Pointer_CS;
+                  gate_clock      = 1'b1;
+          end
+
+`line 141 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          1'b1:
+          begin
+                  NS              = MIDDLE;
+                  Push_Pointer_NS = Push_Pointer_CS + 1'b1;
+                  Pop_Pointer_NS  = Pop_Pointer_CS;
+          end
+
+`line 148 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          endcase
+      end 
+
+`line 151 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      MIDDLE:
+      begin
+          grant_o = 1'b1;
+          valid_o = 1'b1;
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          case({valid_i,grant_i})
+
+`line 158 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          2'b01:
+          begin
+                  gate_clock      = 1'b1;
+
+`line 162 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  if((Pop_Pointer_CS == Push_Pointer_CS -1 ) || ((Pop_Pointer_CS == DATA_DEPTH-1) && (Push_Pointer_CS == 0) ))
+                          NS              = EMPTY;
+                  else
+                          NS              = MIDDLE;
+
+`line 167 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  Push_Pointer_NS = Push_Pointer_CS;
+
+`line 169 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  if(Pop_Pointer_CS == DATA_DEPTH-1)
+                          Pop_Pointer_NS  = 0;
+                  else
+                          Pop_Pointer_NS  = Pop_Pointer_CS + 1'b1;
+          end
+
+`line 175 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          2'b00 :
+          begin
+                  gate_clock      = 1'b1;
+                  NS              = MIDDLE;
+                  Push_Pointer_NS = Push_Pointer_CS;
+                  Pop_Pointer_NS  = Pop_Pointer_CS;
+          end
+
+`line 183 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          2'b11:
+          begin
+                  NS              = MIDDLE;
+
+`line 187 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  if(Push_Pointer_CS == DATA_DEPTH-1)
+                          Push_Pointer_NS = 0;
+                  else
+                          Push_Pointer_NS = Push_Pointer_CS + 1'b1;
+
+`line 192 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  if(Pop_Pointer_CS == DATA_DEPTH-1)
+                          Pop_Pointer_NS  = 0;
+                  else
+                          Pop_Pointer_NS  = Pop_Pointer_CS  + 1'b1;
+          end
+
+`line 198 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          2'b10:
+          begin
+                  if(( Push_Pointer_CS == Pop_Pointer_CS - 1) || ( (Push_Pointer_CS == DATA_DEPTH-1) && (Pop_Pointer_CS == 0) ))
+                          NS              = FULL;
+                  else
+                          NS        = MIDDLE;
+
+`line 205 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  if(Push_Pointer_CS == DATA_DEPTH - 1)
+                          Push_Pointer_NS = 0;
+                  else
+                          Push_Pointer_NS = Push_Pointer_CS + 1'b1;
+
+`line 210 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  Pop_Pointer_NS  = Pop_Pointer_CS;
+          end
+
+`line 213 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          endcase
+      end
+
+`line 216 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      FULL:
+      begin
+          grant_o     = 1'b0;
+          valid_o     = 1'b1;
+          gate_clock  = 1'b1;
+
+`line 222 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          case(grant_i)
+          1'b1:
+          begin
+                  NS              = MIDDLE;
+
+`line 227 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  Push_Pointer_NS = Push_Pointer_CS;
+
+`line 229 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+                  if(Pop_Pointer_CS == DATA_DEPTH-1)
+                          Pop_Pointer_NS  = 0;
+                  else
+                          Pop_Pointer_NS  = Pop_Pointer_CS  + 1'b1;
+          end
+
+`line 235 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+          1'b0:
+          begin
+                  NS              = FULL;
+                  Push_Pointer_NS = Push_Pointer_CS;
+                  Pop_Pointer_NS  = Pop_Pointer_CS;
+          end
+          endcase
+
+`line 243 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      end  
+
+`line 245 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      default :
+      begin
+          gate_clock      = 1'b1;
+          grant_o         = 1'b0;
+          valid_o         = 1'b0;
+          NS              = EMPTY;
+          Pop_Pointer_NS  = 0;
+          Push_Pointer_NS = 0;
+      end
+
+`line 255 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+      endcase
+   end
+
+`line 258 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+   always_ff @(posedge clk_gated, negedge rst_n)
+   begin
+      if(rst_n == 1'b0)
+      begin
+      for (i=0; i< DATA_DEPTH; i++)
+         FIFO_REGISTERS[i] <= {DATA_WIDTH {1'b0}};
+      end
+      else
+      begin
+         if((grant_o == 1'b1) && (valid_i == 1'b1))
+            FIFO_REGISTERS[Push_Pointer_CS] <= data_i;
+      end
+   end
+
+`line 272 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+   assign data_o = FIFO_REGISTERS[Pop_Pointer_CS];
+
+`line 274 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 0
+endmodule  
+
+`line 276 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/generic_fifo.sv" 2

@@ -1,0 +1,356 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+module apb_err_slv #(
+  parameter                       type req_t = logic,      
+  parameter                       type resp_t = logic,     
+  parameter int unsigned          RespWidth = 32'd32,      
+  parameter logic [RespWidth-1:0] RespData = 32'hBADCAB1E  
+) (
+  input req_t slv_req_i,
+  output resp_t slv_resp_o
+);
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  assign slv_resp_o.prdata = RespData;
+  assign slv_resp_o.pready = 1'b1;
+   
+   
+  assign slv_resp_o.pslverr = (slv_req_i.psel & slv_req_i.penable)?
+                              apb_pkg::RESP_SLVERR : apb_pkg::RESP_OKAY;
+
+`line 42 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+endmodule
+
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+ 
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+
+`line 17 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+`line 20 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+`line 23 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+`line 48 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+`line 51 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 0
+ 
+ 
+
+
+ 
+
+
+
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/typedef.svh" 2
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+ 
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 1
+ 
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+`line 15 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+`line 18 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+`line 50 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 62 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+`line 65 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 72 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+`line 94 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+`line 97 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 106 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+
+`line 109 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 0
+ 
+ 
+ 
+ 
+ 
+
+
+
+`line 117 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/include/apb/assign.svh" 2
+`line 46 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+
+
+`line 48 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+module apb_err_slv_intf #(
+  parameter int unsigned          APB_ADDR_WIDTH = 0,
+  parameter int unsigned          APB_DATA_WIDTH = 0,
+  parameter logic [APB_DATA_WIDTH-1:0] RespData  = 32'hBADCAB1E
+) (
+  APB.Slave slv
+);
+
+`line 56 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  typedef logic [APB_ADDR_WIDTH-1:0] addr_t;
+  typedef logic [APB_DATA_WIDTH-1:0] data_t;
+  typedef logic [APB_DATA_WIDTH/8-1:0] strb_t;
+
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  typedef struct packed {                                     
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    addr_t          paddr;                                    
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    apb_pkg::prot_t pprot;                                    
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    logic           psel;                                     
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    logic           penable;                                  
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    logic           pwrite;                                   
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    data_t          pwdata;                                   
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    strb_t          pstrb;                                    
+`line 60 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  } apb_req_t;
+  
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  typedef struct packed {                      
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    logic  pready;                             
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    data_t prdata;                             
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    logic  pslverr;                            
+`line 61 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    } apb_resp_t;
+
+`line 63 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  apb_req_t slv_req;
+  apb_resp_t slv_resp;
+
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  assign slv_req = '{                       
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    paddr:   slv.paddr,                     
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    pprot:   slv.pprot,                     
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    psel:    slv.psel,                      
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    penable: slv.penable,                   
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    pwrite:  slv.pwrite,                    
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    pwdata:  slv.pwdata,                    
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+    pstrb:   slv.pstrb                      
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  };
+  
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  assign slv.pready  = slv_resp.pready;      
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  assign slv.prdata  = slv_resp.prdata;      
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  assign slv.pslverr = slv_resp.pslverr;
+
+`line 69 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+  apb_err_slv #(
+    .req_t     ( apb_req_t      ),
+    .resp_t    ( apb_resp_t     ),
+    .RespWidth ( APB_DATA_WIDTH ),
+    .RespData  ( RespData       )
+  ) i_apb_err_slv (
+    .slv_req_i  ( slv_req  ),
+    .slv_resp_o ( slv_resp )
+  );
+
+`line 79 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 0
+endmodule
+
+`line 81 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_err_slv.sv" 2

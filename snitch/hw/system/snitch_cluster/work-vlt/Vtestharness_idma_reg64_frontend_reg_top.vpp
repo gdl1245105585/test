@@ -1,0 +1,734 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+ 
+
+
+`line 8 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+ 
+`line 8 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 1
+ 
+`line 2 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+
+`line 9 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+  
+   
+     
+     
+       
+       
+    
+  
+
+
+
+
+
+
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+ 
+ 
+   
+
+
+
+
+`line 37 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+`line 40 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 53 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+ 
+
+
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 67 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+`line 92 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+`line 105 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 115 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+`line 121 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 131 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 138 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 145 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+`line 156 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+`line 165 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 182 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 189 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+
+
+`line 196 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+ 
+
+
+
+
+`line 201 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 0
+  
+
+`line 203 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/include/common_cells/assertions.svh" 2
+`line 8 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+
+
+`line 10 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+module idma_reg64_frontend_reg_top #(
+    parameter type reg_req_t = logic,
+    parameter type reg_rsp_t = logic,
+    parameter int AW = 6
+) (
+  input clk_i,
+  input rst_ni,
+  input  reg_req_t reg_req_i,
+  output reg_rsp_t reg_rsp_o,
+   
+  output idma_reg64_frontend_reg_pkg::idma_reg64_frontend_reg2hw_t reg2hw,  
+  input  idma_reg64_frontend_reg_pkg::idma_reg64_frontend_hw2reg_t hw2reg,  
+
+
+`line 24 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  input devmode_i  
+);
+
+`line 28 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  import idma_reg64_frontend_reg_pkg::* ;
+
+`line 30 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  localparam int DW = 64;
+  localparam int DBW = DW/8;                     
+
+`line 33 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  logic           reg_we;
+  logic           reg_re;
+  logic [AW-1:0]  reg_addr;
+  logic [DW-1:0]  reg_wdata;
+  logic [DBW-1:0] reg_be;
+  logic [DW-1:0]  reg_rdata;
+  logic           reg_error;
+
+`line 42 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  logic          addrmiss, wr_err;
+
+`line 44 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  logic [DW-1:0] reg_rdata_next;
+
+`line 46 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  reg_req_t  reg_intf_req;
+  reg_rsp_t  reg_intf_rsp;
+
+
+`line 51 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign reg_intf_req = reg_req_i;
+  assign reg_rsp_o = reg_intf_rsp;
+
+
+`line 55 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign reg_we = reg_intf_req.valid & reg_intf_req.write;
+  assign reg_re = reg_intf_req.valid & ~reg_intf_req.write;
+  assign reg_addr = reg_intf_req.addr;
+  assign reg_wdata = reg_intf_req.wdata;
+  assign reg_be = reg_intf_req.wstrb;
+  assign reg_intf_rsp.rdata = reg_rdata;
+  assign reg_intf_rsp.error = reg_error;
+  assign reg_intf_rsp.ready = 1'b1;
+
+`line 64 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign reg_rdata = reg_rdata_next ;
+  assign reg_error = (devmode_i & addrmiss) | wr_err;
+
+
+`line 68 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+   
+   
+  logic [63:0] src_addr_qs;
+  logic [63:0] src_addr_wd;
+  logic src_addr_we;
+  logic [63:0] dst_addr_qs;
+  logic [63:0] dst_addr_wd;
+  logic dst_addr_we;
+  logic [63:0] num_bytes_qs;
+  logic [63:0] num_bytes_wd;
+  logic num_bytes_we;
+  logic conf_decouple_qs;
+  logic conf_decouple_wd;
+  logic conf_decouple_we;
+  logic conf_deburst_qs;
+  logic conf_deburst_wd;
+  logic conf_deburst_we;
+  logic conf_serialize_qs;
+  logic conf_serialize_wd;
+  logic conf_serialize_we;
+  logic status_qs;
+  logic status_re;
+  logic [63:0] next_id_qs;
+  logic next_id_re;
+  logic [63:0] done_qs;
+  logic done_re;
+
+`line 96 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+   
+
+`line 99 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  prim_subreg #(
+    .DW      (64),
+    .SWACCESS("RW"),
+    .RESVAL  (64'h0)
+  ) u_src_addr (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+`line 107 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .we     (src_addr_we),
+    .wd     (src_addr_wd),
+
+`line 111 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .de     (1'b0),
+    .d      ('0  ),
+
+`line 115 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qe     (),
+    .q      (reg2hw.src_addr.q ),
+
+`line 119 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qs     (src_addr_qs)
+  );
+
+
+`line 124 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+
+`line 126 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  prim_subreg #(
+    .DW      (64),
+    .SWACCESS("RW"),
+    .RESVAL  (64'h0)
+  ) u_dst_addr (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+`line 134 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .we     (dst_addr_we),
+    .wd     (dst_addr_wd),
+
+`line 138 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .de     (1'b0),
+    .d      ('0  ),
+
+`line 142 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qe     (),
+    .q      (reg2hw.dst_addr.q ),
+
+`line 146 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qs     (dst_addr_qs)
+  );
+
+
+`line 151 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+
+`line 153 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  prim_subreg #(
+    .DW      (64),
+    .SWACCESS("RW"),
+    .RESVAL  (64'h0)
+  ) u_num_bytes (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+`line 161 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .we     (num_bytes_we),
+    .wd     (num_bytes_wd),
+
+`line 165 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .de     (1'b0),
+    .d      ('0  ),
+
+`line 169 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qe     (),
+    .q      (reg2hw.num_bytes.q ),
+
+`line 173 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qs     (num_bytes_qs)
+  );
+
+
+`line 178 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+
+`line 180 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
+  ) u_conf_decouple (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+`line 189 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .we     (conf_decouple_we),
+    .wd     (conf_decouple_wd),
+
+`line 193 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .de     (1'b0),
+    .d      ('0  ),
+
+`line 197 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qe     (),
+    .q      (reg2hw.conf.decouple.q ),
+
+`line 201 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qs     (conf_decouple_qs)
+  );
+
+
+`line 206 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
+  ) u_conf_deburst (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+`line 215 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .we     (conf_deburst_we),
+    .wd     (conf_deburst_wd),
+
+`line 219 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .de     (1'b0),
+    .d      ('0  ),
+
+`line 223 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qe     (),
+    .q      (reg2hw.conf.deburst.q ),
+
+`line 227 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qs     (conf_deburst_qs)
+  );
+
+
+`line 232 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  prim_subreg #(
+    .DW      (1),
+    .SWACCESS("RW"),
+    .RESVAL  (1'h0)
+  ) u_conf_serialize (
+    .clk_i   (clk_i    ),
+    .rst_ni  (rst_ni  ),
+
+`line 241 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .we     (conf_serialize_we),
+    .wd     (conf_serialize_wd),
+
+`line 245 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .de     (1'b0),
+    .d      ('0  ),
+
+`line 249 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qe     (),
+    .q      (reg2hw.conf.serialize.q ),
+
+`line 253 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+     
+    .qs     (conf_serialize_qs)
+  );
+
+
+`line 258 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+
+`line 260 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  prim_subreg_ext #(
+    .DW    (1)
+  ) u_status (
+    .re     (status_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.status.d),
+    .qre    (),
+    .qe     (),
+    .q      (),
+    .qs     (status_qs)
+  );
+
+
+`line 274 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+
+`line 276 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  prim_subreg_ext #(
+    .DW    (64)
+  ) u_next_id (
+    .re     (next_id_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.next_id.d),
+    .qre    (reg2hw.next_id.re),
+    .qe     (),
+    .q      (reg2hw.next_id.q ),
+    .qs     (next_id_qs)
+  );
+
+
+`line 290 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+
+`line 292 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  prim_subreg_ext #(
+    .DW    (64)
+  ) u_done (
+    .re     (done_re),
+    .we     (1'b0),
+    .wd     ('0),
+    .d      (hw2reg.done.d),
+    .qre    (reg2hw.done.re),
+    .qe     (),
+    .q      (reg2hw.done.q ),
+    .qs     (done_qs)
+  );
+
+
+
+
+`line 308 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  logic [6:0] addr_hit;
+  always_comb begin
+    addr_hit = '0;
+    addr_hit[0] = (reg_addr == IDMA_REG64_FRONTEND_SRC_ADDR_OFFSET);
+    addr_hit[1] = (reg_addr == IDMA_REG64_FRONTEND_DST_ADDR_OFFSET);
+    addr_hit[2] = (reg_addr == IDMA_REG64_FRONTEND_NUM_BYTES_OFFSET);
+    addr_hit[3] = (reg_addr == IDMA_REG64_FRONTEND_CONF_OFFSET);
+    addr_hit[4] = (reg_addr == IDMA_REG64_FRONTEND_STATUS_OFFSET);
+    addr_hit[5] = (reg_addr == IDMA_REG64_FRONTEND_NEXT_ID_OFFSET);
+    addr_hit[6] = (reg_addr == IDMA_REG64_FRONTEND_DONE_OFFSET);
+  end
+
+`line 320 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign addrmiss = (reg_re || reg_we) ? ~|addr_hit : 1'b0 ;
+
+`line 322 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  always_comb begin
+    wr_err = (reg_we &
+              ((addr_hit[0] & (|(IDMA_REG64_FRONTEND_PERMIT[0] & ~reg_be))) |
+               (addr_hit[1] & (|(IDMA_REG64_FRONTEND_PERMIT[1] & ~reg_be))) |
+               (addr_hit[2] & (|(IDMA_REG64_FRONTEND_PERMIT[2] & ~reg_be))) |
+               (addr_hit[3] & (|(IDMA_REG64_FRONTEND_PERMIT[3] & ~reg_be))) |
+               (addr_hit[4] & (|(IDMA_REG64_FRONTEND_PERMIT[4] & ~reg_be))) |
+               (addr_hit[5] & (|(IDMA_REG64_FRONTEND_PERMIT[5] & ~reg_be))) |
+               (addr_hit[6] & (|(IDMA_REG64_FRONTEND_PERMIT[6] & ~reg_be)))));
+  end
+
+`line 334 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign src_addr_we = addr_hit[0] & reg_we & !reg_error;
+  assign src_addr_wd = reg_wdata[63:0];
+
+`line 337 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign dst_addr_we = addr_hit[1] & reg_we & !reg_error;
+  assign dst_addr_wd = reg_wdata[63:0];
+
+`line 340 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign num_bytes_we = addr_hit[2] & reg_we & !reg_error;
+  assign num_bytes_wd = reg_wdata[63:0];
+
+`line 343 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign conf_decouple_we = addr_hit[3] & reg_we & !reg_error;
+  assign conf_decouple_wd = reg_wdata[0];
+
+`line 346 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign conf_deburst_we = addr_hit[3] & reg_we & !reg_error;
+  assign conf_deburst_wd = reg_wdata[1];
+
+`line 349 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign conf_serialize_we = addr_hit[3] & reg_we & !reg_error;
+  assign conf_serialize_wd = reg_wdata[2];
+
+`line 352 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign status_re = addr_hit[4] & reg_re & !reg_error;
+
+`line 354 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign next_id_re = addr_hit[5] & reg_re & !reg_error;
+
+`line 356 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+  assign done_re = addr_hit[6] & reg_re & !reg_error;
+
+`line 358 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  always_comb begin
+    reg_rdata_next = '0;
+    unique case (1'b1)
+      addr_hit[0]: begin
+        reg_rdata_next[63:0] = src_addr_qs;
+      end
+
+`line 366 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+      addr_hit[1]: begin
+        reg_rdata_next[63:0] = dst_addr_qs;
+      end
+
+`line 370 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+      addr_hit[2]: begin
+        reg_rdata_next[63:0] = num_bytes_qs;
+      end
+
+`line 374 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+      addr_hit[3]: begin
+        reg_rdata_next[0] = conf_decouple_qs;
+        reg_rdata_next[1] = conf_deburst_qs;
+        reg_rdata_next[2] = conf_serialize_qs;
+      end
+
+`line 380 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+      addr_hit[4]: begin
+        reg_rdata_next[0] = status_qs;
+      end
+
+`line 384 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+      addr_hit[5]: begin
+        reg_rdata_next[63:0] = next_id_qs;
+      end
+
+`line 388 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+      addr_hit[6]: begin
+        reg_rdata_next[63:0] = done_qs;
+      end
+
+`line 392 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+      default: begin
+        reg_rdata_next = '1;
+      end
+    endcase
+  end
+
+`line 398 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+
+`line 400 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+   
+  logic unused_wdata;
+  logic unused_be;
+  assign unused_wdata = ^reg_wdata;
+  assign unused_be = ^reg_be;
+
+`line 407 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+   
+  
+`line 408 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+                                                                         
+`line 408 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+                         
+`line 408 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+                                                                                
+`line 408 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+                                                     
+`line 408 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+                                                                                      
+
+
+`line 410 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 0
+endmodule
+
+`line 412 "/repo/hw/ip/future/src/idma_reg64_frontend_reg_top.sv" 2

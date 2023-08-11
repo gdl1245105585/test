@@ -1,0 +1,93 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 1
+ 
+
+`line 3 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 12 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+ 
+interface APB #(
+  parameter int unsigned ADDR_WIDTH = 32'd32,
+  parameter int unsigned DATA_WIDTH = 32'd32
+);
+  localparam int unsigned STRB_WIDTH = cf_math_pkg::ceil_div(DATA_WIDTH, 8);
+  typedef logic [ADDR_WIDTH-1:0] addr_t;
+  typedef logic [DATA_WIDTH-1:0] data_t;
+  typedef logic [STRB_WIDTH-1:0] strb_t;
+
+`line 22 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+  addr_t          paddr;
+  apb_pkg::prot_t pprot;
+  logic           psel;
+  logic           penable;
+  logic           pwrite;
+  data_t          pwdata;
+  strb_t          pstrb;
+  logic           pready;
+  data_t          prdata;
+  logic           pslverr;
+
+`line 33 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+  modport Master (
+    output paddr, pprot, psel, penable, pwrite, pwdata, pstrb,
+    input  pready, prdata, pslverr
+  );
+
+`line 38 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+  modport Slave (
+    input  paddr, pprot, psel, penable, pwrite, pwdata, pstrb,
+    output pready, prdata, pslverr
+  );
+
+`line 43 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+endinterface
+
+`line 45 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+ 
+interface APB_DV #(
+  parameter int unsigned ADDR_WIDTH = 32'd32,
+  parameter int unsigned DATA_WIDTH = 32'd32
+) (
+  input logic clk_i
+);
+  localparam int unsigned STRB_WIDTH = cf_math_pkg::ceil_div(DATA_WIDTH, 8);
+  typedef logic [ADDR_WIDTH-1:0] addr_t;
+  typedef logic [DATA_WIDTH-1:0] data_t;
+  typedef logic [STRB_WIDTH-1:0] strb_t;
+
+`line 57 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+  addr_t          paddr;
+  apb_pkg::prot_t pprot;
+  logic           psel;
+  logic           penable;
+  logic           pwrite;
+  data_t          pwdata;
+  strb_t          pstrb;
+  logic           pready;
+  data_t          prdata;
+  logic           pslverr;
+
+`line 68 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+  modport Master (
+    output paddr, pprot, psel, penable, pwrite, pwdata, pstrb,
+    input  pready, prdata, pslverr
+  );
+
+`line 73 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+  modport Slave (
+    input  paddr, pprot, psel, penable, pwrite, pwdata, pstrb,
+    output pready, prdata, pslverr
+  );
+
+`line 78 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 0
+endinterface
+
+`line 80 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/apb-9bfb541b168c4f61/src/apb_intf.sv" 2

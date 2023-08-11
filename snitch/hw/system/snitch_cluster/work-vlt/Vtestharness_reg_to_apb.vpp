@@ -1,0 +1,89 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+ 
+
+`line 7 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+module reg_to_apb #(
+   
+  parameter type reg_req_t = logic,
+   
+  parameter type reg_rsp_t = logic,
+   
+  parameter type apb_req_t = logic,
+   
+  parameter type apb_rsp_t = logic
+)
+(
+  input  logic     clk_i,
+  input  logic     rst_ni,
+
+`line 21 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+   
+  input  reg_req_t reg_req_i,
+  output reg_rsp_t reg_rsp_o,
+
+`line 25 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+   
+  output apb_req_t apb_req_o,
+  input  apb_rsp_t apb_rsp_i
+);
+
+`line 30 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+   
+  typedef enum logic {SETUP, ACCESS} state_e;
+  state_e state_d, state_q;
+
+`line 34 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+   
+  assign apb_req_o.paddr  = reg_req_i.addr;
+  assign apb_req_o.pwrite = reg_req_i.write;
+  assign apb_req_o.pwdata = reg_req_i.wdata;
+  assign apb_req_o.psel   = reg_req_i.valid;
+  assign apb_req_o.pstrb  = reg_req_i.wstrb;
+
+`line 41 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+  assign reg_rsp_o.error  = apb_rsp_i.pslverr;
+  assign reg_rsp_o.rdata  = apb_rsp_i.prdata;
+
+`line 44 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+   
+  assign apb_req_o.pprot   = 3'b010;
+
+`line 47 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+   
+  always_comb begin : apb_fsm
+    apb_req_o.penable = 1'b0;
+    reg_rsp_o.ready   = 1'b0;
+    state_d           = state_q;
+    unique case (state_q)
+       
+      SETUP: if (reg_req_i.valid) state_d = ACCESS;
+       
+      ACCESS: begin
+        apb_req_o.penable = 1'b1;
+        reg_rsp_o.ready   = apb_rsp_i.pready;
+        if (apb_rsp_i.pready) state_d = SETUP;
+      end
+       
+      default: state_d = SETUP;
+    endcase
+  end
+
+`line 66 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+  always_ff @(posedge clk_i or negedge rst_ni) begin
+    if (!rst_ni) begin
+      state_q <= SETUP;
+    end else begin
+      state_q <= state_d;
+    end
+  end
+
+`line 74 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 0
+endmodule
+
+`line 76 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_to_apb.sv" 2

@@ -1,0 +1,143 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+ 
+
+`line 9 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+module idma_reg64_frontend #(
+     
+    parameter int  unsigned DmaAddrWidth     = -1,
+     
+    parameter type          dma_regs_req_t   = logic,
+     
+    parameter type          dma_regs_rsp_t   = logic,
+     
+    parameter type          burst_req_t      = logic
+) (
+    input  logic          clk_i,
+    input  logic          rst_ni,
+     
+    input  dma_regs_req_t dma_ctrl_req_i,
+    output dma_regs_rsp_t dma_ctrl_rsp_o,
+     
+    output burst_req_t    burst_req_o,
+    output logic          valid_o,
+    input  logic          ready_i,
+    input  logic          backend_idle_i,
+    input  logic          trans_complete_i
+);
+
+`line 32 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+    localparam int unsigned DmaRegisterWidth = 64;
+
+`line 34 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+    
+
+`line 36 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+ 
+    idma_reg64_frontend_reg_pkg::idma_reg64_frontend_reg2hw_t dma_reg2hw;
+    idma_reg64_frontend_reg_pkg::idma_reg64_frontend_hw2reg_t dma_hw2reg;
+
+`line 40 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+     
+    logic [DmaAddrWidth-1:0] next_id, done_id;
+    logic issue;
+
+`line 44 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+    dma_regs_rsp_t dma_ctrl_rsp_tmp;
+
+`line 46 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+    
+
+`line 48 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+ 
+    idma_reg64_frontend_reg_top #(
+        .reg_req_t( dma_regs_req_t ),
+        .reg_rsp_t( dma_regs_rsp_t )
+    ) i_dma_conf_regs (
+        .clk_i,
+        .rst_ni,
+        .reg_req_i ( dma_ctrl_req_i   ),
+        .reg_rsp_o ( dma_ctrl_rsp_tmp ),
+        .reg2hw    ( dma_reg2hw       ),
+        .hw2reg    ( dma_hw2reg       ),
+        .devmode_i ( 1'b0             )  
+    );
+
+`line 62 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+    
+
+`line 64 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+ 
+    always_comb begin : proc_process_regs
+
+`line 67 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+         
+        valid_o              = '0;
+        dma_hw2reg.next_id.d = '0;
+        dma_hw2reg.done.d    = '0;
+        dma_hw2reg.status.d  = ~backend_idle_i;
+
+`line 73 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+        dma_ctrl_rsp_o = dma_ctrl_rsp_tmp;
+
+`line 75 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+         
+        if (dma_reg2hw.next_id.re) begin
+           if (dma_reg2hw.num_bytes.q != '0) begin
+                valid_o = 1'b1;
+                dma_hw2reg.next_id.d = next_id;
+                dma_ctrl_rsp_o.ready = ready_i;
+           end
+        end
+
+`line 84 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+         
+        dma_hw2reg.done.d = done_id;
+    end : proc_process_regs
+
+
+`line 89 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+     
+    always_comb begin : hw_req_conv
+        burst_req_o             = '0;
+        burst_req_o.src         = dma_reg2hw.src_addr.q;
+        burst_req_o.dst         = dma_reg2hw.dst_addr.q;
+        burst_req_o.num_bytes   = dma_reg2hw.num_bytes.q;
+        burst_req_o.burst_src   = axi_pkg::BURST_INCR;
+        burst_req_o.burst_dst   = axi_pkg::BURST_INCR;
+        burst_req_o.cache_src   = axi_pkg::CACHE_MODIFIABLE;
+        burst_req_o.cache_dst   = axi_pkg::CACHE_MODIFIABLE;
+        burst_req_o.decouple_rw = dma_reg2hw.conf.decouple.q;
+        burst_req_o.deburst     = dma_reg2hw.conf.deburst.q;
+        burst_req_o.serialize   = dma_reg2hw.conf.serialize.q;
+    end : hw_req_conv
+
+`line 104 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+     
+    assign issue = ready_i && valid_o;
+
+`line 107 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+     
+    idma_tf_id_gen #(
+        .IdWidth      ( DmaRegisterWidth  )
+    ) i_idma_tf_id_gen (
+        .clk_i,
+        .rst_ni,
+        .issue_i      ( issue             ),
+        .retire_i     ( trans_complete_i ),
+        .next_o       ( next_id           ),
+        .completed_o  ( done_id           )
+    );
+
+`line 119 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 0
+endmodule : idma_reg64_frontend
+
+`line 121 "/repo/hw/ip/future/src/idma_reg64_frontend.sv" 2

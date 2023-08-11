@@ -1,0 +1,35 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_err_slv.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_err_slv.sv" 0
+ 
+ 
+
+`line 8 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_err_slv.sv" 0
+ 
+
+`line 10 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_err_slv.sv" 0
+module reg_err_slv #(
+  parameter int unsigned    DW        = -1,
+  parameter type            payload_t = logic [DW-1:0],
+  parameter payload_t       ERR_VAL   = '0,
+  parameter type            req_t     = logic,
+  parameter type            rsp_t     = logic
+) (
+  input  req_t               req_i,
+  output rsp_t               rsp_o
+);
+
+`line 21 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_err_slv.sv" 0
+   
+  assign rsp_o.rdata = ERR_VAL;
+  assign rsp_o.error = 1'b1;
+  assign rsp_o.ready = 1'b1;
+
+`line 26 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_err_slv.sv" 0
+endmodule  
+
+`line 28 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/register_interface-a4fa2c01efc23843/src/reg_err_slv.sv" 2

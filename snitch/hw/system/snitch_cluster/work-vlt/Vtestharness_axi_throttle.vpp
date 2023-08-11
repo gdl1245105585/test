@@ -1,0 +1,117 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+ 
+ 
+
+`line 8 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+ 
+ 
+ 
+ 
+module axi_throttle #(
+     
+    parameter int unsigned MaxNumAwPending = 1,
+     
+    parameter int unsigned MaxNumArPending = 1,
+     
+    parameter type axi_req_t = logic,
+     
+    parameter type axi_rsp_t = logic,
+     
+    parameter int unsigned WCntWidth = cf_math_pkg::idx_width(MaxNumAwPending),
+     
+    parameter int unsigned RCntWidth = cf_math_pkg::idx_width(MaxNumArPending),
+     
+    parameter type w_credit_t = logic [WCntWidth-1:0],
+     
+    parameter type r_credit_t = logic [RCntWidth-1:0]
+) (
+     
+    input  logic clk_i,
+     
+    input  logic rst_ni,
+
+`line 35 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    input  axi_req_t req_i,
+     
+    output axi_rsp_t rsp_o,
+     
+    output axi_req_t req_o,
+     
+    input  axi_rsp_t rsp_i,
+
+`line 44 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    input  w_credit_t w_credit_i,
+     
+    input  r_credit_t r_credit_i
+);
+
+`line 50 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    logic throttled_aw_valid;
+    logic throttled_ar_valid;
+
+`line 54 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    logic throttled_aw_ready;
+    logic throttled_ar_ready;
+
+`line 58 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    stream_throttle #(
+        .MaxNumPending ( MaxNumAwPending  )
+    ) i_stream_throttle_aw (
+        .clk_i,
+        .rst_ni,
+        .req_valid_i ( req_i.aw_valid     ),
+        .req_valid_o ( throttled_aw_valid ),
+        .req_ready_i ( rsp_i.aw_ready     ),
+        .req_ready_o ( throttled_aw_ready ),
+        .rsp_valid_i ( rsp_i.b_valid      ),
+        .rsp_ready_i ( req_i.b_ready      ),
+        .credit_i    ( w_credit_i         )
+    );
+
+`line 73 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    stream_throttle #(
+        .MaxNumPending ( MaxNumArPending  )
+    ) i_stream_throttle_ar (
+        .clk_i,
+        .rst_ni,
+        .req_valid_i ( req_i.ar_valid               ),
+        .req_valid_o ( throttled_ar_valid           ),
+        .req_ready_i ( rsp_i.ar_ready               ),
+        .req_ready_o ( throttled_ar_ready           ),
+        .rsp_valid_i ( rsp_i.r_valid & rsp_i.r.last ),
+        .rsp_ready_i ( req_i.r_ready                ),
+        .credit_i    ( r_credit_i                   )
+    );
+
+`line 88 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    always_comb begin : gen_throttled_req_conn
+        req_o          = req_i;
+        req_o.aw_valid = throttled_aw_valid;
+        req_o.ar_valid = throttled_ar_valid;
+    end
+
+`line 95 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+     
+    always_comb begin : gen_throttled_rsp_conn
+        rsp_o          = rsp_i;
+        rsp_o.aw_ready = throttled_aw_ready;
+        rsp_o.ar_ready = throttled_ar_ready;
+    end
+
+`line 102 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 0
+endmodule : axi_throttle
+
+`line 104 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/axi-0cd733fa15e5817b/src/axi_throttle.sv" 2

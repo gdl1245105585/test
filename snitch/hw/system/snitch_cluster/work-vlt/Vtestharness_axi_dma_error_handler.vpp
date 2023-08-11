@@ -1,0 +1,235 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+ 
+
+`line 7 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+ 
+ 
+
+`line 10 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+module axi_dma_error_handler #(
+    parameter int unsigned ADDR_WIDTH         = -1,
+    parameter int unsigned BUFFER_DEPTH       = -1,
+    parameter int unsigned AXI_REQ_FIFO_DEPTH = -1,
+    parameter bit          WAIT_FOR_READ      =  1,
+    parameter type         axi_req_t          = logic,
+    parameter type         axi_res_t          = logic
+) (
+    input  logic                     clk_i,
+    input  logic                     rst_ni,
+     
+    output axi_req_t                 axi_dma_req_o,
+    input  axi_res_t                 axi_dma_res_i,
+     
+    input  axi_req_t                 axi_dma_req_i,
+    output axi_res_t                 axi_dma_res_o,
+     
+    output logic [ADDR_WIDTH-1:0]    w_error_addr_o,
+    output logic                     w_error_valid_o,
+    input  logic                     w_error_ready_i,
+     
+    output logic [ADDR_WIDTH-1:0]    r_error_addr_o,
+    output logic                     r_error_valid_o,
+    input  logic                     r_error_ready_i
+);
+
+`line 36 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+    logic mask_write;
+
+`line 38 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+     
+     
+     
+    logic [ADDR_WIDTH-1:0] current_ar_addr;
+     
+    logic ar_queue_push;
+    logic ar_queue_pop;
+
+`line 48 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+    fifo_v3 #(
+        .FALL_THROUGH  ( 1'b0                 ),
+        .DATA_WIDTH    ( ADDR_WIDTH           ),
+        .DEPTH         ( AXI_REQ_FIFO_DEPTH   )
+    ) i_fifo_ar_queue (
+        .clk_i         ( clk_i                  ),
+        .rst_ni        ( rst_ni                 ),
+        .flush_i       ( 1'b0                   ),
+        .testmode_i    ( 1'b0                   ),
+        .full_o        ( ),
+        .empty_o       ( ),
+        .usage_o       ( ),
+        .data_i        ( axi_dma_req_i.ar.addr  ),
+        .push_i        ( ar_queue_push          ),
+        .data_o        ( current_ar_addr        ),
+        .pop_i         ( ar_queue_pop           )
+    );
+
+`line 67 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+    assign ar_queue_push = axi_dma_req_o.ar_valid && axi_dma_res_o.ar_ready;
+    assign ar_queue_pop  = axi_dma_req_o.r_ready  && axi_dma_res_o.r_valid && axi_dma_res_o.r.last;
+
+`line 72 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+     
+     
+     
+    logic [ADDR_WIDTH-1:0] current_aw_addr;
+     
+    logic aw_queue_push;
+    logic aw_queue_pop;
+
+`line 82 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+    fifo_v3 #(
+        .FALL_THROUGH  ( 1'b0                 ),
+        .DATA_WIDTH    ( ADDR_WIDTH           ),
+        .DEPTH         ( AXI_REQ_FIFO_DEPTH   )
+    ) i_fifo_aw_queue (
+        .clk_i         ( clk_i                  ),
+        .rst_ni        ( rst_ni                 ),
+        .flush_i       ( 1'b0                   ),
+        .testmode_i    ( 1'b0                   ),
+        .full_o        ( ),
+        .empty_o       ( ),
+        .usage_o       ( ),
+        .data_i        ( axi_dma_req_i.aw.addr  ),
+        .push_i        ( aw_queue_push          ),
+        .data_o        ( current_aw_addr        ),
+        .pop_i         ( aw_queue_pop           )
+    );
+
+`line 101 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+    assign aw_queue_push = axi_dma_req_o.aw_valid && axi_dma_res_o.aw_ready;
+    assign aw_queue_pop  = axi_dma_req_o.b_ready  && axi_dma_res_o.b_valid;
+
+`line 106 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+     
+    logic read_error;
+
+`line 111 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+    always_comb begin : proc_read_errors
+
+`line 113 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        r_error_addr_o  =  '0;
+        r_error_valid_o = 1'b0;
+
+`line 117 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        read_error = axi_dma_req_o.r_ready &
+            axi_dma_res_o.r_valid & (axi_dma_res_o.r.resp != 2'b00);
+
+`line 121 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        if (read_error == 1'b1) begin
+            r_error_valid_o = 1'b1;
+            r_error_addr_o  = current_ar_addr;
+        end
+
+`line 127 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+    end
+
+`line 129 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+     
+    logic write_error;
+
+`line 134 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+    always_comb begin : proc_write_errors
+
+`line 136 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        w_error_addr_o  =  '0;
+        w_error_valid_o = 1'b0;
+
+`line 140 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        write_error =
+          axi_dma_req_o.b_ready & axi_dma_res_o.b_valid & (axi_dma_res_o.b.resp != 2'b00);
+
+`line 144 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        if (write_error == 1'b1) begin
+            w_error_valid_o = 1'b1;
+            w_error_addr_o  = current_aw_addr;
+        end
+
+`line 150 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+    end
+
+`line 152 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+     
+    always_comb begin : proc_req_modifier
+
+`line 157 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        axi_dma_req_o = axi_dma_req_i;
+
+`line 160 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        if (mask_write == 1'b1) axi_dma_req_o.w.strb = '0;
+
+`line 163 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+         
+        if (WAIT_FOR_READ == 1'b1) begin
+            axi_dma_req_o.aw_valid = axi_dma_req_i.aw_valid && axi_dma_req_i.w_valid;
+        end
+
+`line 169 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        axi_dma_req_o.r_ready  = axi_dma_req_i.r_ready  && r_error_ready_i;
+
+`line 172 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        axi_dma_req_o.b_ready = w_error_ready_i;
+
+`line 175 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+    end
+
+`line 177 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+     
+     
+     
+    always_comb begin : proc_res_modifier
+
+`line 182 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        axi_dma_res_o = axi_dma_res_i;
+
+`line 185 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+         
+        if (WAIT_FOR_READ == 1'b1) begin
+            axi_dma_res_o.aw_ready = axi_dma_res_i.aw_ready && axi_dma_req_i.w_valid;
+        end
+
+`line 191 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+         
+        axi_dma_res_o.r_valid  = axi_dma_res_i.r_valid  && r_error_ready_i;
+
+`line 194 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+    end
+
+`line 196 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 0
+endmodule
+
+`line 198 "/repo/hw/ip/snitch_dma/src/axi_dma_error_handler.sv" 2

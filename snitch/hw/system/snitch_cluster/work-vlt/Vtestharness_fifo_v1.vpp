@@ -1,0 +1,63 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/fifo_v1.sv" 1
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+`line 11 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/fifo_v1.sv" 0
+ 
+
+`line 13 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/fifo_v1.sv" 0
+/*verilator lint_off DECLFILENAME*/ 
+module fifo #(
+    parameter bit          FALL_THROUGH = 1'b0,  
+    parameter int unsigned DATA_WIDTH   = 32,    
+    parameter int unsigned DEPTH        = 8,     
+    parameter int unsigned THRESHOLD    = 1,     
+    parameter type dtype                = logic [DATA_WIDTH-1:0]
+)(
+    input  logic  clk_i,             
+    input  logic  rst_ni,            
+    input  logic  flush_i,           
+    input  logic  testmode_i,        
+     
+    output logic  full_o,            
+    output logic  empty_o,           
+    output logic  threshold_o,       
+     
+    input  dtype  data_i,            
+    input  logic  push_i,            
+     
+    output dtype  data_o,            
+    input  logic  pop_i              
+);
+    fifo_v2 #(
+        .FALL_THROUGH ( FALL_THROUGH ),
+        .DATA_WIDTH   ( DATA_WIDTH   ),
+        .DEPTH        ( DEPTH        ),
+        .ALM_FULL_TH  ( THRESHOLD    ),
+        .dtype        ( dtype        )
+    ) impl (
+        .clk_i       ( clk_i       ),
+        .rst_ni      ( rst_ni      ),
+        .flush_i     ( flush_i     ),
+        .testmode_i  ( testmode_i  ),
+        .full_o      ( full_o      ),
+        .empty_o     ( empty_o     ),
+        .alm_full_o  ( threshold_o ),
+        .alm_empty_o (             ),
+        .data_i      ( data_i      ),
+        .push_i      ( push_i      ),
+        .data_o      ( data_o      ),
+        .pop_i       ( pop_i       )
+    );
+endmodule
+/*verilator lint_on DECLFILENAME*/ 
+
+`line 59 "/repo/hw/system/snitch_cluster/.bender/git/checkouts/common_cells-f9d1cdce7573d0e2/src/deprecated/fifo_v1.sv" 2

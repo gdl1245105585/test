@@ -1,0 +1,581 @@
+`begin_keywords "1800-2017"
+`line 1 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 1
+ 
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+ 
+`line 5 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 11 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 21 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 27 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 34 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 41 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 49 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 2
+`line 5 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+
+
+`line 7 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+ 
+
+`line 9 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+ 
+ 
+ 
+module reqrsp_iso #(
+     
+    parameter int unsigned AddrWidth = 0,
+     
+    parameter int unsigned DataWidth = 0,
+     
+    parameter type req_t             = logic,
+     
+    parameter type rsp_t             = logic,
+     
+    parameter bit  BypassReq         = 0,
+    parameter bit  BypassRsp         = 0
+) (
+     
+    input  logic src_clk_i,
+     
+    input  logic src_rst_ni,
+     
+    input  req_t src_req_i,
+     
+    output rsp_t src_rsp_o,
+     
+    input  logic dst_clk_i,
+     
+    input  logic dst_rst_ni,
+     
+    output req_t dst_req_o,
+     
+    input  rsp_t dst_rsp_i
+);
+
+`line 43 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef logic [AddrWidth-1:0] addr_t;
+  typedef logic [DataWidth-1:0] data_t;
+  typedef logic [DataWidth/8-1:0] strb_t;
+
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    addr_t             addr;  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic                write; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    data_t             data;  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    strb_t             strb;  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_pkg::size_t   size;  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_req_chan_t; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    data_t data;        
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+     logic  error;       
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_rsp_chan_t; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_req_chan_t q;       
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      q_valid; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      p_ready; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_req_t; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_rsp_chan_t p;       
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      p_valid; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      q_ready; 
+`line 47 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_rsp_t;
+
+`line 49 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  isochronous_spill_register #(
+    .T (reqrsp_req_chan_t),
+    .Bypass (BypassReq)
+  ) i_isochronous_spill_register_q (
+    .src_clk_i (src_clk_i),
+    .src_rst_ni (src_rst_ni),
+    .src_valid_i (src_req_i.q_valid) ,
+    .src_ready_o (src_rsp_o.q_ready) ,
+    .src_data_i (src_req_i.q),
+    .dst_clk_i (dst_clk_i),
+    .dst_rst_ni (dst_rst_ni),
+    .dst_valid_o (dst_req_o.q_valid),
+    .dst_ready_i (dst_rsp_i.q_ready),
+    .dst_data_o (dst_req_o.q)
+  );
+
+`line 65 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  isochronous_spill_register #(
+    .T (reqrsp_rsp_chan_t),
+    .Bypass (BypassRsp)
+  ) i_isochronous_spill_register_p (
+    .src_clk_i (dst_clk_i),
+    .src_rst_ni (dst_rst_ni),
+    .src_valid_i (dst_rsp_i.p_valid) ,
+    .src_ready_o (dst_req_o.p_ready) ,
+    .src_data_i (dst_rsp_i.p),
+    .dst_clk_i (src_clk_i),
+    .dst_rst_ni (src_rst_ni),
+    .dst_valid_o (src_rsp_o.p_valid),
+    .dst_ready_i (src_req_i.p_ready),
+    .dst_data_o (src_rsp_o.p)
+  );
+
+`line 81 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+endmodule
+
+`line 83 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+ 
+`line 83 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+ 
+
+`line 11 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+`line 21 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+`line 27 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 34 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+`line 41 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 0
+ 
+
+
+
+
+
+
+
+`line 49 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/typedef.svh" 2
+`line 83 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+
+`line 84 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+ 
+`line 84 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+`line 1 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 1
+ 
+`line 2 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+`line 5 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+`line 8 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+`line 10 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+ 
+
+
+`line 14 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+ 
+
+
+`line 19 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 35 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 65 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+`line 70 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`line 90 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+`line 95 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 0
+ 
+
+
+
+
+
+
+
+`line 103 "/repo/hw/ip/reqrsp_interface/include/reqrsp_interface/assign.svh" 2
+`line 84 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+
+
+`line 86 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+ 
+module reqrsp_iso_intf #(
+     
+    parameter int unsigned AddrWidth = 0,
+     
+    parameter int unsigned DataWidth = 0,
+     
+    parameter bit  BypassReq         = 0,
+    parameter bit  BypassRsp         = 0
+) (
+     
+    input  logic src_clk_i,
+     
+    input  logic src_rst_ni,
+     
+    REQRSP_BUS   src,
+     
+    input  logic dst_clk_i,
+     
+    input  logic dst_rst_ni,
+     
+    REQRSP_BUS   dst
+);
+
+`line 110 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef logic [AddrWidth-1:0] addr_t;
+  typedef logic [DataWidth-1:0] data_t;
+  typedef logic [DataWidth/8-1:0] strb_t;
+
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    addr_t             addr;  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic                write; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_pkg::amo_op_e amo;   
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    data_t             data;  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    strb_t             strb;  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_pkg::size_t   size;  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_req_chan_t; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    data_t data;        
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+     logic  error;       
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_rsp_chan_t; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_req_chan_t q;       
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      q_valid; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      p_ready; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_req_t; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  typedef struct packed { 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    reqrsp_rsp_chan_t p;       
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      p_valid; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+    logic      q_ready; 
+`line 114 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  } reqrsp_rsp_t;
+
+`line 116 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  reqrsp_req_t reqrsp_src_req, reqrsp_dst_req;
+  reqrsp_rsp_t reqrsp_src_rsp, reqrsp_dst_rsp;
+
+`line 119 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  reqrsp_iso #(
+    .AddrWidth (AddrWidth),
+    .DataWidth (DataWidth),
+    .req_t     (reqrsp_req_t),
+    .rsp_t     (reqrsp_rsp_t),
+    .BypassReq (BypassReq),
+    .BypassRsp (BypassRsp)
+  ) i_reqrsp_iso (
+    .src_clk_i,
+    .src_rst_ni,
+    .src_req_i (reqrsp_src_req),
+    .src_rsp_o (reqrsp_src_rsp),
+    .dst_clk_i,
+    .dst_rst_ni,
+    .dst_req_o (reqrsp_dst_req),
+    .dst_rsp_i (reqrsp_dst_rsp)
+  );
+
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.q_valid   = src.q_valid;     
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.q.addr  = src.q_addr;           
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.q.write = src.q_write;          
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.q.amo   = src.q_amo;            
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.q.data  = src.q_data;           
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.q.strb  = src.q_strb;           
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.q.size  = src.q_size; 
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 137 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_src_req.p_ready   = src.p_ready;
+  
+`line 138 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 138 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign src.q_ready   = reqrsp_src_rsp.q_ready;     
+`line 138 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 138 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign src.p_data   = reqrsp_src_rsp.p.data;          
+`line 138 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign src.p_error   = reqrsp_src_rsp.p.error; 
+`line 138 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 138 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign src.p_valid   = reqrsp_src_rsp.p_valid;
+
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.q_valid   = reqrsp_dst_req.q_valid;     
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.q_addr  = reqrsp_dst_req.q.addr;           
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.q_write = reqrsp_dst_req.q.write;          
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.q_amo   = reqrsp_dst_req.q.amo;            
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.q_data  = reqrsp_dst_req.q.data;           
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.q_strb  = reqrsp_dst_req.q.strb;           
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.q_size  = reqrsp_dst_req.q.size; 
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 140 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign dst.p_ready   = reqrsp_dst_req.p_ready;
+  
+`line 141 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 141 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_dst_rsp.q_ready   = dst.q_ready;     
+`line 141 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 141 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_dst_rsp.p.data   = dst.p_data;          
+`line 141 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_dst_rsp.p.error   = dst.p_error; 
+`line 141 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  
+`line 141 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+  assign reqrsp_dst_rsp.p_valid   = dst.p_valid;
+
+`line 143 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 0
+endmodule
+
+`line 145 "/repo/hw/ip/reqrsp_interface/src/reqrsp_iso.sv" 2
