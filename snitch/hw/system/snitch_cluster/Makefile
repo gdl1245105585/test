@@ -61,8 +61,7 @@ CFG = cfg/lru.hjson
 # Simulator options #
 #####################
 
-VLT_FLAGS  += --trace
-VLT_FLAGS  += --debug
+VLT_FLAGS  += --trace --debug
 
 VSIM_FLAGS += -t 1ps
 VSIM_FLAGS += -voptargs=+acc
