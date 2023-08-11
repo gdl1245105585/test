@@ -1,7 +1,7 @@
 
 
 `include "axi/typedef.svh"
-
+import axi_pkg::*;
 // verilog_lint: waive-start package-filename
 package snitch_cluster_pkg;
 
