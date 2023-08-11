@@ -1,0 +1,16 @@
+bin/
+obj_dir/
+Bender.lock
+*.vcd
+*.log
+trace_*
+work*/
+*wlf*
+modelsim.ini
+*.vstf
+simv*
+ucli.key
+vc_hdrs.h
+build/
+AN.DB/
+.rtlbinary

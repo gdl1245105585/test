@@ -1,0 +1,13 @@
+.git/
+.bender/
+*~
+*.bak
+__pycache__
+*.log
+*.vcd
+
+# We don't need the following files in the container
+hw/
+docs/
+util/
+sw/banshee/target
