@@ -1,3 +1,6 @@
+
+
+
 module ysyx_050228 (
     input  clock,  
     input  reset,
@@ -134,15 +137,6 @@ module ysyx_050228 (
 // verilog_lint: waive-start package-filename
 
 
-  snitch_cluster_pkg::narrow_in_req_t     narrow_in_req_i;
-  snitch_cluster_pkg::narrow_in_resp_t    narrow_in_resp_o;
-  snitch_cluster_pkg::narrow_out_req_t    narrow_out_req_o;
-  snitch_cluster_pkg::narrow_out_resp_t   narrow_out_resp_i;
-  snitch_cluster_pkg::wide_out_req_t      wide_out_req_o;
-  snitch_cluster_pkg::wide_out_resp_t     wide_out_resp_i;
-  snitch_cluster_pkg::wide_in_req_t       wide_in_req_i;
-  snitch_cluster_pkg::wide_in_resp_t      wide_in_resp_o;
-
 snitch_cluster_wrapper i_cluster (
     .clk_i(clock),
     .rst_ni(~reset),
@@ -257,4 +251,13 @@ axicb_crossbar_lite_top axicb_crossbar_lite_top
 .mst0_rdata(io_master_rdata),
 .mst0_ruser(io_master_ruser)
 );
+
+  snitch_cluster_pkg::narrow_in_req_t     narrow_in_req_i;
+  snitch_cluster_pkg::narrow_in_resp_t    narrow_in_resp_o;
+  snitch_cluster_pkg::narrow_out_req_t    narrow_out_req_o;
+  snitch_cluster_pkg::narrow_out_resp_t   narrow_out_resp_i;
+  snitch_cluster_pkg::wide_out_req_t      wide_out_req_o;
+  snitch_cluster_pkg::wide_out_resp_t     wide_out_resp_i;
+  snitch_cluster_pkg::wide_in_req_t       wide_in_req_i;
+  snitch_cluster_pkg::wide_in_resp_t      wide_in_resp_o;
 endmodule;
