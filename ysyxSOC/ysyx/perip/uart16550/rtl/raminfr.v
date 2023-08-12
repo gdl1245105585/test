@@ -85,7 +85,7 @@
 //
 
 // synopsys translate_off
-`timescale 1ns/1ns
+//`timescale 1ns/1ns
 // synopsys translate_on
 
 //Following is the Verilog code for a dual-port RAM with asynchronous read. 

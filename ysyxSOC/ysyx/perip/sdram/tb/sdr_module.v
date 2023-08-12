@@ -1,4 +1,4 @@
-`timescale 1ns / 100ps
+//`timescale 1ns / 100ps
 
 module sdr_module (Dq, Addr, Ba, Clk, Cke, Cs_n, Ras_n, Cas_n, We_n, Dqm);
 

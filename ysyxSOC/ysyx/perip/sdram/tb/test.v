@@ -1,6 +1,6 @@
 // Testbench for Micron SDR SDRAM Verilog models
 
-`timescale 1ns / 1ps
+//`timescale 1ns / 1ps
 
 module test;
 

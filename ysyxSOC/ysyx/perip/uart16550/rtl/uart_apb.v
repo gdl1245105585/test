@@ -1,5 +1,5 @@
 // synopsys translate_off
-`timescale 1ns/1ns
+//`timescale 1ns/1ns
 // synopsys translate_on
 
 module uart_apb (

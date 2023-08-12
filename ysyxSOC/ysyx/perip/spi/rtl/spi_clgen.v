@@ -1,4 +1,4 @@
-`timescale 1ns / 10ps
+//`timescale 1ns / 10ps
 `include "spi_defines.v"
 
 module spi_clgen (clk_in, rst, go, enable, last_clk, divider, clk_out, pos_edge, neg_edge,cpol); 

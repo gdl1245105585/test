@@ -1,5 +1,5 @@
 // Code your design here
-`timescale 1ns / 10ps
+//`timescale 1ns / 10ps
 
 `define SPI_DIVIDER_LEN_8
 //`define SPI_DIVIDER_LEN_16

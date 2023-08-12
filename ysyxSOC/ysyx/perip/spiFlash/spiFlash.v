@@ -1,4 +1,4 @@
-`timescale 1ns / 10ps
+//`timescale 1ns / 10ps
 
 // Refer to the data sheet for the flash instructions at
 // https://www.winbond.com/hq/product/code-storage-flash-memory/serial-nor-flash/?__locale=zh
